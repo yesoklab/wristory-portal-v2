@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wristory Portal</title>
+    <script>
+      (function() {
+        window.global = window;
+        var processPolyfill = {
+          env: { NODE_ENV: 'production' },
+          version: '',
+          nextTick: function(fn) { setTimeout(fn, 0); },
+          platform: 'browser',
+          browser: true,
+          cwd: function() { return '/'; },
+          on: function() {},
+          once: function() {},
+          off: function() {},
+          emit: function() {},
+          listeners: function() { return []; }
+        };
+        Object.defineProperty(window, 'process', {
+          value: processPolyfill,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

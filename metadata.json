@@ -1,0 +1,9 @@
+{
+  "name": "Wristory Portal",
+  "description": "A web portal for the WRISTORY project, focused on preserving historical value through blockchain technology on the Tezos network.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
