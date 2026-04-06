@@ -15,13 +15,13 @@ import {
   Zap,
   Globe
 } from 'lucide-react';
-import LandingPageView from '../views/LandingPageView';
-import AirdropView from '../views/AirdropView';
-import GuideView from '../views/GuideView';
-import PublicAiView from '../views/PublicAiView';
-import AdminDashboard from '../views/AdminDashboard';
-import WalletView from '../views/WalletView';
-import { getCuratorResponse } from '../services/geminiService';
+import LandingPageView from './views/LandingPageView';
+import AirdropView from './views/AirdropView';
+import GuideView from './views/GuideView';
+import PublicAiView from './views/PublicAiView';
+import AdminDashboard from './views/AdminDashboard';
+import WalletView from './views/WalletView';
+import { getCuratorResponse } from './services/geminiService';
 
 export type ViewMode = 'PUBLIC' | 'ADMIN';
 export type PublicTab = 'HOME' | 'AIRDROP' | 'GUIDE' | 'AI' | 'WALLET';
