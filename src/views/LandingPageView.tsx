@@ -200,7 +200,7 @@ const TwitterPromoSection: React.FC = () => {
             <span className="text-sm opacity-70">Check out our cinematic promo video on official Twitter.</span>
           </p>
           <a 
-            href="https://twitter.com/yesoklab" 
+            href="https://x.com/wakk5252/status/2041199203951825265?s=20" 
             target="_blank"
             className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-600/20"
           >
