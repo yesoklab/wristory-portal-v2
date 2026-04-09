@@ -11,151 +11,18 @@ import {
   Github, 
   Lock, 
   Smartphone, 
-  CheckCircle2, 
-  Loader2, 
-  Droplets, 
-  BarChart3, 
+  CheckCircle2,
+  Droplets,
+  BarChart3,
   ArrowRightLeft,
-  AlertCircle,
-  Wallet,
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  Maximize2,
-  Settings
+  Loader2
 } from 'lucide-react';
-import { generatePromoVideo, checkVideoStatus } from '../services/videoService';
 
 interface Props {
   lang: 'ko' | 'en';
   onNavigate: (tab: any) => void;
   hasApiKey: boolean;
 }
-
-const PromoVideoSection: React.FC<{ hasApiKey: boolean }> = ({ hasApiKey }) => {
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [progress, setProgress] = useState(0);
-
-  const startGeneration = async () => {
-    setIsGenerating(true);
-    setError(null);
-    setProgress(0);
-    
-    try {
-      const prompt = "A cinematic 3D animation of a Tezos blockchain node glowing in neon blue and emerald. Historical Korean artifacts like a seal and a calligraphy scroll dissolve into digital particles and reform as a futuristic WRISTORY token. Cyberpunk aesthetic, high contrast, 4k resolution.";
-      const opName = await generatePromoVideo(prompt);
-      
-      // Poll for completion
-      const pollInterval = setInterval(async () => {
-        try {
-          const result = await checkVideoStatus(opName);
-          if (result.done) {
-            clearInterval(pollInterval);
-            setIsGenerating(false);
-            if (result.uri) {
-              setVideoUrl(result.uri);
-            } else {
-              setError(result.error || "Failed to get video URL.");
-            }
-          } else {
-            setProgress(prev => Math.min(prev + 5, 95)); // Simulated progress
-          }
-        } catch (e) {
-          clearInterval(pollInterval);
-          setIsGenerating(false);
-          setError("Error checking video status.");
-        }
-      }, 10000);
-    } catch (e) {
-      setIsGenerating(false);
-      setError("Failed to start video generation.");
-    }
-  };
-
-  return (
-    <section id="promo-video" className="max-w-7xl mx-auto px-6 py-20">
-      <div className="bg-slate-900 border border-slate-800 rounded-[4rem] p-10 md:p-20 relative overflow-hidden shadow-2xl">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_#3b82f60a_0%,_transparent_70%)]" />
-        
-        <div className="relative z-10 flex flex-col items-center text-center space-y-12">
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[11px] font-black uppercase tracking-widest">
-              <Sparkles size={16} /> Cinematic Experience
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white italic tracking-tighter uppercase">
-              The Bridge of Time <br/>
-              <span className="text-blue-500">Official Promo</span>
-            </h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto font-medium">
-              역사는 책 속에 머물지 않고, 블록체인 위에서 영원히 살아 숨 쉽니다. <br/>
-              <span className="text-sm opacity-70">History is no longer static. It lives forever on the blockchain.</span>
-            </p>
-          </div>
-
-          <div className="w-full max-w-4xl aspect-video bg-slate-950 rounded-[3rem] border border-slate-800 overflow-hidden relative group shadow-2xl">
-            {videoUrl ? (
-              <video 
-                src={videoUrl} 
-                controls 
-                autoPlay 
-                loop 
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center space-y-6">
-                {isGenerating ? (
-                  <div className="flex flex-col items-center space-y-4">
-                    <Loader2 size={48} className="text-blue-500 animate-spin" />
-                    <div className="space-y-2 text-center">
-                      <p className="text-white font-black uppercase tracking-widest text-sm">Generating Cinematic Video...</p>
-                      <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Estimated time: 2-3 minutes</p>
-                      <div className="w-48 h-1 bg-slate-800 rounded-full mt-4 overflow-hidden">
-                        <div className="bg-blue-500 h-full transition-all duration-500" style={{ width: `${progress}%` }} />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <div className="w-24 h-24 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform duration-500">
-                      <Play size={48} fill="currentColor" />
-                    </div>
-                    {hasApiKey ? (
-                      <button 
-                        onClick={startGeneration}
-                        className="px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-600/20"
-                      >
-                        홍보 영상 생성하기 / Generate Promo Video
-                      </button>
-                    ) : (
-                      <div className="space-y-4">
-                        <p className="text-amber-500 text-sm font-bold">API 키 설정이 필요합니다. / API Key Setup Required.</p>
-                        <button 
-                          onClick={async () => {
-                            if (window.aistudio) {
-                              await window.aistudio.openSelectKey();
-                              window.location.reload();
-                            }
-                          }}
-                          className="px-10 py-5 bg-amber-600 hover:bg-amber-500 text-white rounded-2xl font-black text-lg transition-all shadow-xl shadow-amber-600/20 flex items-center gap-2"
-                        >
-                          <Settings size={20} /> 키 설정하기 / Setup API Key
-                        </button>
-                      </div>
-                    )}
-                    {error && <p className="text-red-500 text-xs font-bold mt-4">{error}</p>}
-                  </>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const LiquidityPoolSection: React.FC = () => {
   const quipuSwapUrl = 'https://quipuswap.com/liquidity/cpmm/add/KT1VYsVfmobT7rsMVivvZ4J8i3bPiqz12NaH-KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu_0';
@@ -213,20 +80,20 @@ const LiquidityPoolSection: React.FC = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-end">
                 <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">Total Value Locked</span>
-                <span className="text-2xl font-black text-white">$1,177+</span>
+                <span className="text-2xl font-black text-white">$5,360+</span>
               </div>
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-blue-500 h-full w-[92%]" />
+                <div className="bg-blue-500 h-full w-[100%]" />
               </div>
               
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">wXTZ Share</p>
-                  <p className="text-lg font-black text-white">5,986.125</p>
+                  <p className="text-lg font-black text-white">11,991.49</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">WR Share</p>
-                  <p className="text-lg font-black text-white">598,612.5</p>
+                  <p className="text-lg font-black text-white">1,199,150</p>
                 </div>
               </div>
 
@@ -315,6 +182,36 @@ const CollectorAccess: React.FC = () => {
   );
 };
 
+const TwitterPromoSection: React.FC = () => {
+  return (
+    <section className="max-w-7xl mx-auto px-6 py-20">
+      <div className="bg-slate-900 border border-slate-800 rounded-[4rem] p-10 md:p-20 relative overflow-hidden shadow-2xl text-center">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_#3b82f60a_0%,_transparent_70%)]" />
+        <div className="relative z-10 space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[11px] font-black uppercase tracking-widest">
+            <Sparkles size={16} /> Official Promo
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-white italic tracking-tighter uppercase">
+            Experience the <br/>
+            <span className="text-blue-500">Wristory Universe</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto font-medium">
+            공식 트위터에서 Wristory의 시네마틱 홍보 영상을 확인하세요. <br/>
+            <span className="text-sm opacity-70">Check out our cinematic promo video on official Twitter.</span>
+          </p>
+          <a 
+            href="https://twitter.com/yesoklab" 
+            target="_blank"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-600/20"
+          >
+            트위터에서 영상 보기 / Watch on Twitter <ArrowUpRight size={20} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
   const contractAddress = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const githubUrl = 'https://github.com/yesoklab/wristory-portal';
@@ -322,8 +219,13 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
   const walletTxUrl = 'https://tzkt.io/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/operations/';
   
   const fighters = [
-    { name: 'PORK COLLECTION', desc: '독립운동가 포크 아트 컬렉션 / Independence Activist Fork Art', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeic6y7j7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7' },
-    { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
+    { 
+      name: 'TEZCHAIN: Protocol Series', 
+      desc: 'Tezos 블록체인의 기술적 진화를 시각화한 제너레이티브 아트 컬렉션 / Generative NFT collection exploring Tezos blockchain', 
+      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihkplido56mrfsurl5fb65bpwypxrcik2kmqdxotemodowsdxg2cm', 
+      url: 'https://objkt.com/collections/KT1MhvVaRjuyjo9s1u6xmpK7cwEFXFHXgMZD'
+    },
+    { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
     { name: 'SINGULARITY', desc: 'Manhattan Project Generative', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigwesz2d5hh2qolnzmfhjgtwibozlqxysido66tuomd56wjnozbza' },
   ];
@@ -377,28 +279,30 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="stats-container flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#00ffcc] font-black text-sm md:text-lg uppercase tracking-widest pt-4">
              <span>Total Supply: 51,169,148 $WR</span>
              <span className="hidden md:inline text-slate-700">|</span>
-             <span>Holders: 195+</span>
+             <span>Holders: 210+</span>
              <span className="hidden md:inline text-slate-700">|</span>
-             <span>Collections: 19</span>
+             <span>Collections: 21</span>
           </div>
           
            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
-              <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                <ShieldCheck size={18} className="text-blue-400" />
+              <div className="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center">
+                <CheckCircle2 size={18} className="text-emerald-400" />
               </div>
               <p className="text-[10px] text-slate-400 font-bold text-left leading-tight">
-                <span className="text-white block">Temple Wallet Logo Whitelist</span>
-                현재 템플 월렛 로고 표시 작업을 진행 중입니다. (PR #26)
+                <span className="text-white block">Wallet & Exchange Integration Complete</span>
+                Temple, Kukai 등 모든 테조스 지갑과 QuipuSwap에서 WR 토큰 로고가 완벽하게 적용되었습니다.
               </p>
-              <a href="https://github.com/madfish-solutions/tokens-whitelist/pull/26" target="_blank" className="text-blue-400 hover:text-white transition-colors">
-                <ExternalLink size={14} />
-              </a>
+              <div className="flex items-center gap-2">
+                <div className="px-2 py-1 bg-slate-800 rounded text-[8px] text-slate-400 border border-slate-700">Temple</div>
+                <div className="px-2 py-1 bg-slate-800 rounded text-[8px] text-slate-400 border border-slate-700">Kukai</div>
+                <div className="px-2 py-1 bg-slate-800 rounded text-[8px] text-slate-400 border border-slate-700">QuipuSwap</div>
+              </div>
             </div>
           </div>
         </section>
 
-      {/* Promo Video Section */}
-      <PromoVideoSection hasApiKey={hasApiKey} />
+      {/* Twitter Promo Section */}
+      <TwitterPromoSection />
 
       {/* Contract Verification Banner */}
       <section className="max-w-7xl mx-auto px-6 mb-20">
@@ -431,26 +335,51 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="h-px flex-1 bg-slate-800" />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-blue-500/30 transition-all group">
             <div className="aspect-video overflow-hidden rounded-2xl relative">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihkplido56mrfsurl5fb65bpwypxrcik2kmqdxotemodowsdxg2cm" 
+                alt="TEZCHAIN" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute top-4 left-4 bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Protocol Series</div>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-2xl font-black text-white italic uppercase">TEZCHAIN: Protocol</h3>
+              <p className="text-slate-400 text-sm font-medium leading-relaxed">
+                Tezos 블록체인의 기술적 진화를 시각화한 제너레이티브 아트 컬렉션입니다. <br/>
+                <span className="text-xs opacity-70">Generative NFT collection exploring Tezos blockchain evolution.</span>
+              </p>
+              <a 
+                href="https://objkt.com/collections/KT1MhvVaRjuyjo9s1u6xmpK7cwEFXFHXgMZD" 
+                target="_blank"
+                className="inline-flex items-center gap-2 text-blue-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
+              >
+                View Collection <ArrowUpRight size={14} />
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-emerald-500/30 transition-all group">
+            <div className="aspect-video overflow-hidden rounded-2xl relative">
+              <img 
+                src="https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34" 
                 alt="Running Bitcoin" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">New Legend</div>
+              <div className="absolute top-4 left-4 bg-emerald-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">New Legend</div>
             </div>
             <div className="space-y-4">
               <h3 className="text-2xl font-black text-white italic uppercase">Running Bitcoin</h3>
               <p className="text-slate-400 text-sm font-medium leading-relaxed">
                 Hal Finney의 전설적인 "Running bitcoin" 트윗을 테조스 디지털 유산으로 보존합니다. <br/>
-                <span className="text-xs opacity-70">Hal Finney's legendary "Running bitcoin" tweet, preserved as a digital heritage on Tezos.</span>
+                <span className="text-xs opacity-70">Hal Finney's legendary "Running bitcoin" tweet, preserved on Tezos.</span>
               </p>
               <a 
                 href="https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-blue-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-emerald-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
               >
                 View Collection <ArrowUpRight size={14} />
               </a>
@@ -469,7 +398,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             <div className="space-y-4">
               <h3 className="text-2xl font-black text-white italic uppercase">SINGULARITY: Event Horizon</h3>
               <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                7 generative HTML5 works tracing the Manhattan Project. Each 1/1 live simulation of atomic decay and detonation.
+                7 generative HTML5 works tracing the Manhattan Project. Each 1/1 live simulation of atomic decay.
               </p>
               <a 
                 href="https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH" 
@@ -571,7 +500,11 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {fighters.map((item, i) => (
-            <div key={i} className="group relative bg-slate-900 rounded-[3rem] overflow-hidden border border-slate-800 hover:border-blue-500/50 transition-all hover:-translate-y-4 shadow-2xl">
+            <div 
+              key={i} 
+              onClick={() => item.url && window.open(item.url, '_blank')}
+              className={`group relative bg-slate-900 rounded-[3rem] overflow-hidden border border-slate-800 hover:border-blue-500/50 transition-all hover:-translate-y-4 shadow-2xl ${item.url ? 'cursor-pointer' : ''}`}
+            >
               <div className="aspect-[4/5] overflow-hidden">
                 <img src={item.img} alt={item.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
                 <div className="absolute top-6 right-6 px-3 py-1 bg-blue-600 rounded-full text-[9px] font-black text-white uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
@@ -579,7 +512,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
                 </div>
               </div>
               <div className="p-10">
-                <h3 className="text-3xl font-black text-white italic tracking-tighter mb-2">{item.name}</h3>
+                <h3 className="text-3xl font-black text-white italic tracking-tighter mb-2 leading-tight">{item.name}</h3>
                 <p className="text-slate-500 text-sm font-medium">{item.desc}</p>
               </div>
             </div>

@@ -18,11 +18,12 @@ const AirdropView: React.FC<Props> = ({ lang, onNavigate }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.twitter && !formData.gmail && !formData.reddit) {
-      alert("최소 하나의 계정은 입력해 주세요! / Please enter at least one account.");
+    if (!formData.twitter.trim() && !formData.gmail.trim() && !formData.reddit.trim()) {
+      alert("최소 하나의 계정(트위터, 지메일, 레딧 중 하나)은 입력해 주세요! / Please enter at least one account.");
       return;
     }
     setStatus('SUBMITTING');
+    // In a real app, this would send data to a backend or Firestore
     setTimeout(() => setStatus('SUCCESS'), 2000);
   };
 
@@ -63,7 +64,11 @@ const AirdropView: React.FC<Props> = ({ lang, onNavigate }) => {
               </div>
               <div className="space-y-2">
                 <h3 className="text-3xl font-black text-white italic uppercase">신청 완료! / Submitted!</h3>
-                <p className="text-slate-400 font-medium">검토 후 24시간 이내에 21 WR 토큰이 지급됩니다. <br/> 21 WR tokens will be sent within 24 hours.</p>
+                <p className="text-slate-400 font-medium">
+                  검토 후 24시간 이내에 입력하신 계정 정보를 바탕으로 21 WR 토큰이 지급됩니다. <br/> 
+                  <span className="text-xs text-blue-400">* 에어드랍은 관리자 확인 후 수동으로 지급되는 구조입니다.</span> <br/>
+                  21 WR tokens will be sent within 24 hours after manual verification.
+                </p>
               </div>
               <button 
                 onClick={() => setStatus('IDLE')}
