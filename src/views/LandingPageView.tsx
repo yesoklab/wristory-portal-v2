@@ -293,7 +293,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
                 Temple, Kukai 등 모든 테조스 지갑과 QuipuSwap에서 WR 토큰 로고가 완벽하게 적용되었습니다.
               </p>
               <div className="flex items-center gap-2">
-                <div className="px-2 py-1 bg-slate-800 rounded text-[8px] text-slate-400 border border-slate-700">Temple</div>
+                <div className="px-2 py-1 bg-blue-600/20 rounded text-[8px] text-blue-400 border border-blue-500/30 font-black">Temple (Partner)</div>
                 <div className="px-2 py-1 bg-slate-800 rounded text-[8px] text-slate-400 border border-slate-700">Kukai</div>
                 <div className="px-2 py-1 bg-slate-800 rounded text-[8px] text-slate-400 border border-slate-700">QuipuSwap</div>
               </div>

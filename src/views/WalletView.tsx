@@ -148,36 +148,62 @@ const WalletView: React.FC<Props> = ({ lang }) => {
 
           {/* Recommended Mobile Wallets */}
           <div className="space-y-4">
-            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] px-4">Recommended Mobile Wallets</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] px-4">Recommended Wallets</h3>
+            <div className="grid grid-cols-1 gap-4">
               <a 
-                href="https://wallet.kukai.app/" 
+                href="https://templewallet.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-slate-900 border border-slate-800 p-6 rounded-3xl hover:border-blue-500/50 transition-all group"
+                className="bg-gradient-to-br from-blue-600/10 to-slate-900 border border-blue-500/30 p-6 rounded-3xl hover:border-blue-500 transition-all group relative overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                    <Smartphone size={18} />
-                  </div>
-                  <span className="font-black text-white italic uppercase tracking-tight">Kukai</span>
+                <div className="absolute top-0 right-0 bg-blue-600 text-white text-[8px] font-black uppercase px-3 py-1 rounded-bl-xl tracking-widest">
+                  Official Partner
                 </div>
-                <p className="text-[10px] text-slate-500 font-medium leading-relaxed">Social Login & Web Wallet</p>
-              </a>
-              <a 
-                href="https://airgap.it/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-slate-900 border border-slate-800 p-6 rounded-3xl hover:border-emerald-500/50 transition-all group"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                    <ShieldCheck size={18} />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                    <ShieldCheck size={24} />
                   </div>
-                  <span className="font-black text-white italic uppercase tracking-tight">AirGap</span>
+                  <div>
+                    <span className="font-black text-white text-lg italic uppercase tracking-tight block">Temple Wallet</span>
+                    <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
+                      {lang === 'ko' 
+                        ? '테조스 생태계 표준 지갑 - WR 토큰 공식 지원 예정' 
+                        : 'Standard Tezos Wallet - Official WR Token Support Coming Soon'}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-[10px] text-slate-500 font-medium leading-relaxed">Secure Mobile Wallet</p>
               </a>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <a 
+                  href="https://wallet.kukai.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-slate-900 border border-slate-800 p-6 rounded-3xl hover:border-blue-500/50 transition-all group"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                      <Smartphone size={18} />
+                    </div>
+                    <span className="font-black text-white italic uppercase tracking-tight">Kukai</span>
+                  </div>
+                  <p className="text-[10px] text-slate-500 font-medium leading-relaxed">Social Login & Web Wallet</p>
+                </a>
+                <a 
+                  href="https://airgap.it/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-slate-900 border border-slate-800 p-6 rounded-3xl hover:border-emerald-500/50 transition-all group"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                      <ShieldCheck size={18} />
+                    </div>
+                    <span className="font-black text-white italic uppercase tracking-tight">AirGap</span>
+                  </div>
+                  <p className="text-[10px] text-slate-500 font-medium leading-relaxed">Secure Mobile Wallet</p>
+                </a>
+              </div>
             </div>
           </div>
         </div>
