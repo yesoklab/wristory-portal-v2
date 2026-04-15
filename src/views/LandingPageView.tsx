@@ -237,7 +237,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
     },
     { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
-    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigllxocqnjpjkmc6yhs5gp3rwkztwijutsf36yj4xri45f5oa7phq', url: 'https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH' },
+    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigllxocqnjpjkmc6yhs5gp3rwkztwijutsf36yj4xri45f5oa7phq', url: 'https://objkt.com/collections/KT1JU866vUaq8ac5KkmuW8XKnEbNXiVHRqUy' },
   ];
 
   return (
@@ -415,7 +415,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
                 <span className="text-xs opacity-70 text-orange-400">비트코인 최초의 실물 거래를 기념하는 컬렉션입니다.</span>
               </p>
               <a 
-                href="https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH" 
+                href="https://objkt.com/collections/KT1JU866vUaq8ac5KkmuW8XKnEbNXiVHRqUy" 
                 target="_blank"
                 className="inline-flex items-center gap-2 text-orange-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
               >
