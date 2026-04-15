@@ -182,30 +182,40 @@ const CollectorAccess: React.FC = () => {
   );
 };
 
-const TwitterPromoSection: React.FC = () => {
+const OfficialPromoSection: React.FC = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 py-20">
       <div className="bg-slate-900 border border-slate-800 rounded-[4rem] p-10 md:p-20 relative overflow-hidden shadow-2xl text-center">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_#3b82f60a_0%,_transparent_70%)]" />
-        <div className="relative z-10 space-y-6">
+        <div className="relative z-10 space-y-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[11px] font-black uppercase tracking-widest">
             <Sparkles size={16} /> Official Promo
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-white italic tracking-tighter uppercase">
-            Experience the <br/>
-            <span className="text-blue-500">Wristory Universe</span>
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto font-medium">
-            공식 트위터에서 Wristory의 시네마틱 홍보 영상을 확인하세요. <br/>
-            <span className="text-sm opacity-70">Check out our cinematic promo video on official Twitter.</span>
-          </p>
-          <a 
-            href="https://x.com/wakk5252/status/2041199203951825265?s=20" 
-            target="_blank"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-600/20"
-          >
-            트위터에서 영상 보기 / Watch on Twitter <ArrowUpRight size={20} />
-          </a>
+          
+          <div className="max-w-4xl mx-auto aspect-video rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-black relative group">
+            <video 
+              src="/promo-video.mp4" 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-10">
+              <p className="text-white font-black italic uppercase tracking-widest text-sm">Wristory Cinematic Universe</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-4xl md:text-6xl font-black text-white italic tracking-tighter uppercase">
+              Experience the <br/>
+              <span className="text-blue-500">Wristory Universe</span>
+            </h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto font-medium">
+              Wristory의 시네마틱 홍보 영상을 확인하세요. <br/>
+              <span className="text-sm opacity-70">Check out our cinematic promo video.</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -227,7 +237,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
     },
     { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
-    { name: 'SINGULARITY', desc: 'Manhattan Project Generative', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigwesz2d5hh2qolnzmfhjgtwibozlqxysido66tuomd56wjnozbza' },
+    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1000', url: 'https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH' },
   ];
 
   return (
@@ -301,8 +311,8 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           </div>
         </section>
 
-      {/* Twitter Promo Section */}
-      <TwitterPromoSection />
+      {/* Official Promo Section */}
+      <OfficialPromoSection />
 
       {/* Contract Verification Banner */}
       <section className="max-w-7xl mx-auto px-6 mb-20">
@@ -386,24 +396,28 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             </div>
           </div>
 
-          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-purple-500/30 transition-all group">
-            <div className="aspect-video overflow-hidden rounded-2xl relative">
-              <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigwesz2d5hh2qolnzmfhjgtwibozlqxysido66tuomd56wjnozbza" 
-                alt="SINGULARITY" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-orange-500/30 transition-all group">
+            <div className="aspect-video overflow-hidden rounded-2xl relative bg-black">
+              <video 
+                src="/pizza-video.mp4" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
               />
-              <div className="absolute top-4 left-4 bg-purple-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Generative</div>
+              <div className="absolute top-4 left-4 bg-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">10K Pizza</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-black text-white italic uppercase">SINGULARITY: Event Horizon</h3>
+              <h3 className="text-2xl font-black text-white italic uppercase">Bitcoin Pizza Genesis: 10K</h3>
               <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                7 generative HTML5 works tracing the Manhattan Project. Each 1/1 live simulation of atomic decay.
+                Celebrating the first real-world Bitcoin transaction. 10,000 BTC for two pizzas. <br/>
+                <span className="text-xs opacity-70 text-orange-400">비트코인 최초의 실물 거래를 기념하는 컬렉션입니다.</span>
               </p>
               <a 
                 href="https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-purple-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-orange-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
               >
                 View Collection <ArrowUpRight size={14} />
               </a>
