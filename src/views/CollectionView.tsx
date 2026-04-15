@@ -34,16 +34,6 @@ const collections = [
     desc: '대한민국 제21대 이재명 대통령의 디지털 유산 컬렉션. YesOkLab/WRISTORY가 테조스 블록체인에서 선보이는 역사적 순간들을 NFT로 보존합니다.'
   },
   { 
-    id: 'singularity-horizon', 
-    name: 'SINGULARITY: Event Horizon Series', 
-    price: 'Generative', 
-    count: 7, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigwesz2d5hh2qolnzmfhjgtwibozlqxysido66tuomd56wjnozbza', 
-    url: 'https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH',
-    isNew: true,
-    desc: '7 generative HTML5 works tracing the Manhattan Project. Each 1/1 live simulation: atomic decay, fission, chain reaction, implosion, detonation. / 맨해튼 프로젝트를 추적하는 7개의 제너레이티브 작품.'
-  },
-  { 
     id: 'pizza-100', 
     name: 'Bitcoin Pizza Genesis: 100', 
     price: '100 EDITIONS', 
