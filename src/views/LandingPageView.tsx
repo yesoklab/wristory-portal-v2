@@ -237,7 +237,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
     },
     { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
-    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigwesz2d5hh2qolnzmfhjgtwibozlqxysido66tuomd56wjnozbza', url: 'https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH' },
+    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigllxocqnjpjkmc6yhs5gp3rwkztwijutsf36yj4xri45f5oa7phq', url: 'https://objkt.com/collections/KT1AmcMJuw4unJ7aqjjB2yjrvn2wHfuVSmYH' },
   ];
 
   return (
