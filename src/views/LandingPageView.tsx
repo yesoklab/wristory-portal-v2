@@ -238,6 +238,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
     { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
     { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigllxocqnjpjkmc6yhs5gp3rwkztwijutsf36yj4xri45f5oa7phq', url: 'https://objkt.com/collections/KT1JU866vUaq8ac5KkmuW8XKnEbNXiVHRqUy' },
+    { name: 'HERITAGE SYNC', desc: 'Where Tradition Meets the Future', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidykilyimphxy4wjpo4yepd7q642ajd2zdvfws26pswtbidopfnne', url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU' },
   ];
 
   return (
@@ -345,7 +346,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="h-px flex-1 bg-slate-800" />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-blue-500/30 transition-all group">
             <div className="aspect-video overflow-hidden rounded-2xl relative">
               <img 
@@ -356,17 +357,16 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
               <div className="absolute top-4 left-4 bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Protocol Series</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-black text-white italic uppercase">TEZCHAIN: Protocol</h3>
-              <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                Tezos 블록체인의 기술적 진화를 시각화한 제너레이티브 아트 컬렉션입니다. <br/>
-                <span className="text-xs opacity-70">Generative NFT collection exploring Tezos blockchain evolution.</span>
+              <h3 className="text-xl font-black text-white italic uppercase">TEZCHAIN: Protocol</h3>
+              <p className="text-slate-400 text-xs font-medium leading-relaxed">
+                Tezos 블록체인의 기술적 진화를 시각화한 제너레이티브 아트 컬렉션입니다.
               </p>
               <a 
                 href="https://objkt.com/collections/KT1MhvVaRjuyjo9s1u6xmpK7cwEFXFHXgMZD" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-blue-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-blue-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
               >
-                View Collection <ArrowUpRight size={14} />
+                View Collection <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
@@ -381,17 +381,16 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
               <div className="absolute top-4 left-4 bg-emerald-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">New Legend</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-black text-white italic uppercase">Running Bitcoin</h3>
-              <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                Hal Finney의 전설적인 "Running bitcoin" 트윗을 테조스 디지털 유산으로 보존합니다. <br/>
-                <span className="text-xs opacity-70">Hal Finney's legendary "Running bitcoin" tweet, preserved on Tezos.</span>
+              <h3 className="text-xl font-black text-white italic uppercase">Running Bitcoin</h3>
+              <p className="text-slate-400 text-xs font-medium leading-relaxed">
+                Hal Finney의 전설적인 "Running bitcoin" 트윗을 디지털 유산으로 보존합니다.
               </p>
               <a 
                 href="https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-emerald-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-emerald-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
               >
-                View Collection <ArrowUpRight size={14} />
+                View Collection <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
@@ -409,15 +408,40 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
               <div className="absolute top-4 left-4 bg-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">10K Pizza</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-black text-white italic uppercase">Bitcoin Pizza Genesis: 10K</h3>
-              <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                Celebrating the first real-world Bitcoin transaction. 10,000 BTC for two pizzas. <br/>
-                <span className="text-xs opacity-70 text-orange-400">비트코인 최초의 실물 거래를 기념하는 컬렉션입니다.</span>
+              <h3 className="text-xl font-black text-white italic uppercase">Bitcoin Pizza: 10K</h3>
+              <p className="text-slate-400 text-xs font-medium leading-relaxed">
+                비트코인 최초의 실물 거래를 기념하는 컬렉션입니다.
               </p>
               <a 
                 href="https://objkt.com/collections/KT1JU866vUaq8ac5KkmuW8XKnEbNXiVHRqUy" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-orange-400 font-black text-xs uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-orange-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
+              >
+                View Collection <ArrowUpRight size={12} />
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-slate-950/60 border border-indigo-500/50 rounded-[3rem] p-8 space-y-6 hover:border-indigo-400 shadow-[0_0_50px_rgba(99,102,241,0.15)] transition-all group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4 opacity-10"><Sparkles size={40} className="text-indigo-400" /></div>
+            <div className="aspect-video overflow-hidden rounded-2xl relative">
+              <img 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidykilyimphxy4wjpo4yepd7q642ajd2zdvfws26pswtbidopfnne" 
+                alt="HERITAGE SYNC" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute top-4 left-4 bg-indigo-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Featured New</div>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-black text-white italic uppercase leading-tight">HERITAGE SYNC</h3>
+              <p className="text-indigo-300 text-[10px] font-black uppercase tracking-widest mb-1">Where Tradition Meets the Future</p>
+              <p className="text-slate-400 text-xs font-medium leading-relaxed">
+                전통과 미래가 만나는 지점. 새롭게 추가된 Wristory의 핵심 컬렉션을 만나보세요.
+              </p>
+              <a 
+                href="https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU" 
+                target="_blank"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-indigo-600/20"
               >
                 View Collection <ArrowUpRight size={14} />
               </a>
