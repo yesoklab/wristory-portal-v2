@@ -3,6 +3,16 @@ import { ExternalLink, Tag, Users, Pizza, ArrowUpRight, ShieldCheck } from 'luci
 
 const collections = [
   { 
+    id: 'heritage-sync', 
+    name: 'HERITAGE SYNC : Where Tradition Meets the Future', 
+    price: 'New Collection', 
+    count: 21, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidykilyimphxy4wjpo4yepd7q642ajd2zdvfws26pswtbidopfnne', 
+    url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU',
+    isNew: true,
+    desc: '전통과 미래가 만나는 지점. Wristory가 선보이는 새로운 메인넷 컬렉션입니다. / A new mainnet collection from Wristory where tradition meets the future.'
+  },
+  { 
     id: 'running-bitcoin', 
     name: 'Running Bitcoin', 
     price: 'New Collection', 
