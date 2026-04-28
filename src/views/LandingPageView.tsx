@@ -15,7 +15,8 @@ import {
   Droplets,
   BarChart3,
   ArrowRightLeft,
-  Loader2
+  Loader2,
+  Pizza
 } from 'lucide-react';
 
 interface Props {
@@ -237,12 +238,40 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
     },
     { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
-    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigllxocqnjpjkmc6yhs5gp3rwkztwijutsf36yj4xri45f5oa7phq', url: 'https://objkt.com/collections/KT1JU866vUaq8ac5KkmuW8XKnEbNXiVHRqUy' },
+    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4', url: 'https://www.fxhash.xyz/art-coin/btcpizza' },
     { name: 'HERITAGE SYNC', desc: 'Where Tradition Meets the Future', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidykilyimphxy4wjpo4yepd7q642ajd2zdvfws26pswtbidopfnne', url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU' },
+    { name: 'WRISTORY: PATRIOTIC LEGACY', desc: 'Preserving the spirit of patriotism on Tezos.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u', url: 'https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR' },
   ];
 
   return (
     <div className="animate-in fade-in duration-1000 pb-20">
+      {/* fxhash Minting Special Banner */}
+      <div className="bg-gradient-to-r from-orange-500 via-white to-orange-600 p-[1px] mb-10 shadow-2xl shadow-orange-500/10">
+        <div className="bg-[#0F111A] px-6 py-5 flex flex-col md:flex-row items-center justify-center gap-6 text-center">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-orange-500/10 rounded-full flex items-center justify-center border border-orange-500/20">
+              <Pizza size={20} className="text-orange-500 animate-spin-slow" />
+            </div>
+            <div className="flex flex-col items-start translate-y-0.5">
+              <span className="text-sm font-black text-white uppercase tracking-[0.2em] leading-tight text-left">Bitcoin Pizza Genesis: 10K</span>
+              <span className="text-[9px] font-bold text-orange-500 uppercase tracking-widest text-left">Now Live on FXHASH</span>
+            </div>
+          </div>
+          <div className="hidden md:block w-[1px] h-10 bg-slate-800" />
+          <p className="text-slate-400 text-[11px] font-bold max-w-xl leading-relaxed text-left">
+            "역사적인 그 날의 시작" - 비트코인 제네시스 피자 10K 컬렉션이 테조스 메인넷의 정점, fxhash에서 새롭게 민팅을 시작합니다. 
+            상징적 의미를 담은 디지털 유산을 소장할 기회를 놓치지 마세요.
+          </p>
+          <a 
+            href="https://www.fxhash.xyz/art-coin/btcpizza" 
+            target="_blank" 
+            className="px-8 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.1em] transition-all flex items-center gap-2 shadow-xl shadow-orange-600/20"
+          >
+            지금 민팅하기 / Mint Now <ArrowUpRight size={14} />
+          </a>
+        </div>
+      </div>
+
       {/* 3.1 Independence Movement Day Special Banner */}
       <div className="bg-gradient-to-r from-red-600 via-white to-blue-600 p-[1px] mb-10">
         <div className="bg-[#0F111A] px-6 py-4 flex flex-col md:flex-row items-center justify-center gap-4 text-center">
@@ -395,27 +424,26 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             </div>
           </div>
 
-          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-orange-500/30 transition-all group">
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-orange-500/30 transition-all group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-6 opacity-5 rotate-12 group-hover:rotate-0 transition-transform"><Pizza size={100} className="text-orange-500" /></div>
             <div className="aspect-video overflow-hidden rounded-2xl relative bg-black">
-              <video 
-                src="/pizza-video.mp4" 
-                autoPlay 
-                muted 
-                loop 
-                playsInline
-                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+              <img 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4" 
+                alt="Bitcoin Pizza Genesis" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">10K Pizza</div>
+              <div className="absolute top-4 left-4 bg-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white shadow-lg">New on fxhash</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase">Bitcoin Pizza: 10K</h3>
+              <h3 className="text-xl font-black text-white italic uppercase tracking-tight">Bitcoin Pizza: 10K</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                비트코인 최초의 실물 거래를 기념하는 컬렉션입니다.
+                비트코인 최초의 실물 거래를 기념하는 상징적 컬렉션. <br/>
+                <span className="text-orange-400/80 font-bold uppercase tracking-widest text-[9px]">Historical Mission Starting on fxhash</span>
               </p>
               <a 
-                href="https://objkt.com/collections/KT1JU866vUaq8ac5KkmuW8XKnEbNXiVHRqUy" 
+                href="https://www.fxhash.xyz/art-coin/btcpizza" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-orange-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-orange-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-orange-500/30 pb-1"
               >
                 View Collection <ArrowUpRight size={12} />
               </a>
