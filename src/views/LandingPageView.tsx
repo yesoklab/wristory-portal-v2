@@ -16,7 +16,8 @@ import {
   BarChart3,
   ArrowRightLeft,
   Loader2,
-  Pizza
+  Pizza,
+  Timer
 } from 'lucide-react';
 
 interface Props {
@@ -223,6 +224,120 @@ const OfficialPromoSection: React.FC = () => {
   );
 };
 
+const FxhashMintSection: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState<{days: number, hours: number, minutes: number, seconds: number}>({ days: 10, hours: 2, minutes: 43, seconds: 59 });
+
+  useEffect(() => {
+    // Static countdown simulation for visual impact
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+        return prev;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="max-w-7xl mx-auto px-6 py-20">
+      <div className="bg-gradient-to-br from-orange-600/30 via-orange-950/20 to-slate-900 border border-orange-500/40 rounded-[4rem] p-10 md:p-20 relative overflow-hidden shadow-[0_0_80px_rgba(249,115,22,0.15)]">
+        <div className="absolute top-0 right-0 p-20 opacity-5 rotate-12 pointer-events-none">
+          <Pizza size={400} className="text-orange-500" />
+        </div>
+        
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-16">
+          <div className="flex-1 space-y-10">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="px-5 py-2 rounded-full bg-orange-500 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg shadow-orange-500/20">
+                NOW MINTING ON FXHASH
+              </div>
+              <div className="px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[11px] font-black uppercase tracking-widest">
+                 Historic Launch
+              </div>
+            </div>
+
+            <h2 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter uppercase leading-none">
+              Bitcoin Pizza <br/>
+              <span className="text-orange-500">Genesis: 10K</span>
+            </h2>
+            
+            <div className="space-y-4">
+              <p className="text-slate-200 text-xl font-bold leading-relaxed">
+                "역사적인 그 날, 비트코인의 첫 실물 거래가 테조스 예술의 정점 fxhash에서 부활합니다."
+              </p>
+              <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-2xl">
+                10,000 BTC로 피자 두 판을 샀던 2010년 5월 22일. <br/>
+                그 역사적인 날의 상징적 의미를 담은 작품이 Tezos 메인넷 fxhash를 통해 새롭게 선보입니다.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-4 pt-4">
+              <a 
+                href="https://www.fxhash.xyz/art-coin/btcpizza" 
+                target="_blank"
+                className="px-10 py-5 bg-orange-600 hover:bg-orange-500 text-white rounded-2xl font-black text-lg transition-all shadow-xl shadow-orange-600/30 flex items-center gap-3 active:scale-95"
+              >
+                민팅 참여하기 / Start Minting <ArrowUpRight size={20} />
+              </a>
+              <a 
+                href="https://www.fxhash.xyz/create/art-coin/0xE6EDD0A1E605234E412738973747417A618eD2e1/success" 
+                target="_blank"
+                className="px-10 py-5 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-2xl font-black text-lg transition-all flex items-center gap-3 active:scale-95"
+              >
+                실시간 런칭 상황 확인 <Timer size={20} />
+              </a>
+            </div>
+          </div>
+
+          <div className="flex-1 w-full lg:w-auto">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-orange-500 rounded-[3rem] blur-3xl opacity-20 group-hover:opacity-30 transition-opacity" />
+              <div className="relative bg-slate-900 border border-slate-800 rounded-[3rem] p-10 md:p-14 shadow-2xl space-y-10">
+                <div className="aspect-square rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative">
+                  <img 
+                    src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4" 
+                    alt="Bitcoin Pizza Genesis 10K Artwork" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <div className="flex items-center justify-between text-white font-black italic uppercase tracking-tighter">
+                      <span className="text-sm">Symbolic Identity</span>
+                      <span className="text-orange-500 text-xs">BTCPizza Genesis</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 text-center">
+                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
+                    <p className="text-2xl font-black text-white leading-none">{timeLeft.days}</p>
+                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Days</p>
+                  </div>
+                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
+                    <p className="text-2xl font-black text-white leading-none">{timeLeft.hours}</p>
+                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Hours</p>
+                  </div>
+                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
+                    <p className="text-2xl font-black text-white leading-none">{timeLeft.minutes}</p>
+                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Mins</p>
+                  </div>
+                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
+                    <p className="text-2xl font-black text-orange-500 leading-none">{timeLeft.seconds}</p>
+                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Secs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
   const contractAddress = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const githubUrl = 'https://github.com/yesoklab/wristory-portal';
@@ -340,6 +455,9 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             </div>
           </div>
         </section>
+
+      {/* Fxhash Mint Section */}
+      <FxhashMintSection />
 
       {/* Official Promo Section */}
       <OfficialPromoSection />
