@@ -139,22 +139,6 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Emergency Announcement Banner */}
-      <div className="bg-red-600 text-white px-6 py-3 text-center z-[60] relative shadow-xl border-b border-red-500">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6">
-          <div className="flex items-center gap-2">
-            <ShieldAlert size={18} className="animate-pulse shrink-0" />
-            <span className="text-[13px] font-black tracking-tight">
-              [공지] X(Twitter) 시스템의 일시적인 기술적 오류로 인해 계정 복구 절차를 진행 중입니다. 프로젝트 운영 및 토큰 시스템은 정상입니다.
-            </span>
-          </div>
-          <div className="hidden md:block w-px h-4 bg-red-400" />
-          <span className="text-[11px] font-bold opacity-90">
-            Due to temporary technical issues with X (Twitter), account recovery is underway. Project & Token systems are normal.
-          </span>
-        </div>
-      </div>
       
       <nav className="sticky top-0 z-50 bg-[#0F111A]/80 backdrop-blur-md border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
