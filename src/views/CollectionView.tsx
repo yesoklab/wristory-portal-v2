@@ -3,6 +3,26 @@ import { ExternalLink, Tag, Users, Pizza, ArrowUpRight, ShieldCheck } from 'luci
 
 const collections = [
   { 
+    id: 'patriotic-legacy', 
+    name: 'WRISTORY: PATRIOTIC LEGACY', 
+    price: 'New Collection', 
+    count: 21, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u', 
+    url: 'https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR',
+    isNew: true,
+    desc: '테조스 블록체인에서 보존되는 애국의 정신. Wristory의 새로운 메인넷 컬렉션입니다. / Preserving the spirit of patriotism on Tezos blockchain.'
+  },
+  { 
+    id: 'pizza-fxhash', 
+    name: 'Bitcoin Pizza Genesis: 10K (fxhash)', 
+    price: 'NOW MINTING', 
+    count: 10000, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4', 
+    url: 'https://www.fxhash.xyz/art-coin/btcpizza',
+    isNew: true,
+    desc: '비트코인 최초의 실물 거래를 기념하는 상징적 컬렉션. fxhash에서 역사적인 민팅을 시작합니다. / Symbolic collection celebrating the first real Bitcoin transaction.'
+  },
+  { 
     id: 'heritage-sync', 
     name: 'HERITAGE SYNC : Where Tradition Meets the Future', 
     price: 'New Collection', 
