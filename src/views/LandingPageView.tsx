@@ -715,13 +715,13 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
                <Github size={24}/> GitHub
              </a>
              <div className="flex gap-4">
-               <a href="https://x.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-500 transition-all shadow-xl" title="Twitter">
+               <a href="https://x.com/wakk5252" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-500 transition-all shadow-xl" title="Twitter">
                  <Twitter size={24}/>
                </a>
-               <a href="https://t.me/wristory" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-600 transition-all shadow-xl" title="Telegram">
+               <a href="https://t.me/Yes_OkLab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-600 transition-all shadow-xl" title="Telegram">
                  <Send size={24}/>
                </a>
-               <a href="https://blog.naver.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-emerald-600 transition-all shadow-xl" title="Naver Blog">
+               <a href="https://blog.naver.com/yesoklab/224285010531" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-emerald-600 transition-all shadow-xl" title="Naver Blog">
                  <Globe size={24}/>
                </a>
              </div>
