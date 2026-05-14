@@ -27,30 +27,30 @@ const collections = [
     name: 'HERITAGE SYNC : Where Tradition Meets the Future', 
     price: 'New Collection', 
     count: 21, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidykilyimphxy4wjpo4yepd7q642ajd2zdvfws26pswtbidopfnne', 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibjx5wokivdjsvwli6gbzju7fdkzatdw3kylkqw2jtr6qp5ylufvu', 
     url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU',
     isNew: true,
     desc: '전통과 미래가 만나는 지점. Wristory가 선보이는 새로운 메인넷 컬렉션입니다. / A new mainnet collection from Wristory where tradition meets the future.'
   },
   { 
-    id: 'running-bitcoin', 
-    name: 'Running Bitcoin', 
+    id: 'fork-project', 
+    name: 'FORK PROJECT', 
     price: 'New Collection', 
     count: 1, 
-    image: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34', 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigcx2qgsd7p3f7ijjoksgtvjrw3ed74da5x3a4ndqxsuw5hppb4yy', 
     url: 'https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm',
     isNew: true,
-    desc: 'Hal Finney\'s legendary "Running bitcoin" tweet, preserved as a digital heritage on Tezos. / 할 피니의 전설적인 "Running bitcoin" 트윗을 테조스 디지털 유산으로 보존합니다.'
+    desc: 'The Ghost — Bitcoin Chronicles III. 역사의 분기점을 시각화한 디지털 유산입니다.'
   },
   { 
-    id: 'tezchain-protocol', 
-    name: 'TEZCHAIN: Protocol Series', 
-    price: 'Generative', 
-    count: 21, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihkplido56mrfsurl5fb65bpwypxrcik2kmqdxotemodowsdxg2cm', 
-    url: 'https://objkt.com/collections/KT1MhvVaRjuyjo9s1u6xmpK7cwEFXFHXgMZD',
+    id: 'genesis-chronicles', 
+    name: 'Blockchain Genesis Chronicles', 
+    price: 'Series III', 
+    count: 1, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiesb5nbzjpyccgjhba44pkyhjtwlgbfybmt3q3oh3mjnoemmd5u6y', 
+    url: 'https://objkt.com/collections/KT1A687BCmwpCLmzFWMRbKKwQGoqZzrgx97y',
     isNew: true,
-    desc: 'Tezos 블록체인의 기술적 진화를 시각화한 제너레이티브 아트 컬렉션입니다. / Generative NFT collection exploring Tezos blockchain evolution.'
+    desc: 'The Ghost — Bitcoin Chronicles\' III. 블록체인 제네시스의 전설을 테조스 예술로 보존합니다.'
   },
   { 
     id: 'wristory-universe', 
