@@ -17,7 +17,9 @@ import {
   ArrowRightLeft,
   Loader2,
   Pizza,
-  Timer
+  Timer,
+  Twitter,
+  Send
 } from 'lucide-react';
 
 interface Props {
@@ -346,15 +348,20 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
   
   const fighters = [
     { 
-      name: 'TEZCHAIN: Protocol Series', 
-      desc: 'Tezos 블록체인의 기술적 진화를 시각화한 제너레이티브 아트 컬렉션 / Generative NFT collection exploring Tezos blockchain', 
-      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihkplido56mrfsurl5fb65bpwypxrcik2kmqdxotemodowsdxg2cm', 
-      url: 'https://objkt.com/collections/KT1MhvVaRjuyjo9s1u6xmpK7cwEFXFHXgMZD'
+      name: 'FORK PROJECT', 
+      desc: '역사의 분기점을 시각화한 컬렉션 / Visualizing historical forks on Tezos', 
+      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigcx2qgsd7p3f7ijjoksgtvjrw3ed74da5x3a4ndqxsuw5hppb4yy', 
+      url: 'https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm'
     },
-    { name: 'Running Bitcoin', desc: 'Hal Finney\'s Legacy', img: 'https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34' },
+    { 
+      name: 'Blockchain Genesis Chronicles', 
+      desc: 'The Ghost — Bitcoin Chronicles III', 
+      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiesb5nbzjpyccgjhba44pkyhjtwlgbfybmt3q3oh3mjnoemmd5u6y',
+      url: 'https://objkt.com/collections/KT1A687BCmwpCLmzFWMRbKKwQGoqZzrgx97y'
+    },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
     { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4', url: 'https://www.fxhash.xyz/art-coin/btcpizza' },
-    { name: 'HERITAGE SYNC', desc: 'Where Tradition Meets the Future', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidykilyimphxy4wjpo4yepd7q642ajd2zdvfws26pswtbidopfnne', url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU' },
+    { name: 'HERITAGE SYNC', desc: 'Where Tradition Meets the Future', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibjx5wokivdjsvwli6gbzju7fdkzatdw3kylkqw2jtr6qp5ylufvu', url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU' },
     { name: 'WRISTORY: PATRIOTIC LEGACY', desc: 'Preserving the spirit of patriotism on Tezos.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u', url: 'https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR' },
   ];
 
@@ -384,18 +391,6 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           >
             지금 민팅하기 / Mint Now <ArrowUpRight size={14} />
           </a>
-        </div>
-      </div>
-
-      {/* 3.1 Independence Movement Day Special Banner */}
-      <div className="bg-gradient-to-r from-red-600 via-white to-blue-600 p-[1px] mb-10">
-        <div className="bg-[#0F111A] px-6 py-4 flex flex-col md:flex-row items-center justify-center gap-4 text-center">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🇰🇷</span>
-            <span className="text-sm font-black text-white uppercase tracking-widest">2026.03.01 — 제107주년 3.1절 기념 / 107th Independence Movement Day</span>
-          </div>
-          <p className="text-slate-400 text-xs font-bold">"대한독립만세" - 독립운동가들의 숭고한 정신을 테조스 블록체인에 영원히 기록합니다. / Recording the noble spirit of independence activists on Tezos.</p>
-          <button onClick={() => onNavigate('AIRDROP')} className="px-4 py-1.5 bg-white text-slate-950 rounded-full text-[10px] font-black uppercase hover:bg-blue-500 hover:text-white transition-all">기념 에어드랍 확인 / Check Airdrop</button>
         </div>
       </div>
 
@@ -434,7 +429,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="stats-container flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#00ffcc] font-black text-sm md:text-lg uppercase tracking-widest pt-4">
              <span>Total Supply: 51,169,148 $WR</span>
              <span className="hidden md:inline text-slate-700">|</span>
-             <span>Holders: 210+</span>
+             <span>Holders: 408+</span>
              <span className="hidden md:inline text-slate-700">|</span>
              <span>Collections: 21</span>
           </div>
@@ -497,19 +492,19 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-blue-500/30 transition-all group">
             <div className="aspect-video overflow-hidden rounded-2xl relative">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihkplido56mrfsurl5fb65bpwypxrcik2kmqdxotemodowsdxg2cm" 
-                alt="TEZCHAIN" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigcx2qgsd7p3f7ijjoksgtvjrw3ed74da5x3a4ndqxsuw5hppb4yy" 
+                alt="FORK PROJECT" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Protocol Series</div>
+              <div className="absolute top-4 left-4 bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">FORK PROJECT</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase">TEZCHAIN: Protocol</h3>
+              <h3 className="text-xl font-black text-white italic uppercase leading-tight">The Ghost — Bitcoin Chronicles III</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                Tezos 블록체인의 기술적 진화를 시각화한 제너레이티브 아트 컬렉션입니다.
+                FORK PROJECT 컬렉션의 세 번째 에디션. 역사의 분기점을 시각화합니다.
               </p>
               <a 
-                href="https://objkt.com/collections/KT1MhvVaRjuyjo9s1u6xmpK7cwEFXFHXgMZD" 
+                href="https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm" 
                 target="_blank"
                 className="inline-flex items-center gap-2 text-blue-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
               >
@@ -521,19 +516,19 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-emerald-500/30 transition-all group">
             <div className="aspect-video overflow-hidden rounded-2xl relative">
               <img 
-                src="https://ipfs.io/ipfs/bafybeiantl57cmtql3gxidg26blmrc6ezajhh5bnncpih3wlehhpg7bm34" 
-                alt="Running Bitcoin" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiesb5nbzjpyccgjhba44pkyhjtwlgbfybmt3q3oh3mjnoemmd5u6y" 
+                alt="Genesis Chronicles" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-emerald-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">New Legend</div>
+              <div className="absolute top-4 left-4 bg-emerald-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Chronicle Series</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase">Running Bitcoin</h3>
+              <h3 className="text-xl font-black text-white italic uppercase leading-tight">The Ghost — Bitcoin Chronicles' III</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                Hal Finney의 전설적인 "Running bitcoin" 트윗을 디지털 유산으로 보존합니다.
+                Blockchain Genesis Chronicles 컬렉션의 핵심 작품입니다.
               </p>
               <a 
-                href="https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm" 
+                href="https://objkt.com/collections/KT1A687BCmwpCLmzFWMRbKKwQGoqZzrgx97y" 
                 target="_blank"
                 className="inline-flex items-center gap-2 text-emerald-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
               >
@@ -572,7 +567,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             <div className="absolute top-0 right-0 p-4 opacity-10"><Sparkles size={40} className="text-indigo-400" /></div>
             <div className="aspect-video overflow-hidden rounded-2xl relative">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidykilyimphxy4wjpo4yepd7q642ajd2zdvfws26pswtbidopfnne" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibjx5wokivdjsvwli6gbzju7fdkzatdw3kylkqw2jtr6qp5ylufvu" 
                 alt="HERITAGE SYNC" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -717,8 +712,19 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
            </div>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
              <a href={githubUrl} target="_blank" className="bg-white text-slate-950 px-12 py-6 rounded-[2.5rem] font-black text-xl shadow-2xl flex items-center gap-4 hover:scale-105 transition-transform">
-               <Github size={24}/> GitHub 프로젝트 탐색
+               <Github size={24}/> GitHub
              </a>
+             <div className="flex gap-4">
+               <a href="https://x.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-500 transition-all shadow-xl" title="Twitter">
+                 <Twitter size={24}/>
+               </a>
+               <a href="https://t.me/wristory" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-600 transition-all shadow-xl" title="Telegram">
+                 <Send size={24}/>
+               </a>
+               <a href="https://blog.naver.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-emerald-600 transition-all shadow-xl" title="Naver Blog">
+                 <Globe size={24}/>
+               </a>
+             </div>
              <button onClick={() => onNavigate('AI')} className="bg-blue-600 text-white px-12 py-6 rounded-[2.5rem] font-black text-xl shadow-2xl flex items-center gap-4 hover:bg-blue-500 transition-all">
                <Sparkles size={24}/> AI 기술 상담
              </button>
