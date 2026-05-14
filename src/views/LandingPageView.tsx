@@ -19,7 +19,11 @@ import {
   Pizza,
   Timer,
   Twitter,
-  Send
+  Send,
+  Mail,
+  Gamepad2,
+  Share2,
+  Radio
 } from 'lucide-react';
 
 interface Props {
@@ -715,15 +719,27 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
                <Github size={24}/> GitHub
              </a>
              <div className="flex gap-4">
-               <a href="https://x.com/wakk5252" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-500 transition-all shadow-xl" title="Twitter">
+               <a href="https://x.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-500 transition-all shadow-xl" title="Twitter">
                  <Twitter size={24}/>
                </a>
-               <a href="https://t.me/Yes_OkLab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-600 transition-all shadow-xl" title="Telegram">
+               <a href="https://t.me/wristory" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-600 transition-all shadow-xl" title="Telegram">
                  <Send size={24}/>
                </a>
-               <a href="https://blog.naver.com/yesoklab/224285010531" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-emerald-600 transition-all shadow-xl" title="Naver Blog">
+               <a href="https://blog.naver.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-emerald-600 transition-all shadow-xl" title="Naver Blog">
                  <Globe size={24}/>
                </a>
+               <a href="https://www.reddit.com/user/cocoon96/" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-orange-700 transition-all shadow-xl" title="Reddit">
+                 <Share2 size={24}/>
+               </a>
+               <a href="https://farcaster.xyz/cocoon9611" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-purple-600 transition-all shadow-xl" title="Farcaster">
+                 <Radio size={24}/>
+               </a>
+               <a href="mailto:YesOkLab@gmail.com" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-red-600 transition-all shadow-xl" title="Gmail: YesOkLab@gmail.com">
+                 <Mail size={24}/>
+               </a>
+               <div className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-indigo-600 transition-all shadow-xl cursor-help" title="Discord: cocoon5547 (#WRISTORY_NFT)">
+                 <Gamepad2 size={24}/>
+               </div>
              </div>
              <button onClick={() => onNavigate('AI')} className="bg-blue-600 text-white px-12 py-6 rounded-[2.5rem] font-black text-xl shadow-2xl flex items-center gap-4 hover:bg-blue-500 transition-all">
                <Sparkles size={24}/> AI 기술 상담
