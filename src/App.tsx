@@ -15,7 +15,11 @@ import {
   Zap,
   Globe,
   Twitter,
-  Send
+  Send,
+  Mail,
+  Gamepad2,
+  Share2,
+  Radio
 } from 'lucide-react';
 import LandingPageView from './views/LandingPageView';
 import GuideView from './views/GuideView';
@@ -199,6 +203,10 @@ const App: React.FC = () => {
               <a href="https://x.com/yesoklab" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Twitter"><Twitter size={24} /></a>
               <a href="https://t.me/wristory" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Telegram"><Send size={24} /></a>
               <a href="https://blog.naver.com/yesoklab" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Naver Blog"><Globe size={24} /></a>
+              <a href="https://www.reddit.com/user/cocoon96/" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Reddit"><Share2 size={24} /></a>
+              <a href="https://farcaster.xyz/cocoon9611" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Farcaster"><Radio size={24} /></a>
+              <a href="mailto:YesOkLab@gmail.com" className="text-slate-500 hover:text-white transition-colors" title="Gmail: YesOkLab@gmail.com"><Mail size={24} /></a>
+              <div className="text-slate-500 hover:text-white transition-colors cursor-help" title="Discord: cocoon5547 (#WRISTORY_NFT)"><Gamepad2 size={24} /></div>
            </div>
            <p className="text-slate-500 text-xs max-w-md leading-relaxed">
              © 2025 YesOkLab | WRISTORY Project. <br/>
