@@ -200,9 +200,9 @@ const App: React.FC = () => {
            <div className="flex items-center gap-6">
               <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center border border-slate-800"><History className="text-slate-600" size={24} /></div>
               <a href={GITHUB_URL} target="_blank" className="text-slate-500 hover:text-white transition-colors" title="GitHub"><Github size={24} /></a>
-              <a href="https://x.com/yesoklab" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Twitter"><Twitter size={24} /></a>
-              <a href="https://t.me/wristory" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Telegram"><Send size={24} /></a>
-              <a href="https://blog.naver.com/yesoklab" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Naver Blog"><Globe size={24} /></a>
+              <a href="https://x.com/wakk5252" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Twitter"><Twitter size={24} /></a>
+              <a href="https://t.me/Yes_OkLab" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Telegram"><Send size={24} /></a>
+              <a href="https://blog.naver.com/yesoklab/224290230057" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Naver Blog"><Globe size={24} /></a>
               <a href="https://www.reddit.com/user/cocoon96/" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Reddit"><Share2 size={24} /></a>
               <a href="https://farcaster.xyz/cocoon9611" target="_blank" className="text-slate-500 hover:text-white transition-colors" title="Farcaster"><Radio size={24} /></a>
               <a href="mailto:YesOkLab@gmail.com" className="text-slate-500 hover:text-white transition-colors" title="Gmail: YesOkLab@gmail.com"><Mail size={24} /></a>
