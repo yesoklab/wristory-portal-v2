@@ -88,7 +88,7 @@ const LiquidityPoolSection: React.FC = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-end">
                 <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">Total Value Locked</span>
-                <span className="text-2xl font-black text-white">$5,360+</span>
+                <span className="text-2xl font-black text-white">$9,054.26</span>
               </div>
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div className="bg-blue-500 h-full w-[100%]" />
@@ -97,11 +97,11 @@ const LiquidityPoolSection: React.FC = () => {
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">wXTZ Share</p>
-                  <p className="text-lg font-black text-white">11,991.49</p>
+                  <p className="text-lg font-black text-white">16,552.65</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">WR Share</p>
-                  <p className="text-lg font-black text-white">1,199,150</p>
+                  <p className="text-lg font-black text-white">1,655,266</p>
                 </div>
               </div>
 
@@ -231,19 +231,30 @@ const OfficialPromoSection: React.FC = () => {
 };
 
 const FxhashMintSection: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState<{days: number, hours: number, minutes: number, seconds: number}>({ days: 10, hours: 2, minutes: 43, seconds: 59 });
+  const [timeLeft, setTimeLeft] = useState<{days: number, hours: number, minutes: number, seconds: number}>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    // Static countdown simulation for visual impact
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
-        return prev;
+    const targetDate = new Date('2026-05-22T22:10:00').getTime();
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
       });
-    }, 1000);
+    };
+
+    updateTimer();
+    const timer = setInterval(updateTimer, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -352,21 +363,26 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
   
   const fighters = [
     { 
-      name: 'FORK PROJECT', 
-      desc: '역사의 분기점을 시각화한 컬렉션 / Visualizing historical forks on Tezos', 
-      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigcx2qgsd7p3f7ijjoksgtvjrw3ed74da5x3a4ndqxsuw5hppb4yy', 
-      url: 'https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm'
+      name: '김향화선생 / Kim Hyang-hwa', 
+      desc: '대한독립만세 - 여성 독립운동가 컬렉션 / Female independence activist collection', 
+      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibrkejqmvqquzgeiykq7g2hl4vis4xu7uqeyj2thy2f5liykdozzq', 
+      url: 'https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/33'
     },
     { 
-      name: 'Blockchain Genesis Chronicles', 
-      desc: 'The Ghost — Bitcoin Chronicles III', 
-      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiesb5nbzjpyccgjhba44pkyhjtwlgbfybmt3q3oh3mjnoemmd5u6y',
-      url: 'https://objkt.com/collections/KT1A687BCmwpCLmzFWMRbKKwQGoqZzrgx97y'
+      name: '백범 김구선생 / Kim Ku', 
+      desc: '나의 소원은 우리나라 대한의 완전한 자주독립이오 / My wish is the complete independence of Korea', 
+      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeie5a3ll3ox7w5wew7jvff652iivtjbtrqkizeyl3f4pf55hg5wopq',
+      url: 'https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/31'
     },
+    { 
+      name: '안중근의사 / An Jung-geun', 
+      desc: '동양평화론 - 하얼빈의 영웅 / Hero of Harbin - On Peace in the East', 
+      img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifztp6gm27ny2qcybnednr4cqy7ty74rklyv2qmqv77qwzx5twuk4',
+      url: 'https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/32'
+    },
+    { name: 'FORK PROJECT', desc: '역사의 분기점을 시각화한 컬렉션 / Visualizing historical forks on Tezos', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigcx2qgsd7p3f7ijjoksgtvjrw3ed74da5x3a4ndqxsuw5hppb4yy', url: 'https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm' },
     { name: 'WRISTORY UNIVERSE', desc: '이재명 대통령 디지털 유산 / Digital Heritage of President Lee Jae-myeong', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya' },
-    { name: 'Bitcoin Pizza Genesis: 10K', desc: 'Celebrating the first real-world Bitcoin transaction.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4', url: 'https://www.fxhash.xyz/art-coin/btcpizza' },
     { name: 'HERITAGE SYNC', desc: 'Where Tradition Meets the Future', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibjx5wokivdjsvwli6gbzju7fdkzatdw3kylkqw2jtr6qp5ylufvu', url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU' },
-    { name: 'WRISTORY: PATRIOTIC LEGACY', desc: 'Preserving the spirit of patriotism on Tezos.', img: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u', url: 'https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR' },
   ];
 
   return (
@@ -433,7 +449,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="stats-container flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#00ffcc] font-black text-sm md:text-lg uppercase tracking-widest pt-4">
              <span>Total Supply: 51,169,148 $WR</span>
              <span className="hidden md:inline text-slate-700">|</span>
-             <span>Holders: 408+</span>
+             <span>Holders: 509+</span>
              <span className="hidden md:inline text-slate-700">|</span>
              <span>Collections: 21</span>
           </div>
@@ -718,14 +734,14 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
              <a href={githubUrl} target="_blank" className="bg-white text-slate-950 px-12 py-6 rounded-[2.5rem] font-black text-xl shadow-2xl flex items-center gap-4 hover:scale-105 transition-transform">
                <Github size={24}/> GitHub
              </a>
-             <div className="flex gap-4">
-               <a href="https://x.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-500 transition-all shadow-xl" title="Twitter">
+             <div className="flex flex-wrap justify-center gap-4">
+               <a href="https://x.com/wakk5252" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-500 transition-all shadow-xl" title="Twitter">
                  <Twitter size={24}/>
                </a>
-               <a href="https://t.me/wristory" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-600 transition-all shadow-xl" title="Telegram">
+               <a href="https://t.me/Yes_OkLab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-blue-600 transition-all shadow-xl" title="Telegram">
                  <Send size={24}/>
                </a>
-               <a href="https://blog.naver.com/yesoklab" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-emerald-600 transition-all shadow-xl" title="Naver Blog">
+               <a href="https://blog.naver.com/yesoklab/224290230057" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-emerald-600 transition-all shadow-xl" title="Naver Blog">
                  <Globe size={24}/>
                </a>
                <a href="https://www.reddit.com/user/cocoon96/" target="_blank" className="bg-slate-800 text-white p-6 rounded-[2.5rem] hover:bg-orange-700 transition-all shadow-xl" title="Reddit">
