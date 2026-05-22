@@ -232,6 +232,7 @@ const OfficialPromoSection: React.FC = () => {
 
 const FxhashMintSection: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<{days: number, hours: number, minutes: number, seconds: number}>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
     const targetDate = new Date('2026-05-22T22:10:00').getTime();
@@ -242,6 +243,7 @@ const FxhashMintSection: React.FC = () => {
 
       if (distance < 0) {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setIsLive(true);
         return;
       }
 
@@ -260,92 +262,133 @@ const FxhashMintSection: React.FC = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-20">
-      <div className="bg-gradient-to-br from-orange-600/30 via-orange-950/20 to-slate-900 border border-orange-500/40 rounded-[4rem] p-10 md:p-20 relative overflow-hidden shadow-[0_0_80px_rgba(249,115,22,0.15)]">
-        <div className="absolute top-0 right-0 p-20 opacity-5 rotate-12 pointer-events-none">
-          <Pizza size={400} className="text-orange-500" />
+      <div className="bg-gradient-to-br from-purple-950/40 via-slate-950 to-indigo-950/40 border border-slate-800 rounded-[4rem] p-10 md:p-16 relative overflow-hidden shadow-[0_0_80px_rgba(99,102,241,0.15)]">
+        <div className="absolute top-0 right-0 p-20 opacity-[0.03] rotate-12 pointer-events-none">
+          <Sparkles size={500} className="text-white" />
         </div>
-        
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-16">
-          <div className="flex-1 space-y-10">
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="px-5 py-2 rounded-full bg-orange-500 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg shadow-orange-500/20">
-                NOW MINTING ON FXHASH
-              </div>
-              <div className="px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[11px] font-black uppercase tracking-widest">
-                 Historic Launch
-              </div>
-            </div>
 
-            <h2 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter uppercase leading-none">
-              Bitcoin Pizza <br/>
-              <span className="text-orange-500">Genesis: 10K</span>
+        <div className="relative z-10 space-y-12">
+          {/* Header Area */}
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-3">
+              <span className="px-5 py-2 rounded-full bg-purple-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg shadow-purple-600/20">
+                {isLive ? 'LIVE ON FXHASH' : 'NOW COMING ON FXHASH'}
+              </span>
+              <span className="px-5 py-2 rounded-full bg-slate-800 text-slate-400 text-[11px] font-black uppercase tracking-widest border border-slate-700">
+                Double Release
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white italic tracking-tighter uppercase leading-none pt-2">
+              The Next <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Generative Era</span>
             </h2>
-            
-            <div className="space-y-4">
-              <p className="text-slate-200 text-xl font-bold leading-relaxed">
-                "역사적인 그 날, 비트코인의 첫 실물 거래가 테조스 예술의 정점 fxhash에서 부활합니다."
-              </p>
-              <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-2xl">
-                10,000 BTC로 피자 두 판을 샀던 2010년 5월 22일. <br/>
-                그 역사적인 날의 상징적 의미를 담은 작품이 Tezos 메인넷 fxhash를 통해 새롭게 선보입니다.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-4 pt-4">
-              <a 
-                href="https://www.fxhash.xyz/art-coin/btcpizza" 
-                target="_blank"
-                className="px-10 py-5 bg-orange-600 hover:bg-orange-500 text-white rounded-2xl font-black text-lg transition-all shadow-xl shadow-orange-600/30 flex items-center gap-3 active:scale-95"
-              >
-                민팅 참여하기 / Start Minting <ArrowUpRight size={20} />
-              </a>
-              <a 
-                href="https://www.fxhash.xyz/create/art-coin/0xE6EDD0A1E605234E412738973747417A618eD2e1/success" 
-                target="_blank"
-                className="px-10 py-5 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-2xl font-black text-lg transition-all flex items-center gap-3 active:scale-95"
-              >
-                실시간 런칭 상황 확인 <Timer size={20} />
-              </a>
-            </div>
+            <p className="text-slate-400 text-base md:text-lg max-w-3xl mx-auto font-medium leading-relaxed">
+              독립의 불꽃과 기개의 역사가 현대 제너레이티브 아카이브로 재탄생합니다. <br />
+              <span className="text-sm opacity-75">Visualizing Korean independence struggle and patriotic spirit in celestial generative wave forms.</span>
+            </p>
           </div>
 
-          <div className="flex-1 w-full lg:w-auto">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-orange-500 rounded-[3rem] blur-3xl opacity-20 group-hover:opacity-30 transition-opacity" />
-              <div className="relative bg-slate-900 border border-slate-800 rounded-[3rem] p-10 md:p-14 shadow-2xl space-y-10">
-                <div className="aspect-square rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative">
+          {/* Countdown Area */}
+          {!isLive && (
+            <div className="max-w-2xl mx-auto bg-slate-900/80 border border-white/5 p-6 rounded-3xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-3">
+                <Timer className="text-purple-400 animate-pulse" size={28} />
+                <div className="text-left">
+                  <p className="text-xs text-slate-500 font-bold uppercase tracking-widest leading-none">LAUNCH COUNTDOWN</p>
+                  <p className="text-sm text-white font-black uppercase tracking-wide mt-1">Countdown to 22 May 2026 at 22:10</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-4 gap-3 text-center w-full md:w-auto self-stretch">
+                <div className="bg-slate-950/80 px-4 py-3 rounded-2xl border border-white/5 flex flex-col justify-center min-w-[70px]">
+                  <p className="text-xl font-black text-white leading-none">{timeLeft.days}</p>
+                  <p className="text-[8px] text-slate-500 font-black uppercase mt-1">Days</p>
+                </div>
+                <div className="bg-slate-950/80 px-4 py-3 rounded-2xl border border-white/5 flex flex-col justify-center min-w-[70px]">
+                  <p className="text-xl font-black text-white leading-none">{timeLeft.hours}</p>
+                  <p className="text-[8px] text-slate-500 font-black uppercase mt-1">Hours</p>
+                </div>
+                <div className="bg-slate-950/80 px-4 py-3 rounded-2xl border border-white/5 flex flex-col justify-center min-w-[70px]">
+                  <p className="text-xl font-black text-white leading-none">{timeLeft.minutes}</p>
+                  <p className="text-[8px] text-slate-500 font-black uppercase mt-1">Mins</p>
+                </div>
+                <div className="bg-slate-950/80 px-4 py-3 rounded-2xl border border-white/5 flex flex-col justify-center min-w-[70px]">
+                  <p className="text-xl font-black text-purple-400 leading-none">{timeLeft.seconds}</p>
+                  <p className="text-[8px] text-slate-500 font-black uppercase mt-1">Secs</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Dual Projects Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-4">
+            {/* Project 1 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-[3rem] p-8 md:p-12 space-y-8 hover:border-purple-500/30 transition-all group flex flex-col justify-between">
+              <div className="space-y-6">
+                <div className="relative aspect-square rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl bg-black">
                   <img 
-                    src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4" 
-                    alt="Bitcoin Pizza Genesis 10K Artwork" 
+                    src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeicey3fp3obxmfudp2lua7eftk4zxjxlfsshgjrcbvlqb6igj6xkxi" 
+                    alt="The Flame of Jongno" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <div className="flex items-center justify-between text-white font-black italic uppercase tracking-tighter">
-                      <span className="text-sm">Symbolic Identity</span>
-                      <span className="text-orange-500 text-xs">BTCPizza Genesis</span>
-                    </div>
+                  <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center text-white font-black italic uppercase tracking-tighter">
+                    <span className="text-xs">THE FLAME OF JONGNO</span>
+                    <span className="text-purple-400 text-xs">종로의 불꽃</span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 text-center">
-                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
-                    <p className="text-2xl font-black text-white leading-none">{timeLeft.days}</p>
-                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Days</p>
-                  </div>
-                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
-                    <p className="text-2xl font-black text-white leading-none">{timeLeft.hours}</p>
-                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Hours</p>
-                  </div>
-                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
-                    <p className="text-2xl font-black text-white leading-none">{timeLeft.minutes}</p>
-                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Mins</p>
-                  </div>
-                  <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/5">
-                    <p className="text-2xl font-black text-orange-500 leading-none">{timeLeft.seconds}</p>
-                    <p className="text-[9px] text-slate-500 font-bold uppercase mt-1">Secs</p>
+                <div className="space-y-3">
+                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase italic leading-none">The Flame of Jongno</h3>
+                  <p className="text-slate-300 text-sm font-bold">"종로의 외침과 치열했던 투쟁의 불꽃, 테조스 위에서 깨어나다."</p>
+                  <p className="text-slate-400 text-xs font-medium leading-relaxed">
+                    독립 투사들의 맹렬한 용기와 종로의 밤하늘을 덮은 붉은 만세 운동의 에너지를 제너레이티브 입자로 재구성한 디지털 명작입니다.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <a 
+                  href="https://www.fxhash.xyz/project/the-flame-of-jongno" 
+                  target="_blank"
+                  className="flex-1 py-4 bg-purple-600 hover:bg-purple-500 text-white rounded-2xl font-black text-center text-sm transition-all shadow-xl shadow-purple-600/30 flex items-center justify-center gap-2 active:scale-95"
+                >
+                  민팅 참여하기 / Go to Mint <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </div>
+
+            {/* Project 2 */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-[3rem] p-8 md:p-12 space-y-8 hover:border-indigo-500/30 transition-all group flex flex-col justify-between">
+              <div className="space-y-6">
+                <div className="relative aspect-square rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl bg-black">
+                  <img 
+                    src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiaiqm3s5dx557oisqq6h64bbthqjzrv6egoocqvravsxvwtv2sbzq" 
+                    alt="Wristory: Ascending Spirit" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                  <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center text-white font-black italic uppercase tracking-tighter">
+                    <span className="text-xs">ASCENDING SPIRIT</span>
+                    <span className="text-indigo-400 text-xs">비상하는 정신</span>
                   </div>
                 </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase italic leading-none">Wristory: Ascending Spirit</h3>
+                  <p className="text-slate-300 text-sm font-bold">"하늘 높이 웅장하게 고양되는 숭고한 나라 사랑의 혼."</p>
+                  <p className="text-slate-400 text-xs font-medium leading-relaxed">
+                    영웅들의 애국 영혼이 하늘로 고결하게 비상하며 그리는 물결치는 선율을 실시간 메디테이티브 정적 코드로 정교하게 빚어낸 걸작입니다.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <a 
+                  href="https://www.fxhash.xyz/project/wristory:-ascending-spirit" 
+                  target="_blank"
+                  className="flex-1 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-center text-sm transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 active:scale-95"
+                >
+                  민팅 참여하기 / Go to Mint <ArrowUpRight size={16} />
+                </a>
               </div>
             </div>
           </div>
@@ -388,29 +431,37 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
   return (
     <div className="animate-in fade-in duration-1000 pb-20">
       {/* fxhash Minting Special Banner */}
-      <div className="bg-gradient-to-r from-orange-500 via-white to-orange-600 p-[1px] mb-10 shadow-2xl shadow-orange-500/10">
+      <div className="bg-gradient-to-r from-purple-500 via-white to-indigo-600 p-[1px] mb-10 shadow-2xl shadow-indigo-500/10">
         <div className="bg-[#0F111A] px-6 py-5 flex flex-col md:flex-row items-center justify-center gap-6 text-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-orange-500/10 rounded-full flex items-center justify-center border border-orange-500/20">
-              <Pizza size={20} className="text-orange-500 animate-spin-slow" />
+            <div className="w-10 h-10 bg-indigo-500/10 rounded-full flex items-center justify-center border border-indigo-500/20">
+              <Sparkles size={20} className="text-indigo-400 animate-pulse" />
             </div>
             <div className="flex flex-col items-start translate-y-0.5">
-              <span className="text-sm font-black text-white uppercase tracking-[0.2em] leading-tight text-left">Bitcoin Pizza Genesis: 10K</span>
-              <span className="text-[9px] font-bold text-orange-500 uppercase tracking-widest text-left">Now Live on FXHASH</span>
+              <span className="text-sm font-black text-white uppercase tracking-[0.2em] leading-tight text-left">Wristory New Releases</span>
+              <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-widest text-left">Successor Launch on FXHASH</span>
             </div>
           </div>
           <div className="hidden md:block w-[1px] h-10 bg-slate-800" />
           <p className="text-slate-400 text-[11px] font-bold max-w-xl leading-relaxed text-left">
-            "역사적인 그 날의 시작" - 비트코인 제네시스 피자 10K 컬렉션이 테조스 메인넷의 정점, fxhash에서 새롭게 민팅을 시작합니다. 
-            상징적 의미를 담은 디지털 유산을 소장할 기회를 놓치지 마세요.
+            "역사를 밝히는 눈부신 불꽃과 정신" - 신규 제너레이티브 컬렉션인 '종로의 불꽃' & '비상하는 정신'이 fxhash를 통해 새로운 메인넷 여정을 시작합니다.
           </p>
-          <a 
-            href="https://www.fxhash.xyz/art-coin/btcpizza" 
-            target="_blank" 
-            className="px-8 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.1em] transition-all flex items-center gap-2 shadow-xl shadow-orange-600/20"
-          >
-            지금 민팅하기 / Mint Now <ArrowUpRight size={14} />
-          </a>
+          <div className="flex flex-wrap gap-2">
+            <a 
+              href="https://www.fxhash.xyz/project/the-flame-of-jongno" 
+              target="_blank" 
+              className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.1em] transition-all flex items-center gap-1 shadow-lg shadow-purple-600/20"
+            >
+              종로의 불꽃 / Jongno <ArrowUpRight size={12} />
+            </a>
+            <a 
+              href="https://www.fxhash.xyz/project/wristory:-ascending-spirit" 
+              target="_blank" 
+              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.1em] transition-all flex items-center gap-1 shadow-lg shadow-indigo-600/20"
+            >
+              비상하는 정신 / Ascending <ArrowUpRight size={12} />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -557,54 +608,54 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             </div>
           </div>
 
-          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-orange-500/30 transition-all group relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-6 opacity-5 rotate-12 group-hover:rotate-0 transition-transform"><Pizza size={100} className="text-orange-500" /></div>
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-purple-500/30 transition-all group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-6 opacity-5 rotate-12 group-hover:rotate-0 transition-transform"><Sparkles size={100} className="text-purple-500" /></div>
             <div className="aspect-video overflow-hidden rounded-2xl relative bg-black">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4" 
-                alt="Bitcoin Pizza Genesis" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeicey3fp3obxmfudp2lua7eftk4zxjxlfsshgjrcbvlqb6igj6xkxi" 
+                alt="The Flame of Jongno" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white shadow-lg">New on fxhash</div>
+              <div className="absolute top-4 left-4 bg-purple-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white shadow-lg">New on fxhash</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase tracking-tight">Bitcoin Pizza: 10K</h3>
+              <h3 className="text-xl font-black text-white italic uppercase tracking-tight">The Flame of Jongno</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                비트코인 최초의 실물 거래를 기념하는 상징적 컬렉션. <br/>
-                <span className="text-orange-400/80 font-bold uppercase tracking-widest text-[9px]">Historical Mission Starting on fxhash</span>
+                종로의 독립 투쟁과 꺼지지 않는 애국의 불꽃을 제너레이티브 아트로 시각화한 컬렉션입니다. <br/>
+                <span className="text-purple-400/80 font-bold uppercase tracking-widest text-[9px]">Generative Art Launching on fxhash</span>
               </p>
               <a 
-                href="https://www.fxhash.xyz/art-coin/btcpizza" 
+                href="https://www.fxhash.xyz/project/the-flame-of-jongno" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-orange-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-orange-500/30 pb-1"
+                className="inline-flex items-center gap-2 text-purple-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-purple-500/30 pb-1"
               >
                 View Collection <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
 
-          <div className="bg-slate-950/60 border border-indigo-500/50 rounded-[3rem] p-8 space-y-6 hover:border-indigo-400 shadow-[0_0_50px_rgba(99,102,241,0.15)] transition-all group relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10"><Sparkles size={40} className="text-indigo-400" /></div>
-            <div className="aspect-video overflow-hidden rounded-2xl relative">
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-indigo-500/30 transition-all group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-6 opacity-5 rotate-12 group-hover:rotate-0 transition-transform"><Sparkles size={100} className="text-indigo-500" /></div>
+            <div className="aspect-video overflow-hidden rounded-2xl relative bg-black">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibjx5wokivdjsvwli6gbzju7fdkzatdw3kylkqw2jtr6qp5ylufvu" 
-                alt="HERITAGE SYNC" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiaiqm3s5dx557oisqq6h64bbthqjzrv6egoocqvravsxvwtv2sbzq" 
+                alt="Wristory: Ascending Spirit" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-indigo-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Featured New</div>
+              <div className="absolute top-4 left-4 bg-indigo-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white shadow-lg">New on fxhash</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase leading-tight">HERITAGE SYNC</h3>
-              <p className="text-indigo-300 text-[10px] font-black uppercase tracking-widest mb-1">Where Tradition Meets the Future</p>
+              <h3 className="text-xl font-black text-white italic uppercase tracking-tight">Wristory: Ascending Spirit</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                전통과 미래가 만나는 지점. 새롭게 추가된 Wristory의 핵심 컬렉션을 만나보세요.
+                애국 투사들의 숭고한 정신의 하늘을 향한 비상을 우아한 파형 예술로 기리는 제너레이티브 작품입니다. <br/>
+                <span className="text-indigo-400/80 font-bold uppercase tracking-widest text-[9px]">Generative Art Launching on fxhash</span>
               </p>
               <a 
-                href="https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU" 
+                href="https://www.fxhash.xyz/project/wristory:-ascending-spirit" 
                 target="_blank"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-indigo-600/20"
+                className="inline-flex items-center gap-2 text-indigo-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-indigo-500/30 pb-1"
               >
-                View Collection <ArrowUpRight size={14} />
+                View Collection <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
