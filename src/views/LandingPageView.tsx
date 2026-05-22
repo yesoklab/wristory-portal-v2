@@ -235,7 +235,7 @@ const FxhashMintSection: React.FC = () => {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    const targetDate = new Date('2026-05-22T22:10:00').getTime();
+    const targetDate = new Date('2026-08-15T00:00:00').getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -294,7 +294,7 @@ const FxhashMintSection: React.FC = () => {
                 <Timer className="text-purple-400 animate-pulse" size={28} />
                 <div className="text-left">
                   <p className="text-xs text-slate-500 font-bold uppercase tracking-widest leading-none">LAUNCH COUNTDOWN</p>
-                  <p className="text-sm text-white font-black uppercase tracking-wide mt-1">Countdown to 22 May 2026 at 22:10</p>
+                  <p className="text-sm text-white font-black uppercase tracking-wide mt-1">Countdown to 15 Aug 2026 at 00:00</p>
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 text-center w-full md:w-auto self-stretch">
