@@ -13,14 +13,24 @@ const collections = [
     desc: '테조스 블록체인에서 보존되는 애국의 정신. Wristory의 새로운 메인넷 컬렉션입니다. / Preserving the spirit of patriotism on Tezos blockchain.'
   },
   { 
-    id: 'pizza-fxhash', 
-    name: 'Bitcoin Pizza Genesis: 10K (fxhash)', 
-    price: 'NOW MINTING', 
-    count: 10000, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4', 
-    url: 'https://www.fxhash.xyz/art-coin/btcpizza',
+    id: 'the-flame-of-jongno', 
+    name: 'The Flame of Jongno (종로의 불꽃)', 
+    price: 'NEW FXHASH', 
+    count: 1000, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeicey3fp3obxmfudp2lua7eftk4zxjxlfsshgjrcbvlqb6igj6xkxi', 
+    url: 'https://www.fxhash.xyz/project/the-flame-of-jongno',
     isNew: true,
-    desc: '비트코인 최초의 실물 거래를 기념하는 상징적 컬렉션. fxhash에서 역사적인 민팅을 시작합니다. / Symbolic collection celebrating the first real Bitcoin transaction.'
+    desc: '종로의 독립 투쟁과 꺼지지 않는 애국의 불꽃을 제너레이티브 아트로 시각화한 컬렉션입니다. / Generative collection visualizing the inextinguishable flame of historic independence struggle in Jongno.'
+  },
+  { 
+    id: 'wristory-ascending-spirit', 
+    name: 'Wristory: Ascending Spirit (비상하는 정신)', 
+    price: 'NEW FXHASH', 
+    count: 1000, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiaiqm3s5dx557oisqq6h64bbthqjzrv6egoocqvravsxvwtv2sbzq', 
+    url: 'https://www.fxhash.xyz/project/wristory:-ascending-spirit',
+    isNew: true,
+    desc: '애국 투사들의 숭고한 정신의 하늘을 향한 비상을 우아한 파형 예술로 기리는 제너레이티브 작품입니다. / Celebrating the sublime movement and ascent of historic spirits towards high heaven in beautiful wave structures.'
   },
   { 
     id: 'heritage-sync', 
