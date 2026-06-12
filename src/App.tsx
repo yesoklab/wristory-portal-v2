@@ -26,10 +26,11 @@ import GuideView from './views/GuideView';
 import PublicAiView from './views/PublicAiView';
 import AdminDashboard from './views/AdminDashboard';
 import WalletView from './views/WalletView';
+import WhitepaperView from './views/WhitepaperView';
 import { getCuratorResponse } from './services/geminiService';
 
 export type ViewMode = 'PUBLIC' | 'ADMIN';
-export type PublicTab = 'HOME' | 'GUIDE' | 'AI' | 'WALLET';
+export type PublicTab = 'HOME' | 'GUIDE' | 'AI' | 'WALLET' | 'WHITEPAPER';
 
 declare global {
   interface Window {
@@ -109,6 +110,7 @@ const App: React.FC = () => {
         case 'GUIDE': return <GuideView lang={lang} />;
         case 'AI': return <PublicAiView lang={lang} />;
         case 'WALLET': return <WalletView lang={lang} />;
+        case 'WHITEPAPER': return <WhitepaperView />;
         default: return <LandingPageView lang={lang} onNavigate={(tab: any) => setActiveTab(tab)} hasApiKey={hasApiKey} />;
       }
     } catch (e) {
@@ -158,6 +160,7 @@ const App: React.FC = () => {
 
           <div className="hidden md:flex items-center gap-8">
             <button onClick={() => setActiveTab('HOME')} className={`text-sm font-bold transition-colors ${activeTab === 'HOME' ? 'text-blue-400' : 'text-slate-400 hover:text-white'}`}>컬렉션 / Collections</button>
+            <button onClick={() => setActiveTab('WHITEPAPER')} className={`text-sm font-bold transition-colors ${activeTab === 'WHITEPAPER' ? 'text-blue-400' : 'text-slate-400 hover:text-white'}`}>백서 / Whitepaper</button>
             <button onClick={() => setActiveTab('WALLET')} className={`text-sm font-bold transition-colors ${activeTab === 'WALLET' ? 'text-blue-400' : 'text-slate-400 hover:text-white'}`}>내 지갑 / My Wallet</button>
             <button onClick={() => setActiveTab('GUIDE')} className={`text-sm font-bold transition-colors ${activeTab === 'GUIDE' ? 'text-blue-400' : 'text-slate-400 hover:text-white'}`}>가이드 / Guide</button>
             <div className="h-6 w-[1px] bg-slate-800 mx-2" />
@@ -182,9 +185,10 @@ const App: React.FC = () => {
 
         {isMenuOpen && (
           <div className="md:hidden absolute top-20 left-0 w-full bg-[#0F111A] border-b border-slate-800 p-8 flex flex-col gap-6 animate-in slide-in-from-top duration-300 shadow-2xl">
-            <button onClick={() => { setActiveTab('HOME'); setIsMenuOpen(false); }} className="text-xl font-bold text-white">컬렉션</button>
-            <button onClick={() => { setActiveTab('WALLET'); setIsMenuOpen(false); }} className="text-xl font-bold text-white">내 지갑</button>
-            <button onClick={() => { setActiveTab('GUIDE'); setIsMenuOpen(false); }} className="text-xl font-bold text-white">가이드</button>
+            <button onClick={() => { setActiveTab('HOME'); setIsMenuOpen(false); }} className="text-xl font-bold text-white text-left">컬렉션</button>
+            <button onClick={() => { setActiveTab('WHITEPAPER'); setIsMenuOpen(false); }} className="text-xl font-bold text-white text-left">백서 (Whitepaper)</button>
+            <button onClick={() => { setActiveTab('WALLET'); setIsMenuOpen(false); }} className="text-xl font-bold text-white text-left">내 지갑</button>
+            <button onClick={() => { setActiveTab('GUIDE'); setIsMenuOpen(false); }} className="text-xl font-bold text-white text-left">가이드</button>
             <button onClick={() => { setActiveTab('AI'); setIsMenuOpen(false); }} className="text-xl font-bold text-blue-400 flex justify-between items-center">AI 큐레이터 <Sparkles size={18} /></button>
             <div className="h-[1px] bg-slate-800 my-2" />
             <a href={GITHUB_URL} target="_blank" className="text-xl font-bold text-slate-400 flex items-center gap-3"><Github size={20}/> GitHub Project</a>
