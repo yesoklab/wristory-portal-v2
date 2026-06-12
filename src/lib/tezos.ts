@@ -3,7 +3,7 @@ import { BeaconWallet } from '@taquito/beacon-wallet';
 import { NetworkType } from '@airgap/beacon-sdk';
 
 export const WR_CONTRACT = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
-export const RPC_URL = 'https://mainnet.api.tez.ie';
+export const RPC_URL = 'https://mainnet.tezos.marigold.dev';
 
 export const Tezos = new TezosToolkit(RPC_URL);
 
