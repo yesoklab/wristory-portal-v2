@@ -23,14 +23,14 @@ const collections = [
     desc: '종로의 독립 투쟁과 꺼지지 않는 애국의 불꽃을 제너레이티브 아트로 시각화한 컬렉션입니다. / Generative collection visualizing the inextinguishable flame of historic independence struggle in Jongno.'
   },
   { 
-    id: 'wristory-ascending-spirit', 
-    name: 'Wristory: Ascending Spirit (비상하는 정신)', 
-    price: 'NEW FXHASH', 
-    count: 1000, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiaiqm3s5dx557oisqq6h64bbthqjzrv6egoocqvravsxvwtv2sbzq', 
-    url: 'https://www.fxhash.xyz/project/wristory:-ascending-spirit',
+    id: 'wristory-the-admirals-resolve', 
+    name: "WRISTORY: The Admiral's Resolve (장군의 결의)", 
+    price: 'NEW TOKEN', 
+    count: 1, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifmpdjsm6intedpfdk5tq5nyv7qgxc6mbmaqm7hmg2rt7mlucddwu', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/23',
     isNew: true,
-    desc: '애국 투사들의 숭고한 정신의 하늘을 향한 비상을 우아한 파형 예술로 기리는 제너레이티브 작품입니다. / Celebrating the sublime movement and ascent of historic spirits towards high heaven in beautiful wave structures.'
+    desc: '이순신 장군의 숭고한 보국의 마음과 필사즉생의 위대한 결의를 현대적인 제너레이티브 웨이브 아트로 정밀하게 고증한 기념비적 에디션입니다. / Resurrecting the heroic vow and patriotic resolve of Admiral Yi Sun-sin through modern generative wave art on Tezos.'
   },
   { 
     id: 'heritage-sync', 
