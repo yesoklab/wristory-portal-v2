@@ -215,6 +215,7 @@ const App: React.FC = () => {
            <p className="text-slate-500 text-xs max-w-md leading-relaxed">
              © 2025 YesOkLab | WRISTORY Project. <br/>
              Official Repo: {GITHUB_URL} <br/>
+              Official Doc: <a href="/WHITEPAPER.md" target="_blank" className="text-blue-400 hover:text-white underline mx-1">Whitepaper</a> / <a href="/README.md" target="_blank" className="text-emerald-400 hover:text-white underline mx-1">README</a> <br/>
              Contract: {CONTRACT_ADDRESS} <br/>
              블록체인 기술을 통한 역사적 가치의 디지털 보존
            </p>
