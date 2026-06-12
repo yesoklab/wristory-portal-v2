@@ -88,20 +88,20 @@ const LiquidityPoolSection: React.FC = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-end">
                 <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">Total Value Locked</span>
-                <span className="text-2xl font-black text-white">$9,054.26</span>
+                <span className="text-2xl font-black text-white shadow-emerald-500/10 animate-pulse">$6,902.00</span>
               </div>
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-blue-500 h-full w-[100%]" />
+                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 h-full w-[100%]" />
               </div>
               
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">wXTZ Share</p>
-                  <p className="text-lg font-black text-white">16,552.65</p>
+                  <p className="text-xl font-black text-[#00ffcc] tracking-tight">18,142.38</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">WR Share</p>
-                  <p className="text-lg font-black text-white">1,655,266</p>
+                  <p className="text-xl font-black text-blue-400 tracking-tight">1,814,238</p>
                 </div>
               </div>
 
@@ -361,33 +361,33 @@ const FxhashMintSection: React.FC = () => {
               <div className="space-y-6">
                 <div className="relative aspect-square rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl bg-black">
                   <img 
-                    src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiaiqm3s5dx557oisqq6h64bbthqjzrv6egoocqvravsxvwtv2sbzq" 
-                    alt="Wristory: Ascending Spirit" 
+                    src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifmpdjsm6intedpfdk5tq5nyv7qgxc6mbmaqm7hmg2rt7mlucddwu" 
+                    alt="WRISTORY: The Admiral's Resolve" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
                   <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center text-white font-black italic uppercase tracking-tighter">
-                    <span className="text-xs">ASCENDING SPIRIT</span>
-                    <span className="text-indigo-400 text-xs">비상하는 정신</span>
+                    <span className="text-xs">THE ADMIRAL'S RESOLVE</span>
+                    <span className="text-indigo-400 text-xs">장군의 결의</span>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase italic leading-none">Wristory: Ascending Spirit</h3>
-                  <p className="text-slate-300 text-sm font-bold">"하늘 높이 웅장하게 고양되는 숭고한 나라 사랑의 혼."</p>
+                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase italic leading-none">WRISTORY: The Admiral's Resolve</h3>
+                  <p className="text-slate-300 text-sm font-bold">"우리가 백번 싸워도 꺾이지 않을 영웅의 맹세, 블록체인에서 복원되다."</p>
                   <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                    영웅들의 애국 영혼이 하늘로 고결하게 비상하며 그리는 물결치는 선율을 실시간 메디테이티브 정적 코드로 정교하게 빚어낸 걸작입니다.
+                    이순신 장군의 숭고한 보국의 마음과 필사즉생의 위대한 결의를 현대적인 제너레이티브 웨이브 아트로 정밀하게 고증한 기념비적 에디션입니다.
                   </p>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a 
-                  href="https://www.fxhash.xyz/project/wristory:-ascending-spirit" 
+                  href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/23" 
                   target="_blank"
                   className="flex-1 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-center text-sm transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 active:scale-95"
                 >
-                  민팅 참여하기 / Go to Mint <ArrowUpRight size={16} />
+                  작품 상세보기 / View Token <ArrowUpRight size={16} />
                 </a>
               </div>
             </div>
@@ -439,12 +439,12 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             </div>
             <div className="flex flex-col items-start translate-y-0.5">
               <span className="text-sm font-black text-white uppercase tracking-[0.2em] leading-tight text-left">Wristory New Releases</span>
-              <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-widest text-left">Successor Launch on FXHASH</span>
+              <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-widest text-left">Mainnet Live on Tezos</span>
             </div>
           </div>
           <div className="hidden md:block w-[1px] h-10 bg-slate-800" />
           <p className="text-slate-400 text-[11px] font-bold max-w-xl leading-relaxed text-left">
-            "역사를 밝히는 눈부신 불꽃과 정신" - 신규 제너레이티브 컬렉션인 '종로의 불꽃' & '비상하는 정신'이 fxhash를 통해 새로운 메인넷 여정을 시작합니다.
+            "역사를 밝히는 눈부신 불꽃과 영웅의 영혼" - 신규 제너레이티브 컬렉션인 '종로의 불꽃' & '이순신 장군의 결의' 작품들이 블록체인 상에 정밀하게 기록되었습니다.
           </p>
           <div className="flex flex-wrap gap-2">
             <a 
@@ -455,11 +455,11 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
               종로의 불꽃 / Jongno <ArrowUpRight size={12} />
             </a>
             <a 
-              href="https://www.fxhash.xyz/project/wristory:-ascending-spirit" 
+              href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/23" 
               target="_blank" 
               className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.1em] transition-all flex items-center gap-1 shadow-lg shadow-indigo-600/20"
             >
-              비상하는 정신 / Ascending <ArrowUpRight size={12} />
+              이순신 장군의 결의 / Admiral <ArrowUpRight size={12} />
             </a>
           </div>
         </div>
@@ -500,7 +500,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="stats-container flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#00ffcc] font-black text-sm md:text-lg uppercase tracking-widest pt-4">
              <span>Total Supply: 51,169,148 $WR</span>
              <span className="hidden md:inline text-slate-700">|</span>
-             <span>Holders: 509+</span>
+             <span>Holders: 630+</span>
              <span className="hidden md:inline text-slate-700">|</span>
              <span>Collections: 21</span>
           </div>
@@ -521,6 +521,55 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             </div>
           </div>
         </section>
+
+      {/* CoinGecko Listing Track Section */}
+      <section className="max-w-7xl mx-auto px-6 mb-16">
+        <div className="bg-gradient-to-r from-emerald-500/10 via-slate-900/40 to-blue-500/10 border border-emerald-500/30 rounded-[3rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-xl shadow-2xl">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 bg-gradient-to-tr from-emerald-500/20 to-lime-500/20 rounded-2xl flex items-center justify-center border border-emerald-500/30 text-emerald-400">
+                <BarChart3 size={32} className="animate-pulse" />
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest rounded-full">
+                    Listing App Registered
+                  </span>
+                  <span className="text-slate-500 text-xs font-bold">Tezos Token / WR</span>
+                </div>
+                <h3 className="text-2xl font-black text-white italic uppercase tracking-tight">
+                  CoinGecko Listing Status Tracker
+                </h3>
+                <p className="text-slate-400 text-sm font-medium">
+                  WR 토큰의 글로벌 시세 추적 및 유동성 연동을 위한 코인게코(CoinGecko) 등록 심사가 접수되어 활발히 진행 중입니다.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-4 bg-slate-900/80 border border-slate-800 p-6 rounded-[2rem] w-full lg:w-auto justify-between lg:justify-start">
+              <div className="space-y-1 pr-6 border-r border-slate-800">
+                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Coingecko Status</p>
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
+                  <span className="font-extrabold text-sm text-emerald-400 uppercase tracking-wider">Reviewing (심사 중)</span>
+                </div>
+              </div>
+              <div className="space-y-1 pr-4 pl-4">
+                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Listing Asset</p>
+                <span className="font-extrabold text-sm text-white uppercase tracking-wider">$WR (Wristory)</span>
+              </div>
+              <a 
+                href="https://quipuswap.com/liquidity/cpmm/add/KT1VYsVfmobT7rsMVivvZ4J8i3bPiqz12NaH-KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu_0" 
+                target="_blank" 
+                className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center gap-2"
+              >
+                Provide Liquidity <ArrowUpRight size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Fxhash Mint Section */}
       <FxhashMintSection />
@@ -634,28 +683,28 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             </div>
           </div>
 
-          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-indigo-500/30 transition-all group relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-6 opacity-5 rotate-12 group-hover:rotate-0 transition-transform"><Sparkles size={100} className="text-indigo-500" /></div>
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-amber-500/30 transition-all group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-6 opacity-5 rotate-12 group-hover:rotate-0 transition-transform"><Sparkles size={100} className="text-amber-500" /></div>
             <div className="aspect-video overflow-hidden rounded-2xl relative bg-black">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiaiqm3s5dx557oisqq6h64bbthqjzrv6egoocqvravsxvwtv2sbzq" 
-                alt="Wristory: Ascending Spirit" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeid37iunpfzsrlynb47qyynjxhsczjxa4jwdfywxeuze43yjksngzi" 
+                alt="WRISTORY: Spirit of Kim Gu" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-indigo-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white shadow-lg">New on fxhash</div>
+              <div className="absolute top-4 left-4 bg-amber-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white shadow-lg">Spirit of Kim Gu</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase tracking-tight">Wristory: Ascending Spirit</h3>
+              <h3 className="text-xl font-black text-white italic uppercase tracking-tight">WRISTORY: Spirit of Kim Gu - 소원 (Wish)</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                애국 투사들의 숭고한 정신의 하늘을 향한 비상을 우아한 파형 예술로 기리는 제너레이티브 작품입니다. <br/>
-                <span className="text-indigo-400/80 font-bold uppercase tracking-widest text-[9px]">Generative Art Launching on fxhash</span>
+                백범 김구 선생의 세 가지 소원이자 우리나라의 완전한 자주독립 염원을 숭고한 예술 혼으로 주조해 낸 대표적 디지털 컬렉션입니다. <br/>
+                <span className="text-amber-400/80 font-bold uppercase tracking-widest text-[9px]">"나의 첫째 소원은 대한 독립이오"</span>
               </p>
               <a 
-                href="https://www.fxhash.xyz/project/wristory:-ascending-spirit" 
+                href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/16" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-indigo-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-indigo-500/30 pb-1"
+                className="inline-flex items-center gap-2 text-amber-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-amber-500/30 pb-1"
               >
-                View Collection <ArrowUpRight size={12} />
+                View on objkt.com <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
