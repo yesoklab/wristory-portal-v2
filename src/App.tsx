@@ -51,7 +51,7 @@ const App: React.FC = () => {
   const [isTestingKey, setIsTestingKey] = useState(false);
 
   const CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
-  const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal';
+  const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal-v2';
 
   useEffect(() => {
     checkApiKeyStatus();
