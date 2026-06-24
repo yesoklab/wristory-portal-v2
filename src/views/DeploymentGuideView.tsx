@@ -46,7 +46,7 @@ const DeploymentGuideView: React.FC = () => {
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row gap-6">
-          <a href="https://github.com/yesoklab/wristory-portal" target="_blank" className="flex-1 bg-white text-slate-950 py-6 rounded-3xl font-black text-lg flex items-center justify-center gap-4 hover:scale-105 transition-transform shadow-2xl">
+          <a href="https://github.com/yesoklab/wristory-portal-v2" target="_blank" className="flex-1 bg-white text-slate-950 py-6 rounded-3xl font-black text-lg flex items-center justify-center gap-4 hover:scale-105 transition-transform shadow-2xl">
             <Github size={24} /> GitHub Repository
           </a>
           <button className="flex-1 bg-blue-600 text-white py-6 rounded-3xl font-black text-lg flex items-center justify-center gap-4 hover:bg-blue-500 transition-all shadow-2xl">
