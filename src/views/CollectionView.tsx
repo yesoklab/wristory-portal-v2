@@ -95,13 +95,13 @@ const collections = [
   },
   { 
     id: 'president-calligraphy', 
-    name: '이재명 대통령 캘리그래피 — 집과 시간의 언어', 
+    name: '이재명 대통령 캘리그래피 — 대통령의 한 시간', 
     price: 'Featured', 
     count: 1, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya',
-    url: 'https://objkt.com/tokens/KT1A77WVak4yMFoHDNzpAf8PGA7YLmh5wMJ8/52?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigdqnbztqqi7xmmxvjftpio2dvyjpatnzpv7gl77gu4sld4bcvvia',
+    url: 'https://www.fxhash.xyz/create/project/success/0x8E3319261Db6790993F21122dE60b8Adf4C626aD',
     isNew: true,
-    desc: '최승균 작가님이 이재명 대통령의 어록 "집은 사는 곳이지 사는 것이 아닙니다."를 캘리그래피로 승화시킨 작품입니다.'
+    desc: '최승균 작가님이 이재명 대통령의 어록 "대통령의 한 시간은 5,200만의 시간입니다."를 캘리그래피로 승화시킨 작품입니다.'
   },
   { 
     id: '1', 
