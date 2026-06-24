@@ -124,5 +124,5 @@ The WRISTORY portal operates as a fully trustless, full-stack decentralized appl
 ---
 
 **© 2025 YesOkLab | WRISTORY Project. All Rights Reserved.**
-*Official Repository:* [GitHub - yesoklab/wristory-portal](https://github.com/yesoklab/wristory-portal)
+*Official Repository:* [GitHub - yesoklab/wristory-portal-v2](https://github.com/yesoklab/wristory-portal-v2)
 *Smart Contract:* [TzKT Mainnet Tracker](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu)
