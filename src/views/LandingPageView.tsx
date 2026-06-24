@@ -400,7 +400,7 @@ const FxhashMintSection: React.FC = () => {
 
 const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
   const contractAddress = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
-  const githubUrl = 'https://github.com/yesoklab/wristory-portal';
+  const githubUrl = 'https://github.com/yesoklab/wristory-portal-v2';
   const quipuSwapUrl = 'https://quipuswap.com/liquidity/cpmm/add/KT1VYsVfmobT7rsMVivvZ4J8i3bPiqz12NaH-KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu_0';
   const walletTxUrl = 'https://tzkt.io/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/operations/';
   
