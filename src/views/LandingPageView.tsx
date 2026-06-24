@@ -574,8 +574,8 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
       {/* Fxhash Mint Section */}
       <FxhashMintSection />
 
-      {/* Official Promo Section */}
-      <OfficialPromoSection />
+      {/* Official Promo Section - Disabled per user request */}
+      {/* <OfficialPromoSection /> */}
 
       {/* Contract Verification Banner */}
       <section className="max-w-7xl mx-auto px-6 mb-20">
@@ -609,50 +609,52 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-blue-500/30 transition-all group">
-            <div className="aspect-video overflow-hidden rounded-2xl relative">
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-emerald-500/30 transition-all group">
+            <div className="aspect-video overflow-hidden rounded-2xl relative bg-black">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigcx2qgsd7p3f7ijjoksgtvjrw3ed74da5x3a4ndqxsuw5hppb4yy" 
-                alt="FORK PROJECT" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u" 
+                alt="PATRIOTIC LEGACY" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">FORK PROJECT</div>
+              <div className="absolute top-4 left-4 bg-emerald-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">TODAY'S MINT</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase leading-tight">The Ghost — Bitcoin Chronicles III</h3>
+              <h3 className="text-xl font-black text-white italic uppercase leading-tight">PATRIOTIC LEGACY</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                FORK PROJECT 컬렉션의 세 번째 에디션. 역사의 분기점을 시각화합니다.
+                순국선열의 고귀한 희생, 대한의 찬란한 꽃으로 피어나다 <br/>
+                <span className="text-emerald-400/80 font-bold uppercase tracking-widest text-[9px]">Official Heritage Collection</span>
               </p>
               <a 
-                href="https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm" 
+                href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/28" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-blue-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-emerald-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-emerald-500/30 pb-1"
               >
-                View Collection <ArrowUpRight size={12} />
+                Mint NFT <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
 
-          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-emerald-500/30 transition-all group">
-            <div className="aspect-video overflow-hidden rounded-2xl relative">
+          <div className="bg-slate-900/40 border border-slate-800 rounded-[3rem] p-8 space-y-6 hover:border-blue-500/30 transition-all group">
+            <div className="aspect-video overflow-hidden rounded-2xl relative bg-black">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiesb5nbzjpyccgjhba44pkyhjtwlgbfybmt3q3oh3mjnoemmd5u6y" 
-                alt="Genesis Chronicles" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifmpdjsm6intedpfdk5tq5nyv7qgxc6mbmaqm7hmg2rt7mlucddwu" 
+                alt="The Admiral's Resolve" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-emerald-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Chronicle Series</div>
+              <div className="absolute top-4 left-4 bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white">ADMIRAL SERIES</div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-xl font-black text-white italic uppercase leading-tight">The Ghost — Bitcoin Chronicles' III</h3>
+              <h3 className="text-xl font-black text-white italic uppercase leading-tight">The Admiral's Resolve</h3>
               <p className="text-slate-400 text-xs font-medium leading-relaxed">
-                Blockchain Genesis Chronicles 컬렉션의 핵심 작품입니다.
+                이순신 장군의 숭고한 보국의 마음과 필사즉생의 위대한 결의 <br/>
+                <span className="text-blue-400/80 font-bold uppercase tracking-widest text-[9px]">"장군의 결의" 에디션</span>
               </p>
               <a 
-                href="https://objkt.com/collections/KT1A687BCmwpCLmzFWMRbKKwQGoqZzrgx97y" 
+                href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/23" 
                 target="_blank"
-                className="inline-flex items-center gap-2 text-emerald-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-blue-400 font-black text-[10px] uppercase tracking-widest hover:text-white transition-colors border-b border-blue-500/30 pb-1"
               >
-                View Collection <ArrowUpRight size={12} />
+                View on objkt.com <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
@@ -722,7 +724,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
         <div className="bg-slate-900/60 border border-slate-800 rounded-[3.5rem] overflow-hidden flex flex-col lg:flex-row shadow-2xl group">
           <div className="lg:w-1/2 aspect-square lg:aspect-auto overflow-hidden">
             <img 
-              src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya" 
+              src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigdqnbztqqi7xmmxvjftpio2dvyjpatnzpv7gl77gu4sld4bcvvia" 
               alt="President Lee Jae-myeong Calligraphy" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
             />
@@ -734,22 +736,29 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
               </div>
               <h3 className="text-3xl md:text-5xl font-black text-white italic tracking-tighter leading-tight">
                 이재명 대통령 캘리그래피 — <br/>
-                <span className="text-blue-500">집과 시간의 언어</span>
+                <span className="text-blue-500">대통령의 한 시간</span>
               </h3>
-              <div className="space-y-2">
-                <p className="text-white text-xl font-black italic">"집은 사는 곳이지 사는 것이 아닙니다."</p>
-                <p className="text-slate-400 text-lg font-medium leading-relaxed">
-                  최승균 작가님이 이재명 대통령의 어록을 캘리그래피로 승화시킨 작품입니다. <br/>
-                  <span className="text-sm opacity-70">Calligraphy artwork by Choi Seung-gyun, capturing the spirit of President Lee's quotes.</span>
+              <div className="space-y-4 border-l-2 border-amber-500/30 pl-4">
+                <p className="text-white text-xl font-black italic">"대통령의 한 시간은 5,200만의 시간입니다."</p>
+                <p className="text-slate-300 text-sm font-medium italic">
+                  "An hour of the President's time is an hour belonging to fifty-two million people."
                 </p>
+                <p className="text-slate-500 text-xs font-medium leading-relaxed">
+                  * "52 million" broadly rounds the Republic of Korea's population of 51,169,148, recorded in April 2024, when the words were spoken.
+                </p>
+                <div className="text-slate-400 text-xs space-y-1 pt-2 font-bold">
+                  <p>• A long-form generative engraving — 21 unique iterations.</p>
+                  <p>• Calligraphy by Choi Seung-gyun (최승균).</p>
+                  <p>• Planning & production: YesOkLab | Wristory.</p>
+                </div>
               </div>
             </div>
             <a 
-              href="https://objkt.com/tokens/KT1A77WVak4yMFoHDNzpAf8PGA7YLmh5wMJ8/52?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16" 
+              href="https://www.fxhash.xyz/create/project/success/0x8E3319261Db6790993F21122dE60b8Adf4C626aD" 
               target="_blank"
               className="w-fit px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-lg flex items-center gap-3 transition-all shadow-xl shadow-blue-600/20"
             >
-              작품 상세보기 <ExternalLink size={20} />
+              스마트 컨트랙트 확인 <ExternalLink size={20} />
             </a>
           </div>
         </div>
