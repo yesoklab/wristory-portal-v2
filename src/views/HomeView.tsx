@@ -59,7 +59,7 @@ const HomeView: React.FC = () => {
             <a href="https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu" target="_blank" className="px-8 py-4 bg-white text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-3 hover:scale-105 transition-transform">
               Contract Explorer <ArrowUpRight size={16} />
             </a>
-            <a href="https://github.com/yesoklab/wristory-portal" target="_blank" className="px-8 py-4 bg-slate-800 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-3 hover:bg-slate-700 transition-all">
+            <a href="https://github.com/yesoklab/wristory-portal-v2" target="_blank" className="px-8 py-4 bg-slate-800 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-3 hover:bg-slate-700 transition-all">
               <Github size={16} /> Source Code
             </a>
           </div>
