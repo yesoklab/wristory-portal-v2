@@ -88,7 +88,7 @@ const LiquidityPoolSection: React.FC = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-end">
                 <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">Total Value Locked</span>
-                <span className="text-2xl font-black text-white shadow-emerald-500/10 animate-pulse">$6,902.00</span>
+                <span className="text-2xl font-black text-white shadow-emerald-500/10 animate-pulse">$7,421.38</span>
               </div>
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                 <div className="bg-gradient-to-r from-blue-500 to-indigo-600 h-full w-[100%]" />
@@ -97,11 +97,11 @@ const LiquidityPoolSection: React.FC = () => {
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">wXTZ Share</p>
-                  <p className="text-xl font-black text-[#00ffcc] tracking-tight">18,142.38</p>
+                  <p className="text-xl font-black text-[#00ffcc] tracking-tight">19,426.86</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">WR Share</p>
-                  <p className="text-xl font-black text-blue-400 tracking-tight">1,814,238</p>
+                  <p className="text-xl font-black text-blue-400 tracking-tight">1,942,687</p>
                 </div>
               </div>
 
@@ -500,7 +500,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="stats-container flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#00ffcc] font-black text-sm md:text-lg uppercase tracking-widest pt-4">
              <span>Total Supply: 51,169,148 $WR</span>
              <span className="hidden md:inline text-slate-700">|</span>
-             <span>Holders: 630+</span>
+             <span>Holders: 779+</span>
              <span className="hidden md:inline text-slate-700">|</span>
              <span>Collections: 21</span>
           </div>
@@ -522,54 +522,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           </div>
         </section>
 
-      {/* CoinGecko Listing Track Section */}
-      <section className="max-w-7xl mx-auto px-6 mb-16">
-        <div className="bg-gradient-to-r from-emerald-500/10 via-slate-900/40 to-blue-500/10 border border-emerald-500/30 rounded-[3rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-xl shadow-2xl">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
-            <div className="flex items-center gap-6">
-              <div className="w-16 h-16 bg-gradient-to-tr from-emerald-500/20 to-lime-500/20 rounded-2xl flex items-center justify-center border border-emerald-500/30 text-emerald-400">
-                <BarChart3 size={32} className="animate-pulse" />
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest rounded-full">
-                    Listing App Registered
-                  </span>
-                  <span className="text-slate-500 text-xs font-bold">Tezos Token / WR</span>
-                </div>
-                <h3 className="text-2xl font-black text-white italic uppercase tracking-tight">
-                  CoinGecko Listing Status Tracker
-                </h3>
-                <p className="text-slate-400 text-sm font-medium">
-                  WR 토큰의 글로벌 시세 추적 및 유동성 연동을 위한 코인게코(CoinGecko) 등록 심사가 접수되어 활발히 진행 중입니다.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-4 bg-slate-900/80 border border-slate-800 p-6 rounded-[2rem] w-full lg:w-auto justify-between lg:justify-start">
-              <div className="space-y-1 pr-6 border-r border-slate-800">
-                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Coingecko Status</p>
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-                  <span className="font-extrabold text-sm text-emerald-400 uppercase tracking-wider">Reviewing (심사 중)</span>
-                </div>
-              </div>
-              <div className="space-y-1 pr-4 pl-4">
-                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Listing Asset</p>
-                <span className="font-extrabold text-sm text-white uppercase tracking-wider">$WR (Wristory)</span>
-              </div>
-              <a 
-                href="https://quipuswap.com/liquidity/cpmm/add/KT1VYsVfmobT7rsMVivvZ4J8i3bPiqz12NaH-KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu_0" 
-                target="_blank" 
-                className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center gap-2"
-              >
-                Provide Liquidity <ArrowUpRight size={14} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* CoinGecko Listing Track Section - Removed per user request */}
 
       {/* Fxhash Mint Section */}
       <FxhashMintSection />
