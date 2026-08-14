@@ -474,11 +474,21 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
             <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-black uppercase tracking-[0.4em] text-emerald-400">
               <ShieldCheck size={16} className="animate-pulse" /> Mainnet Successfully Merged & Deployed
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <div className="flex items-center gap-2 bg-slate-900/50 px-4 py-2 rounded-xl border border-slate-800">
                  <span className="text-[10px] font-mono text-slate-500">{contractAddress}</span>
                  <a href={`https://tzkt.io/${contractAddress}`} target="_blank" className="text-blue-400 hover:text-white"><ExternalLink size={12}/></a>
               </div>
+              <a 
+                href="https://wristory.tez.page" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-purple-500/10 hover:bg-purple-500/20 px-4 py-2 rounded-xl border border-purple-500/30 text-purple-400 transition-all group"
+              >
+                 <Globe size={12} className="text-purple-400 animate-spin-slow" />
+                 <span className="text-[10px] font-black uppercase tracking-widest">wristory.tez.page (Web3 IPFS)</span>
+                 <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
               <div className="flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded-xl border border-blue-500/20">
                  <Globe size={12} className="text-blue-400" />
                  <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Vercel Optimized</span>
@@ -500,7 +510,7 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           <div className="stats-container flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#00ffcc] font-black text-sm md:text-lg uppercase tracking-widest pt-4">
              <span>Total Supply: 51,169,148 $WR</span>
              <span className="hidden md:inline text-slate-700">|</span>
-             <span>Holders: 779+</span>
+             <span>Holders: 1,061+</span>
              <span className="hidden md:inline text-slate-700">|</span>
              <span>Collections: 21</span>
           </div>
@@ -522,7 +532,55 @@ const LandingPageView: React.FC<Props> = ({ onNavigate, hasApiKey }) => {
           </div>
         </section>
 
-      {/* CoinGecko Listing Track Section - Removed per user request */}
+      {/* Decentralized Web (Tezos Domains & IPFS) Section */}
+      <section className="max-w-7xl mx-auto px-6 mb-16">
+        <div className="bg-gradient-to-r from-purple-900/30 via-slate-900/60 to-blue-900/30 border border-purple-500/30 rounded-[3rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-xl shadow-2xl">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center border border-purple-500/30 text-purple-400 shrink-0">
+                <Globe size={32} className="animate-spin-slow" />
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 bg-purple-500/20 border border-purple-500/30 text-purple-300 text-[10px] font-black uppercase tracking-widest rounded-full">
+                    Tezos Domains Web3
+                  </span>
+                  <span className="text-slate-400 text-xs font-bold">wristory.tez / IPFS Hosted</span>
+                </div>
+                <h3 className="text-2xl font-black text-white italic uppercase tracking-tight">
+                  Decentralized Web Gate — wristory.tez.page
+                </h3>
+                <p className="text-slate-300 text-sm font-medium leading-relaxed max-w-2xl">
+                  중앙 서버가 다운되어도 검열받지 않는 분산형 파일 시스템(IPFS) 기반 Web3 탈중앙화 포털입니다. <br/>
+                  <span className="text-xs text-purple-300/80">
+                    Access via Tezos Domains IPFS gateway at <b>https://wristory.tez.page</b> anytime, anywhere.
+                  </span>
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-4 bg-slate-950/80 border border-purple-500/20 p-6 rounded-[2rem] w-full lg:w-auto justify-between lg:justify-start shrink-0">
+              <div className="space-y-1 pr-6 border-r border-slate-800">
+                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Tezos Domain</p>
+                <span className="font-mono font-bold text-sm text-purple-300">wristory.tez</span>
+              </div>
+              <div className="space-y-1 pr-4 pl-2">
+                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Web3 Gateway</p>
+                <span className="font-mono font-bold text-sm text-emerald-400">wristory.tez.page</span>
+              </div>
+              <a 
+                href="https://wristory.tez.page" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-purple-600/30"
+              >
+                Web3 Portal 접속 <ArrowUpRight size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Fxhash Mint Section */}
       <FxhashMintSection />
