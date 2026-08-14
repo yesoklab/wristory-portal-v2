@@ -6,6 +6,7 @@ const DeploymentGuideView: React.FC = () => {
     { title: 'Environment Setup', desc: 'Vite & React 18 환경 구성 및 Tailwind CSS 설정', status: 'Completed' },
     { title: 'Smart Contract Link', address: 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu', status: 'Active' },
     { title: 'Vercel Deployment', desc: 'CI/CD 파이프라인 구축 및 메인넷 엔드포인트 연결', status: 'Live' },
+    { title: 'Tezos Domain (wristory.tez)', desc: 'IPFS 호스팅 및 https://wristory.tez.page 탈중앙화 게이트웨이 연결', status: 'Web3 Ready' },
   ];
 
   return (
