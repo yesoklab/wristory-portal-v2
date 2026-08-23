@@ -11,7 +11,9 @@ import {
   ChevronRight,
   TrendingUp,
   Camera,
-  Share2
+  Share2,
+  Coins,
+  CheckCircle2
 } from 'lucide-react';
 
 interface LandingPageViewProps {
@@ -22,7 +24,8 @@ interface LandingPageViewProps {
 
 const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) => {
   const BASE_CONTRACT = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
-  const TEZOS_CONTRACT = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
+  const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
+  const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
 
   return (
     <div className="animate-in fade-in duration-500 space-y-12 sm:space-y-16 pb-16">
@@ -34,30 +37,30 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             <span className="text-xs font-bold text-slate-200">
               {lang === 'ko' ? (
                 <>
-                  <b className="text-[#00ffcc]">[공지]</b> $WR 토큰 이더리움 <b>Base L2 확장</b> 및 1,063명 홀더·FXHASH/OBJKT 창작자 <b>1:1 마이그레이션</b> 시작
+                  <b className="text-[#00ffcc]">[공지]</b> $WR 토큰 <b>Uniswap v4 (Base)</b> 유동성 풀 공식 개설 (56,801 WR = 1 ETH) & 1:1 마이그레이션 진행 중
                 </>
               ) : (
                 <>
-                  <b className="text-[#00ffcc]">[ANNOUNCEMENT]</b> $WR Token Expands to <b>Base L2</b> with <b>1:1 Migration</b> for 1,063 Tezos & FXHASH Creators
+                  <b className="text-[#00ffcc]">[LIVE]</b> $WR <b>Uniswap v4 (Base)</b> Pool Activated (56,801 WR = 1 ETH) & 1:1 Swap Live
                 </>
               )}
             </span>
           </div>
           <div className="flex items-center gap-2">
+            <a
+              href={UNISWAP_SWAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-black transition-all flex items-center gap-1 shadow-md shadow-emerald-600/30 active:scale-95"
+            >
+              <TrendingUp size={13} /> Uniswap v4 스왑 <ExternalLink size={12} />
+            </a>
             <button 
               onClick={() => onNavigate('MIGRATION')}
               className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
             >
               <ArrowRightLeft size={13} /> {lang === 'ko' ? '1:1 토큰 교환 포털' : '1:1 Swap Portal'} <ArrowUpRight size={13} />
             </button>
-            <a 
-              href={`https://basescan.org/token/${BASE_CONTRACT}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-blue-300 rounded-lg text-xs font-bold transition-all flex items-center gap-1 border border-blue-500/20"
-            >
-              BaseScan <ExternalLink size={12} />
-            </a>
           </div>
         </div>
       </div>
@@ -72,9 +75,15 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-bold">
               <ShieldCheck size={14} /> Ethereum Layer-2 (Base Mainnet)
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-bold">
-              <TrendingUp size={14} /> Uniswap V3 Pool
-            </span>
+            <a 
+              href={UNISWAP_V4_POSITION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[11px] font-bold transition-all"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Uniswap v4 Live (Base #2953119) <ExternalLink size={11} />
+            </a>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[11px] font-bold">
               <Camera size={14} /> 1,063 Snapshot Wallets
             </span>
@@ -90,24 +99,36 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </p>
           </div>
 
-          {/* Key Metrics Dashboard */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-2xl mx-auto bg-slate-950/70 border border-slate-800/80 p-3 sm:p-5 rounded-2xl relative z-10">
+          {/* Key Metrics Dashboard with Uniswap v4 live stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto bg-slate-950/70 border border-slate-800/80 p-3 sm:p-5 rounded-2xl relative z-10">
             <div className="text-center">
               <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Total Supply</p>
               <p className="text-xs sm:text-lg font-black text-amber-400 font-mono mt-0.5">51,169,148 WR</p>
             </div>
-            <div className="text-center border-x border-slate-800">
+            <div className="text-center border-l border-slate-800 sm:border-x">
+              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Uniswap v4 Rate</p>
+              <p className="text-xs sm:text-lg font-black text-emerald-400 font-mono mt-0.5">56,801 WR = 1 ETH</p>
+            </div>
+            <div className="text-center border-t sm:border-t-0 border-slate-800">
+              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Pool Fee Tier</p>
+              <p className="text-xs sm:text-lg font-black text-cyan-300 font-mono mt-0.5">0.25% (Base L2)</p>
+            </div>
+            <div className="text-center border-t sm:border-t-0 border-l border-slate-800">
               <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Snapshot Holders</p>
               <p className="text-xs sm:text-lg font-black text-[#00ffcc] font-mono mt-0.5">1,063 Wallets</p>
-            </div>
-            <div className="text-center">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Exchange Pair</p>
-              <p className="text-xs sm:text-lg font-black text-blue-400 font-mono mt-0.5">ETH / WR (Base)</p>
             </div>
           </div>
 
           {/* Quick Action Navigation Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 relative z-10">
+            <a
+              href={UNISWAP_SWAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95"
+            >
+              <TrendingUp size={16} /> {lang === 'ko' ? 'Uniswap v4 에서 $WR 거래하기' : 'Trade $WR on Uniswap v4'} <ArrowUpRight size={14} />
+            </a>
             <button
               onClick={() => onNavigate('MIGRATION')}
               className="px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-blue-600/30 flex items-center gap-2 active:scale-95"
@@ -132,7 +153,49 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
         </div>
       </section>
 
-      {/* 3. Dedicated Creator & Snapshot Section */}
+      {/* 3. Live Uniswap v4 Pool Feature Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="bg-gradient-to-r from-emerald-950/40 via-slate-900 to-blue-950/40 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl text-left">
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase rounded-full flex items-center gap-1.5">
+                <CheckCircle2 size={13} /> Uniswap v4 (Base) Active & In-Range
+              </span>
+              <span className="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-mono font-bold rounded-full">
+                Position ID #2953119
+              </span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase">
+              {lang === 'ko' ? 'ETH / WR 유니스왑 v4 공식 풀 가동' : 'Official ETH / WR Uniswap v4 Pool Live'}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              {lang === 'ko'
+                ? '이더리움 Layer-2 Base 네트워크 상에 Uniswap v4 집중 유동성(Concentrated Liquidity) 풀이 성공적으로 공급되었습니다. 0.25% 수수료 등급으로 슬리피지 없이 즉시 거래 가능합니다.'
+                : 'Concentrated liquidity on Uniswap v4 (Base Mainnet) is officially live with an ETH/WR trading pair and 0.25% fee tier for deep and capital-efficient swaps.'}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href={UNISWAP_SWAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/30 active:scale-95"
+            >
+              <TrendingUp size={16} /> {lang === 'ko' ? '유니스왑에서 $WR 스왑하기' : 'Swap $WR Now'} <ArrowUpRight size={14} />
+            </a>
+            <a
+              href={UNISWAP_V4_POSITION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 border border-emerald-500/30"
+            >
+              포지션 보기 <ExternalLink size={13} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Dedicated Creator & Snapshot Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="bg-gradient-to-r from-purple-950/30 via-slate-900 to-blue-950/30 border border-purple-500/20 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left">
           <div className="space-y-2">
@@ -157,7 +220,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
         </div>
       </section>
 
-      {/* 4. Featured Heritage Highlights (Clean 3-Card Grid with Pinata Gateways) */}
+      {/* 5. Featured Heritage Highlights (Clean 3-Card Grid with Pinata Gateways) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
@@ -269,7 +332,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
         </div>
       </section>
 
-      {/* 5. Migration Callout Block */}
+      {/* 6. Migration Callout Block */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-blue-500/30 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl text-left">
           <div className="space-y-2">
