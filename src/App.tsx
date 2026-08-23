@@ -377,7 +377,7 @@ const App: React.FC = () => {
                   테조스(Tezos) 메인넷 위에서 든든하게 지켜온 우리의 디지털 헤리티지가 이제 <strong>이더리움 레이어 2(Base) 체인</strong>으로의 위대한 확장을 시작합니다.
                 </p>
                 <p>
-                  글로벌 유동성과 더 많은 컬렉터들에게 프로젝트를 선보이기 위해, $WR 토큰은 Base 메인넷에 성공적으로 안착하였으며 <strong>Uniswap V3 (ETH / WR) 초기 유동성 공급</strong>을 앞두고 있습니다.
+                  글로벌 유동성과 더 많은 컬렉터들에게 프로젝트를 선보이기 위해, $WR 토큰은 Base 메인넷에 안착하여 <strong>Uniswap v4 (ETH / WR, 0.25% 수수료 등급, 풀 #2953119)</strong> 공식 집중 유동성 풀이 가동되었습니다. (56,801 WR = 1 ETH)
                 </p>
                 
                 {/* Core Box */}
@@ -392,7 +392,7 @@ const App: React.FC = () => {
                   <ul className="list-disc pl-4 space-y-1 text-slate-400 text-[11px]">
                     <li><strong>교환 비율:</strong> 1 Tezos WR = 1 Base WR (1:1 정확히 일치, 수수료 0%)</li>
                     <li><strong>총발행량:</strong> 51,169,148 WR 철저한 연동 관리 (추가 발행 절대 없음)</li>
-                    <li><strong>스냅샷 검증:</strong> 테조스 TzKT 온체인 스냅샷과 연동되어 안전하고 신속하게 지급</li>
+                    <li><strong>DEX 거래:</strong> <a href="https://app.uniswap.org/positions/v4/base/2953119" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-bold hover:underline">Uniswap v4 Base (Position #2953119)</a></li>
                     <li><strong>Base 컨트랙트:</strong> <code className="text-cyan-300 font-mono font-bold select-all">0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7</code></li>
                   </ul>
                 </div>
@@ -415,7 +415,7 @@ const App: React.FC = () => {
                   Our heritage ecosystem on Tezos is officially expanding to <strong>Ethereum Layer-2 (Base Mainnet)</strong> to unlock global decentralized liquidity.
                 </p>
                 <p>
-                  $WR has successfully deployed on Base with upcoming <strong>Uniswap V3 concentrated liquidity pools (ETH / $WR pair)</strong>. We are offering an unconditional <strong>1:1 Migration (1 Tezos WR = 1 Base WR)</strong> for all existing community members.
+                  $WR has successfully deployed on Base with active <strong>Uniswap v4 concentrated liquidity (ETH / WR pair, 0.25% fee tier, Position #2953119)</strong> at 56,801 WR = 1 ETH. We are offering an unconditional <strong>1:1 Migration (1 Tezos WR = 1 Base WR)</strong> for all existing community members.
                 </p>
 
                 {/* Core Box (EN) */}
@@ -430,7 +430,7 @@ const App: React.FC = () => {
                   <ul className="list-disc pl-4 space-y-1 text-slate-400 text-[11px]">
                     <li><strong>Swap Parity:</strong> 1 Tezos WR = 1 Base WR (Strict 1:1 Ratio, 0% Fee)</li>
                     <li><strong>Total Supply:</strong> 51,169,148 WR strictly capped across all chains (Zero Inflation)</li>
-                    <li><strong>Snapshot Verification:</strong> Verified against on-chain TzKT snapshot records.</li>
+                    <li><strong>Uniswap v4:</strong> <a href="https://app.uniswap.org/positions/v4/base/2953119" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-bold hover:underline">Base Position #2953119 (0.25%)</a></li>
                     <li><strong>Base Contract:</strong> <code className="text-cyan-300 font-mono font-bold select-all">0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7</code></li>
                   </ul>
                 </div>
