@@ -17,7 +17,8 @@ import {
   Share2,
   Globe,
   Database,
-  ArrowUpRight
+  ArrowUpRight,
+  TrendingUp
 } from 'lucide-react';
 
 interface MigrationRecord {
@@ -42,10 +43,11 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
   const [copiedShareLink, setCopiedShareLink] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Base Contract Address & Tezos Info
+  // Base Contract Address & Uniswap v4 Pool Info
   const BASE_WR_CONTRACT = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_FA2_CONTRACT = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
-  const PORTAL_URL = 'https://wristory.io'; // official portal URL
+  const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
+  const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
 
   // Sample verified records in local memory for demonstration & transparency
   const [records, setRecords] = useState<MigrationRecord[]>([
@@ -85,7 +87,7 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
   };
 
   const handleCopyShareLink = () => {
-    const textToCopy = `🔄 WRISTORY ($WR) Official 1:1 Base Migration Portal\n\nFor 1,063 Tezos Holders & FXHASH/OBJKT Creators:\nBridge your Tezos WR to Base ERC-20 (1:1 Ratio Guaranteed)\n\nPortal: ${window.location.origin}\nBase Contract: ${BASE_WR_CONTRACT}`;
+    const textToCopy = `🔄 WRISTORY ($WR) Official 1:1 Base Migration Portal\n\nFor 1,063 Tezos Holders & FXHASH/OBJKT Creators:\nBridge your Tezos WR to Base ERC-20 (1:1 Ratio Guaranteed)\n\nUniswap v4 Live: ${UNISWAP_SWAP_URL}\nPortal: ${window.location.origin}\nBase Contract: ${BASE_WR_CONTRACT}`;
     navigator.clipboard.writeText(textToCopy);
     setCopiedShareLink(true);
     setTimeout(() => setCopiedShareLink(false), 2000);
@@ -156,13 +158,23 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
           </span>
         </div>
 
-        <button
-          onClick={handleCopyShareLink}
-          className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border border-slate-700 active:scale-95"
-        >
-          {copiedShareLink ? <Check size={14} className="text-emerald-400" /> : <Share2 size={14} className="text-blue-400" />}
-          <span>{copiedShareLink ? (currentLang === 'ko' ? '마이그레이션 안내 링크 복사됨!' : 'Migration Link Copied!') : (currentLang === 'ko' ? 'FXHASH/OBJKT 커뮤니티 공유 링크 복사' : 'Copy Share URL for FXHASH / Discord')}</span>
-        </button>
+        <div className="flex items-center gap-2">
+          <a
+            href={UNISWAP_SWAP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
+          >
+            <TrendingUp size={14} /> Uniswap v4 Swap <ExternalLink size={12} />
+          </a>
+          <button
+            onClick={handleCopyShareLink}
+            className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border border-slate-700 active:scale-95"
+          >
+            {copiedShareLink ? <Check size={14} className="text-emerald-400" /> : <Share2 size={14} className="text-blue-400" />}
+            <span>{copiedShareLink ? (currentLang === 'ko' ? '공유 링크 복사됨!' : 'Link Copied!') : (currentLang === 'ko' ? '공유 링크 복사' : 'Copy Share URL')}</span>
+          </button>
+        </div>
       </div>
 
       {/* Top Banner Notice */}
@@ -187,12 +199,12 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
             {currentLang === 'ko' ? (
               <>
                 테조스(Tezos) 메인넷의 <strong>1,063명의 홀더 및 FXHASH/OBJKT 크리에이터</strong> 여러분과 함께 일군 헤리티지가 이더리움 Layer-2 <strong>Base 메인넷</strong>으로 공식 확장합니다. 
-                글로벌 유동성과 Uniswap V3 풀 구축을 위해 <strong>1 Tezos WR = 1 Base WR (1:1 비율)</strong> 무손실 교환 및 스냅샷 자동 검증을 지원합니다.
+                현재 <strong>Uniswap v4 (Base) ETH/WR 풀(0.25% 수수료 등급, 56,801 WR = 1 ETH)</strong>이 활성화되어 실시간 거래를 지원하며, 기존 홀더 대상 <strong>1 Tezos WR = 1 Base WR (1:1 비율)</strong> 무손실 교환 및 스냅샷 자동 검증을 지원합니다.
               </>
             ) : (
               <>
                 To all <strong>1,063 Tezos holders and FXHASH / OBJKT generative creators</strong>: WRISTORY is officially expanding to Ethereum Layer-2 <strong>Base Mainnet</strong>. 
-                To access global liquidity and Uniswap V3 pools, we provide a guaranteed <strong>1:1 token migration (1 Tezos WR = 1 Base WR)</strong> verified via on-chain snapshots with zero slippage.
+                Our <strong>Uniswap v4 (Base) ETH/WR concentrated liquidity pool (0.25% fee tier, 56,801 WR = 1 ETH)</strong> is live. We provide a guaranteed <strong>1:1 token migration (1 Tezos WR = 1 Base WR)</strong> verified via on-chain snapshots.
               </>
             )}
           </p>
@@ -218,10 +230,15 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
               </a>
             </div>
 
-            <div className="bg-blue-600/10 border border-blue-500/30 px-4 py-2.5 rounded-2xl flex items-center gap-2 text-xs text-blue-300 font-bold">
-              <Database size={16} className="text-blue-400" />
-              {currentLang === 'ko' ? 'Tezos 1,063 홀더 온체인 스냅샷 연동 완료' : 'Tezos 1,063 Holders On-Chain Snapshot Synced'}
-            </div>
+            <a 
+              href={UNISWAP_V4_POSITION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-500/10 border border-emerald-500/30 px-4 py-2.5 rounded-2xl flex items-center gap-2 text-xs text-emerald-400 font-bold hover:bg-emerald-500/20 transition-all"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Uniswap v4 Pool #2953119 Active <ExternalLink size={12} />
+            </a>
           </div>
         </div>
       </div>
@@ -270,21 +287,31 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
           </div>
 
           <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl space-y-2">
-            <span className="text-slate-400 font-bold uppercase">{currentLang === 'ko' ? '3. 유니스왑 V3 페어' : '3. Uniswap V3 Liquidity'}</span>
-            <p className="text-white font-bold text-sm">ETH / WR (Base L2)</p>
+            <span className="text-slate-400 font-bold uppercase">{currentLang === 'ko' ? '3. 유니스왑 v4 풀' : '3. Uniswap v4 Liquidity'}</span>
+            <p className="text-white font-bold text-sm">56,801 WR = 1 ETH (0.25%)</p>
             <p className="text-slate-400 text-[11px]">
               {currentLang === 'ko' 
-                ? 'QuipuSwap의 한계를 벗어나 Base 유니스왑 V3 풀에서 글로벌 유동성과 실시간 시세가 형성됩니다.' 
-                : 'Deep concentrated liquidity on Uniswap V3 (Base) with tight spreads and seamless EVM swapping.'}
+                ? 'Base 유니스왑 v4 공식 풀(#2953119)에서 실시간 스왑 및 시세가 형성됩니다.' 
+                : 'Live concentrated liquidity on Uniswap v4 (Base) with position #2953119.'}
             </p>
-            <a 
-              href={`https://basescan.org/token/${BASE_WR_CONTRACT}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-emerald-400 hover:underline pt-1"
-            >
-              BaseScan Contract <ExternalLink size={12} />
-            </a>
+            <div className="flex items-center gap-3 pt-1">
+              <a 
+                href={UNISWAP_SWAP_URL} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-400 font-bold hover:underline"
+              >
+                Swap <ArrowUpRight size={12} />
+              </a>
+              <a 
+                href={UNISWAP_V4_POSITION_URL} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-slate-400 hover:text-white"
+              >
+                Position #2953119 <ExternalLink size={12} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -491,10 +518,10 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
                   : 'Total supply is strictly capped at 51,169,148 WR across all chains with zero inflation.'}
               </li>
               <li className="pt-3">
-                <strong className="text-white">{currentLang === 'ko' ? 'Uniswap V3 페어 구축:' : 'Uniswap V3 Liquidity:'}</strong><br />
+                <strong className="text-white">{currentLang === 'ko' ? 'Uniswap v4 라이브 풀:' : 'Uniswap v4 Live Pool:'}</strong><br />
                 {currentLang === 'ko' 
-                  ? 'Base 체인 토큰 배포 후 ETH / $WR 페어로 유니스왑 V3 유동성이 집중 공급됩니다.' 
-                  : 'Concentrated liquidity on Uniswap V3 (ETH/WR) to support fair price discovery and deep liquidity.'}
+                  ? 'Base 체인 Uniswap v4 (0.25%, #2953119) 풀에서 실시간 가격(56,801 WR = 1 ETH)과 즉각적인 유동성이 보장됩니다.' 
+                  : 'Concentrated liquidity on Uniswap v4 (ETH/WR, 0.25% fee tier, pool #2953119) with 56,801 WR = 1 ETH.'}
               </li>
             </ul>
           </div>
