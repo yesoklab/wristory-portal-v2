@@ -1,114 +1,89 @@
-# WRISTORY Whitepaper v1.0
+# WRISTORY Whitepaper v2.0 (Base Mainnet Edition)
 **The Official Tokenomics, Ecosystem, and Technology Specification of the WRISTORY Project**
 
 ---
 
-## 1. Introduction & Vision (서론 및 비전)
+## 1. Introduction & Vision (서론 및 비전: Base 확장)
 
 ### 1.1 Vision
-**"역사는 블록체인 위에서 영원히 살아 숨 쉽니다." / "History lives forever on the Tezos blockchain."**
+**"역사는 블록체인 위에서 영원히 살아 숨 쉽니다." / "History lives forever on the Base & Tezos blockchains."**
 
-WRISTORY is a decentralized digital heritage platform and modern asset ecosystem established on the Tezos mainnet. Our mission is to bridge monumental historical epochs—specifically the Korean Independence Movement, legendary national figures, and traditional Asian philosophies—with cutting-edge generative art archives, fungible token tokenomics ($WR), and everyday smartwatch hardware utilities. 
+WRISTORY is a decentralized digital heritage platform bridging monumental historical epochs—specifically the Korean Independence Movement, legendary national figures, and traditional Asian philosophies—with cutting-edge generative art archives, fungible token tokenomics ($WR), and everyday smartwatch hardware utilities (Wear OS).
 
-By utilizing public distributed ledger technologies, WRISTORY ensures that historical moments of sheer bravery, patriotism, and cultural paradigm shifts are permanently recorded, tamper-proof, and universally accessible—forever preventing the distortion or erasure of history.
+Having established an initial foundation of 1,063 devoted holders on Tezos, WRISTORY has officially expanded to **Coinbase’s Ethereum Layer-2 (Base)** to overcome DEX liquidity limitations and connect directly with global EVM collectors and decentralized finance markets.
 
 ### 1.2 Core Pillars of the Ecosystem
-1. **Generative Archiving**: Translating raw historical events and national records into aesthetic generative wave structures, interactive media, and premium cryptographic collectibles.
-2. **FA2 Tokenomics ($WR)**: Establishing a robust, liquid, and utility-driven FA2 token to power decentralization, secondary transaction fees, and cross-project value transfer.
-3. **Everyday Utility & Hardware Integration**: Directly linking virtual assets with real-world wearable hardware through instant on-chain Tezos ownership verification, permitting holders to download and custom-style premium Wear OS (Samsung Galaxy Watch, Google Pixel Watch, etc.) watchfaces.
-4. **DeFi & Decentralized Governance**: Integrating deep on-chain liquidity via QuipuSwap CPMM pools, letting the community decide future digital preservation targets.
+1. **Ethereum Layer-2 Base Expansion**: Leveraging sub-cent gas fees and instant transaction finality on Base to democratize access for worldwide crypto holders.
+2. **Uniswap V3 Concentrated Liquidity**: Establishing direct ETH / WR trading pairs with deep market liquidity and tight bid-ask spreads.
+3. **1:1 Token Migration for 1,063 Tezos Holders**: Fully guaranteeing that all existing Tezos WR tokens can be converted 1:1 into Base WR tokens with zero loss.
+4. **Wear OS Smartwatch Integration**: Linking virtual token ownership with physical Google Play Wear OS watchfaces.
 
 ---
 
 ## 2. Token Details & Specifications (토큰 명세)
 
-The WR token is the core native utility asset of the WRISTORY digital heritage ecosystem, deployed on the secure, energy-efficient Tezos network.
+The WR token is the core native utility asset deployed on both Base (Primary EVM ERC-20) and Tezos (Legacy FA2).
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Token Name** | Wristory |
-| **Token Symbol** | **WR** |
-| **Token Standard** | Tezos FA2 (Fungible Asset 2.0) |
-| **Deployment Platform** | Tezos Mainnet |
-| **Contract Address (KT-Address)** | [`KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu`](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu) |
-| **Total Token Supply** | `51,169,148.000000 WR` (Fixed) |
-| **Token Decimals** | 6 |
-| **Explorer Link (TzKT)** | [TzKT - KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu) |
-| **BCD Smart Contract Code** | [Better Call Dev Link](https://better-call.dev/mainnet/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu) |
+| Attribute | Base Mainnet Specification (Primary) | Tezos Mainnet Specification (Legacy) |
+| :--- | :--- | :--- |
+| **Token Name** | WRISTORY | Wristory |
+| **Token Symbol** | **WR** | **WR** |
+| **Token Standard** | **ERC-20** (Base L2) | FA2 (Tezos) |
+| **Deployment Platform** | **Base Mainnet (Ethereum L2)** | Tezos Mainnet |
+| **Contract Address** | [`0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7`](https://basescan.org/token/0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7) | [`KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu`](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu) |
+| **Total Token Supply** | `51,169,148.000000000000000000 WR` (Fixed) | `51,169,148.000000 WR` |
+| **Decimals** | 18 | 6 |
+| **Primary DEX** | **Uniswap V3 (ETH / WR)** | QuipuSwap (Migrating) |
+| **Explorer Link** | [BaseScan Token Tracker](https://basescan.org/token/0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7) | [TzKT Explorer](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu) |
 
 ---
 
 ## 3. Tokenomics & Distribution Strategy (토크노믹스 및 분배 계획)
 
-The WR token supply is strictly capped at **51,169,148 WR** to ensure long-term scarcity and economic predictability. No further tokens can ever be minted or issued, protecting early ecosystem backers.
+The WR token supply is strictly capped at **51,169,148 WR** across all chains. No secondary inflation or unauthorized minting is permitted.
 
 ### 3.1 Allocation Breakdown
-
-```
-+-----------------------------------------------------------+
-| [30%] Community Rewards & Ecosystem Growth (15,350,744 WR) |
-+------------------------------------+----------------------+
-| [20%] Liquidity Pool (10,233,829)  | [20%] Treasury (20%) |
-+------------------+-----------------+----------------------+
-| [15%] Dev (15%)  | [10%] Airdrop   | [5%] Advisors       |
-+------------------+-----------------+----------------------+
-```
-
-1. **Community Rewards & Ecosystem Growth (30% - 15,350,744.40 WR)**
-   - Used for incentivizing on-chain activities, staking initiatives, interactive community events, and rewards for developers who build third-party expansions on WRISTORY interface APIs.
-2. **Liquidity Pool / Market Operations (20% - 10,233,829.60 WR)**
-   - Allocated to QuipuSwap CPMM pools, ensuring constant liquidity and smooth exchange trading pairs (wXTZ / WR) with minimal slippage.
-3. **Ecosystem Treasury & Reserve (20% - 10,233,829.60 WR)**
-   - Managed securely by the project multi-signature vault. Reserved for future strategic heritage partnerships, acquisition of rare physical historical assets for digitization, and ecosystem defensive liquidity.
-4. **Core Development & Infrastructure (15% - 7,675,372.20 WR)**
-   - Retained for core technical dev teams, front-end portal security audits, server hosting, and persistent smart contract optimization.
-5. **Airdrop & Public Launch (10% - 5,116,914.80 WR)**
-   - Distributed to early project adopters, Tezos community testnet participants, and strategic web3 supporters to establish a highly decentralized initial holder base.
-6. **Strategic Partners & Advisors (5% - 2,558,457.40 WR)**
-   - Awarded to legal consultants, regional heritage advocates, and marketing/PR advisors who facilitate integration with Korean municipal archives and Wear OS distributors.
+1. **Community Rewards & Ecosystem Growth (30% - 15,350,744 WR)**
+2. **Uniswap V3 Liquidity Pool (20% - 10,233,829 WR)**
+3. **Ecosystem Treasury & Historical Heritage Reserve (20% - 10,233,829 WR)**
+4. **Core Development & Infrastructure (15% - 7,675,372 WR)**
+5. **Tezos 1:1 Migration & Early Supporters (10% - 5,116,914 WR)**
+6. **Advisors & Legal Partners (5% - 2,558,457 WR)**
 
 ---
 
 ## 4. Key Utilities & System Mechanics (토큰 유틸리티)
 
-The WR token serves multiple functional purposes across the WRISTORY digital environment, moving far beyond typical speculative crypto assets:
-
-* **On-Chain Watchface Access Control**: Holders with a minimum threshold of $WR tokens gain full, unhindered access to the official YesOkLab Wear OS smartwatch dials, letting users carry Korea’s historical flame and patriotic calligraphies on their wrists globally.
-* **Heritage NFT Minting & Whitelists**: Highly exclusive, periodic generative artwork releases (such as The Flame of Jongno, The Reckoning, or The Admiral's Resolve special editions) offer priority whitelist allocations.
-* **Ecosystem Governance & Curation Voting**: Token owners can submit proposals and vote on future archival directions. Community votes decide which historical records, heroes, or art themes will be developed next for the Tezos digitization pipeline.
-* **Liquidity Provider (LP) Extra Benefits**: Users who provide liquidity in the official wXTZ/WR pool on QuipuSwap receive premium status, offering enhanced whitelist odds and ultra-rare dynamic on-chain titles.
+* **Wear OS Watchface Access Control**: Direct token verification on Base and Tezos unlocks exclusive Google Play Wear OS smartwatch applications.
+* **Historical NFT Priority Whitelists**: Grants priority allocations and discounts for exclusive generative drops.
+* **On-Chain Governance**: Token holders vote on future museum alliances and digitized historical heroes.
+* **Uniswap V3 LP Staking Rewards**: Liquidity providers earn trading fee splits and exclusive digital badges.
 
 ---
 
-## 5. Official Roadmap (프로젝트 로드맵)
+## 5. Official Roadmap (Base 확장 로드맵)
 
-### 2025.Q3 - 2025.Q4: Foundation & Core Token Deployed (인프라 및 토큰 런칭 완료)
+### 2025.Q3 - 2026.Q1: Tezos Inception & Community (기반 구축 완료)
 - [x] Official FA2 WR Token deployment onto Tezos Mainnet.
-- [x] QuipuSwap wXTZ / WR Liquidity CPMM Pool creation and seeding.
-- [x] Launch of the official WRISTORY Digital Heritage Portal.
-- [x] Release of historical commemorative archive collections on objkt.com.
+- [x] Gathering 1,063 pioneer holders and launching first historical archive collections.
 
-### 2026.Q1 - 2026.Q2: Generative Expansion & Listing (생태계 확장 및 상장 심사 - 현재 단계)
-- [x] Launch of premium generative artworks: "The Flame of Jongno", "The Reckoning", and "The Admiral's Resolve".
-- [x] wristory.tez IPFS decentralized web3 gateway connection.
-- [ ] **CoinGecko Official Asset Listing** to scale global pricing data, charts, and public liquidity tracking.
-- [ ] Tezos On-Chain Instant Wallet Verification system for Wear OS premium download credentials.
+### 2026.Q2 - 2026.Q3: Base Migration & Uniswap V3 (현재 단계)
+- [x] Deployment of Base ERC-20 Smart Contract (`0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7`).
+- [x] Launch of official 1:1 Base Migration Portal for all 1,063 Tezos holders.
+- [ ] Initial Liquidity injection on Uniswap V3 (ETH / WR Pair).
+- [ ] CoinMarketCap & CoinGecko official token tracking listings.
 
-### 2026.Q3 - 2026.Q4: Wear OS Direct Play & Heritage Expansion (글로벌 확장)
-- [ ] Collaboration with local museums and national heritage foundations for authentic metadata curation.
-- [ ] Launch of WR dynamic staking and passive yield mechanisms.
-- [ ] Global release of Wear OS Android Application direct download packages on the Google Play Store.
+### 2026.Q4 ~ 2027: Wear OS Play Store & Global CEX Expansion
+- [ ] Launch of official Google Play Wear OS app with Base wallet integration.
+- [ ] Tier-1 Centralized Exchange (CEX) listings and national museum alliances.
 
 ---
 
-## 6. Legal Disclaimers & Disclosures (법적 책임 고지)
-
-* **Ecosystem Nature**: WR is a utility token designed specifically to operate within the WRISTORY digital heritage ecosystem. Holding WR tokens does not entitle holders to any municipal ownership, stock shares, or direct dividend claims of physical heritage museums.
-* **Regulatory Compliance**: Users are responsible for complying with local regulations regarding cryptocurrency possession, trading, and decentralized financial pool participations in their respective jurisdictions.
-* **Technological Risks**: Smart contracts operate natively in public distributed networks. While rigorously audited, operations in decentralized networks contain inherent tech risks. Participants should interact with utmost prudence.
+## 6. Legal Disclaimers (법적 고지)
+WR is a utility asset designed specifically for digital heritage curation and smartwatch dial access. It does not represent equity in physical entities.
 
 ---
 
-**© 2026 YesOkLab | WRISTORY Project. All Rights Reserved.**
-*Official Portal:* [wristory.tez](https://wristory.tez.page)
-*Smart Contract:* [TzKT Mainnet Tracker](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu)
+**© 2026 YesOkLab | WRISTORY Project.**
+*Base Contract:* [0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7](https://basescan.org/token/0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7)
+*Tezos Contract:* [KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu)
