@@ -16,7 +16,8 @@ import {
   Globe,
   Smartphone,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  ArrowRightLeft
 } from 'lucide-react';
 import HomeView from './HomeView';
 import TokenomicsView from './TokenomicsView';
@@ -25,15 +26,17 @@ import StrategyHubView from './StrategyHubView';
 import ContractLabView from './ContractLabView';
 import DeploymentGuideView from './DeploymentGuideView';
 import MintingLabView from './MintingLabView';
+import MigrationAdminView from './MigrationAdminView';
 
 interface Props {
   onExit: () => void;
 }
 
 const AdminDashboard: React.FC<Props> = ({ onExit }) => {
-  const [activeTab, setActiveTab] = useState('DASHBOARD');
+  const [activeTab, setActiveTab] = useState('MIGRATION_ADMIN');
 
   const menuItems = [
+    { id: 'MIGRATION_ADMIN', label: '마이그레이션 신청 관리', icon: <ArrowRightLeft size={20} className="text-cyan-400" /> },
     { id: 'DASHBOARD', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
     { id: 'TOKENOMICS', label: 'Tokenomics', icon: <BarChart3 size={20} /> },
     { id: 'COLLECTIONS', label: 'Collections', icon: <Database size={20} /> },
@@ -45,6 +48,7 @@ const AdminDashboard: React.FC<Props> = ({ onExit }) => {
 
   const renderContent = () => {
     switch (activeTab) {
+      case 'MIGRATION_ADMIN': return <MigrationAdminView />;
       case 'DASHBOARD': return <HomeView />;
       case 'TOKENOMICS': return <TokenomicsView />;
       case 'COLLECTIONS': return <CollectionView />;
@@ -52,7 +56,7 @@ const AdminDashboard: React.FC<Props> = ({ onExit }) => {
       case 'CONTRACT': return <ContractLabView />;
       case 'MINTING': return <MintingLabView />;
       case 'DEPLOYMENT': return <DeploymentGuideView />;
-      default: return <HomeView />;
+      default: return <MigrationAdminView />;
     }
   };
 
