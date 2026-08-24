@@ -48,6 +48,7 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
   const TEZOS_FA2_CONTRACT = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
+  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
 
   // Sample verified records in local memory for demonstration & transparency
   const [records, setRecords] = useState<MigrationRecord[]>([
@@ -114,15 +115,21 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
     setTimeout(() => {
       const newRecord: MigrationRecord = {
         id: `MIG-${Math.floor(1000 + Math.random() * 9000)}`,
-        tezosAddress: tezosAddress.substring(0, 5) + '...' + tezosAddress.substring(tezosAddress.length - 4),
-        baseAddress: baseAddress.substring(0, 4) + '...' + baseAddress.substring(baseAddress.length - 4),
+        tezosAddress: tezosAddress.trim(),
+        baseAddress: baseAddress.trim(),
         amount: `${Number(amount).toLocaleString()} WR`,
-        txHash: txHash.trim() ? (txHash.substring(0, 4) + '...' + txHash.substring(txHash.length - 4)) : 'Snapshot Verified',
+        txHash: txHash.trim() ? txHash.trim() : 'Snapshot Verified',
         timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
         status: 'PENDING',
       };
 
-      setRecords([newRecord, ...records]);
+      const updatedRecords = [newRecord, ...records];
+      setRecords(updatedRecords);
+      try {
+        localStorage.setItem('wristory_migration_records', JSON.stringify(updatedRecords));
+      } catch (err) {
+        console.error(err);
+      }
       setIsSubmitting(false);
       setIsSuccess(true);
     }, 1000);
@@ -158,7 +165,15 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <a
+            href={GECKOTERMINAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+          >
+            <TrendingUp size={14} className="text-amber-400" /> GeckoTerminal 차트 <ExternalLink size={11} />
+          </a>
           <a
             href={UNISWAP_SWAP_URL}
             target="_blank"
