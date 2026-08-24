@@ -26,6 +26,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const BASE_CONTRACT = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
+  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
 
   return (
     <div className="animate-in fade-in duration-500 space-y-12 sm:space-y-16 pb-16">
@@ -37,23 +38,31 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             <span className="text-xs font-bold text-slate-200">
               {lang === 'ko' ? (
                 <>
-                  <b className="text-[#00ffcc]">[공지]</b> $WR 토큰 <b>Uniswap v4 (Base)</b> 유동성 풀 공식 개설 (56,801 WR = 1 ETH) & 1:1 마이그레이션 진행 중
+                  <b className="text-[#00ffcc]">[Live DEX]</b> $WR <b>Uniswap v4 ($0.04416 / $3.8K+ 유동성)</b> 가동 & <b>GeckoTerminal</b> 실시간 차트 연동
                 </>
               ) : (
                 <>
-                  <b className="text-[#00ffcc]">[LIVE]</b> $WR <b>Uniswap v4 (Base)</b> Pool Activated (56,801 WR = 1 ETH) & 1:1 Swap Live
+                  <b className="text-[#00ffcc]">[LIVE DEX]</b> $WR <b>Uniswap v4 ($0.04416 / $3.8K+ Liquidity)</b> Live & <b>GeckoTerminal</b> Chart Active
                 </>
               )}
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
+            <a
+              href={GECKOTERMINAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95"
+            >
+              <TrendingUp size={13} className="text-amber-400" /> GeckoTerminal 차트 <ExternalLink size={11} />
+            </a>
             <a
               href={UNISWAP_SWAP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-black transition-all flex items-center gap-1 shadow-md shadow-emerald-600/30 active:scale-95"
             >
-              <TrendingUp size={13} /> Uniswap v4 스왑 <ExternalLink size={12} />
+              <Coins size={13} /> Uniswap v4 스왑 <ExternalLink size={12} />
             </a>
             <button 
               onClick={() => onNavigate('MIGRATION')}
@@ -75,6 +84,15 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-bold">
               <ShieldCheck size={14} /> Ethereum Layer-2 (Base Mainnet)
             </span>
+            <a 
+              href={GECKOTERMINAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[11px] font-bold transition-all"
+            >
+              <TrendingUp size={13} className="text-amber-400" />
+              GeckoTerminal Live ($0.04416) <ExternalLink size={11} />
+            </a>
             <a 
               href={UNISWAP_V4_POSITION_URL}
               target="_blank"
@@ -99,35 +117,43 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </p>
           </div>
 
-          {/* Key Metrics Dashboard with Uniswap v4 live stats */}
+          {/* Key Metrics Dashboard with Uniswap v4 live stats & GeckoTerminal */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto bg-slate-950/70 border border-slate-800/80 p-3 sm:p-5 rounded-2xl relative z-10">
             <div className="text-center">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Total Supply</p>
-              <p className="text-xs sm:text-lg font-black text-amber-400 font-mono mt-0.5">51,169,148 WR</p>
+              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Token Price</p>
+              <p className="text-xs sm:text-lg font-black text-amber-400 font-mono mt-0.5">$0.04416 USD</p>
             </div>
             <div className="text-center border-l border-slate-800 sm:border-x">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Uniswap v4 Rate</p>
-              <p className="text-xs sm:text-lg font-black text-emerald-400 font-mono mt-0.5">56,801 WR = 1 ETH</p>
+              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Active Liquidity</p>
+              <p className="text-xs sm:text-lg font-black text-emerald-400 font-mono mt-0.5">$3,684.24+</p>
             </div>
             <div className="text-center border-t sm:border-t-0 border-slate-800">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Pool Fee Tier</p>
-              <p className="text-xs sm:text-lg font-black text-cyan-300 font-mono mt-0.5">0.25% (Base L2)</p>
+              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Pool Fee & Pair</p>
+              <p className="text-xs sm:text-lg font-black text-cyan-300 font-mono mt-0.5">ETH / WR (0.25%)</p>
             </div>
             <div className="text-center border-t sm:border-t-0 border-l border-slate-800">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Snapshot Holders</p>
-              <p className="text-xs sm:text-lg font-black text-[#00ffcc] font-mono mt-0.5">1,063 Wallets</p>
+              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">FDV / Cap</p>
+              <p className="text-xs sm:text-lg font-black text-[#00ffcc] font-mono mt-0.5">~$2,260,000</p>
             </div>
           </div>
 
           {/* Quick Action Navigation Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 relative z-10">
             <a
+              href={GECKOTERMINAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-amber-600/30 flex items-center gap-2 active:scale-95"
+            >
+              <TrendingUp size={16} /> {lang === 'ko' ? 'GeckoTerminal 실시간 차트' : 'GeckoTerminal Live Chart'} <ArrowUpRight size={14} />
+            </a>
+            <a
               href={UNISWAP_SWAP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95"
             >
-              <TrendingUp size={16} /> {lang === 'ko' ? 'Uniswap v4 에서 $WR 거래하기' : 'Trade $WR on Uniswap v4'} <ArrowUpRight size={14} />
+              <Coins size={16} /> {lang === 'ko' ? 'Uniswap v4 에서 $WR 거래하기' : 'Trade $WR on Uniswap v4'} <ArrowUpRight size={14} />
             </a>
             <button
               onClick={() => onNavigate('MIGRATION')}
@@ -135,61 +161,55 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             >
               <ArrowRightLeft size={16} /> {lang === 'ko' ? 'Base 1:1 토큰 마이그레이션 포털' : 'Base 1:1 Migration Portal'}
             </button>
-            <a
-              href="https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs sm:text-sm font-bold uppercase transition-all flex items-center gap-2 active:scale-95 border border-slate-700"
-            >
-              OBJKT / FXHASH Archive <ArrowUpRight size={14} />
-            </a>
-            <button
-              onClick={() => onNavigate('WHITEPAPER')}
-              className="px-4 py-3 bg-slate-900/90 hover:bg-slate-800 text-blue-300 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 border border-blue-500/20"
-            >
-              {lang === 'ko' ? '백서 v2.0 확인' : 'Whitepaper v2.0'} <ChevronRight size={14} />
-            </button>
           </div>
         </div>
       </section>
 
-      {/* 3. Live Uniswap v4 Pool Feature Banner */}
+      {/* 3. Live Uniswap v4 & GeckoTerminal Feature Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-r from-emerald-950/40 via-slate-900 to-blue-950/40 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl text-left">
+        <div className="bg-gradient-to-r from-slate-900 via-emerald-950/30 to-amber-950/20 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl text-left">
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase rounded-full flex items-center gap-1.5">
                 <CheckCircle2 size={13} /> Uniswap v4 (Base) Active & In-Range
               </span>
+              <a 
+                href={GECKOTERMINAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-black uppercase rounded-full flex items-center gap-1.5 transition-all"
+              >
+                <TrendingUp size={13} /> GeckoTerminal Tracked ($0.04416) <ExternalLink size={10} />
+              </a>
               <span className="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-mono font-bold rounded-full">
-                Position ID #2953119
+                Pool #2953119
               </span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase">
-              {lang === 'ko' ? 'ETH / WR 유니스왑 v4 공식 풀 가동' : 'Official ETH / WR Uniswap v4 Pool Live'}
+              {lang === 'ko' ? 'ETH / WR 유니스왑 v4 공식 풀 & 실시간 GeckoTerminal 차트 가동' : 'Official ETH / WR Uniswap v4 Pool & GeckoTerminal Live Chart'}
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
               {lang === 'ko'
-                ? '이더리움 Layer-2 Base 네트워크 상에 Uniswap v4 집중 유동성(Concentrated Liquidity) 풀이 성공적으로 공급되었습니다. 0.25% 수수료 등급으로 슬리피지 없이 즉시 거래 가능합니다.'
-                : 'Concentrated liquidity on Uniswap v4 (Base Mainnet) is officially live with an ETH/WR trading pair and 0.25% fee tier for deep and capital-efficient swaps.'}
+                ? '이더리움 Layer-2 Base 네트워크 상에 Uniswap v4 집중 유동성(Concentrated Liquidity, $3,684+) 풀이 안착되었으며, GeckoTerminal에서 실시간 캔들스틱 차트, 체결 내역(트랜잭션), 유동성 지표를 투명하게 확인하실 수 있습니다.'
+                : 'Concentrated liquidity ($3,684+) on Uniswap v4 (Base Mainnet) is verified and live. Track real-time candlesticks, volume, and verified transactions transparently on GeckoTerminal.'}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <a
+              href={GECKOTERMINAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-amber-600/30 active:scale-95"
+            >
+              <TrendingUp size={16} /> {lang === 'ko' ? 'GeckoTerminal 차트 보기' : 'GeckoTerminal Chart'} <ExternalLink size={13} />
+            </a>
+            <a
               href={UNISWAP_SWAP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/30 active:scale-95"
+              className="px-5 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/30 active:scale-95"
             >
-              <TrendingUp size={16} /> {lang === 'ko' ? '유니스왑에서 $WR 스왑하기' : 'Swap $WR Now'} <ArrowUpRight size={14} />
-            </a>
-            <a
-              href={UNISWAP_V4_POSITION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 border border-emerald-500/30"
-            >
-              포지션 보기 <ExternalLink size={13} />
+              <Coins size={16} /> {lang === 'ko' ? '유니스왑에서 $WR 스왑' : 'Swap $WR on Uniswap'} <ArrowUpRight size={14} />
             </a>
           </div>
         </div>
