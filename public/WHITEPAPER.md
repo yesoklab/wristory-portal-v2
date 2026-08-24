@@ -53,6 +53,7 @@ Total Supply is hard-capped at **51,169,148 WR**:
 
 ## 6. Official Links & Community
 - **Website & Portal**: WRISTORY Official Portal
+- **GeckoTerminal Live Chart**: https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a
 - **Uniswap v4 Pool**: https://app.uniswap.org/positions/v4/base/2953119
 - **Uniswap Swap**: https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base
 - **OBJKT Archive**: https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created
