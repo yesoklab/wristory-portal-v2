@@ -73,13 +73,14 @@ const App: React.FC = () => {
       const isConfigured = 
         Boolean(import.meta.env.VITE_GEMINI_API_KEY) || 
         Boolean(import.meta.env.GEMINI_API_KEY) ||
+        Boolean(import.meta.env.VITE_API_KEY) ||
         (window.aistudio && typeof window.aistudio.hasSelectedKey === 'function' && await window.aistudio.hasSelectedKey());
       
       setHasApiKey(Boolean(isConfigured));
-      setShowKeyWarning(!isConfigured);
+      setShowKeyWarning(false);
     } catch {
       setHasApiKey(false);
-      setShowKeyWarning(true);
+      setShowKeyWarning(false);
     }
   };
 
