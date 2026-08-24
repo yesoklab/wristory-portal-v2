@@ -63,6 +63,7 @@ const App: React.FC = () => {
   const BASE_CONTRACT_ADDRESS = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal-v2';
+  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
 
   useEffect(() => {
     checkApiKeyStatus();
@@ -394,6 +395,7 @@ const App: React.FC = () => {
                     <li><strong>교환 비율:</strong> 1 Tezos WR = 1 Base WR (1:1 정확히 일치, 수수료 0%)</li>
                     <li><strong>총발행량:</strong> 51,169,148 WR 철저한 연동 관리 (추가 발행 절대 없음)</li>
                     <li><strong>DEX 거래:</strong> <a href="https://app.uniswap.org/positions/v4/base/2953119" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-bold hover:underline">Uniswap v4 Base (Position #2953119)</a></li>
+                    <li><strong>실시간 차트:</strong> <a href={GECKOTERMINAL_URL} target="_blank" rel="noopener noreferrer" className="text-amber-400 font-bold hover:underline">GeckoTerminal 실시간 차트 ($0.04416)</a></li>
                     <li><strong>Base 컨트랙트:</strong> <code className="text-cyan-300 font-mono font-bold select-all">0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7</code></li>
                   </ul>
                 </div>
@@ -432,6 +434,7 @@ const App: React.FC = () => {
                     <li><strong>Swap Parity:</strong> 1 Tezos WR = 1 Base WR (Strict 1:1 Ratio, 0% Fee)</li>
                     <li><strong>Total Supply:</strong> 51,169,148 WR strictly capped across all chains (Zero Inflation)</li>
                     <li><strong>Uniswap v4:</strong> <a href="https://app.uniswap.org/positions/v4/base/2953119" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-bold hover:underline">Base Position #2953119 (0.25%)</a></li>
+                    <li><strong>Live Chart:</strong> <a href={GECKOTERMINAL_URL} target="_blank" rel="noopener noreferrer" className="text-amber-400 font-bold hover:underline">GeckoTerminal Tracker ($0.04416)</a></li>
                     <li><strong>Base Contract:</strong> <code className="text-cyan-300 font-mono font-bold select-all">0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7</code></li>
                   </ul>
                 </div>
