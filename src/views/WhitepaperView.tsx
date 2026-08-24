@@ -32,6 +32,7 @@ const WhitepaperView: React.FC = () => {
   const TEZOS_CONTRACT = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
+  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
 
   const sections: Section[] = [
     { id: 'intro', titleKo: '1. 서론 및 비전', titleEn: '1. Vision & Intro', icon: BookOpen },
@@ -325,7 +326,15 @@ const WhitepaperView: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 pt-2">
+                  <div className="flex flex-wrap items-center gap-3 pt-2">
+                    <a
+                      href={GECKOTERMINAL_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-1.5 transition-all active:scale-95"
+                    >
+                      <TrendingUp size={14} className="text-amber-400" /> GeckoTerminal 실시간 차트 <ExternalLink size={12} />
+                    </a>
                     <a
                       href={UNISWAP_SWAP_URL}
                       target="_blank"
