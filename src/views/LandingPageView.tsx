@@ -220,15 +220,15 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
         <div className="bg-gradient-to-r from-purple-950/30 via-slate-900 to-blue-950/30 border border-purple-500/20 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-black uppercase">
-              <Camera size={14} /> FXHASH & OBJKT Generative Creators Notice
+              <Camera size={14} /> OBJKT & Web3 Generative Creators Notice
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase">
-              {lang === 'ko' ? 'FXHASH & OBJKT 창작자 및 테조스 홀더 스냅샷 100% 보장' : 'Guaranteed 1:1 Parity for FXHASH Artists & Tezos Holders'}
+              {lang === 'ko' ? 'OBJKT 창작자 및 테조스 홀더 스냅샷 100% 보장' : 'Guaranteed 1:1 Parity for OBJKT Artists & Tezos Holders'}
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
               {lang === 'ko'
-                ? '기존 테조스 블록체인에서 발행 및 소장된 모든 $WR 및 헤리티지 NFT의 가치는 Base L2 생태계로 1:1 안전하게 이어집니다. 스냅샷 데이터베이스를 통해 즉시 신청하세요.'
-                : 'All $WR and historical NFTs minted on Tezos FA2 are recognized in the Base ecosystem via on-chain snapshots. Submit your Tezos address to claim your Base $WR.'}
+                ? '기존 테조스 블록체인 및 OBJKT에서 발행·소장된 모든 $WR 및 헤리티지 NFT의 가치는 Base L2 생태계로 1:1 안전하게 이어집니다. 스냅샷 데이터베이스를 통해 즉시 신청하세요.'
+                : 'All $WR and historical NFTs minted on Tezos FA2 & OBJKT are recognized in the Base ecosystem via on-chain snapshots. Submit your Tezos address to claim your Base $WR.'}
             </p>
           </div>
           <button
@@ -457,8 +457,8 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
               {lang === 'ko'
-                ? '기존 1,063명의 홀더 및 FXHASH/OBJKT 창작자분들을 위해 1 Tezos WR = 1 Base WR (1:1 비율)로 수수료 없이 안전한 교환을 지원합니다.'
-                : 'Zero slippage, zero commission fee 1:1 migration for all 1,063 Tezos holders and generative artists.'}
+                ? '기존 1,063명의 홀더 및 OBJKT 창작자분들을 위해 1 Tezos WR = 1 Base WR (1:1 비율)로 수수료 없이 안전한 교환을 지원합니다.'
+                : 'Zero slippage, zero commission fee 1:1 migration for all 1,063 Tezos holders and OBJKT artists.'}
             </p>
           </div>
           <button
