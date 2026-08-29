@@ -36,7 +36,7 @@ Total Supply is hard-capped at **51,169,148 WR**:
 
 ---
 
-## 4. 1:1 Migration Guarantee for 1,063 Tezos Holders & FXHASH Creators
+## 4. 1:1 Migration Guarantee for 1,063 Tezos Holders & OBJKT Creators
 - **Ratio**: Exactly `1 Tezos WR = 1 Base WR` (1:1 fixed parity)
 - **Commission / Slippage**: 0%
 - **Verification**: Automatic snapshot verification against TzKT indexer records.
