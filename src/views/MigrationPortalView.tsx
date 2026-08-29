@@ -88,7 +88,7 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
   };
 
   const handleCopyShareLink = () => {
-    const textToCopy = `🔄 WRISTORY ($WR) Official 1:1 Base Migration Portal\n\nFor 1,063 Tezos Holders & FXHASH/OBJKT Creators:\nBridge your Tezos WR to Base ERC-20 (1:1 Ratio Guaranteed)\n\nUniswap v4 Live: ${UNISWAP_SWAP_URL}\nPortal: ${window.location.origin}\nBase Contract: ${BASE_WR_CONTRACT}`;
+    const textToCopy = `🔄 WRISTORY ($WR) Official 1:1 Base Migration Portal\n\nFor 1,063 Tezos Holders & OBJKT Creators:\nBridge your Tezos WR to Base ERC-20 (1:1 Ratio Guaranteed)\n\nUniswap v4 Live: ${UNISWAP_SWAP_URL}\nPortal: ${window.location.origin}\nBase Contract: ${BASE_WR_CONTRACT}`;
     navigator.clipboard.writeText(textToCopy);
     setCopiedShareLink(true);
     setTimeout(() => setCopiedShareLink(false), 2000);
@@ -161,7 +161,7 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
             </button>
           </div>
           <span className="text-xs text-slate-400 font-bold hidden sm:inline">
-            {currentLang === 'ko' ? '⚡ 1,063명 테조스 홀더 & FXHASH/OBJKT 창작자 대상 1:1 교환' : '⚡ 1:1 Migration for 1,063 Tezos Holders & FXHASH/OBJKT Creators'}
+            {currentLang === 'ko' ? '⚡ 1,063명 테조스 홀더 & OBJKT 창작자 대상 1:1 교환' : '⚡ 1:1 Migration for 1,063 Tezos Holders & OBJKT Creators'}
           </span>
         </div>
 
@@ -213,12 +213,12 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
           <p className="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed font-medium">
             {currentLang === 'ko' ? (
               <>
-                테조스(Tezos) 메인넷의 <strong>1,063명의 홀더 및 FXHASH/OBJKT 크리에이터</strong> 여러분과 함께 일군 헤리티지가 이더리움 Layer-2 <strong>Base 메인넷</strong>으로 공식 확장합니다. 
+                테조스(Tezos) 메인넷의 <strong>1,063명의 홀더 및 OBJKT 크리에이터</strong> 여러분과 함께 일군 헤리티지가 이더리움 Layer-2 <strong>Base 메인넷</strong>으로 공식 확장합니다. 
                 현재 <strong>Uniswap v4 (Base) ETH/WR 풀(0.25% 수수료 등급, 56,801 WR = 1 ETH)</strong>이 활성화되어 실시간 거래를 지원하며, 기존 홀더 대상 <strong>1 Tezos WR = 1 Base WR (1:1 비율)</strong> 무손실 교환 및 스냅샷 자동 검증을 지원합니다.
               </>
             ) : (
               <>
-                To all <strong>1,063 Tezos holders and FXHASH / OBJKT generative creators</strong>: WRISTORY is officially expanding to Ethereum Layer-2 <strong>Base Mainnet</strong>. 
+                To all <strong>1,063 Tezos holders and OBJKT generative creators</strong>: WRISTORY is officially expanding to Ethereum Layer-2 <strong>Base Mainnet</strong>. 
                 Our <strong>Uniswap v4 (Base) ETH/WR concentrated liquidity pool (0.25% fee tier, 56,801 WR = 1 ETH)</strong> is live. We provide a guaranteed <strong>1:1 token migration (1 Tezos WR = 1 Base WR)</strong> verified via on-chain snapshots.
               </>
             )}
@@ -258,11 +258,11 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
         </div>
       </div>
 
-      {/* Snapshot & Direct Links Card for Creators (OBJKT & FXHASH) */}
+      {/* Snapshot & Direct Links Card for Creators (OBJKT) */}
       <div className="bg-gradient-to-r from-purple-950/40 via-slate-900 to-blue-950/40 border border-purple-500/30 p-6 sm:p-8 rounded-[2.5rem] text-left space-y-4">
         <div className="flex items-center gap-2 text-purple-400 font-black text-xs uppercase tracking-wider">
           <Camera size={16} />
-          {currentLang === 'ko' ? '📸 테조스 홀더 스냅샷 및 크리에이터 직통 링크' : '📸 Tezos Holder Snapshot & Direct Creator Portal Links'}
+          {currentLang === 'ko' ? '📸 테조스 홀더 스냅샷 및 OBJKT 크리에이터 직통 링크' : '📸 Tezos Holder Snapshot & Direct OBJKT Creator Portal Links'}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl space-y-2">
@@ -288,8 +288,8 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
             <p className="text-white font-bold text-sm">Verified Archive</p>
             <p className="text-slate-400 text-[11px]">
               {currentLang === 'ko' 
-                ? 'OBJKT 및 FXHASH에 컬렉션을 소장하신 창작자분들도 동일하게 테조스 지갑 주소로 마이그레이션이 가능합니다.' 
-                : 'Creators and collectors holding pieces on OBJKT / FXHASH can directly submit their tz wallet for 1:1 WR tokens.'}
+                ? 'OBJKT에 컬렉션을 소장하신 창작자분들도 동일하게 테조스 지갑 주소로 마이그레이션이 가능합니다.' 
+                : 'Creators and collectors holding pieces on OBJKT can directly submit their tz wallet for 1:1 WR tokens.'}
             </p>
             <a 
               href="https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created" 
@@ -387,8 +387,8 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
             </h2>
             <p className="text-xs text-slate-400 font-medium">
               {currentLang === 'ko' 
-                ? '1,063명의 테조스 홀더 및 글로벌 창작자분들을 위한 공식 자동 접수 창구입니다.' 
-                : 'Official automated portal for all 1,063 Tezos holders and FXHASH / OBJKT creators.'}
+                ? '1,063명의 테조스 홀더 및 OBJKT 창작자분들을 위한 공식 자동 접수 창구입니다.' 
+                : 'Official automated portal for all 1,063 Tezos holders and OBJKT creators.'}
             </p>
           </div>
 
