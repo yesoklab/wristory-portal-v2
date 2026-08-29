@@ -26,10 +26,10 @@ const collections = [
   { 
     id: 'the-flame-of-jongno', 
     name: 'The Flame of Jongno (종로의 불꽃)', 
-    price: 'NEW FXHASH', 
+    price: 'OBJKT GENERATIVE', 
     count: 1000, 
     image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeicey3fp3obxmfudp2lua7eftk4zxjxlfsshgjrcbvlqb6igj6xkxi', 
-    url: 'https://www.fxhash.xyz/project/the-flame-of-jongno',
+    url: 'https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created',
     isNew: true,
     desc: '종로의 독립 투쟁과 꺼지지 않는 애국의 불꽃을 제너레이티브 아트로 시각화한 컬렉션입니다. / Generative collection visualizing the inextinguishable flame of historic independence struggle in Jongno.'
   },
@@ -110,7 +110,7 @@ const collections = [
     price: 'Featured', 
     count: 1, 
     image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigdqnbztqqi7xmmxvjftpio2dvyjpatnzpv7gl77gu4sld4bcvvia',
-    url: 'https://www.fxhash.xyz/create/project/success/0x8E3319261Db6790993F21122dE60b8Adf4C626aD',
+    url: 'https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created',
     isNew: true,
     desc: '최승균 작가님이 이재명 대통령의 어록 "대통령의 한 시간은 5,200만의 시간입니다."를 캘리그래피로 승화시킨 작품입니다.'
   },
