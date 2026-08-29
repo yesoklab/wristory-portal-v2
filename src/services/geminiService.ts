@@ -13,9 +13,10 @@ Key Project Details:
 - Core Value: Preserving historical value and independence heritage through blockchain technology.
 - Official Web3 Portal: wristory.tez (IPFS Decentralized Gateway)
 - Current Collections & Artworks: 
-  * fxhash Generative: "The Flame of Jongno", "The Admiral's Resolve"
-  * Presidential Calligraphy: "President's Hour: 52 Million" (21 Iterations by Master Choi Seung-gyun)
-  * Heritage Series: Kim Gu, An Jung-geun, Kim Hyang-hwa, Yu Gwan-sun, Yun Dong-ju, FORK PROJECT
+  * YesOkLab Masterpiece: "energy // Drink the Vitality!" (Homage to Bacchus-D 1963 on OBJKT)
+  * Generative & Heritage on OBJKT: "The Flame of Jongno", "The Admiral's Resolve"
+  * Presidential Calligraphy: "President's Hour: 52 Million" (21 Iterations by Master Choi Seung-gyun on OBJKT)
+  * Heritage Series: Kim Gu, An Jung-geun, Kim Hyang-hwa, Yu Gwan-sun, Yun Dong-ju, FORK PROJECT (All curated on OBJKT.com)
 
 Guidelines:
 1. Be respectful and professional.
