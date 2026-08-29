@@ -101,7 +101,7 @@ const App: React.FC = () => {
   };
 
   const handleCopyPortalLink = () => {
-    const textToCopy = `🔄 WRISTORY ($WR) Official 1:1 Base Migration Portal\n\nFor 1,063 Tezos Holders & FXHASH/OBJKT Creators:\nBridge your Tezos WR to Base ERC-20 (1:1 Ratio Guaranteed)\n\nPortal: ${window.location.origin}\nBase Contract: ${BASE_CONTRACT_ADDRESS}`;
+    const textToCopy = `🔄 WRISTORY ($WR) Official 1:1 Base Migration Portal\n\nFor 1,063 Tezos Holders & OBJKT Creators:\nBridge your Tezos WR to Base ERC-20 (1:1 Ratio Guaranteed)\n\nPortal: ${window.location.origin}\nBase Contract: ${BASE_CONTRACT_ADDRESS}`;
     navigator.clipboard.writeText(textToCopy);
     setCopiedModalLink(true);
     setTimeout(() => setCopiedModalLink(false), 2000);
@@ -140,7 +140,7 @@ const App: React.FC = () => {
           <ArrowRightLeft size={12} className="animate-spin text-[#00ffcc]" /> Notice
         </span>
         <span className="truncate">
-          [Announcement] WRISTORY ($WR) Base L2 Migration & 1:1 Token Swap for 1,063 Tezos & FXHASH Holders
+          [Announcement] WRISTORY ($WR) Base L2 Migration & 1:1 Token Swap for 1,063 Tezos & OBJKT Community Holders
         </span>
         <button 
           onClick={() => { setActiveTab('MIGRATION'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -375,7 +375,7 @@ const App: React.FC = () => {
             {modalLang === 'ko' ? (
               <div className="text-xs text-slate-300 space-y-3.5 leading-relaxed max-h-[55vh] overflow-y-auto pr-1">
                 <p>
-                  안녕하세요, <strong>WRISTORY($WR) 1,063명의 홀더 및 FXHASH/OBJKT 창작자 여러분</strong>.<br />
+                  안녕하세요, <strong>WRISTORY($WR) 1,063명의 홀더 및 OBJKT 창작자 여러분</strong>.<br />
                   테조스(Tezos) 메인넷 위에서 든든하게 지켜온 우리의 디지털 헤리티지가 이제 <strong>이더리움 레이어 2(Base) 체인</strong>으로의 위대한 확장을 시작합니다.
                 </p>
                 <p>
@@ -404,7 +404,7 @@ const App: React.FC = () => {
                 <div className="bg-purple-950/20 border border-purple-500/30 p-3 rounded-xl flex items-center justify-between text-[11px]">
                   <div className="flex items-center gap-2 text-purple-300">
                     <Camera size={14} />
-                    <span><b>OBJKT & FXHASH 창작자 직통:</b> tz 지갑 주소로 간편 신청 가능</span>
+                    <span><b>OBJKT 창작자 및 컬렉터 직통:</b> tz 지갑 주소로 간편 신청 가능</span>
                   </div>
                   <a href="https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created" target="_blank" rel="noopener noreferrer" className="text-cyan-400 underline font-bold flex items-center gap-1">
                     OBJKT <ExternalLink size={10} />
@@ -414,7 +414,7 @@ const App: React.FC = () => {
             ) : (
               <div className="text-xs text-slate-300 space-y-3.5 leading-relaxed max-h-[55vh] overflow-y-auto pr-1">
                 <p>
-                  Dear <strong>1,063 Tezos WRISTORY Holders & FXHASH / OBJKT Generative Creators</strong>,<br />
+                  Dear <strong>1,063 Tezos WRISTORY Holders & OBJKT Generative Creators</strong>,<br />
                   Our heritage ecosystem on Tezos is officially expanding to <strong>Ethereum Layer-2 (Base Mainnet)</strong> to unlock global decentralized liquidity.
                 </p>
                 <p>
@@ -443,7 +443,7 @@ const App: React.FC = () => {
                 <div className="bg-purple-950/20 border border-purple-500/30 p-3 rounded-xl flex items-center justify-between text-[11px]">
                   <div className="flex items-center gap-2 text-purple-300">
                     <Camera size={14} />
-                    <span><b>FXHASH & OBJKT Artists:</b> Submit your Tezos address directly to bridge.</span>
+                    <span><b>OBJKT Artists & Holders:</b> Submit your Tezos address directly to bridge.</span>
                   </div>
                   <a href="https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created" target="_blank" rel="noopener noreferrer" className="text-cyan-400 underline font-bold flex items-center gap-1">
                     OBJKT Profile <ExternalLink size={10} />
