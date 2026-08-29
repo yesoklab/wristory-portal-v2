@@ -3,6 +3,17 @@ import { ExternalLink, Tag, Users, Pizza, ArrowUpRight, ShieldCheck } from 'luci
 
 const collections = [
   { 
+    id: 'energy-drink-the-vitality', 
+    name: 'energy // Drink the Vitality! (활력을 마시자!)', 
+    price: 'YesOkLab 대표작', 
+    count: 1960, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu', 
+    url: 'https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/36',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '자양강장제 박카스(BACCHUS-D 1963) 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 순수 HTML5 Canvas 제너러티브 아트 대표작. / Homage to Bacchus-D (1963). Pure web standard generative interactive masterpiece.'
+  },
+  { 
     id: 'patriotic-legacy', 
     name: 'WRISTORY: PATRIOTIC LEGACY', 
     price: 'New Collection', 
@@ -156,18 +167,23 @@ const CollectionView: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {collections.map((col) => (
-          <div key={col.id} className={`bg-slate-900/50 border ${col.isNew ? 'border-amber-500/50 shadow-[0_0_40px_rgba(245,158,11,0.15)]' : 'border-slate-800'} rounded-[2.5rem] overflow-hidden group hover:border-blue-500/50 transition-all shadow-2xl flex flex-col`}>
-            <div className="relative aspect-[4/5] overflow-hidden shrink-0">
+        {collections.map((col: any) => (
+          <div key={col.id} className={`bg-slate-900/50 border ${col.isMasterpiece ? 'border-amber-400 shadow-[0_0_50px_rgba(245,158,11,0.25)] ring-1 ring-amber-500/50' : col.isNew ? 'border-amber-500/50 shadow-[0_0_40px_rgba(245,158,11,0.15)]' : 'border-slate-800'} rounded-[2.5rem] overflow-hidden group hover:border-blue-500/50 transition-all shadow-2xl flex flex-col`}>
+            <div className="relative aspect-[4/5] overflow-hidden shrink-0 bg-black">
               <img 
                 src={col.image} 
                 alt={col.name} 
-                className={`w-full h-full object-cover ${col.isNew ? '' : 'grayscale'} group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105`} 
+                className={`w-full h-full object-cover ${col.isNew || col.isMasterpiece ? '' : 'grayscale'} group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105`} 
+                onError={(e) => {
+                  if (col.id === 'energy-drink-the-vitality') {
+                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu';
+                  }
+                }}
               />
-              <div className={`absolute top-6 left-6 ${col.isNew ? 'bg-amber-500' : 'bg-blue-600'} px-4 py-1.5 rounded-full border border-white/10 shadow-xl flex items-center gap-2 z-10`}>
-                {col.isNew && <Pizza size={12} className="text-white animate-bounce" />}
+              <div className={`absolute top-6 left-6 ${col.isMasterpiece ? 'bg-gradient-to-r from-amber-500 to-orange-600' : col.isNew ? 'bg-amber-500' : 'bg-blue-600'} px-4 py-1.5 rounded-full border border-white/10 shadow-xl flex items-center gap-2 z-10`}>
+                {col.isMasterpiece ? <ShieldCheck size={12} className="text-yellow-200 animate-spin" /> : col.isNew && <Pizza size={12} className="text-white animate-bounce" />}
                 <span className="text-[10px] font-black text-white uppercase tracking-widest">
-                  {col.isNew ? 'New Legend' : 'Wristory FA2'}
+                  {col.isMasterpiece ? '🌟 YesOkLab 대표작' : col.isNew ? 'New Legend' : 'Wristory FA2'}
                 </span>
               </div>
               {col.isMerged && (
