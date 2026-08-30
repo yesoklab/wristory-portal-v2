@@ -24,14 +24,14 @@ const collections = [
     desc: '테조스 블록체인에서 보존되는 애국의 정신. Wristory의 새로운 메인넷 컬렉션입니다. / Preserving the spirit of patriotism on Tezos blockchain.'
   },
   { 
-    id: 'the-flame-of-jongno', 
-    name: 'The Flame of Jongno (종로의 불꽃)', 
-    price: 'OBJKT GENERATIVE', 
-    count: 1000, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeicey3fp3obxmfudp2lua7eftk4zxjxlfsshgjrcbvlqb6igj6xkxi', 
-    url: 'https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created',
+    id: 'kim-chang-sook-sandals', 
+    name: '미투리, 천리 — 心山 金昌淑 (A Thousand Li in Straw Sandals)', 
+    price: '0.5 XTZ', 
+    count: 82, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigu3hj4bn57tiaspisityhze54sr2xzrckkkfmzk4lxfw7c4vpy3u', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/30',
     isNew: true,
-    desc: '종로의 독립 투쟁과 꺼지지 않는 애국의 불꽃을 제너레이티브 아트로 시각화한 컬렉션입니다. / Generative collection visualizing the inextinguishable flame of historic independence struggle in Jongno.'
+    desc: '심산 김창숙(1879–1962) 선생의 무명(無名)의 여정을 시각화한 순수 Canvas 제너러티브 아트. 짚신(미투리) 발자국이 쌓이며 초상이 서서히 드러납니다. / Kim Chang-sook generative portrait rendered via accumulating straw-sandal footprints.'
   },
   { 
     id: 'wristory-the-admirals-resolve', 
