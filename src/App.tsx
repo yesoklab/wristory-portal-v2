@@ -492,7 +492,7 @@ const App: React.FC = () => {
            <div className="flex flex-wrap justify-center items-center gap-4 text-slate-500">
               <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="GitHub"><Github size={20} /></a>
               <a href="https://x.com/wakk5252" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Twitter"><Twitter size={20} /></a>
-              <a href="https://t.me/Yes_OkLab" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Telegram"><Send size={20} /></a>
+              <a href="https://t.me/WristoryOfficial" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2 text-cyan-400 font-bold flex items-center gap-1" title="WRISTORY Official Telegram"><Send size={20} /></a>
               <a href="https://blog.naver.com/yesoklab/224380104130" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Naver Blog"><Globe size={20} /></a>
               <a href="https://www.reddit.com/user/cocoon96/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Reddit"><Share2 size={20} /></a>
               <a href="https://farcaster.xyz/cocoon9611" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Farcaster"><Radio size={20} /></a>
