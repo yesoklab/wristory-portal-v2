@@ -385,32 +385,40 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
           </div>
 
-          {/* Card 2: The Flame of Jongno */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/40 transition-all flex flex-col justify-between group">
+          {/* Card 2: 미투리, 천리 — 心山 金昌淑 */}
+          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-lg">
             <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
               <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeicey3fp3obxmfudp2lua7eftk4zxjxlfsshgjrcbvlqb6igj6xkxi" 
-                alt="The Flame of Jongno" 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigu3hj4bn57tiaspisityhze54sr2xzrckkkfmzk4lxfw7c4vpy3u" 
+                alt="미투리, 천리 — 心山 金昌淑" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeigu3hj4bn57tiaspisityhze54sr2xzrckkkfmzk4lxfw7c4vpy3u';
+                }}
               />
-              <span className="absolute top-3 left-3 px-2.5 py-1 bg-purple-600 text-white text-[10px] font-black uppercase rounded-md shadow">
-                Generative Edition
+              <span className="absolute top-3 left-3 px-2.5 py-1 bg-amber-600 text-white text-[10px] font-black uppercase rounded-md shadow">
+                NEW MINT • 82 eds
+              </span>
+              <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 rounded">
+                PATRIOTIC LEGACY
               </span>
             </div>
             <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
               <div>
-                <h3 className="text-lg font-black text-white uppercase italic">The Flame of Jongno</h3>
+                <h3 className="text-lg font-black text-white uppercase italic group-hover:text-amber-400 transition-colors">
+                  미투리, 천리 — 心山 金昌淑
+                </h3>
                 <p className="text-xs text-slate-400 line-clamp-2 mt-1">
-                  종로의 독립 투쟁과 꺼지지 않는 애국의 불꽃을 제너레이티브 알고리즘으로 시각화한 작품.
+                  1919 파리장서(巴里長書) 주도자 심산 김창숙 선생. 짚신(미투리) 발자국이 쌓이며 서서히 드러나는 초상을 구현한 순수 Canvas 제너러티브 아트.
                 </p>
               </div>
               <a 
-                href="https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created" 
+                href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/30" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full py-2.5 bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-purple-500/30"
+                className="w-full py-2.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30"
               >
-                OBJKT 컬렉션 탐색 <ArrowUpRight size={13} />
+                OBJKT 토큰 감상 <ArrowUpRight size={13} />
               </a>
             </div>
           </div>
