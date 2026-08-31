@@ -3,6 +3,17 @@ import { ExternalLink, Tag, Users, Pizza, ArrowUpRight, ShieldCheck } from 'luci
 
 const collections = [
   { 
+    id: 'han-hon-maek', 
+    name: '恨·魂·脈 — Han, Hon, Maek / WRISTORY', 
+    price: '3 XTZ (33 EDS)', 
+    count: 33, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/31',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '33인의 독립운동가의 역동과 숭고한 넋을 혈액이 유기적으로 맥동하듯 캔버스 위로 피어나는 제너러티브 성장 시뮬레이션(Growth Simulation) 기법으로 구현한 디지털 헤리티지 마스터피스. / Generative growth simulation exploring the enduring spirit, sorrow, and historical lineage of Korean independence activists.'
+  },
+  { 
     id: 'energy-drink-the-vitality', 
     name: 'energy // Drink the Vitality! (활력을 마시자!)', 
     price: 'YesOkLab 대표작', 
@@ -14,16 +25,6 @@ const collections = [
     desc: '자양강장제 박카스(BACCHUS-D 1963) 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 순수 HTML5 Canvas 제너러티브 아트 대표작. / Homage to Bacchus-D (1963). Pure web standard generative interactive masterpiece.'
   },
   { 
-    id: 'patriotic-legacy', 
-    name: 'WRISTORY: PATRIOTIC LEGACY', 
-    price: 'New Collection', 
-    count: 21, 
-    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u', 
-    url: 'https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR',
-    isNew: true,
-    desc: '테조스 블록체인에서 보존되는 애국의 정신. Wristory의 새로운 메인넷 컬렉션입니다. / Preserving the spirit of patriotism on Tezos blockchain.'
-  },
-  { 
     id: 'kim-chang-sook-sandals', 
     name: '미투리, 천리 — 心山 金昌淑 (A Thousand Li in Straw Sandals)', 
     price: '0.5 XTZ', 
@@ -32,6 +33,16 @@ const collections = [
     url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/30',
     isNew: true,
     desc: '심산 김창숙(1879–1962) 선생의 무명(無名)의 여정을 시각화한 순수 Canvas 제너러티브 아트. 짚신(미투리) 발자국이 쌓이며 초상이 서서히 드러납니다. / Kim Chang-sook generative portrait rendered via accumulating straw-sandal footprints.'
+  },
+  { 
+    id: 'patriotic-legacy', 
+    name: 'WRISTORY: PATRIOTIC LEGACY', 
+    price: 'New Collection', 
+    count: 21, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u', 
+    url: 'https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR',
+    isNew: true,
+    desc: '테조스 블록체인에서 보존되는 애국의 정신. Wristory의 새로운 메인넷 컬렉션입니다. / Preserving the spirit of patriotism on Tezos blockchain.'
   },
   { 
     id: 'wristory-the-admirals-resolve', 
