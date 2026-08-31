@@ -346,9 +346,47 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          {/* Card 1: energy // Drink the Vitality! */}
-          <div className="bg-slate-900/60 border-2 border-amber-500/40 rounded-2xl overflow-hidden hover:border-amber-400 transition-all flex flex-col justify-between group shadow-lg shadow-amber-500/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+          {/* Card 1: 恨·魂·脈 — Han, Hon, Maek (NEW MINT) */}
+          <div className="bg-slate-900/60 border-2 border-red-500/50 rounded-2xl overflow-hidden hover:border-red-400 transition-all flex flex-col justify-between group shadow-lg shadow-red-500/10">
+            <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
+              <img 
+                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum" 
+                alt="恨·魂·脈 — Han, Hon, Maek / WRISTORY" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum';
+                }}
+              />
+              <span className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[10px] font-black uppercase rounded-md shadow flex items-center gap-1">
+                <Sparkles size={11} /> NEW MINT • 33 EDS
+              </span>
+              <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-red-300 rounded border border-red-500/30">
+                3 XTZ • 성장 시뮬레이션
+              </span>
+            </div>
+            <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="text-base font-black text-white uppercase italic group-hover:text-red-400 transition-colors">
+                  恨·魂·脈 — Han, Hon, Maek
+                </h3>
+                <p className="text-xs text-slate-400 line-clamp-2 mt-1">
+                  33인 독립운동가의 넋과 맥을 혈액이 맥동하듯 캔버스 위로 피어나는 제너러티브 성장 시뮬레이션으로 형상화.
+                </p>
+              </div>
+              <a 
+                href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/31" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full py-2.5 bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-red-500/30"
+              >
+                OBJKT 토큰 감상 <ArrowUpRight size={13} />
+              </a>
+            </div>
+          </div>
+
+          {/* Card 2: energy // Drink the Vitality! */}
+          <div className="bg-slate-900/60 border border-amber-500/40 rounded-2xl overflow-hidden hover:border-amber-400 transition-all flex flex-col justify-between group shadow-lg shadow-amber-500/10">
             <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
               <img 
                 src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu" 
@@ -359,19 +397,19 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 }}
               />
               <span className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-black uppercase rounded-md shadow">
-                YesOkLab 대표작 (New)
+                대표작 (1.96K Eds)
               </span>
               <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 rounded">
-                1.96K Eds
+                BACCHUS-D
               </span>
             </div>
             <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
               <div>
-                <h3 className="text-lg font-black text-white uppercase italic group-hover:text-amber-400 transition-colors">
+                <h3 className="text-base font-black text-white uppercase italic group-hover:text-amber-400 transition-colors">
                   energy // Drink the Vitality!
                 </h3>
                 <p className="text-xs text-slate-400 line-clamp-2 mt-1">
-                  자양강장제 '박카스' 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 제너러티브 아트.
+                  자양강장제 박카스 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 제너러티브 아트.
                 </p>
               </div>
               <a 
@@ -385,7 +423,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
           </div>
 
-          {/* Card 2: 미투리, 천리 — 心山 金昌淑 */}
+          {/* Card 3: 미투리, 천리 — 心山 金昌淑 */}
           <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-lg">
             <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
               <img 
@@ -397,7 +435,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 }}
               />
               <span className="absolute top-3 left-3 px-2.5 py-1 bg-amber-600 text-white text-[10px] font-black uppercase rounded-md shadow">
-                NEW MINT • 82 eds
+                82 eds
               </span>
               <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 rounded">
                 PATRIOTIC LEGACY
@@ -405,11 +443,11 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
             <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
               <div>
-                <h3 className="text-lg font-black text-white uppercase italic group-hover:text-amber-400 transition-colors">
+                <h3 className="text-base font-black text-white uppercase italic group-hover:text-amber-400 transition-colors">
                   미투리, 천리 — 心山 金昌淑
                 </h3>
                 <p className="text-xs text-slate-400 line-clamp-2 mt-1">
-                  1919 파리장서(巴里長書) 주도자 심산 김창숙 선생. 짚신(미투리) 발자국이 쌓이며 서서히 드러나는 초상을 구현한 순수 Canvas 제너러티브 아트.
+                  1919 파리장서 주도자 심산 김창숙 선생. 짚신(미투리) 발자국이 쌓이며 초상이 드러나는 Canvas 제너러티브 아트.
                 </p>
               </div>
               <a 
@@ -423,7 +461,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
           </div>
 
-          {/* Card 3: The Admiral's Resolve */}
+          {/* Card 4: The Admiral's Resolve */}
           <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/40 transition-all flex flex-col justify-between group">
             <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
               <img 
@@ -437,7 +475,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
             <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
               <div>
-                <h3 className="text-lg font-black text-white uppercase italic">The Admiral's Resolve</h3>
+                <h3 className="text-base font-black text-white uppercase italic">The Admiral's Resolve</h3>
                 <p className="text-xs text-slate-400 line-clamp-2 mt-1">
                   이순신 장군의 필사즉생의 위대한 결의와 숭고한 보국의 마음을 보존한 온체인 에디션.
                 </p>
