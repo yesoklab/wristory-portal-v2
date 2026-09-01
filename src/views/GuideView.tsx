@@ -81,6 +81,33 @@ const GuideView: React.FC<Props> = ({ lang }) => {
         </div>
       </div>
 
+      {/* Official Naver Blog Educational Hub */}
+      <div className="bg-gradient-to-r from-emerald-950/40 via-slate-900 to-slate-950 border border-emerald-500/40 p-8 sm:p-10 rounded-[3rem] shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+        <div className="space-y-3 flex-1">
+          <div className="flex items-center gap-2">
+            <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-black uppercase rounded-full flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              YesOkLab 공식 네이버 블로그
+            </span>
+            <span className="text-xs text-slate-400 font-mono font-bold">blog.naver.com/yesoklab</span>
+          </div>
+          <h3 className="text-2xl font-black text-white italic uppercase">
+            지갑 개설부터 디파이·제너러티브 아트 심층 칼럼까지
+          </h3>
+          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            메타마스크 & 테조스 지갑 만들기 튜토리얼, 탈중앙화 디파이 분석, 프리딕션 마켓 롤러코스터, 그리고 순국선열 독립운동가 제너러티브 아트 비하인드 스토리까지 공식 블로그에서 확인하실 수 있습니다.
+          </p>
+        </div>
+        <a 
+          href="https://blog.naver.com/yesoklab" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="px-6 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 shadow-lg shadow-emerald-600/30 active:scale-95 whitespace-nowrap"
+        >
+          네이버 블로그 아티클 보기 <ExternalLink size={15} />
+        </a>
+      </div>
+
       {/* Tezos Domain Integration Step Guide */}
       <div className="bg-gradient-to-br from-slate-900 to-slate-950 border border-purple-500/30 p-10 rounded-[3rem] space-y-6">
         <div className="flex items-center gap-4">
