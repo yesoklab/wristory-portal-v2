@@ -63,6 +63,7 @@ const App: React.FC = () => {
   const BASE_CONTRACT_ADDRESS = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal-v2';
+  const NAVER_BLOG_URL = 'https://blog.naver.com/yesoklab';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
 
   useEffect(() => {
@@ -229,6 +230,16 @@ const App: React.FC = () => {
             >
               <Sparkles size={14} className="text-blue-400" /> AI 큐레이터
             </button>
+            <a 
+              href={NAVER_BLOG_URL} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 whitespace-nowrap bg-emerald-500/10 px-2.5 py-1.5 rounded-xl border border-emerald-500/30 hover:bg-emerald-500/20 shadow-sm"
+              title="YesOkLab 공식 네이버 블로그 바로가기"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              공식 블로그 <ExternalLink size={11} />
+            </a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -313,6 +324,19 @@ const App: React.FC = () => {
               <span>AI 큐레이터</span>
               <Sparkles size={16} />
             </button>
+            <a 
+              href={NAVER_BLOG_URL}
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              className="text-base font-bold text-emerald-400 flex justify-between items-center py-2 border-t border-slate-800/60"
+            >
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                공식 네이버 블로그 (Naver Blog)
+              </span>
+              <ExternalLink size={16} />
+            </a>
             <div className="h-[1px] bg-slate-800 my-1" />
             <button 
               onClick={() => { setMode('ADMIN'); setIsMenuOpen(false); }} 
@@ -489,15 +513,68 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-slate-800/80 bg-[#0B0D14] py-12 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center space-y-6">
-           <div className="flex flex-wrap justify-center items-center gap-4 text-slate-500">
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="GitHub"><Github size={20} /></a>
-              <a href="https://x.com/wakk5252" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Twitter"><Twitter size={20} /></a>
-              <a href="https://t.me/WristoryOfficial" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2 text-cyan-400 font-bold flex items-center gap-1" title="WRISTORY Official Telegram"><Send size={20} /></a>
-              <a href="https://blog.naver.com/yesoklab/224380104130" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Naver Blog"><Globe size={20} /></a>
-              <a href="https://www.reddit.com/user/cocoon96/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Reddit"><Share2 size={20} /></a>
-              <a href="https://farcaster.xyz/cocoon9611" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-2" title="Farcaster"><Radio size={20} /></a>
-              <a href="mailto:YesOkLab@gmail.com" className="hover:text-white transition-colors p-2" title="Gmail"><Mail size={20} /></a>
-              <div className="hover:text-white transition-colors p-2 cursor-help" title="Discord: cocoon5547 (#WRISTORY_NFT)"><Gamepad2 size={20} /></div>
+           {/* Prominent Official Channel Badges */}
+           <div className="flex flex-wrap justify-center items-center gap-3">
+              <a 
+                href={NAVER_BLOG_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
+                title="YesOkLab 공식 네이버 블로그"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>네이버 공식 블로그</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
+                href="https://x.com/wakk5252" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/60 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="Twitter / X"
+              >
+                <Twitter size={14} className="text-sky-400" />
+                <span>X (Twitter)</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
+                href="https://t.me/WristoryOfficial" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-blue-950/40 hover:bg-blue-900/60 text-cyan-300 border border-blue-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="WRISTORY Official Telegram"
+              >
+                <Send size={14} className="text-cyan-400" />
+                <span>텔레그램 커뮤니티</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
+                href={GITHUB_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/60 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="GitHub Repository"
+              >
+                <Github size={14} />
+                <span>GitHub</span>
+                <ExternalLink size={12} />
+              </a>
+           </div>
+
+           {/* Secondary Social Icons */}
+           <div className="flex flex-wrap justify-center items-center gap-4 text-slate-500 text-xs">
+              <a href="https://www.reddit.com/user/cocoon96/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-1.5 flex items-center gap-1" title="Reddit">
+                <Share2 size={15} /> Reddit
+              </a>
+              <a href="https://farcaster.xyz/cocoon9611" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-1.5 flex items-center gap-1" title="Farcaster">
+                <Radio size={15} /> Farcaster
+              </a>
+              <a href="mailto:YesOkLab@gmail.com" className="hover:text-white transition-colors p-1.5 flex items-center gap-1" title="Gmail">
+                <Mail size={15} /> YesOkLab@gmail.com
+              </a>
+              <span className="hover:text-white transition-colors p-1.5 flex items-center gap-1 cursor-help" title="Discord: cocoon5547 (#WRISTORY_NFT)">
+                <Gamepad2 size={15} /> Discord (#WRISTORY_NFT)
+              </span>
            </div>
            
            <p className="text-slate-500 text-xs max-w-lg leading-relaxed">
