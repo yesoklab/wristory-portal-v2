@@ -3,6 +3,17 @@ import { ExternalLink, Tag, Users, Pizza, ArrowUpRight, ShieldCheck } from 'luci
 
 const collections = [
   { 
+    id: 'mugunghwa-bloomed-by-fallen-patriots', 
+    name: '순국선열(殉國先烈)들이 피워낸 나라 꽃 무궁화: Mugunghwa, Bloomed by the Fallen Patriots', 
+    price: '3 XTZ (80 EDS)', 
+    count: 80, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/32',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '대한민국 독립운동가들의 넋과 한, 나라 사랑의 마음을 태극과 한지 위 먹빛 확산제한응집(DLA) 가지, 그리고 피어나는 무궁화로 형상화한 순수 십자수 스티치 제너러티브 마스터피스. / Generative DLA algorithm & cross-stitch embroidery blooming Mugunghwa from the Taegeuk center honoring fallen Korean patriots.'
+  },
+  { 
     id: 'han-hon-maek', 
     name: '恨·魂·脈 — Han, Hon, Maek / WRISTORY', 
     price: '3 XTZ (33 EDS)', 
