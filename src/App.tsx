@@ -64,6 +64,8 @@ const App: React.FC = () => {
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal-v2';
   const NAVER_BLOG_URL = 'https://blog.naver.com/yesoklab';
+  const ZORA_URL = 'https://zora.co/@yesoklab';
+  const HIGHLIGHT_URL = 'https://highlight.xyz';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
 
   useEffect(() => {
@@ -538,6 +540,28 @@ const App: React.FC = () => {
                 <ExternalLink size={12} />
               </a>
               <a 
+                href={ZORA_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-purple-950/40 hover:bg-purple-900/60 text-purple-300 border border-purple-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="Zora on Base"
+              >
+                <span className="w-2 h-2 rounded-full bg-purple-400" />
+                <span>Zora (Base)</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
+                href={HIGHLIGHT_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-amber-950/40 hover:bg-amber-900/60 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="Highlight Generative Art"
+              >
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                <span>Highlight</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
                 href="https://t.me/WristoryOfficial" 
                 target="_blank" 
                 rel="noopener noreferrer" 
@@ -563,8 +587,11 @@ const App: React.FC = () => {
 
            {/* Secondary Social Icons */}
            <div className="flex flex-wrap justify-center items-center gap-4 text-slate-500 text-xs">
-              <a href="https://www.reddit.com/user/cocoon96/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-1.5 flex items-center gap-1" title="Reddit">
-                <Share2 size={15} /> Reddit
+              <a href={ZORA_URL} target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors p-1.5 flex items-center gap-1" title="Zora Profile">
+                <Globe size={15} className="text-purple-400" /> Zora (@yesoklab)
+              </a>
+              <a href={HIGHLIGHT_URL} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors p-1.5 flex items-center gap-1" title="Highlight.xyz">
+                <Sparkles size={15} className="text-amber-400" /> Highlight.xyz
               </a>
               <a href="https://farcaster.xyz/cocoon9611" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors p-1.5 flex items-center gap-1" title="Farcaster">
                 <Radio size={15} /> Farcaster
