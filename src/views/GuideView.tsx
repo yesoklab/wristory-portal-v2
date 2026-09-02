@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, HelpCircle, ShieldCheck, Wallet, ArrowRight, Globe, ExternalLink, Cpu } from 'lucide-react';
+import { BookOpen, HelpCircle, ShieldCheck, Wallet, ArrowRight, Globe, ExternalLink, Cpu, Sparkles, Award, Zap } from 'lucide-react';
 
 interface Props {
   lang: 'ko' | 'en';
@@ -106,6 +106,105 @@ const GuideView: React.FC<Props> = ({ lang }) => {
         >
           네이버 블로그 아티클 보기 <ExternalLink size={15} />
         </a>
+      </div>
+
+      {/* Base Ecosystem & Generative Art Platforms (Zora, Highlight, Base Creator Grant) */}
+      <div className="bg-gradient-to-br from-blue-950/40 via-slate-900 to-purple-950/30 border border-blue-500/40 p-10 rounded-[3rem] space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center border border-blue-500/30">
+              <Award size={24} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[10px] font-black uppercase rounded-full">Base L2 Onchain</span>
+                <span className="px-2.5 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[10px] font-black uppercase rounded-full">Creator Grants</span>
+              </div>
+              <h3 className="text-2xl font-black text-white italic uppercase mt-1">Base 크리에이터 지원 & 온체인 발행 플랫폼 (Zora · Highlight)</h3>
+              <p className="text-blue-300/80 text-xs font-bold uppercase tracking-widest">Base Creator Grant ($4,000) & Onchain Art Launchpad</p>
+            </div>
+          </div>
+          <a 
+            href="https://x.com/base" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition-all flex items-center gap-2 shrink-0 self-start md:self-auto shadow-md shadow-blue-600/30"
+          >
+            Base 공식 X (@base) <ExternalLink size={13} />
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          {/* Zora on Base */}
+          <div className="bg-slate-950/70 p-6 rounded-2xl border border-purple-500/20 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-purple-400" />
+                <h4 className="text-white font-bold text-base">Zora (Base L2)</h4>
+              </div>
+              <a 
+                href="https://zora.co" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-bold underline"
+              >
+                zora.co 바로가기 <ExternalLink size={11} />
+              </a>
+            </div>
+            <p className="text-slate-300 text-xs leading-relaxed">
+              Coinbase Base 체인에서 가장 활성화된 온체인 미디어/NFT 발행 프로토콜입니다. 
+              가스비가 거의 들지 않으며, 메타마스크나 코인베이스 지갑으로 1초 만에 로그인하여 자유롭게 에디션을 발행하고 전 세계 컬렉터들에게 보상을 공유받을 수 있습니다.
+            </p>
+            <div className="bg-purple-950/30 p-3 rounded-xl border border-purple-500/20 text-[11px] text-purple-200">
+              💡 <b>가입 방법</b>: 메타마스크 지갑을 Base 네트워크로 연결하고 <code className="text-white">zora.co</code>에서 [Connect Wallet] 클릭 시 즉시 프로필 생성 완료!
+            </div>
+          </div>
+
+          {/* Highlight.xyz */}
+          <div className="bg-slate-950/70 p-6 rounded-2xl border border-amber-500/20 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                <h4 className="text-white font-bold text-base">Highlight (Highlight.xyz)</h4>
+              </div>
+              <a 
+                href="https://highlight.xyz" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1 font-bold underline"
+              >
+                highlight.xyz 바로가기 <ExternalLink size={11} />
+              </a>
+            </div>
+            <p className="text-slate-300 text-xs leading-relaxed">
+              Base 및 이더리움 기반의 <b>고급 제너러티브 아트 & 온체인 코드 전문 런치패드</b>입니다.
+              HTML5 Canvas, p5.js, Three.js 알고리즘 코드를 업로드하면 토큰 해시마다 고유하게 반응하는 오토노머스 제너러티브 아트를 민팅할 수 있습니다.
+            </p>
+            <div className="bg-amber-950/30 p-3 rounded-xl border border-amber-500/20 text-[11px] text-amber-200">
+              💡 <b>특장점</b>: Art Blocks 형태의 순수 알고리즘 아트 민팅을 Base L2의 초저렴한 가스비로 구현할 수 있는 최적의 창작 플랫폼입니다.
+            </div>
+          </div>
+        </div>
+
+        {/* Base Creator Grant Application Tip */}
+        <div className="bg-gradient-to-r from-blue-900/30 via-slate-900 to-indigo-900/30 p-5 rounded-2xl border border-blue-400/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="text-sm font-black text-white flex items-center gap-2">
+              <Zap size={16} className="text-yellow-400" /> Base Creator Grant Program (최대 $4,000 지원)
+            </div>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Base 생태계에서 독창적인 온체인 콘텐츠(WRISTORY 디지털 헤리티지 등)를 제작·발행하는 빌더들을 대상으로 Base 팀(@base)이 직접 최대 $4,000 그랜트를 지원합니다.
+            </p>
+          </div>
+          <a 
+            href="https://x.com/base" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-400 hover:to-indigo-400 text-white font-bold text-xs rounded-xl shadow transition-all whitespace-nowrap shrink-0 flex items-center gap-1.5"
+          >
+            공식 공지 확인 <ExternalLink size={12} />
+          </a>
+        </div>
       </div>
 
       {/* Tezos Domain Integration Step Guide */}
