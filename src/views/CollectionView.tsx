@@ -3,6 +3,17 @@ import { ExternalLink, Tag, Users, Pizza, ArrowUpRight, ShieldCheck } from 'luci
 
 const collections = [
   { 
+    id: 'muju-firefly', 
+    name: 'Muju Firefly — 무주 반딧불이 (부제: A Gentle Wishing Star)', 
+    price: '30 XTZ (29 EDS)', 
+    count: 29, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '전북특별자치도 무주 반딧불이 축제 30주년 기념 헌정작. 잃어버린 손톱이 밤하늘 초승달이 되는 헌시(원고지 자율 타이핑)와 청정 무주 밤하늘을 수놓는 반딧불이 무리의 유기적 비행을 구현한 순수 Canvas 제너러티브 마스터피스. (OBJKT 토큰 #34 & Zora 코인 동시 발행) / Generative masterpiece honoring the 30th Muju Firefly Festival.'
+  },
+  { 
     id: 'mugunghwa-bloomed-by-fallen-patriots', 
     name: '순국선열(殉國先烈)들이 피워낸 나라 꽃 무궁화: Mugunghwa, Bloomed by the Fallen Patriots', 
     price: '3 XTZ (80 EDS)', 
