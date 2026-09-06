@@ -32,10 +32,11 @@ import AdminDashboard from './views/AdminDashboard';
 import WalletView from './views/WalletView';
 import WhitepaperView from './views/WhitepaperView';
 import MigrationPortalView from './views/MigrationPortalView';
+import CollectionView from './views/CollectionView';
 import { getCuratorResponse } from './services/geminiService';
 
 export type ViewMode = 'PUBLIC' | 'ADMIN';
-export type PublicTab = 'HOME' | 'MIGRATION' | 'WHITEPAPER' | 'WALLET' | 'GUIDE' | 'AI';
+export type PublicTab = 'HOME' | 'MIGRATION' | 'COLLECTIONS' | 'WHITEPAPER' | 'WALLET' | 'GUIDE' | 'AI';
 
 declare global {
   interface Window {
@@ -66,6 +67,8 @@ const App: React.FC = () => {
   const NAVER_BLOG_URL = 'https://blog.naver.com/yesoklab';
   const ZORA_URL = 'https://zora.co/@yesoklab';
   const HIGHLIGHT_URL = 'https://highlight.xyz';
+  const OBJKT_URL = 'https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created';
+  const OBJKT_FIREFLY_URL = 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
 
   useEffect(() => {
@@ -122,6 +125,7 @@ const App: React.FC = () => {
     try {
       switch (activeTab) {
         case 'HOME': return <LandingPageView lang={lang} onNavigate={(tab: any) => setActiveTab(tab)} hasApiKey={hasApiKey} />;
+        case 'COLLECTIONS': return <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6"><CollectionView /></div>;
         case 'MIGRATION': return <MigrationPortalView lang={lang} />;
         case 'WHITEPAPER': return <WhitepaperView />;
         case 'WALLET': return <WalletView lang={lang} />;
@@ -201,6 +205,12 @@ const App: React.FC = () => {
               className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'HOME' ? 'text-blue-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
             >
               홈 / Home
+            </button>
+            <button 
+              onClick={() => setActiveTab('COLLECTIONS')} 
+              className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'COLLECTIONS' ? 'text-amber-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
+            >
+              컬렉션 / Collections
             </button>
             <button 
               onClick={() => setActiveTab('MIGRATION')} 
@@ -294,6 +304,12 @@ const App: React.FC = () => {
               className={`text-base font-bold text-left py-2 ${activeTab === 'HOME' ? 'text-blue-400' : 'text-slate-300'}`}
             >
               홈 (Home)
+            </button>
+            <button 
+              onClick={() => { setActiveTab('COLLECTIONS'); setIsMenuOpen(false); }} 
+              className={`text-base font-bold text-left py-2 ${activeTab === 'COLLECTIONS' ? 'text-amber-400' : 'text-slate-300'}`}
+            >
+              컬렉션 (Collections)
             </button>
             <button 
               onClick={() => { setActiveTab('MIGRATION'); setIsMenuOpen(false); }} 
@@ -537,6 +553,28 @@ const App: React.FC = () => {
               >
                 <Twitter size={14} className="text-sky-400" />
                 <span>X (Twitter)</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
+                href={OBJKT_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-blue-950/40 hover:bg-blue-900/60 text-blue-300 border border-blue-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="OBJKT Tezos NFT Profile"
+              >
+                <span className="w-2 h-2 rounded-full bg-blue-400" />
+                <span>OBJKT (Tezos)</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
+                href={OBJKT_FIREFLY_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="OBJKT Muju Firefly Token"
+              >
+                <Sparkles size={13} className="text-yellow-300" />
+                <span>무주 반딧불이 (OBJKT #34)</span>
                 <ExternalLink size={12} />
               </a>
               <a 
