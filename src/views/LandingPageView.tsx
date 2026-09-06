@@ -1,530 +1,265 @@
 import React from 'react';
-import { 
-  ArrowRightLeft, 
-  ExternalLink, 
-  Sparkles, 
-  ArrowUpRight, 
-  ShieldCheck, 
-  Layers,
-  Flame,
-  Globe,
-  ChevronRight,
-  TrendingUp,
-  Camera,
-  Share2,
-  Coins,
-  CheckCircle2
-} from 'lucide-react';
+import { ExternalLink, Tag, Users, Pizza, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
-interface LandingPageViewProps {
-  lang: 'ko' | 'en';
-  onNavigate: (tab: any) => void;
-  hasApiKey?: boolean;
-}
+const collections = [
+  { 
+    id: 'muju-firefly', 
+    name: 'Muju Firefly — 무주 반딧불이 (부제: A Gentle Wishing Star)', 
+    price: '30 XTZ (29 EDS)', 
+    count: 29, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '전북특별자치도 무주 반딧불이 축제 30주년 기념 헌정작. 잃어버린 손톱이 밤하늘 초승달이 되는 헌시(원고지 자율 타이핑)와 청정 무주 밤하늘을 수놓는 반딧불이 무리의 유기적 비행을 구현한 순수 Canvas 제너러티브 마스터피스. (OBJKT 토큰 #34 & Zora 코인 동시 발행) / Generative masterpiece honoring the 30th Muju Firefly Festival.'
+  },
+  { 
+    id: 'mugunghwa-bloomed-by-fallen-patriots', 
+    name: '순국선열(殉國先烈)들이 피워낸 나라 꽃 무궁화: Mugunghwa, Bloomed by the Fallen Patriots', 
+    price: '3 XTZ (80 EDS)', 
+    count: 80, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/32',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '대한민국 독립운동가들의 넋과 한, 나라 사랑의 마음을 태극과 한지 위 먹빛 확산제한응집(DLA) 가지, 그리고 피어나는 무궁화로 형상화한 순수 십자수 스티치 제너러티브 마스터피스. / Generative DLA algorithm & cross-stitch embroidery blooming Mugunghwa from the Taegeuk center honoring fallen Korean patriots.'
+  },
+  { 
+    id: 'han-hon-maek', 
+    name: '恨·魂·脈 — Han, Hon, Maek / WRISTORY', 
+    price: '3 XTZ (33 EDS)', 
+    count: 33, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/31',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '33인의 독립운동가의 역동과 숭고한 넋을 혈액이 유기적으로 맥동하듯 캔버스 위로 피어나는 제너러티브 성장 시뮬레이션(Growth Simulation) 기법으로 구현한 디지털 헤리티지 마스터피스. / Generative growth simulation exploring the enduring spirit, sorrow, and historical lineage of Korean independence activists.'
+  },
+  { 
+    id: 'energy-drink-the-vitality', 
+    name: 'energy // Drink the Vitality! (활력을 마시자!)', 
+    price: 'YesOkLab 대표작', 
+    count: 1960, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu', 
+    url: 'https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/36',
+    isNew: true,
+    isMasterpiece: true,
+    desc: '자양강장제 박카스(BACCHUS-D 1963) 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 순수 HTML5 Canvas 제너러티브 아트 대표작. / Homage to Bacchus-D (1963). Pure web standard generative interactive masterpiece.'
+  },
+  { 
+    id: 'kim-chang-sook-sandals', 
+    name: '미투리, 천리 — 心山 金昌淑 (A Thousand Li in Straw Sandals)', 
+    price: '0.5 XTZ', 
+    count: 82, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigu3hj4bn57tiaspisityhze54sr2xzrckkkfmzk4lxfw7c4vpy3u', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/30',
+    isNew: true,
+    desc: '심산 김창숙(1879–1962) 선생의 무명(無名)의 여정을 시각화한 순수 Canvas 제너러티브 아트. 짚신(미투리) 발자국이 쌓이며 초상이 서서히 드러납니다. / Kim Chang-sook generative portrait rendered via accumulating straw-sandal footprints.'
+  },
+  { 
+    id: 'patriotic-legacy', 
+    name: 'WRISTORY: PATRIOTIC LEGACY', 
+    price: 'New Collection', 
+    count: 21, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u', 
+    url: 'https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR',
+    isNew: true,
+    desc: '테조스 블록체인에서 보존되는 애국의 정신. Wristory의 새로운 메인넷 컬렉션입니다. / Preserving the spirit of patriotism on Tezos blockchain.'
+  },
+  { 
+    id: 'wristory-the-admirals-resolve', 
+    name: "WRISTORY: The Admiral's Resolve (장군의 결의)", 
+    price: 'NEW TOKEN', 
+    count: 1, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifmpdjsm6intedpfdk5tq5nyv7qgxc6mbmaqm7hmg2rt7mlucddwu', 
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/23',
+    isNew: true,
+    desc: '이순신 장군의 숭고한 보국의 마음과 필사즉생의 위대한 결의를 현대적인 제너레이티브 웨이브 아트로 정밀하게 고증한 기념비적 에디션입니다. / Resurrecting the heroic vow and patriotic resolve of Admiral Yi Sun-sin through modern generative wave art on Tezos.'
+  },
+  { 
+    id: 'heritage-sync', 
+    name: 'HERITAGE SYNC : Where Tradition Meets the Future', 
+    price: 'New Collection', 
+    count: 21, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibjx5wokivdjsvwli6gbzju7fdkzatdw3kylkqw2jtr6qp5ylufvu', 
+    url: 'https://objkt.com/collections/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU',
+    isNew: true,
+    desc: '전통과 미래가 만나는 지점. Wristory가 선보이는 새로운 메인넷 컬렉션입니다. / A new mainnet collection from Wristory where tradition meets the future.'
+  },
+  { 
+    id: 'fork-project', 
+    name: 'FORK PROJECT', 
+    price: 'New Collection', 
+    count: 1, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigcx2qgsd7p3f7ijjoksgtvjrw3ed74da5x3a4ndqxsuw5hppb4yy', 
+    url: 'https://objkt.com/collections/KT1XMCJGLo9vnHRAf5LQdw9z3BF9yGVfffnm',
+    isNew: true,
+    desc: 'The Ghost — Bitcoin Chronicles III. 역사의 분기점을 시각화한 디지털 유산입니다.'
+  },
+  { 
+    id: 'genesis-chronicles', 
+    name: 'Blockchain Genesis Chronicles', 
+    price: 'Series III', 
+    count: 1, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiesb5nbzjpyccgjhba44pkyhjtwlgbfybmt3q3oh3mjnoemmd5u6y', 
+    url: 'https://objkt.com/collections/KT1A687BCmwpCLmzFWMRbKKwQGoqZzrgx97y',
+    isNew: true,
+    desc: 'The Ghost — Bitcoin Chronicles\' III. 블록체인 제네시스의 전설을 테조스 예술로 보존합니다.'
+  },
+  { 
+    id: 'wristory-universe', 
+    name: 'WRISTORY UNIVERSE', 
+    price: 'New Collection', 
+    count: 100, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiega3qk3oh3r6u6uwqr2f4uvkynpdpmsrmcwrdlld3oqjmawk62ya', 
+    url: 'https://objkt.com/collections/KT1Kd5mM8CKMxR7rotfK5QNP8V33A5zj6yQk',
+    isNew: true,
+    isMerged: true,
+    desc: '대한민국 제21대 이재명 대통령의 디지털 유산 컬렉션. YesOkLab/WRISTORY가 테조스 블록체인에서 선보이는 역사적 순간들을 NFT로 보존합니다.'
+  },
+  { 
+    id: 'pizza-100', 
+    name: 'Bitcoin Pizza Genesis: 100', 
+    price: '100 EDITIONS', 
+    count: 100, 
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop', 
+    url: 'https://objkt.com/collections/KT1JxExPQijKy3jQdE1pHJXxoeyjHtXB3uxq',
+    isNew: true,
+    desc: 'Commemorating the legendary Bitcoin Pizza transaction of May 22, 2010. Dynamic generative art powered by real Block #57043 data.'
+  },
+  { 
+    id: 'couple-legacy', 
+    name: '이종희 · 송다녀 부부 — 동지이자 연인', 
+    price: 'Special Edition', 
+    count: 50, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihv7v7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z7z', 
+    url: 'https://objkt.com/tokens/KT1A77WVak4yMFoHDNzpAf8PGA7YLmh5wMJ8/50',
+    isNew: true,
+    desc: '독립투사 부부의 디지털 유산. 동지이자 연인으로서 함께 걸어온 고귀한 희생과 사랑의 기록.'
+  },
+  { 
+    id: 'president-calligraphy', 
+    name: '이재명 대통령 캘리그래피 — 대통령의 한 시간', 
+    price: 'Featured', 
+    count: 1, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigdqnbztqqi7xmmxvjftpio2dvyjpatnzpv7gl77gu4sld4bcvvia',
+    url: 'https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created',
+    isNew: true,
+    desc: '최승균 작가님이 이재명 대통령의 어록 "대통령의 한 시간은 5,200만의 시간입니다."를 캘리그래피로 승화시킨 작품입니다.'
+  },
+  { 
+    id: '1', 
+    name: '독립운동가: 김구', 
+    price: '45 XTZ', 
+    count: 100, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreie4kz6obq6hjvwtrn5hi33yptemfch6kkjmwj5h22b7imipxjxd6u',
+    url: 'https://objkt.com/collections/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu'
+  },
+  { 
+    id: '2', 
+    name: '독립운동가: 안중근', 
+    price: '50 XTZ', 
+    count: 120, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreic4bp2ylmmamglszxxnnbipbqlz535qfrhtlm5sgc72lpssvsi3x4',
+    url: 'https://objkt.com/collections/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu'
+  },
+  { 
+    id: '3', 
+    name: '독립운동가: 유관순', 
+    price: '30 XTZ', 
+    count: 80, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiejrnn2dpacgyyexuil5obifqgnfapdgvctsxwm7ne2ny7d6ifh6i',
+    url: 'https://objkt.com/collections/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu'
+  },
+  { 
+    id: '4', 
+    name: '독립운동가: 윤동주', 
+    price: '75 XTZ', 
+    count: 50, 
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreibztbschh6cqj465duaajxf7r7n736jgdkuprw24des7nk57wyc3a',
+    url: 'https://objkt.com/collections/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu'
+  },
+];
 
-const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) => {
-  const BASE_CONTRACT = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
-  const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
-  const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
-  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
-
+const CollectionView: React.FC = () => {
   return (
-    <div className="animate-in fade-in duration-500 space-y-12 sm:space-y-16 pb-16">
-      {/* 1. Top Notice Bar: Base Migration Announcement & Direct Portal Link */}
-      <div className="bg-gradient-to-r from-blue-900/50 via-indigo-900/50 to-purple-900/50 border-b border-blue-500/20 px-4 py-3">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#00ffcc] animate-ping" />
-            <span className="text-xs font-bold text-slate-200">
-              {lang === 'ko' ? (
-                <>
-                  <b className="text-[#00ffcc]">[Live DEX]</b> $WR <b>Uniswap v4 ($0.04416 / $3.8K+ 유동성)</b> 가동 & <b>GeckoTerminal</b> 실시간 차트 연동
-                </>
-              ) : (
-                <>
-                  <b className="text-[#00ffcc]">[LIVE DEX]</b> $WR <b>Uniswap v4 ($0.04416 / $3.8K+ Liquidity)</b> Live & <b>GeckoTerminal</b> Chart Active
-                </>
-              )}
-            </span>
-          </div>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
-            <a
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95"
-            >
-              <TrendingUp size={13} className="text-amber-400" /> GeckoTerminal 차트 <ExternalLink size={11} />
-            </a>
-            <a
-              href={UNISWAP_SWAP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-black transition-all flex items-center gap-1 shadow-md shadow-emerald-600/30 active:scale-95"
-            >
-              <Coins size={13} /> Uniswap v4 스왑 <ExternalLink size={12} />
-            </a>
-            <button 
-              onClick={() => onNavigate('MIGRATION')}
-              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
-            >
-              <ArrowRightLeft size={13} /> {lang === 'ko' ? '1:1 토큰 교환 포털' : '1:1 Swap Portal'} <ArrowUpRight size={13} />
-            </button>
-          </div>
+    <div className="space-y-8 animate-in fade-in duration-500 pb-20">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-4">
+        <div>
+          <h2 className="text-4xl font-black italic tracking-tighter text-white uppercase">Collections Hub</h2>
+          <p className="text-slate-400 font-medium">테조스 메인넷에서 증명되는 Wristory의 디지털 자산 포트폴리오입니다. / Wristory's digital asset portfolio on Tezos Mainnet.</p>
         </div>
+        <a 
+          href="https://objkt.com/collections/KT1JxExPQijKy3jQdE1pHJXxoeyjHtXB3uxq" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-amber-500 hover:text-amber-400 font-black text-xs uppercase tracking-widest underline underline-offset-8 decoration-2 transition-all"
+        >
+          Pizza Genesis: 100 - LEGENDARY 바로가기 / Go to Pizza Genesis <ExternalLink size={14} />
+        </a>
       </div>
 
-      {/* 2. Hero Section (Base & Tezos Dual Ecosystem) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl bg-gradient-to-b from-slate-900/80 via-slate-900/50 to-slate-950/90 border border-slate-800 p-6 sm:p-12 text-center space-y-6 overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#3b82f615_0%,_transparent_70%)] pointer-events-none" />
-
-          {/* Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-2 relative z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-bold">
-              <ShieldCheck size={14} /> Ethereum Layer-2 (Base Mainnet)
-            </span>
-            <a 
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[11px] font-bold transition-all"
-            >
-              <TrendingUp size={13} className="text-amber-400" />
-              GeckoTerminal Live ($0.04416) <ExternalLink size={11} />
-            </a>
-            <a 
-              href={UNISWAP_V4_POSITION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[11px] font-bold transition-all"
-            >
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Uniswap v4 Live (Base #2953119) <ExternalLink size={11} />
-            </a>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[11px] font-bold">
-              <Camera size={14} /> 1,063 Snapshot Wallets
-            </span>
-          </div>
-
-          {/* Main Title */}
-          <div className="space-y-2 relative z-10">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white uppercase italic">
-              THE BRIDGE OF TIME & HERITAGE
-            </h1>
-            <p className="text-sm sm:text-lg text-[#00ffcc] font-bold">
-              {lang === 'ko' ? '역사는 블록체인 위에서 영원히 살아 숨 쉽니다.' : 'History breathes eternal life upon the blockchain.'}
-            </p>
-          </div>
-
-          {/* Key Metrics Dashboard with Uniswap v4 live stats & GeckoTerminal */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto bg-slate-950/70 border border-slate-800/80 p-3 sm:p-5 rounded-2xl relative z-10">
-            <div className="text-center">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Token Price</p>
-              <p className="text-xs sm:text-lg font-black text-amber-400 font-mono mt-0.5">$0.04416 USD</p>
-            </div>
-            <div className="text-center border-l border-slate-800 sm:border-x">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Active Liquidity</p>
-              <p className="text-xs sm:text-lg font-black text-emerald-400 font-mono mt-0.5">$3,684.24+</p>
-            </div>
-            <div className="text-center border-t sm:border-t-0 border-slate-800">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Pool Fee & Pair</p>
-              <p className="text-xs sm:text-lg font-black text-cyan-300 font-mono mt-0.5">ETH / WR (0.25%)</p>
-            </div>
-            <div className="text-center border-t sm:border-t-0 border-l border-slate-800">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">FDV / Cap</p>
-              <p className="text-xs sm:text-lg font-black text-[#00ffcc] font-mono mt-0.5">~$2,260,000</p>
-            </div>
-          </div>
-
-          {/* Quick Action Navigation Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 relative z-10">
-            <a
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-amber-600/30 flex items-center gap-2 active:scale-95"
-            >
-              <TrendingUp size={16} /> {lang === 'ko' ? 'GeckoTerminal 실시간 차트' : 'GeckoTerminal Live Chart'} <ArrowUpRight size={14} />
-            </a>
-            <a
-              href={UNISWAP_SWAP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95"
-            >
-              <Coins size={16} /> {lang === 'ko' ? 'Uniswap v4 에서 $WR 거래하기' : 'Trade $WR on Uniswap v4'} <ArrowUpRight size={14} />
-            </a>
-            <button
-              onClick={() => onNavigate('MIGRATION')}
-              className="px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-blue-600/30 flex items-center gap-2 active:scale-95"
-            >
-              <ArrowRightLeft size={16} /> {lang === 'ko' ? 'Base 1:1 토큰 마이그레이션 포털' : 'Base 1:1 Migration Portal'}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Live Uniswap v4 & GeckoTerminal Feature Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-r from-slate-900 via-emerald-950/30 to-amber-950/20 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl text-left">
-          <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase rounded-full flex items-center gap-1.5">
-                <CheckCircle2 size={13} /> Uniswap v4 (Base) Active & In-Range
-              </span>
-              <a 
-                href={GECKOTERMINAL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-black uppercase rounded-full flex items-center gap-1.5 transition-all"
-              >
-                <TrendingUp size={13} /> GeckoTerminal Tracked ($0.04416) <ExternalLink size={10} />
-              </a>
-              <span className="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-mono font-bold rounded-full">
-                Pool #2953119
-              </span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase">
-              {lang === 'ko' ? 'ETH / WR 유니스왑 v4 공식 풀 & 실시간 GeckoTerminal 차트 가동' : 'Official ETH / WR Uniswap v4 Pool & GeckoTerminal Live Chart'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              {lang === 'ko'
-                ? '이더리움 Layer-2 Base 네트워크 상에 Uniswap v4 집중 유동성(Concentrated Liquidity, $3,684+) 풀이 안착되었으며, GeckoTerminal에서 실시간 캔들스틱 차트, 체결 내역(트랜잭션), 유동성 지표를 투명하게 확인하실 수 있습니다.'
-                : 'Concentrated liquidity ($3,684+) on Uniswap v4 (Base Mainnet) is verified and live. Track real-time candlesticks, volume, and verified transactions transparently on GeckoTerminal.'}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <a
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-amber-600/30 active:scale-95"
-            >
-              <TrendingUp size={16} /> {lang === 'ko' ? 'GeckoTerminal 차트 보기' : 'GeckoTerminal Chart'} <ExternalLink size={13} />
-            </a>
-            <a
-              href={UNISWAP_SWAP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/30 active:scale-95"
-            >
-              <Coins size={16} /> {lang === 'ko' ? '유니스왑에서 $WR 스왑' : 'Swap $WR on Uniswap'} <ArrowUpRight size={14} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Dedicated Creator & Snapshot Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-r from-purple-950/30 via-slate-900 to-blue-950/30 border border-purple-500/20 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-black uppercase">
-              <Camera size={14} /> OBJKT & Web3 Generative Creators Notice
-            </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase">
-              {lang === 'ko' ? 'OBJKT 창작자 및 테조스 홀더 스냅샷 100% 보장' : 'Guaranteed 1:1 Parity for OBJKT Artists & Tezos Holders'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              {lang === 'ko'
-                ? '기존 테조스 블록체인 및 OBJKT에서 발행·소장된 모든 $WR 및 헤리티지 NFT의 가치는 Base L2 생태계로 1:1 안전하게 이어집니다. 스냅샷 데이터베이스를 통해 즉시 신청하세요.'
-                : 'All $WR and historical NFTs minted on Tezos FA2 & OBJKT are recognized in the Base ecosystem via on-chain snapshots. Submit your Tezos address to claim your Base $WR.'}
-            </p>
-          </div>
-          <button
-            onClick={() => { onNavigate('MIGRATION'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="px-6 py-3.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 shadow-lg shadow-purple-600/30 active:scale-95"
-          >
-            <ArrowRightLeft size={16} /> {lang === 'ko' ? '스냅샷 확인 & 신청하기' : 'Verify & Migrate'}
-          </button>
-        </div>
-      </section>
-
-      {/* 5. YesOkLab Masterpiece Spotlight: 순국선열(殉國先烈)들이 피워낸 나라 꽃 무궁화 */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl bg-gradient-to-br from-rose-950/40 via-slate-900 to-indigo-950/40 border-2 border-rose-500/40 p-6 sm:p-10 shadow-2xl overflow-hidden text-left group">
-          <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex flex-col lg:flex-row items-center gap-8 relative z-10">
-            {/* Masterpiece Artwork Image Box */}
-            <div className="w-full lg:w-5/12 shrink-0">
-              <div className="relative aspect-square rounded-2xl overflow-hidden border border-rose-500/30 bg-black shadow-2xl group/img">
-                <img 
-                  src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i" 
-                  alt="순국선열(殉國先烈)들이 피워낸 나라 꽃 무궁화 - YesOkLab Masterpiece"
-                  className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
-                  onError={(e) => {
-                    // Fallback to IPFS.io if Pinata mirror has latency
-                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i';
-                  }}
-                />
-                <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                  <span className="px-3 py-1 bg-gradient-to-r from-rose-600 to-red-600 text-white text-[11px] font-black uppercase rounded-full shadow-lg flex items-center gap-1">
-                    <Sparkles size={12} className="text-yellow-200 animate-spin" /> YesOkLab 공식 대표작
-                  </span>
-                  <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md border border-white/20 text-slate-200 text-[10px] font-mono font-bold rounded-full">
-                    80 Eds
-                  </span>
-                </div>
-                <div className="absolute bottom-3 right-3 px-3 py-1 bg-slate-950/80 backdrop-blur-md border border-rose-500/40 rounded-full text-[11px] font-mono font-bold text-rose-300">
-                  3 XTZ • DLA 십자수
-                </div>
-              </div>
-            </div>
-
-            {/* Masterpiece Content & Narrative */}
-            <div className="space-y-4 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-black uppercase rounded-full">
-                  NEW MINT • PATRIOTIC LEGACY #32
-                </span>
-                <span className="px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-bold rounded-full">
-                  DLA Algorithm / Cross-Stitch Generative Art
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {collections.map((col: any) => (
+          <div key={col.id} className={`bg-slate-900/50 border ${col.isMasterpiece ? 'border-amber-400 shadow-[0_0_50px_rgba(245,158,11,0.25)] ring-1 ring-amber-500/50' : col.isNew ? 'border-amber-500/50 shadow-[0_0_40px_rgba(245,158,11,0.15)]' : 'border-slate-800'} rounded-[2.5rem] overflow-hidden group hover:border-blue-500/50 transition-all shadow-2xl flex flex-col`}>
+            <div className="relative aspect-[4/5] overflow-hidden shrink-0 bg-black">
+              <img 
+                src={col.image} 
+                alt={col.name} 
+                className={`w-full h-full object-cover ${col.isNew || col.isMasterpiece ? '' : 'grayscale'} group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105`} 
+                onError={(e) => {
+                  if (col.id === 'energy-drink-the-vitality') {
+                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu';
+                  }
+                }}
+              />
+              <div className={`absolute top-6 left-6 ${col.isMasterpiece ? 'bg-gradient-to-r from-amber-500 to-orange-600' : col.isNew ? 'bg-amber-500' : 'bg-blue-600'} px-4 py-1.5 rounded-full border border-white/10 shadow-xl flex items-center gap-2 z-10`}>
+                {col.isMasterpiece ? <ShieldCheck size={12} className="text-yellow-200 animate-spin" /> : col.isNew && <Pizza size={12} className="text-white animate-bounce" />}
+                <span className="text-[10px] font-black text-white uppercase tracking-widest">
+                  {col.isMasterpiece ? '🌟 YesOkLab 대표작' : col.isNew ? 'New Legend' : 'Wristory FA2'}
                 </span>
               </div>
-
-              <div>
-                <h2 className="text-2xl sm:text-4xl font-black text-white italic uppercase tracking-tight">
-                  순국선열이 피워낸 나라 꽃 무궁화
-                </h2>
-                <p className="text-rose-400 font-bold text-sm sm:text-base mt-1">
-                  "대한민국 독립운동가들의 넋과 한, 나라 사랑의 마음이 무궁화로 피어납니다."
-                </p>
-              </div>
-
-              <div className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed bg-slate-950/50 p-4 sm:p-5 rounded-2xl border border-white/5">
-                <p>
-                  일제강점기(日帝強占期), 조국의 독립을 위해 헌신하고 목숨 바친 <b>대한민국 독립운동가들의 영혼을 자수 실로 감싸 담은</b> 제너러티브 마스터피스입니다.
-                  중앙의 작은 태극이 먼저 자라난 뒤, 한지빛 바탕 위로 먹빛 가지가 <b>확산제한응집(DLA)</b> 알고리즘으로 뻗어나가며 가지 끝에서 이따금 무궁화가 피어납니다.
-                </p>
-                <p className="text-slate-400 border-t border-slate-800 pt-2 text-xs">
-                  💡 태극부터 테두리까지 모든 요소를 <b>하나의 십자수 스티치</b>로 통일하여 그려 전체가 한 장의 섬세한 전통 자수처럼 펼쳐집니다. 성장은 완전히 자율적으로 시작·확산·개화한 뒤 스스로 멈추어 고유한 형태로 온체인에 영구히 정지·보존됩니다.
-                </p>
-                <p className="text-[#00ffcc] font-bold text-xs">
-                  "Mugunghwa (無窮花) — The flower that never fades. 영원히 지지 않는 무궁화처럼 순국선열의 숭고한 보국의 넋은 블록체인 위에서 영원합니다."
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <a
-                  href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/32"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3.5 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:to-red-500 text-white rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-rose-600/30 active:scale-95"
-                >
-                  <Sparkles size={16} /> OBJKT 대표작 감상 및 소장하기 <ArrowUpRight size={14} />
-                </a>
-                <a
-                  href="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-bold text-xs uppercase transition-all flex items-center gap-1.5 border border-slate-700 active:scale-95"
-                >
-                  IPFS 원본 확인 <ExternalLink size={12} />
-                </a>
-              </div>
+              {col.isMerged && (
+                <div className="absolute top-6 right-6 bg-emerald-500 px-4 py-1.5 rounded-full border border-white/10 shadow-xl flex items-center gap-2 z-10">
+                  <ShieldCheck size={12} className="text-white animate-pulse" />
+                  <span className="text-[10px] font-black text-white uppercase tracking-widest">Merged</span>
+                </div>
+              )}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Featured Heritage Highlights (Clean 4-Card Grid with Pinata Gateways) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <Sparkles size={18} className="text-amber-400" />
-            <h2 className="text-lg sm:text-2xl font-black text-white italic tracking-tight uppercase">
-              {lang === 'ko' ? '주요 헤리티지 & 디지털 복원 작품' : 'Featured Heritage & Restored Collections'}
-            </h2>
-          </div>
-          <a 
-            href="https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-blue-400 hover:text-blue-300 font-bold flex items-center gap-1"
-          >
-            OBJKT All <ChevronRight size={14} />
-          </a>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-          {/* Card 1: energy // Drink the Vitality! */}
-          <div className="bg-slate-900/60 border border-amber-500/40 rounded-2xl overflow-hidden hover:border-amber-400 transition-all flex flex-col justify-between group shadow-lg shadow-amber-500/10">
-            <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
-              <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu" 
-                alt="energy // Drink the Vitality!" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu';
-                }}
-              />
-              <span className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-black uppercase rounded-md shadow">
-                1.96K Eds
-              </span>
-              <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 rounded">
-                BACCHUS-D
-              </span>
-            </div>
-            <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="text-base font-black text-white uppercase italic group-hover:text-amber-400 transition-colors line-clamp-1">
-                  energy // Drink the Vitality!
-                </h3>
-                <p className="text-xs text-slate-400 line-clamp-2 mt-1">
-                  자양강장제 박카스 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 제너러티브 아트.
-                </p>
+            <div className="p-8 space-y-6 flex-1 flex flex-col justify-between">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black italic tracking-tighter text-white group-hover:text-blue-400 transition-colors uppercase leading-[1.1]">{col.name}</h3>
+                {col.desc && <p className="text-slate-500 text-xs font-medium leading-relaxed">{col.desc}</p>}
+                <div className="grid grid-cols-2 gap-4 p-4 bg-slate-950/50 rounded-2xl border border-white/5">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1.5 text-slate-500 text-[10px] uppercase font-black tracking-widest">
+                      <Tag size={12} /> {col.isNew ? 'Listing' : 'Floor'}
+                    </div>
+                    <p className={`font-mono text-lg font-bold ${col.isNew ? 'text-amber-400' : 'text-white'}`}>{col.price}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1.5 text-slate-500 text-[10px] uppercase font-black tracking-widest">
+                      <Users size={12} /> Items
+                    </div>
+                    <p className="font-mono text-lg font-bold text-white">{col.count}</p>
+                  </div>
+                </div>
               </div>
+              
               <a 
-                href="https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/36" 
+                href={col.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full py-2.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30"
+                className={`w-full py-4 text-center ${col.isNew ? 'bg-amber-600 hover:bg-amber-500' : 'bg-slate-800 hover:bg-blue-600'} text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-black/20`}
               >
-                OBJKT 토큰 감상 <ArrowUpRight size={13} />
+                컬렉션 탐색 / Explore Collection <ArrowUpRight size={14} />
               </a>
             </div>
           </div>
-
-          {/* Card 2: 恨·魂·脈 — Han, Hon, Maek */}
-          <div className="bg-slate-900/60 border border-red-500/40 rounded-2xl overflow-hidden hover:border-red-400 transition-all flex flex-col justify-between group shadow-lg shadow-red-500/10">
-            <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
-              <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum" 
-                alt="恨·魂·脈 — Han, Hon, Maek / WRISTORY" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum';
-                }}
-              />
-              <span className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[10px] font-black uppercase rounded-md shadow flex items-center gap-1">
-                <Sparkles size={11} /> 33 EDS
-              </span>
-              <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-red-300 rounded border border-red-500/30">
-                3 XTZ • 성장 시뮬레이션
-              </span>
-            </div>
-            <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="text-base font-black text-white uppercase italic group-hover:text-red-400 transition-colors line-clamp-1">
-                  恨·魂·脈 — Han, Hon, Maek
-                </h3>
-                <p className="text-xs text-slate-400 line-clamp-2 mt-1">
-                  33인 독립운동가의 넋과 맥을 혈액이 맥동하듯 캔버스 위로 피어나는 제너러티브 성장 시뮬레이션으로 형상화.
-                </p>
-              </div>
-              <a 
-                href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/31" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full py-2.5 bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-red-500/30"
-              >
-                OBJKT 토큰 감상 <ArrowUpRight size={13} />
-              </a>
-            </div>
-          </div>
-
-          {/* Card 3: energy // Drink the Vitality! */}
-          <div className="bg-slate-900/60 border border-amber-500/40 rounded-2xl overflow-hidden hover:border-amber-400 transition-all flex flex-col justify-between group shadow-lg shadow-amber-500/10">
-            <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
-              <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu" 
-                alt="energy // Drink the Vitality!" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu';
-                }}
-              />
-              <span className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-black uppercase rounded-md shadow">
-                대표작 (1.96K Eds)
-              </span>
-              <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 rounded">
-                BACCHUS-D
-              </span>
-            </div>
-            <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="text-base font-black text-white uppercase italic group-hover:text-amber-400 transition-colors line-clamp-1">
-                  energy // Drink the Vitality!
-                </h3>
-                <p className="text-xs text-slate-400 line-clamp-2 mt-1">
-                  자양강장제 박카스 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 제너러티브 아트.
-                </p>
-              </div>
-              <a 
-                href="https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/36" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full py-2.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30"
-              >
-                OBJKT 토큰 감상 <ArrowUpRight size={13} />
-              </a>
-            </div>
-          </div>
-
-          {/* Card 4: 미투리, 천리 — 心山 金昌淑 */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-lg">
-            <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center">
-              <img 
-                src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigu3hj4bn57tiaspisityhze54sr2xzrckkkfmzk4lxfw7c4vpy3u" 
-                alt="미투리, 천리 — 心山 金昌淑" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeigu3hj4bn57tiaspisityhze54sr2xzrckkkfmzk4lxfw7c4vpy3u';
-                }}
-              />
-              <span className="absolute top-3 left-3 px-2.5 py-1 bg-amber-600 text-white text-[10px] font-black uppercase rounded-md shadow">
-                82 eds
-              </span>
-              <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 rounded">
-                PATRIOTIC LEGACY
-              </span>
-            </div>
-            <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="text-base font-black text-white uppercase italic group-hover:text-amber-400 transition-colors line-clamp-1">
-                  미투리, 천리 — 心山 金昌淑
-                </h3>
-                <p className="text-xs text-slate-400 line-clamp-2 mt-1">
-                  1919 파리장서 주도자 심산 김창숙 선생. 짚신(미투리) 발자국이 쌓이며 초상이 드러나는 Canvas 제너러티브 아트.
-                </p>
-              </div>
-              <a 
-                href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/30" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full py-2.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30"
-              >
-                OBJKT 토큰 감상 <ArrowUpRight size={13} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Migration Callout Block */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-blue-500/30 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl text-left">
-          <div className="space-y-2">
-            <span className="text-[10px] text-blue-400 font-black uppercase tracking-widest">Base L2 Migration</span>
-            <h3 className="text-2xl font-black text-white uppercase italic">
-              {lang === 'ko' ? '테조스에서 보유 중인 $WR을 Base $WR로 1:1 교환하세요' : 'Migrate your Tezos $WR to Base $WR (1:1 Ratio)'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              {lang === 'ko'
-                ? '기존 1,063명의 홀더 및 OBJKT 창작자분들을 위해 1 Tezos WR = 1 Base WR (1:1 비율)로 수수료 없이 안전한 교환을 지원합니다.'
-                : 'Zero slippage, zero commission fee 1:1 migration for all 1,063 Tezos holders and OBJKT artists.'}
-            </p>
-          </div>
-          <button
-            onClick={() => { onNavigate('MIGRATION'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 shadow-lg shadow-blue-600/30 active:scale-95"
-          >
-            <ArrowRightLeft size={16} /> {lang === 'ko' ? '1:1 마이그레이션 포털 이동' : 'Open Migration Portal'}
-          </button>
-        </div>
-      </section>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default LandingPageView;
+export default CollectionView;
