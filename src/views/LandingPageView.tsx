@@ -35,9 +35,11 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
+  const HIGHLIGHT_MUJU_URL = 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4';
   const GITHUB_CLARITY_RESEARCH_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
-  const BLOG_CLARITY_ACT_1_URL = 'https://m.blog.naver.com/yesoklab/224406337160';
-  const BLOG_CLARITY_ACT_2_URL = 'https://m.blog.naver.com/yesoklab/224405538510';
+  const BLOG_CLARITY_ACT_1_URL = 'https://blog.naver.com/yesoklab/224405334699';
+  const BLOG_CLARITY_ACT_2_URL = 'https://blog.naver.com/yesoklab/224405538510';
+  const BLOG_CLARITY_ACT_3_URL = 'https://blog.naver.com/yesoklab/224406451272';
 
   // HD Lightbox inspection state
   const [selectedArtwork, setSelectedArtwork] = useState<any | null>(null);
@@ -59,16 +61,17 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const recentArtworks = [
     {
       id: 'muju-firefly',
-      name: 'Muju Firefly — 무주 반딧불이',
-      subtitle: '부제: A Gentle Wishing Star',
-      badge: '29 EDS (신작)',
-      price: '30 XTZ',
+      name: 'Muju Firefly — 무주 반딧불이 ver.2',
+      subtitle: 'Highlight.xyz 공식 민팅 (30 EDS)',
+      badge: 'Highlight 신작',
+      price: '0.0298 ETH',
       image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
       ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
       objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
+      highlightUrl: 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4',
       zoraUrl: 'https://zora.co/@yesoklab',
       themeColor: 'emerald',
-      desc: '무주 반딧불이 축제 30주년 헌정작. 원고지 자율 타이핑 시(詩)와 밤하늘 초승달, 반딧불이 무리의 유기적 비행 제너러티브 아트. (수익금 100% 무주 청소년 시설 기부)'
+      desc: '무주 반딧불이 축제 30주년 헌정작 ver.2. Highlight.xyz 공식 민팅(Base L2). 원고지 자율 타이핑 시(詩)와 초승달, 반딧불이 유기적 비행. (수익금 100% 무주 청소년 시설 전액 기부)'
     },
     {
       id: 'mugunghwa',
@@ -163,6 +166,17 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
           {/* Badges */}
           <div className="flex flex-wrap items-center justify-center gap-2 relative z-10">
+            <a
+              href={HIGHLIGHT_MUJU_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/50 text-emerald-300 text-[11px] font-black transition-all shadow-sm"
+              title="Highlight.xyz 공식 신작 민팅: Muju Firefly ver.2"
+            >
+              <Sparkles size={13} className="text-yellow-300" />
+              <span>Highlight 신작 민팅 오픈: 무주 반딧불이 ver.2 (30 EDS)</span>
+              <ArrowUpRight size={11} />
+            </a>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-bold">
               <ShieldCheck size={14} /> Ethereum Layer-2 (Base Mainnet)
             </span>
@@ -221,6 +235,14 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
           {/* Quick Action Navigation Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 relative z-10">
+            <a
+              href={HIGHLIGHT_MUJU_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95"
+            >
+              <Sparkles size={16} className="text-yellow-300" /> {lang === 'ko' ? 'Highlight 신작 민팅 (반딧불이 ver.2)' : 'Mint on Highlight (Firefly v2)'} <ArrowUpRight size={14} />
+            </a>
             <a
               href={GECKOTERMINAL_URL}
               target="_blank"
@@ -502,6 +524,18 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   </p>
                 </div>
                 <div className="space-y-1.5 pt-1">
+                  {art.highlightUrl && (
+                    <a 
+                      href={art.highlightUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full py-2 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
+                    >
+                      <Sparkles size={13} className="text-yellow-300" />
+                      <span>Highlight 공식 민팅 (0.0298 ETH)</span>
+                      <ArrowUpRight size={13} />
+                    </a>
+                  )}
                   <div className="grid grid-cols-2 gap-1.5">
                     <button
                       onClick={() => openHdModal(art)}
@@ -637,6 +671,16 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
 
             <div className="flex items-center gap-2">
+              {selectedArtwork.highlightUrl && (
+                <a 
+                  href={selectedArtwork.highlightUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black rounded-lg text-xs transition-colors flex items-center gap-1 shadow-md shadow-emerald-600/30"
+                >
+                  <Sparkles size={12} className="text-yellow-300" /> Highlight 공식 민팅 <ArrowUpRight size={13} />
+                </a>
+              )}
               <a 
                 href={selectedArtwork.objktUrl} 
                 target="_blank" 
@@ -709,8 +753,8 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               </div>
             </div>
 
-            {/* 3 Research Pillars Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* 4 Research Pillars Grid: 3 Blog Series + GitHub Open Archive */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Card 1: Blog Series Part 1 */}
               <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-indigo-500/40 transition-colors flex flex-col justify-between group">
                 <div className="space-y-2">
@@ -719,10 +763,10 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     <span>2026.09</span>
                   </div>
                   <h3 className="text-sm sm:text-base font-black text-white group-hover:text-indigo-300 transition-colors leading-snug">
-                    워싱턴 하원 일정과 입법 절벽의 진실
+                    워싱턴 하원 일정이 사라졌다: 클래리티 법안 표류와 입법 절벽의 진실
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    미국 의회 입법 사이클 및 디지털 자산 시장 구조 법안(FIT21 / Clarity Act)의 상·하원 통과 경로와 SEC vs CFTC 관할권 분쟁에 따른 규제 공백 분석.
+                    미국 의회 입법 사이클 및 디지털 자산 명확성 법안(CLARITY Act / FIT21 연계안)의 입법 동력 정지와 SEC vs CFTC 규제 공백 심층 분석.
                   </p>
                 </div>
                 <a
@@ -744,10 +788,10 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     <span>2026.09</span>
                   </div>
                   <h3 className="text-sm sm:text-base font-black text-white group-hover:text-blue-300 transition-colors leading-snug">
-                    슈퍼팩(Fairshake)과 4대 거래소의 '선물시장 옆문'
+                    정문 막히자 '선물시장' 옆문 열었다: 슈퍼팩과 4대 거래소
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    초당적 가상자산 슈퍼팩의 정치적 파급력과 CME·코인베이스·칼시·비트노미얼의 CFTC 선물 규제 우회 승인을 통한 실질적 제도권 수용 구조 규명.
+                    CFTC 규정 Part 40.2 '자기인증' 옆문과 초당적 슈퍼팩(Fairshake)의 정치 자본, 비트노미얼·칼시·코인베이스·CME의 선물 제도화 전략 규명.
                   </p>
                 </div>
                 <a
@@ -761,7 +805,32 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 </a>
               </div>
 
-              {/* Card 3: GitHub Open Source Repository */}
+              {/* Card 3: Blog Series Part 3 */}
+              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-purple-500/40 transition-colors flex flex-col justify-between group">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <span className="text-purple-400 font-bold">[연재 3편] 기관 매트릭스</span>
+                    <span>2026.09</span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-purple-300 transition-colors leading-snug">
+                    장부에 오른 코인만 살아남는다: 2026 기관 자산 생존 매트릭스
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    바젤 은행 감독 규정·SEC 15c3-1·적격 수탁기관 기준을 뚫고 월가 대차대조표(장부)에 자산으로 계상되는 토큰의 조건과 규제 생존 방정식.
+                  </p>
+                </div>
+                <a
+                  href={BLOG_CLARITY_ACT_3_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pt-2 text-xs font-bold text-purple-400 hover:text-purple-300 flex items-center justify-between border-t border-slate-800/80"
+                >
+                  <span>심층 칼럼 3편 읽기</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </div>
+
+              {/* Card 4: GitHub Open Source Repository */}
               <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-emerald-500/40 transition-colors flex flex-col justify-between group">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
@@ -772,7 +841,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     Research-Clarity-Act 오픈 아카이브
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    증권성(Howey Test) 배제 요건 충족, 온체인 탈중앙 집중 유동성(Uniswap v4)의 자율성 보장, 기관 파트너십을 위한 컴플라이언스 프레임워크 연구.
+                    Howey Test 증권성 배제 요건, Uniswap v4 집중 유동성 자율성, 기관 파트너십을 위한 기술·정책 컴플라이언스 리서치 전문 저장소.
                   </p>
                 </div>
                 <a
