@@ -13,7 +13,8 @@ import {
   CheckCircle2,
   ArrowRightLeft,
   TrendingUp,
-  ArrowUpRight
+  ArrowUpRight,
+  Scale
 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
@@ -33,6 +34,9 @@ const WhitepaperView: React.FC = () => {
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
+  const GITHUB_CLARITY_RESEARCH_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
+  const BLOG_CLARITY_ACT_1_URL = 'https://m.blog.naver.com/yesoklab/224406337160';
+  const BLOG_CLARITY_ACT_2_URL = 'https://m.blog.naver.com/yesoklab/224405538510';
 
   const sections: Section[] = [
     { id: 'intro', titleKo: '1. 서론 및 비전', titleEn: '1. Vision & Intro', icon: BookOpen },
@@ -40,7 +44,8 @@ const WhitepaperView: React.FC = () => {
     { id: 'tokenomics', titleKo: '3. 토크노믹스 & 유니스왑 v4', titleEn: '3. Tokenomics & Uniswap v4', icon: Coins },
     { id: 'utility', titleKo: '4. 토큰 유틸리티', titleEn: '4. Token Utility', icon: Layers },
     { id: 'roadmap', titleKo: '5. 프로젝트 로드맵 (Base 확장)', titleEn: '5. Roadmap', icon: Compass },
-    { id: 'disclaimer', titleKo: '6. 법적 책임 고지', titleEn: '6. Legal Disclaimer', icon: ShieldAlert },
+    { id: 'compliance', titleKo: '6. 제도권 규제 분석 (Clarity Act)', titleEn: '6. Regulatory & Clarity Act', icon: Scale },
+    { id: 'disclaimer', titleKo: '7. 법적 책임 고지', titleEn: '7. Legal Disclaimer', icon: ShieldAlert },
   ];
 
   const distributionData = [
@@ -546,13 +551,120 @@ const WhitepaperView: React.FC = () => {
             </div>
           )}
 
-          {/* 6. DISCLAIMER SECTION */}
+          {/* 6. REGULATORY COMPLIANCE & CLARITY ACT SECTION */}
+          {activeSection === 'compliance' && (
+            <div className="space-y-8 animate-in fade-in duration-500 text-left">
+              <div className="space-y-2 border-b border-slate-800 pb-6">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-indigo-400 text-[10px] uppercase font-black tracking-widest">Section 06</span>
+                  <span className="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-[10px] font-mono font-bold">
+                    Institutional Framework
+                  </span>
+                </div>
+                <h2 className="text-3xl font-black italic uppercase text-white tracking-tight">
+                  {lang === 'ko' ? '6. 제도권 규제 분석 및 클래리티 법안 연구' : '6. Regulatory Framework & Clarity Act'}
+                </h2>
+                <p className="text-sm text-slate-400">
+                  {lang === 'ko'
+                    ? '미국 디지털 자산 시장 구조 법안(FIT21 / Clarity Act), CFTC 선물시장 규제 체계, 증권성(Howey Test) 배제 및 온체인 자율성에 관한 제도권 분석 리포트입니다.'
+                    : 'Institutional analysis on U.S. digital asset market structure legislations (FIT21 / Clarity Act), CFTC regulatory gateways, and Howey Test exemption.'}
+                </p>
+              </div>
+
+              {/* Research Summary Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-slate-900/60 p-6 rounded-3xl border border-slate-800 space-y-4">
+                  <div className="flex items-center gap-2 text-indigo-400">
+                    <Scale size={20} />
+                    <h3 className="text-base font-black text-white uppercase italic">
+                      {lang === 'ko' ? '탈중앙화 기준 충족 & Howey Test 증권성 배제' : 'Decentralization & Howey Test Exemption'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    {lang === 'ko'
+                      ? '$WR 토큰은 중앙화된 경영진의 노력에 의한 배당이나 지분 가치 보장이 없는 순수 디지털 문화유산 헌정·기록 및 온체인 AMM 유틸리티 토큰입니다. 스마트 컨트랙트 배포 후 임의 소각이나 지분 회수가 불가능한 불변성(Immutability)을 확보하여 미 증권법상 투자계약(Investment Contract) 요건을 배제하도록 설계되었습니다.'
+                      : '$WR functions strictly as an on-chain heritage curation and AMM utility asset without enterprise profit-sharing, satisfying non-security utility criteria.'}
+                  </p>
+                  <ul className="text-xs text-slate-400 space-y-1.5 font-sans">
+                    <li>✓ 완전 불변형 ERC-20 스마트 컨트랙트 배포</li>
+                    <li>✓ Uniswap v4 탈중앙 AMM을 통한 무개입 유동성 유지</li>
+                    <li>✓ 공익적 헤리티지(무주 반딧불이·순국선열 헌정) 연계</li>
+                  </ul>
+                </div>
+
+                <div className="bg-slate-900/60 p-6 rounded-3xl border border-slate-800 space-y-4">
+                  <div className="flex items-center gap-2 text-blue-400">
+                    <TrendingUp size={20} />
+                    <h3 className="text-base font-black text-white uppercase italic">
+                      {lang === 'ko' ? '선물시장(CFTC)과 제도권 수용 구조 분석' : 'CFTC Derivatives & Institutional Flow'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    {lang === 'ko'
+                      ? '최근 CME, 코인베이스, 칼시, 비트노미얼 등 주요 거래소들이 CFTC 선물 규제 인가를 통해 현물 시장의 제도권 진입을 이끌어내는 흐름을 심층 분석합니다. WRISTORY는 이러한 미국 금융 정책의 구조적 변화에 발맞추어 글로벌 표준에 부합하는 온체인 투명성을 견지합니다.'
+                      : 'Deep research into institutional adoption mechanics via CFTC-regulated derivative markets (CME, Coinbase, Kalshi) and global market readiness.'}
+                  </p>
+                  <ul className="text-xs text-slate-400 space-y-1.5 font-sans">
+                    <li>✓ 미국 의회 FIT21 & Clarity Act 입법 타임라인 모니터링</li>
+                    <li>✓ 초당적 가상자산 슈퍼팩(Fairshake) 정치 지형 분석</li>
+                    <li>✓ Base L2 온체인 투명 회계 및 스냅샷 검증 제공</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Research Links Box */}
+              <div className="bg-gradient-to-r from-indigo-950/50 via-slate-900 to-blue-950/50 border border-indigo-500/30 rounded-3xl p-6 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <span className="text-[10px] text-indigo-400 font-mono font-bold uppercase">
+                      Open Source Research Papers
+                    </span>
+                    <h4 className="text-lg font-black text-white italic uppercase">
+                      Research-Clarity-Act 연구 리포지토리 및 심층 연재 칼럼
+                    </h4>
+                    <p className="text-xs text-slate-300 mt-1">
+                      공식 GitHub 저장소와 네이버 블로그에 기고된 입법·규제 전문 리서치를 확인하실 수 있습니다.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 shrink-0">
+                    <a
+                      href={GITHUB_CLARITY_RESEARCH_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all border border-slate-700 flex items-center gap-2 shadow"
+                    >
+                      <BookOpen size={14} className="text-blue-400" /> GitHub Repo <ExternalLink size={12} />
+                    </a>
+                    <a
+                      href={BLOG_CLARITY_ACT_1_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow"
+                    >
+                      <span>연재 1편</span> <ArrowUpRight size={13} />
+                    </a>
+                    <a
+                      href={BLOG_CLARITY_ACT_2_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow"
+                    >
+                      <span>연재 2편</span> <ArrowUpRight size={13} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 7. DISCLAIMER SECTION */}
           {activeSection === 'disclaimer' && (
             <div className="space-y-8 animate-in fade-in duration-500 text-left">
               <div className="space-y-2 border-b border-slate-800 pb-6">
-                <span className="text-blue-500 text-[10px] uppercase font-black tracking-widest">Section 06</span>
+                <span className="text-blue-500 text-[10px] uppercase font-black tracking-widest">Section 07</span>
                 <h2 className="text-3xl font-black italic uppercase text-white tracking-tight">
-                  {lang === 'ko' ? '6. 법적 책임 고지 (Legal Disclaimer)' : '6. Legal Disclaimer'}
+                  {lang === 'ko' ? '7. 법적 책임 고지 (Legal Disclaimer)' : '7. Legal Disclaimer'}
                 </h2>
               </div>
 
