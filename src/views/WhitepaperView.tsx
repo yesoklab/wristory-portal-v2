@@ -35,8 +35,9 @@ const WhitepaperView: React.FC = () => {
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
   const GITHUB_CLARITY_RESEARCH_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
-  const BLOG_CLARITY_ACT_1_URL = 'https://m.blog.naver.com/yesoklab/224406337160';
-  const BLOG_CLARITY_ACT_2_URL = 'https://m.blog.naver.com/yesoklab/224405538510';
+  const BLOG_CLARITY_ACT_1_URL = 'https://blog.naver.com/yesoklab/224405334699';
+  const BLOG_CLARITY_ACT_2_URL = 'https://blog.naver.com/yesoklab/224405538510';
+  const BLOG_CLARITY_ACT_3_URL = 'https://blog.naver.com/yesoklab/224406451272';
 
   const sections: Section[] = [
     { id: 'intro', titleKo: '1. 서론 및 비전', titleEn: '1. Vision & Intro', icon: BookOpen },
@@ -651,6 +652,14 @@ const WhitepaperView: React.FC = () => {
                       className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow"
                     >
                       <span>연재 2편</span> <ArrowUpRight size={13} />
+                    </a>
+                    <a
+                      href={BLOG_CLARITY_ACT_3_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow"
+                    >
+                      <span>연재 3편</span> <ArrowUpRight size={13} />
                     </a>
                   </div>
                 </div>
