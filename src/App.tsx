@@ -67,7 +67,7 @@ const App: React.FC = () => {
   const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal-v2';
   const NAVER_BLOG_URL = 'https://blog.naver.com/yesoklab';
   const ZORA_URL = 'https://zora.co/@yesoklab';
-  const HIGHLIGHT_URL = 'https://highlight.xyz';
+  const HIGHLIGHT_URL = 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4';
   const OBJKT_URL = 'https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created';
   const OBJKT_FIREFLY_URL = 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
@@ -245,6 +245,16 @@ const App: React.FC = () => {
               <Sparkles size={14} className="text-blue-400" /> AI 큐레이터
             </button>
             <a 
+              href={HIGHLIGHT_URL} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-black text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-1 whitespace-nowrap bg-emerald-500/10 px-2.5 py-1.5 rounded-xl border border-emerald-500/30 hover:bg-emerald-500/20 shadow-sm"
+              title="Highlight.xyz 공식 민팅: 무주 반딧불이 ver.2"
+            >
+              <Sparkles size={13} className="text-yellow-300" />
+              Highlight 민팅 <ExternalLink size={11} />
+            </a>
+            <a 
               href={RESEARCH_CLARITY_URL} 
               target="_blank" 
               rel="noopener noreferrer"
@@ -354,6 +364,19 @@ const App: React.FC = () => {
               <span>AI 큐레이터</span>
               <Sparkles size={16} />
             </button>
+            <a 
+              href={HIGHLIGHT_URL}
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              className="text-base font-black text-emerald-400 flex justify-between items-center py-2 border-t border-slate-800/60"
+            >
+              <span className="flex items-center gap-2">
+                <Sparkles size={16} className="text-yellow-300" />
+                Highlight 신작 민팅 (무주 반딧불이 ver.2)
+              </span>
+              <ExternalLink size={16} />
+            </a>
             <a 
               href={RESEARCH_CLARITY_URL}
               target="_blank" 
@@ -617,11 +640,11 @@ const App: React.FC = () => {
                 href={HIGHLIGHT_URL} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="px-3.5 py-2 bg-amber-950/40 hover:bg-amber-900/60 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
-                title="Highlight Generative Art"
+                className="px-3.5 py-2 bg-emerald-950/50 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/40 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 active:scale-95 shadow-sm"
+                title="Highlight.xyz 무주 반딧불이 ver.2 공식 민팅 페이지"
               >
-                <span className="w-2 h-2 rounded-full bg-amber-400" />
-                <span>Highlight</span>
+                <Sparkles size={13} className="text-yellow-300" />
+                <span>Highlight 민팅 (반딧불이 v2)</span>
                 <ExternalLink size={12} />
               </a>
               <a 
