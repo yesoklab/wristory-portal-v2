@@ -23,7 +23,8 @@ import {
   Mail,
   RefreshCw,
   ShieldAlert,
-  Github
+  Github,
+  Scale
 } from 'lucide-react';
 import LandingPageView from './views/LandingPageView';
 import GuideView from './views/GuideView';
@@ -70,6 +71,7 @@ const App: React.FC = () => {
   const OBJKT_URL = 'https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created';
   const OBJKT_FIREFLY_URL = 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
+  const RESEARCH_CLARITY_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
 
   useEffect(() => {
     checkApiKeyStatus();
@@ -243,6 +245,16 @@ const App: React.FC = () => {
               <Sparkles size={14} className="text-blue-400" /> AI 큐레이터
             </button>
             <a 
+              href={RESEARCH_CLARITY_URL} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-indigo-300 hover:text-indigo-200 transition-colors flex items-center gap-1 whitespace-nowrap bg-indigo-500/10 px-2.5 py-1.5 rounded-xl border border-indigo-500/30 hover:bg-indigo-500/20 shadow-sm"
+              title="미국 클래리티 법안 & 제도권 규제 분석 연구 (Research-Clarity-Act)"
+            >
+              <Scale size={13} className="text-indigo-400" />
+              규제 리서치 <ExternalLink size={11} />
+            </a>
+            <a 
               href={NAVER_BLOG_URL} 
               target="_blank" 
               rel="noopener noreferrer"
@@ -343,11 +355,24 @@ const App: React.FC = () => {
               <Sparkles size={16} />
             </button>
             <a 
+              href={RESEARCH_CLARITY_URL}
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              className="text-base font-bold text-indigo-400 flex justify-between items-center py-2 border-t border-slate-800/60"
+            >
+              <span className="flex items-center gap-2">
+                <Scale size={16} />
+                규제 리서치 (Research-Clarity-Act)
+              </span>
+              <ExternalLink size={16} />
+            </a>
+            <a 
               href={NAVER_BLOG_URL}
               target="_blank" 
               rel="noopener noreferrer"
               onClick={() => setIsMenuOpen(false)}
-              className="text-base font-bold text-emerald-400 flex justify-between items-center py-2 border-t border-slate-800/60"
+              className="text-base font-bold text-emerald-400 flex justify-between items-center py-2"
             >
               <span className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -608,6 +633,17 @@ const App: React.FC = () => {
               >
                 <Send size={14} className="text-cyan-400" />
                 <span>텔레그램 커뮤니티</span>
+                <ExternalLink size={12} />
+              </a>
+              <a 
+                href={RESEARCH_CLARITY_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-3.5 py-2 bg-indigo-950/40 hover:bg-indigo-900/60 text-indigo-300 border border-indigo-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                title="미국 클래리티 법안 정책 연구 리포지토리"
+              >
+                <Scale size={14} className="text-indigo-400" />
+                <span>Research-Clarity-Act</span>
                 <ExternalLink size={12} />
               </a>
               <a 
