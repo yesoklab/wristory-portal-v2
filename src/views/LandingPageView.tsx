@@ -18,7 +18,10 @@ import {
   X,
   ZoomIn,
   ZoomOut,
-  Eye
+  Eye,
+  Scale,
+  BookOpen,
+  FileText
 } from 'lucide-react';
 
 interface LandingPageViewProps {
@@ -32,6 +35,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
+  const GITHUB_CLARITY_RESEARCH_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
+  const BLOG_CLARITY_ACT_1_URL = 'https://m.blog.naver.com/yesoklab/224406337160';
+  const BLOG_CLARITY_ACT_2_URL = 'https://m.blog.naver.com/yesoklab/224405538510';
 
   // HD Lightbox inspection state
   const [selectedArtwork, setSelectedArtwork] = useState<any | null>(null);
@@ -654,7 +660,137 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
         </div>
       )}
 
-      {/* 6. Migration Callout Block */}
+      {/* 7. Institutional & Regulatory Policy Research Section (Research-Clarity-Act) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-950 border border-indigo-500/30 p-6 sm:p-10 shadow-2xl overflow-hidden text-left">
+          {/* Ambient background glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-10 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 space-y-6">
+            {/* Header badges & title */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="px-3 py-1 bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 text-xs font-black uppercase rounded-full flex items-center gap-1.5">
+                    <Scale size={13} className="text-indigo-400" /> INSTITUTIONAL RESEARCH & COMPLIANCE
+                  </span>
+                  <span className="px-2.5 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-mono font-bold rounded-full">
+                    U.S. Clarity Act & Market Structure
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white italic uppercase tracking-tight">
+                  {lang === 'ko' 
+                    ? '글로벌 제도화 & 미국 클래리티 법안(Clarity Act) 정책 연구' 
+                    : 'Institutional Policy & U.S. Clarity Act Research'}
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl leading-relaxed">
+                  {lang === 'ko'
+                    ? 'YesOkLab & WRISTORY는 단순한 온체인 아트를 넘어, 미 의회 디지털 자산 시장 구조 법안(FIT21 / Clarity Act)과 선물시장(CFTC)을 중심으로 급변하는 글로벌 규제 환경을 선제 분석하여 프로젝트의 법적 영속성과 제도권 적격성을 입증합니다.'
+                    : 'Analyzing the evolving U.S. congressional legislative cycles (FIT21 / Clarity Act) and CFTC derivative frameworks to build a compliant, sustainable on-chain heritage architecture.'}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                <a
+                  href={GITHUB_CLARITY_RESEARCH_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all border border-slate-700 flex items-center gap-2 shadow active:scale-95"
+                >
+                  <BookOpen size={14} className="text-blue-400" /> GitHub Research 원문 <ExternalLink size={12} />
+                </a>
+                <button
+                  onClick={() => { onNavigate('WHITEPAPER'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  className="px-4 py-2.5 bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white rounded-xl text-xs font-bold transition-all border border-indigo-500/40 flex items-center gap-2 active:scale-95"
+                >
+                  <FileText size={14} /> {lang === 'ko' ? '백서 규제 챕터' : 'Whitepaper Chapter'} <ChevronRight size={13} />
+                </button>
+              </div>
+            </div>
+
+            {/* 3 Research Pillars Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Card 1: Blog Series Part 1 */}
+              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-indigo-500/40 transition-colors flex flex-col justify-between group">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <span className="text-amber-400 font-bold">[연재 1편] 워싱턴 리포트</span>
+                    <span>2026.09</span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-indigo-300 transition-colors leading-snug">
+                    워싱턴 하원 일정과 입법 절벽의 진실
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    미국 의회 입법 사이클 및 디지털 자산 시장 구조 법안(FIT21 / Clarity Act)의 상·하원 통과 경로와 SEC vs CFTC 관할권 분쟁에 따른 규제 공백 분석.
+                  </p>
+                </div>
+                <a
+                  href={BLOG_CLARITY_ACT_1_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pt-2 text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center justify-between border-t border-slate-800/80"
+                >
+                  <span>심층 칼럼 1편 읽기</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </div>
+
+              {/* Card 2: Blog Series Part 2 */}
+              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-blue-500/40 transition-colors flex flex-col justify-between group">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <span className="text-blue-400 font-bold">[연재 2편] 규제 메커니즘</span>
+                    <span>2026.09</span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-blue-300 transition-colors leading-snug">
+                    슈퍼팩(Fairshake)과 4대 거래소의 '선물시장 옆문'
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    초당적 가상자산 슈퍼팩의 정치적 파급력과 CME·코인베이스·칼시·비트노미얼의 CFTC 선물 규제 우회 승인을 통한 실질적 제도권 수용 구조 규명.
+                  </p>
+                </div>
+                <a
+                  href={BLOG_CLARITY_ACT_2_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pt-2 text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center justify-between border-t border-slate-800/80"
+                >
+                  <span>심층 칼럼 2편 읽기</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </div>
+
+              {/* Card 3: GitHub Open Source Repository */}
+              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-emerald-500/40 transition-colors flex flex-col justify-between group">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <span className="text-emerald-400 font-bold">[GitHub Open Source]</span>
+                    <span>Public Repo</span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-emerald-300 transition-colors leading-snug">
+                    Research-Clarity-Act 오픈 아카이브
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    증권성(Howey Test) 배제 요건 충족, 온체인 탈중앙 집중 유동성(Uniswap v4)의 자율성 보장, 기관 파트너십을 위한 컴플라이언스 프레임워크 연구.
+                  </p>
+                </div>
+                <a
+                  href={GITHUB_CLARITY_RESEARCH_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pt-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-slate-800/80"
+                >
+                  <span>GitHub 연구 저장소 방문</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Migration Callout Block */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-blue-500/30 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl text-left">
           <div className="space-y-2">
