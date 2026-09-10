@@ -34,10 +34,11 @@ import WalletView from './views/WalletView';
 import WhitepaperView from './views/WhitepaperView';
 import MigrationPortalView from './views/MigrationPortalView';
 import CollectionView from './views/CollectionView';
+import RegulatoryResearchView from './views/RegulatoryResearchView';
 import { getCuratorResponse } from './services/geminiService';
 
 export type ViewMode = 'PUBLIC' | 'ADMIN';
-export type PublicTab = 'HOME' | 'MIGRATION' | 'COLLECTIONS' | 'WHITEPAPER' | 'WALLET' | 'GUIDE' | 'AI';
+export type PublicTab = 'HOME' | 'MIGRATION' | 'COLLECTIONS' | 'RESEARCH' | 'WHITEPAPER' | 'WALLET' | 'GUIDE' | 'AI';
 
 declare global {
   interface Window {
@@ -128,6 +129,7 @@ const App: React.FC = () => {
       switch (activeTab) {
         case 'HOME': return <LandingPageView lang={lang} onNavigate={(tab: any) => setActiveTab(tab)} hasApiKey={hasApiKey} />;
         case 'COLLECTIONS': return <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6"><CollectionView /></div>;
+        case 'RESEARCH': return <RegulatoryResearchView lang={lang} />;
         case 'MIGRATION': return <MigrationPortalView lang={lang} />;
         case 'WHITEPAPER': return <WhitepaperView />;
         case 'WALLET': return <WalletView lang={lang} />;
@@ -213,6 +215,13 @@ const App: React.FC = () => {
               className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'COLLECTIONS' ? 'text-amber-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
             >
               컬렉션 / Collections
+            </button>
+            <button 
+              onClick={() => setActiveTab('RESEARCH')} 
+              className={`text-xs font-black transition-all flex items-center gap-1.5 px-3 py-1.5 rounded-xl whitespace-nowrap ${activeTab === 'RESEARCH' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30'}`}
+              title="YesOkLab 규제·파생시장 리서치 & 장부 등재 코인 매트릭스"
+            >
+              <Scale size={14} className="text-indigo-300" /> 규제 리서치·매트릭스
             </button>
             <button 
               onClick={() => setActiveTab('MIGRATION')} 
@@ -332,6 +341,12 @@ const App: React.FC = () => {
               className={`text-base font-bold text-left py-2 ${activeTab === 'COLLECTIONS' ? 'text-amber-400' : 'text-slate-300'}`}
             >
               컬렉션 (Collections)
+            </button>
+            <button 
+              onClick={() => { setActiveTab('RESEARCH'); setIsMenuOpen(false); }} 
+              className={`text-base font-black text-left py-2 flex items-center gap-2 ${activeTab === 'RESEARCH' ? 'text-indigo-400' : 'text-indigo-300'}`}
+            >
+              <Scale size={18} /> 규제 리서치 & 장부 등재 매트릭스
             </button>
             <button 
               onClick={() => { setActiveTab('MIGRATION'); setIsMenuOpen(false); }} 
