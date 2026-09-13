@@ -12,6 +12,7 @@ export interface CollectionItem {
   image: string;
   ipfsUrl?: string;
   url: string;
+  highlightUrl?: string;
   zoraUrl?: string;
   isNew?: boolean;
   isMasterpiece?: boolean;
@@ -23,20 +24,54 @@ export interface CollectionItem {
 
 const collections: CollectionItem[] = [
   { 
-    id: 'muju-firefly', 
-    name: 'Muju Firefly — 무주 반딧불이 (부제: A Gentle Wishing Star)', 
-    price: '30 XTZ', 
-    count: '29 EDS', 
-    editionBadge: '29 EDS 한정판',
+    id: 'lee-hyo-seok-buckwheat-flowers', 
+    name: '이효석 — 메밀꽃 필 무렵 (When Buckwheat Flowers Bloom)', 
+    price: 'Highlight / Zora', 
+    count: 'Highlight 신작', 
+    editionBadge: 'NEW MINT 오늘 민팅',
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q', 
+    ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q',
+    url: 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa',
+    highlightUrl: 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa',
+    zoraUrl: 'https://zora.co/coin/base:0x5ea3b56bad0b76ad6d9855581ff15e66afdce993?referrer=0x58346be51802b17a3c5bb110df14f5487a92dbd6',
+    isNew: true,
+    isMasterpiece: true,
+    isRecentMint: true,
+    category: 'RECENT',
+    desc: '한국 근대 단편문학의 백미 가산(可山) 이효석 선생의 서정적 문학 세계를 온체인 제너러티브 아트로 승화시킨 신작. 달빛 아래 소금을 뿌린 듯 흐뭇이 하얗게 피어난 메밀꽃밭의 정취를 블록체인에 영구 보존합니다. Highlight 공식 민팅 및 Zora 온체인 코인 연동.'
+  },
+  { 
+    id: 'muju-firefly-v2', 
+    name: 'Muju Firefly (무주 반딧불이) ver.2 — Highlight.xyz 공식 민팅', 
+    price: '0.0298 ETH', 
+    count: '30 EDS', 
+    editionBadge: 'Highlight 공식 신작 (30 EDS)',
     image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy', 
     ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
-    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
+    url: 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4',
+    highlightUrl: 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4',
     zoraUrl: 'https://zora.co/@yesoklab',
     isNew: true,
     isMasterpiece: true,
     isRecentMint: true,
     category: 'RECENT',
-    desc: '무주 반딧불이 축제 30주년 기념 헌정작. 잃어버린 손톱이 밤하늘 초승달이 되는 헌시(원고지 자율 타이핑)와 청정 무주 밤하늘을 수놓는 반딧불이 무리의 유기적 비행을 구현한 순수 Canvas 제너러티브 마스터피스. (수익금 100% 무주 청소년 시설 기부)'
+    desc: '무주 반딧불이 축제 30주년 기념 헌정작 ver.2 (Base 메인넷, Highlight.xyz 공식 민팅). 잃어버린 손톱이 밤하늘 초승달이 되는 헌시(원고지 자율 타이핑)와 청정 무주 밤하늘을 수놓는 반딧불이 무리의 유기적 비행을 구현한 순수 Canvas 제너러티브 마스터피스. (판매 수익금 100% 무주 청소년 시설 전액 기부)'
+  },
+  { 
+    id: 'muju-firefly', 
+    name: 'Muju Firefly — 무주 반딧불이 ver.1 (부제: A Gentle Wishing Star)', 
+    price: '30 XTZ', 
+    count: '29 EDS', 
+    editionBadge: '29 EDS Tezos 아카이브',
+    image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy', 
+    ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
+    url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
+    zoraUrl: 'https://zora.co/@yesoklab',
+    isNew: false,
+    isMasterpiece: true,
+    isRecentMint: true,
+    category: 'RECENT',
+    desc: '무주 반딧불이 축제 30주년 기념 헌정작 ver.1 (Tezos OBJKT). 잃어버린 손톱이 밤하늘 초승달이 되는 헌시와 반딧불이 무리의 비행을 구현한 순수 Canvas 제너러티브 아트. (수익금 전액 기부)'
   },
   { 
     id: 'mugunghwa-bloomed-by-fallen-patriots', 
@@ -307,6 +342,19 @@ const CollectionView: React.FC = () => {
 
               {/* Specs & Action Buttons */}
               <div className="space-y-2 pt-1 border-t border-slate-800/80">
+                {col.highlightUrl && (
+                  <a 
+                    href={col.highlightUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full py-2 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
+                  >
+                    <Sparkles size={13} className="text-yellow-300" />
+                    <span>Highlight 공식 민팅 (0.0298 ETH)</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                )}
+
                 <div className="flex items-center justify-between text-[11px] text-slate-400">
                   <span className="flex items-center gap-1">
                     <Tag size={11} className="text-amber-400" /> {col.price}
@@ -328,9 +376,13 @@ const CollectionView: React.FC = () => {
                     href={col.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="py-1.5 px-2 bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-black rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30"
+                    className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1 border ${
+                      col.highlightUrl
+                        ? 'bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-black border-emerald-500/30'
+                        : 'bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-black border-amber-500/30'
+                    }`}
                   >
-                    <span>OBJKT 토큰</span>
+                    <span>{col.highlightUrl ? 'Highlight' : 'OBJKT 토큰'}</span>
                     <ArrowUpRight size={12} />
                   </a>
                 </div>
@@ -482,15 +534,28 @@ const CollectionView: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2 w-full sm:w-auto">
-              <a
-                href={selectedArtwork.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 sm:flex-none py-2 px-4 bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 shadow"
-              >
-                <span>OBJKT 토큰 보기</span>
-                <ArrowUpRight size={13} />
-              </a>
+              {selectedArtwork.highlightUrl ? (
+                <a
+                  href={selectedArtwork.highlightUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none py-2 px-4 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 shadow"
+                >
+                  <Sparkles size={13} className="text-yellow-300" />
+                  <span>Highlight 공식 민팅 (0.0298 ETH)</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              ) : (
+                <a
+                  href={selectedArtwork.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none py-2 px-4 bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 shadow"
+                >
+                  <span>OBJKT 토큰 보기</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              )}
               {selectedArtwork.ipfsUrl && (
                 <a
                   href={selectedArtwork.ipfsUrl}
