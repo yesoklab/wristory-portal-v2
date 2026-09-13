@@ -36,6 +36,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
   const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
   const HIGHLIGHT_MUJU_URL = 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4';
+  const HIGHLIGHT_BUCKWHEAT_URL = 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa';
+  const ZORA_BUCKWHEAT_URL = 'https://zora.co/coin/base:0x5ea3b56bad0b76ad6d9855581ff15e66afdce993?referrer=0x58346be51802b17a3c5bb110df14f5487a92dbd6';
+  const IPFS_BUCKWHEAT_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q';
   const GITHUB_CLARITY_RESEARCH_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
   const BLOG_CLARITY_ACT_1_URL = 'https://blog.naver.com/yesoklab/224405334699';
   const BLOG_CLARITY_ACT_2_URL = 'https://blog.naver.com/yesoklab/224405538510';
@@ -60,18 +63,32 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
   const recentArtworks = [
     {
+      id: 'buckwheat-flowers',
+      name: '이효석 — 메밀꽃 필 무렵 (When Buckwheat Flowers Bloom)',
+      subtitle: 'Highlight.xyz 공식 민팅 & Zora 온체인 코인',
+      badge: 'NEW MINT 오늘 민팅',
+      price: 'Highlight / Zora',
+      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q',
+      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q',
+      objktUrl: 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa',
+      highlightUrl: 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa',
+      zoraUrl: 'https://zora.co/coin/base:0x5ea3b56bad0b76ad6d9855581ff15e66afdce993?referrer=0x58346be51802b17a3c5bb110df14f5487a92dbd6',
+      themeColor: 'emerald',
+      desc: '한국 근대 단편문학의 백미 가산(可山) 이효석 선생의 서정적 문학 세계를 온체인 제너러티브 아트로 승화시킨 신작. 달빛 아래 소금을 뿌린 듯 흐뭇이 하얗게 피어난 메밀꽃밭의 정취를 블록체인에 영구 보존합니다.'
+    },
+    {
       id: 'muju-firefly',
       name: 'Muju Firefly — 무주 반딧불이 ver.2',
       subtitle: 'Highlight.xyz 공식 민팅 (30 EDS)',
-      badge: 'Highlight 신작',
+      badge: 'Highlight 공식',
       price: '0.0298 ETH',
       image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
       ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
       objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
       highlightUrl: 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4',
       zoraUrl: 'https://zora.co/@yesoklab',
-      themeColor: 'emerald',
-      desc: '무주 반딧불이 축제 30주년 헌정작 ver.2. Highlight.xyz 공식 민팅(Base L2). 원고지 자율 타이핑 시(詩)와 초승달, 반딧불이 유기적 비행. (수익금 100% 무주 청소년 시설 전액 기부)'
+      themeColor: 'teal',
+      desc: '무주 반딧불이 축제 30주년 헌정작 ver.2. 원고지 자율 타이핑 시(詩)와 초승달, 반딧불이 유기적 비행. (수익금 100% 무주 청소년 시설 전액 기부)'
     },
     {
       id: 'mugunghwa',
@@ -85,19 +102,6 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
       zoraUrl: 'https://zora.co/@yesoklab',
       themeColor: 'blue',
       desc: '독립운동가들의 넋과 한을 태극과 DLA 확산 나뭇가지, 십자수 스티치 제너러티브 기법으로 형상화한 마스터피스.'
-    },
-    {
-      id: 'han-hon-maek',
-      name: '恨·魂·脈 — Han, Hon, Maek',
-      subtitle: 'WRISTORY Digital Heritage',
-      badge: '33 EDS',
-      price: '3 XTZ',
-      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum',
-      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiho2c6bqxxhdpz6mixcjc3e6wxmamqnit5sntnrfqw5ugdzd5exum',
-      objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/31',
-      zoraUrl: 'https://zora.co/@yesoklab',
-      themeColor: 'red',
-      desc: '33인 독립운동가의 넋과 맥을 혈액이 유기적으로 맥동하듯 피어나는 제너러티브 성장 시뮬레이션(Growth Simulation) 기법으로 형상화.'
     },
     {
       id: 'energy',
@@ -159,52 +163,27 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
         </div>
       </div>
 
-      {/* 2. Hero Section (Base & Tezos Dual Ecosystem) */}
+      {/* 2. Hero Section (Base & Tezos Dual Ecosystem) - Refined & High-Impact */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl bg-gradient-to-b from-slate-900/80 via-slate-900/50 to-slate-950/90 border border-slate-800 p-6 sm:p-12 text-center space-y-6 overflow-hidden shadow-2xl">
+        <div className="relative rounded-3xl bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-950/95 border border-slate-800 p-6 sm:p-12 text-center space-y-6 overflow-hidden shadow-2xl">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#3b82f615_0%,_transparent_70%)] pointer-events-none" />
 
-          {/* Badges */}
+          {/* Focused Ecosystem Badges */}
           <div className="flex flex-wrap items-center justify-center gap-2 relative z-10">
-            <a
-              href={HIGHLIGHT_MUJU_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/50 text-emerald-300 text-[11px] font-black transition-all shadow-sm"
-              title="Highlight.xyz 공식 신작 민팅: Muju Firefly ver.2"
-            >
-              <Sparkles size={13} className="text-yellow-300" />
-              <span>Highlight 신작 민팅 오픈: 무주 반딧불이 ver.2 (30 EDS)</span>
-              <ArrowUpRight size={11} />
-            </a>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-bold">
               <ShieldCheck size={14} /> Ethereum Layer-2 (Base Mainnet)
             </span>
-            <a 
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[11px] font-bold transition-all"
-            >
-              <TrendingUp size={13} className="text-amber-400" />
-              GeckoTerminal Live ($0.04416) <ExternalLink size={11} />
-            </a>
-            <a 
-              href={UNISWAP_V4_POSITION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[11px] font-bold transition-all"
-            >
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Uniswap v4 Live (Base #2953119) <ExternalLink size={11} />
-            </a>
+              Uniswap v4 & GeckoTerminal Live
+            </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[11px] font-bold">
               <Camera size={14} /> 1,063 Snapshot Wallets
             </span>
           </div>
 
-          {/* Main Title */}
-          <div className="space-y-2 relative z-10">
+          {/* Main Impact Title */}
+          <div className="space-y-2 relative z-10 max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white uppercase italic">
               THE BRIDGE OF TIME & HERITAGE
             </h1>
@@ -213,7 +192,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </p>
           </div>
 
-          {/* Key Metrics Dashboard with Uniswap v4 live stats & GeckoTerminal */}
+          {/* Key Metrics Dashboard */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto bg-slate-950/70 border border-slate-800/80 p-3 sm:p-5 rounded-2xl relative z-10">
             <div className="text-center">
               <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Token Price</p>
@@ -233,38 +212,52 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
           </div>
 
-          {/* Quick Action Navigation Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 relative z-10">
-            <a
-              href={HIGHLIGHT_MUJU_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95"
-            >
-              <Sparkles size={16} className="text-yellow-300" /> {lang === 'ko' ? 'Highlight 신작 민팅 (반딧불이 ver.2)' : 'Mint on Highlight (Firefly v2)'} <ArrowUpRight size={14} />
-            </a>
-            <a
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-amber-600/30 flex items-center gap-2 active:scale-95"
-            >
-              <TrendingUp size={16} /> {lang === 'ko' ? 'GeckoTerminal 실시간 차트' : 'GeckoTerminal Live Chart'} <ArrowUpRight size={14} />
-            </a>
-            <a
-              href={UNISWAP_SWAP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95"
-            >
-              <Coins size={16} /> {lang === 'ko' ? 'Uniswap v4 에서 $WR 거래하기' : 'Trade $WR on Uniswap v4'} <ArrowUpRight size={14} />
-            </a>
-            <button
-              onClick={() => onNavigate('MIGRATION')}
-              className="px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-blue-600/30 flex items-center gap-2 active:scale-95"
-            >
-              <ArrowRightLeft size={16} /> {lang === 'ko' ? 'Base 1:1 토큰 마이그레이션 포털' : 'Base 1:1 Migration Portal'}
-            </button>
+          {/* Streamlined Action Hub: Primary CTAs + Clean Quick Links */}
+          <div className="space-y-4 pt-1 relative z-10">
+            {/* Primary High-Impact Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                onClick={() => onNavigate('MIGRATION')}
+                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-xl text-sm font-black uppercase transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 active:scale-95"
+              >
+                <ArrowRightLeft size={17} /> {lang === 'ko' ? '1:1 Base 토큰 마이그레이션' : 'Base 1:1 Migration Portal'}
+              </button>
+              <button
+                onClick={() => { onNavigate('COLLECTIONS'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-sm font-black uppercase transition-all shadow-lg shadow-amber-600/30 flex items-center justify-center gap-2 active:scale-95"
+              >
+                <Sparkles size={17} className="text-yellow-200" /> {lang === 'ko' ? '컬렉션 및 최신 민팅 감상' : 'Explore Collections'}
+              </button>
+            </div>
+
+            {/* Quick Links Capsule Bar: DEX & Minting & Charts */}
+            <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-slate-400">
+              <span className="text-[11px] uppercase tracking-wider text-slate-400 mr-1 hidden sm:inline">빠른 이동:</span>
+              <a
+                href={HIGHLIGHT_BUCKWHEAT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-all flex items-center gap-1 active:scale-95"
+              >
+                <Sparkles size={12} className="text-yellow-300" /> 메밀꽃 필 무렵 민팅 <ArrowUpRight size={11} />
+              </a>
+              <a
+                href={UNISWAP_SWAP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center gap-1 active:scale-95"
+              >
+                <Coins size={12} className="text-emerald-400" /> Uniswap v4 스왑 <ExternalLink size={10} />
+              </a>
+              <a
+                href={GECKOTERMINAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center gap-1 active:scale-95"
+              >
+                <TrendingUp size={12} className="text-amber-400" /> GeckoTerminal 차트 <ExternalLink size={10} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -523,45 +516,59 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     {art.desc}
                   </p>
                 </div>
-                <div className="space-y-1.5 pt-1">
-                  {art.highlightUrl && (
+                <div className="space-y-2 pt-2">
+                  {/* Primary Direct Action */}
+                  {art.highlightUrl ? (
                     <a 
                       href={art.highlightUrl} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-full py-2 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
+                      className="w-full py-2.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
                     >
                       <Sparkles size={13} className="text-yellow-300" />
-                      <span>Highlight 공식 민팅 (0.0298 ETH)</span>
+                      <span>{art.id === 'buckwheat-flowers' ? 'Highlight 신작 민팅하기' : 'Highlight 민팅하기'}</span>
                       <ArrowUpRight size={13} />
                     </a>
-                  )}
-                  <div className="grid grid-cols-2 gap-1.5">
-                    <button
-                      onClick={() => openHdModal(art)}
-                      className="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg text-[11px] font-bold transition-all flex items-center justify-center gap-1 border border-slate-700"
-                    >
-                      <Maximize2 size={12} className="text-amber-400" /> {lang === 'ko' ? 'HD 확대' : 'HD Zoom'}
-                    </button>
+                  ) : (
                     <a 
                       href={art.objktUrl} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-full py-1.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-lg text-[11px] font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30"
+                      className="w-full py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-600/30 active:scale-95"
                     >
-                      OBJKT <ArrowUpRight size={11} />
-                    </a>
-                  </div>
-                  {art.zoraUrl && (
-                    <a 
-                      href={art.zoraUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-full py-1 bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white rounded-lg text-[10px] font-bold transition-all flex items-center justify-center gap-1 border border-blue-500/30"
-                    >
-                      Zora 온체인 코인 감상 <ArrowUpRight size={10} />
+                      <span>OBJKT 토큰 감상</span>
+                      <ArrowUpRight size={13} />
                     </a>
                   )}
+
+                  {/* Secondary Clean Action Pair */}
+                  <div className="grid grid-cols-2 gap-2 text-[11px]">
+                    <button
+                      onClick={() => openHdModal(art)}
+                      className="w-full py-1.5 bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-slate-700 active:scale-95"
+                    >
+                      <Maximize2 size={12} className="text-amber-400" /> {lang === 'ko' ? 'HD 확대' : 'HD Zoom'}
+                    </button>
+                    {art.zoraUrl ? (
+                      <a 
+                        href={art.zoraUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-full py-1.5 bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-blue-500/30 active:scale-95"
+                      >
+                        Zora 코인 <ArrowUpRight size={11} />
+                      </a>
+                    ) : (
+                      <a 
+                        href={art.objktUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-full py-1.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30 active:scale-95"
+                      >
+                        OBJKT <ArrowUpRight size={11} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -736,6 +743,14 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               </div>
 
               <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                <button
+                  onClick={() => { onNavigate('RESEARCH'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-black transition-all flex items-center gap-2 shadow-lg shadow-indigo-600/30 active:scale-95"
+                >
+                  <Scale size={14} className="text-yellow-300" /> 
+                  {lang === 'ko' ? 'CTO 리서치 브리핑 & 매트릭스 전체보기' : 'CTO Research Briefing & Matrix'} 
+                  <ChevronRight size={13} />
+                </button>
                 <a
                   href={GITHUB_CLARITY_RESEARCH_URL}
                   target="_blank"
