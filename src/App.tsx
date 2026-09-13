@@ -202,86 +202,48 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* Desktop Nav Items */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Desktop Nav Items - Focused & Essential */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
             <button 
               onClick={() => setActiveTab('HOME')} 
               className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'HOME' ? 'text-blue-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
             >
-              홈 / Home
+              홈
             </button>
             <button 
               onClick={() => setActiveTab('COLLECTIONS')} 
               className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'COLLECTIONS' ? 'text-amber-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
             >
-              컬렉션 / Collections
+              컬렉션
             </button>
             <button 
               onClick={() => setActiveTab('RESEARCH')} 
               className={`text-xs font-black transition-all flex items-center gap-1.5 px-3 py-1.5 rounded-xl whitespace-nowrap ${activeTab === 'RESEARCH' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30'}`}
               title="YesOkLab 규제·파생시장 리서치 & 장부 등재 코인 매트릭스"
             >
-              <Scale size={14} className="text-indigo-300" /> 규제 리서치·매트릭스
+              <Scale size={14} className="text-indigo-300" /> 규제 리서치
             </button>
             <button 
               onClick={() => setActiveTab('MIGRATION')} 
               className={`text-xs font-bold transition-all flex items-center gap-1.5 px-3 py-1.5 rounded-xl whitespace-nowrap ${activeTab === 'MIGRATION' ? 'bg-blue-600 text-white shadow-lg' : 'text-cyan-300 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30'}`}
             >
-              <ArrowRightLeft size={14} className="text-cyan-300 animate-pulse" /> 1:1 Base Migration Portal
+              <ArrowRightLeft size={14} className="text-cyan-300 animate-pulse" /> Base 마이그레이션
             </button>
             <button 
               onClick={() => setActiveTab('WHITEPAPER')} 
               className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'WHITEPAPER' ? 'text-blue-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
             >
-              백서 / Whitepaper
-            </button>
-            <button 
-              onClick={() => setActiveTab('WALLET')} 
-              className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'WALLET' ? 'text-blue-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
-            >
-              지갑 / Wallet
-            </button>
-            <button 
-              onClick={() => setActiveTab('GUIDE')} 
-              className={`text-xs font-bold transition-colors whitespace-nowrap ${activeTab === 'GUIDE' ? 'text-blue-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
-            >
-              가이드 / Guide
-            </button>
-            <button 
-              onClick={() => setActiveTab('AI')} 
-              className={`text-xs font-bold transition-colors flex items-center gap-1 whitespace-nowrap ${activeTab === 'AI' ? 'text-blue-400 font-extrabold' : 'text-slate-400 hover:text-white'}`}
-            >
-              <Sparkles size={14} className="text-blue-400" /> AI 큐레이터
+              백서
             </button>
             <a 
               href={HIGHLIGHT_URL} 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs font-black text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-1 whitespace-nowrap bg-emerald-500/10 px-2.5 py-1.5 rounded-xl border border-emerald-500/30 hover:bg-emerald-500/20 shadow-sm"
-              title="Highlight.xyz 공식 민팅: 무주 반딧불이 ver.2"
+              title="Highlight.xyz 공식 민팅"
             >
               <Sparkles size={13} className="text-yellow-300" />
               Highlight 민팅 <ExternalLink size={11} />
-            </a>
-            <a 
-              href={RESEARCH_CLARITY_URL} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs font-bold text-indigo-300 hover:text-indigo-200 transition-colors flex items-center gap-1 whitespace-nowrap bg-indigo-500/10 px-2.5 py-1.5 rounded-xl border border-indigo-500/30 hover:bg-indigo-500/20 shadow-sm"
-              title="미국 클래리티 법안 & 제도권 규제 분석 연구 (Research-Clarity-Act)"
-            >
-              <Scale size={13} className="text-indigo-400" />
-              규제 리서치 <ExternalLink size={11} />
-            </a>
-            <a 
-              href={NAVER_BLOG_URL} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 whitespace-nowrap bg-emerald-500/10 px-2.5 py-1.5 rounded-xl border border-emerald-500/30 hover:bg-emerald-500/20 shadow-sm"
-              title="YesOkLab 공식 네이버 블로그 바로가기"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              공식 블로그 <ExternalLink size={11} />
             </a>
           </div>
 
@@ -329,102 +291,112 @@ const App: React.FC = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-slate-800 mt-4 pt-4 pb-2 space-y-2 flex flex-col animate-in fade-in">
-            <button 
-              onClick={() => { setActiveTab('HOME'); setIsMenuOpen(false); }} 
-              className={`text-base font-bold text-left py-2 ${activeTab === 'HOME' ? 'text-blue-400' : 'text-slate-300'}`}
-            >
-              홈 (Home)
-            </button>
-            <button 
-              onClick={() => { setActiveTab('COLLECTIONS'); setIsMenuOpen(false); }} 
-              className={`text-base font-bold text-left py-2 ${activeTab === 'COLLECTIONS' ? 'text-amber-400' : 'text-slate-300'}`}
-            >
-              컬렉션 (Collections)
-            </button>
-            <button 
-              onClick={() => { setActiveTab('RESEARCH'); setIsMenuOpen(false); }} 
-              className={`text-base font-black text-left py-2 flex items-center gap-2 ${activeTab === 'RESEARCH' ? 'text-indigo-400' : 'text-indigo-300'}`}
-            >
-              <Scale size={18} /> 규제 리서치 & 장부 등재 매트릭스
-            </button>
-            <button 
-              onClick={() => { setActiveTab('MIGRATION'); setIsMenuOpen(false); }} 
-              className={`text-base font-bold text-left py-2 flex items-center gap-2 ${activeTab === 'MIGRATION' ? 'text-cyan-400' : 'text-blue-300'}`}
-            >
-              <ArrowRightLeft size={18} /> Base 마이그레이션 포털
-            </button>
-            <button 
-              onClick={() => { setActiveTab('WHITEPAPER'); setIsMenuOpen(false); }} 
-              className={`text-base font-bold text-left py-2 ${activeTab === 'WHITEPAPER' ? 'text-blue-400' : 'text-slate-300'}`}
-            >
-              백서 (Whitepaper)
-            </button>
-            <button 
-              onClick={() => { setActiveTab('WALLET'); setIsMenuOpen(false); }} 
-              className={`text-base font-bold text-left py-2 ${activeTab === 'WALLET' ? 'text-blue-400' : 'text-slate-300'}`}
-            >
-              지갑 (Wallet)
-            </button>
-            <button 
-              onClick={() => { setActiveTab('GUIDE'); setIsMenuOpen(false); }} 
-              className={`text-base font-bold text-left py-2 ${activeTab === 'GUIDE' ? 'text-blue-400' : 'text-slate-300'}`}
-            >
-              가이드 (Guide)
-            </button>
-            <button 
-              onClick={() => { setActiveTab('AI'); setIsMenuOpen(false); }} 
-              className="text-base font-bold text-blue-400 flex justify-between items-center py-2"
-            >
-              <span>AI 큐레이터</span>
-              <Sparkles size={16} />
-            </button>
-            <a 
-              href={HIGHLIGHT_URL}
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-base font-black text-emerald-400 flex justify-between items-center py-2 border-t border-slate-800/60"
-            >
-              <span className="flex items-center gap-2">
-                <Sparkles size={16} className="text-yellow-300" />
-                Highlight 신작 민팅 (무주 반딧불이 ver.2)
-              </span>
-              <ExternalLink size={16} />
-            </a>
-            <a 
-              href={RESEARCH_CLARITY_URL}
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-base font-bold text-indigo-400 flex justify-between items-center py-2 border-t border-slate-800/60"
-            >
-              <span className="flex items-center gap-2">
-                <Scale size={16} />
-                규제 리서치 (Research-Clarity-Act)
-              </span>
-              <ExternalLink size={16} />
-            </a>
-            <a 
-              href={NAVER_BLOG_URL}
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-base font-bold text-emerald-400 flex justify-between items-center py-2"
-            >
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                공식 네이버 블로그 (Naver Blog)
-              </span>
-              <ExternalLink size={16} />
-            </a>
-            <div className="h-[1px] bg-slate-800 my-1" />
-            <button 
-              onClick={() => { setMode('ADMIN'); setIsMenuOpen(false); }} 
-              className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 text-sm shadow"
-            >
-              <ShieldAlert size={16} /> 관리자 모드
-            </button>
+          <div className="md:hidden border-t border-slate-800 mt-4 pt-4 pb-3 space-y-3 flex flex-col animate-in fade-in">
+            {/* Core Navigation */}
+            <div className="grid grid-cols-2 gap-2">
+              <button 
+                onClick={() => { setActiveTab('HOME'); setIsMenuOpen(false); }} 
+                className={`py-2.5 px-3 rounded-xl text-sm font-bold text-left transition-all ${activeTab === 'HOME' ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30' : 'bg-slate-900 text-slate-300'}`}
+              >
+                홈 (Home)
+              </button>
+              <button 
+                onClick={() => { setActiveTab('COLLECTIONS'); setIsMenuOpen(false); }} 
+                className={`py-2.5 px-3 rounded-xl text-sm font-bold text-left transition-all ${activeTab === 'COLLECTIONS' ? 'bg-amber-600/20 text-amber-400 border border-amber-500/30' : 'bg-slate-900 text-slate-300'}`}
+              >
+                컬렉션 (Collections)
+              </button>
+              <button 
+                onClick={() => { setActiveTab('RESEARCH'); setIsMenuOpen(false); }} 
+                className={`py-2.5 px-3 rounded-xl text-sm font-bold text-left transition-all ${activeTab === 'RESEARCH' ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'bg-slate-900 text-indigo-300'}`}
+              >
+                <Scale size={14} className="inline mr-1 text-indigo-400" /> 규제 리서치
+              </button>
+              <button 
+                onClick={() => { setActiveTab('MIGRATION'); setIsMenuOpen(false); }} 
+                className={`py-2.5 px-3 rounded-xl text-sm font-bold text-left transition-all ${activeTab === 'MIGRATION' ? 'bg-blue-600/20 text-cyan-300 border border-blue-500/30' : 'bg-slate-900 text-blue-300'}`}
+              >
+                <ArrowRightLeft size={14} className="inline mr-1 text-cyan-300" /> 마이그레이션
+              </button>
+            </div>
+
+            {/* Secondary Tabs */}
+            <div className="flex items-center justify-between text-xs font-medium text-slate-400 px-1 pt-1">
+              <button 
+                onClick={() => { setActiveTab('WHITEPAPER'); setIsMenuOpen(false); }}
+                className="py-1.5 hover:text-white"
+              >
+                백서
+              </button>
+              <span>•</span>
+              <button 
+                onClick={() => { setActiveTab('WALLET'); setIsMenuOpen(false); }}
+                className="py-1.5 hover:text-white"
+              >
+                지갑
+              </button>
+              <span>•</span>
+              <button 
+                onClick={() => { setActiveTab('GUIDE'); setIsMenuOpen(false); }}
+                className="py-1.5 hover:text-white"
+              >
+                가이드
+              </button>
+              <span>•</span>
+              <button 
+                onClick={() => { setActiveTab('AI'); setIsMenuOpen(false); }}
+                className="py-1.5 text-blue-400 hover:text-blue-300 flex items-center gap-1"
+              >
+                <Sparkles size={12} /> AI 큐레이터
+              </button>
+            </div>
+
+            {/* Direct Official Links */}
+            <div className="pt-2 border-t border-slate-800/80 space-y-2">
+              <a 
+                href={HIGHLIGHT_URL}
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-950/40 to-teal-950/30 border border-emerald-500/40 text-emerald-300 text-xs font-black flex items-center justify-between"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Sparkles size={14} className="text-yellow-300" /> Highlight 공식 신작 민팅
+                </span>
+                <ExternalLink size={13} />
+              </a>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <a 
+                  href={RESEARCH_CLARITY_URL}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="py-2 px-2.5 rounded-lg bg-slate-900 border border-slate-800 text-indigo-300 flex items-center justify-between"
+                >
+                  <span className="flex items-center gap-1 text-[11px] font-bold"><Scale size={13} /> Clarity Act</span>
+                  <ExternalLink size={11} />
+                </a>
+                <a 
+                  href={NAVER_BLOG_URL}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="py-2 px-2.5 rounded-lg bg-slate-900 border border-slate-800 text-emerald-400 flex items-center justify-between"
+                >
+                  <span className="flex items-center gap-1 text-[11px] font-bold">네이버 블로그</span>
+                  <ExternalLink size={11} />
+                </a>
+              </div>
+            </div>
+
+            <div className="pt-1">
+              <button 
+                onClick={() => { setMode('ADMIN'); setIsMenuOpen(false); }} 
+                className="w-full py-2 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white rounded-xl font-bold flex items-center justify-center gap-1.5 text-xs border border-slate-800"
+              >
+                <ShieldAlert size={14} /> 관리자 모드
+              </button>
+            </div>
           </div>
         )}
       </nav>
