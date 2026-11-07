@@ -76,8 +76,38 @@ const App: React.FC = () => {
 
   const t = translations[lang] || translations.ko;
 
+  const [subTab, setSubTab] = useState<'OVERVIEW' | 'MATRIX' | 'DIAGRAM'>('OVERVIEW');
+
   useEffect(() => {
     checkApiKeyStatus();
+
+    // Deep Linking: Auto-navigate to Research / Matrix from Naver Blog widget or Medium link
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab')?.toUpperCase();
+      const subParam = params.get('sub')?.toUpperCase();
+      const langParam = params.get('lang')?.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+
+      if (langParam === 'en' || langParam === 'ko') {
+        setLang(langParam as Lang);
+      }
+
+      if (tabParam === 'RESEARCH' || tabParam === 'MATRIX' || hash.includes('research') || hash.includes('matrix')) {
+        setActiveTab('RESEARCH');
+        if (subParam === 'MATRIX' || tabParam === 'MATRIX' || hash.includes('matrix')) {
+          setSubTab('MATRIX');
+        }
+      } else if (tabParam === 'COLLECTIONS' || hash.includes('collection')) {
+        setActiveTab('COLLECTIONS');
+      } else if (tabParam === 'MIGRATION' || hash.includes('migration')) {
+        setActiveTab('MIGRATION');
+      } else if (tabParam === 'WHITEPAPER' || hash.includes('whitepaper')) {
+        setActiveTab('WHITEPAPER');
+      }
+    } catch (e) {
+      console.warn("URL Deep-link parse error:", e);
+    }
   }, []);
 
   const checkApiKeyStatus = async () => {
@@ -134,7 +164,7 @@ const App: React.FC = () => {
         case 'COLLECTIONS': 
           return <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6"><CollectionView lang={lang} /></div>;
         case 'RESEARCH': 
-          return <RegulatoryResearchView lang={lang} />;
+          return <RegulatoryResearchView lang={lang} initialSubTab={subTab} />;
         case 'MIGRATION': 
           return <MigrationPortalView lang={lang} />;
         case 'WHITEPAPER': 
