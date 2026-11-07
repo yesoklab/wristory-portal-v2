@@ -1,6 +1,6 @@
 {
   "name": "Wristory Portal",
-  "description": "A web portal for the WRISTORY project, focused on preserving historical value through blockchain technology on the Tezos network.",
+  "description": "WRISTORY portal preserving literary and historical heritage through on-chain generative fine art on Ethereum Layer-2 (Base) and Tezos.",
   "requestFramePermissions": [
     "camera",
     "microphone",
