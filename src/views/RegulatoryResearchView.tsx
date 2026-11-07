@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Scale, 
   ExternalLink, 
@@ -396,7 +396,7 @@ const agendasEn = [
     category: 'Institutional Balance Sheets',
     title: 'Only Tokens on the Balance Sheet Survive: 2026 Institutional Matrix',
     subtitle: 'Basel Crypto Asset Rules, SEC 15c3-1 Net Capital, & Qualified Custodian Mandates',
-    blogUrl: 'https://blog.naver.com/yesoklab/224406451272',
+    blogUrl: 'https://medium.com/@wakk5252/research-briefing-only-tokens-on-the-balance-sheet-will-survive-the-2026-institutional-crypto-0f46b08d1489',
     summary: 'Retail investors can buy any token on DEXs, but institutions can only touch assets bookable on a regulated Balance Sheet. Tokens lacking DCM futures or ETF packaging face 100% haircuts and 1250% punitive Basel risk weights.',
     keyPoints: [
       'Basel Committee (BCBS): Strict criteria required to escape the 1250% punitive risk-weight capital deduction.',
@@ -422,16 +422,31 @@ const agendasEn = [
 
 interface Props {
   lang?: 'ko' | 'en';
+  initialSubTab?: 'OVERVIEW' | 'MATRIX' | 'DIAGRAM';
 }
 
-export const RegulatoryResearchView: React.FC<Props> = ({ lang: initialLang = 'ko' }) => {
+export const RegulatoryResearchView: React.FC<Props> = ({ 
+  lang: initialLang = 'ko',
+  initialSubTab = 'OVERVIEW'
+}) => {
   const [currentLang, setCurrentLang] = useState<'ko' | 'en'>(initialLang);
-  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'MATRIX' | 'DIAGRAM'>('OVERVIEW');
+  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'MATRIX' | 'DIAGRAM'>(initialSubTab);
   const [selectedAgenda, setSelectedAgenda] = useState<string>('agenda-1');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [tierFilter, setTierFilter] = useState<'ALL' | 'Tier 1' | 'Tier 2' | 'Tier 3'>('ALL');
   const [onlyCftcListed, setOnlyCftcListed] = useState<boolean>(false);
   const [copiedLink, setCopiedLink] = useState<boolean>(false);
+
+  const MEDIUM_ARTICLE_URL = 'https://medium.com/@wakk5252/research-briefing-only-tokens-on-the-balance-sheet-will-survive-the-2026-institutional-crypto-0f46b08d1489';
+
+  // Synchronize language and sub-tab if prop updates
+  useEffect(() => {
+    if (initialLang) setCurrentLang(initialLang);
+  }, [initialLang]);
+
+  useEffect(() => {
+    if (initialSubTab) setActiveTab(initialSubTab);
+  }, [initialSubTab]);
 
   const isKo = currentLang === 'ko';
   const agendas = isKo ? agendasKo : agendasEn;
@@ -450,13 +465,14 @@ export const RegulatoryResearchView: React.FC<Props> = ({ lang: initialLang = 'k
   });
 
   const handleCopyShare = () => {
-    navigator.clipboard.writeText(window.location.href);
+    const shareUrl = `${window.location.origin}/?tab=research&sub=${activeTab.toLowerCase()}`;
+    navigator.clipboard.writeText(shareUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 animate-in fade-in duration-300">
+    <div id="research-terminal" className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 animate-in fade-in duration-300">
       {/* Top Header Card */}
       <div className="bg-[#0A0D18] border border-blue-900/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
         <div className="absolute -right-20 -top-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
@@ -516,21 +532,34 @@ export const RegulatoryResearchView: React.FC<Props> = ({ lang: initialLang = 'k
               </button>
             </div>
 
+            {/* Medium Article Link Button */}
+            <a
+              href={MEDIUM_ARTICLE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 transition-all shadow-md shadow-amber-600/20 active:scale-95"
+              title="Medium Global Research Briefing"
+            >
+              <BookOpen size={14} className="text-yellow-200" />
+              <span>{isKo ? 'Medium 영문 리포트 원문' : 'Medium Research Article'}</span>
+              <ExternalLink size={12} />
+            </a>
+
             <button
               onClick={handleCopyShare}
-              className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/80 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all active:scale-95"
+              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/80 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all active:scale-95"
             >
               {copiedLink ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
-              <span>{copiedLink ? (isKo ? '링크 복사됨' : 'Link Copied') : (isKo ? '리포트 링크 복사' : 'Share Report')}</span>
+              <span>{copiedLink ? (isKo ? '링크 복사됨' : 'Link Copied') : (isKo ? '터미널 다이렉트 링크' : 'Share Direct Link')}</span>
             </button>
             <a
               href="https://github.com/yesoklab/Research-Clarity-Act"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all"
+              className="px-4 py-2 bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all"
             >
               <span>{isKo ? 'GitHub 아카이브' : 'GitHub Archive'}</span>
-              <ExternalLink size={13} />
+              <ExternalLink size={12} />
             </a>
           </div>
         </div>
