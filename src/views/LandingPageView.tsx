@@ -1,901 +1,607 @@
 import React, { useState } from 'react';
 import { 
-  ArrowRightLeft, 
-  ExternalLink, 
   Sparkles, 
+  ExternalLink, 
   ArrowUpRight, 
-  ShieldCheck, 
-  Layers,
-  Flame,
-  Globe,
+  Maximize2, 
+  X, 
+  ZoomIn, 
+  ZoomOut, 
+  Layers, 
+  TrendingUp, 
+  Coins, 
+  ShieldCheck,
   ChevronRight,
-  TrendingUp,
-  Camera,
   Share2,
-  Coins,
-  CheckCircle2,
-  Maximize2,
-  X,
-  ZoomIn,
-  ZoomOut,
-  Eye,
-  Scale,
-  BookOpen,
-  FileText
+  Check
 } from 'lucide-react';
+import { translations, Lang } from '../lib/translations';
 
 interface LandingPageViewProps {
-  lang: 'ko' | 'en';
+  lang: Lang;
   onNavigate: (tab: any) => void;
   hasApiKey?: boolean;
 }
 
 const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) => {
+  const t = translations[lang] || translations.ko;
+
+  // External Links
+  const LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihlabi2xoajwvf2sabiiltszjqawxuayvux22iarkaifckk7ruwei';
   const BASE_CONTRACT = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
-  const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
-  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
-  const HIGHLIGHT_MUJU_URL = 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4';
-  const HIGHLIGHT_BUCKWHEAT_URL = 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa';
-  const ZORA_BUCKWHEAT_URL = 'https://zora.co/coin/base:0x5ea3b56bad0b76ad6d9855581ff15e66afdce993?referrer=0x58346be51802b17a3c5bb110df14f5487a92dbd6';
-  const IPFS_BUCKWHEAT_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q';
-  const GITHUB_CLARITY_RESEARCH_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
-  const BLOG_CLARITY_ACT_1_URL = 'https://blog.naver.com/yesoklab/224405334699';
-  const BLOG_CLARITY_ACT_2_URL = 'https://blog.naver.com/yesoklab/224405538510';
-  const BLOG_CLARITY_ACT_3_URL = 'https://blog.naver.com/yesoklab/224406451272';
+  const GECKOTERMINAL_TOKEN_URL = 'https://www.geckoterminal.com/base/tokens/0x9de688b818d1755f4daf82d25662da1bbedd17b7';
+  
+  // Base Masterpiece Links (When Buckwheat Flowers Bloom)
+  const BUCKWHEAT_IMAGE = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q';
+  const BUCKWHEAT_FALLBACK = 'https://ipfs.io/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q';
+  const BUCKWHEAT_HIGHLIGHT = 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa';
+  const BUCKWHEAT_OPENSEA = 'https://opensea.io/collection/wristory-moonlit-heritage';
+  const BUCKWHEAT_ZORA = 'https://zora.co/coin/base:0x5ea3b56bad0b76ad6d9855581ff15e66afdce993?referrer=0x58346be51802b17a3c5bb110df14f5487a92dbd6';
 
-  // HD Lightbox inspection state
-  const [selectedArtwork, setSelectedArtwork] = useState<any | null>(null);
-  const [zoomLevel, setZoomLevel] = useState<number>(1);
-  const [viewLiveInteractive, setViewLiveInteractive] = useState<boolean>(false);
+  // Tezos Masterpiece Links (Bitcoin Pizza Day)
+  const PIZZA_IMAGE = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4';
+  const PIZZA_FALLBACK = 'https://ipfs.io/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4';
+  const PIZZA_OBJKT = 'https://objkt.com/collections/KT1JxExPQijKy3jQdE1pHJXxoeyjHtXB3uxq';
 
-  const openHdModal = (item: any) => {
-    setSelectedArtwork(item);
-    setZoomLevel(1);
-    setViewLiveInteractive(false);
+  // HD Lightbox Inspection State
+  const [activeModalItem, setActiveModalItem] = useState<{
+    id: string;
+    title: string;
+    subtitle: string;
+    image: string;
+    fallbackImage: string;
+    ipfsUrl: string;
+    primaryAction: { label: string; url: string };
+  } | null>(null);
+
+  const [zoomScale, setZoomScale] = useState<number>(1);
+  const [isInteractiveMode, setIsInteractiveMode] = useState<boolean>(false);
+  const [copiedContract, setCopiedContract] = useState<boolean>(false);
+
+  const handleCopyContract = () => {
+    navigator.clipboard.writeText(BASE_CONTRACT);
+    setCopiedContract(true);
+    setTimeout(() => setCopiedContract(false), 2000);
   };
 
-  const closeHdModal = () => {
-    setSelectedArtwork(null);
-    setZoomLevel(1);
-    setViewLiveInteractive(false);
+  const openLightbox = (
+    id: string,
+    title: string,
+    subtitle: string,
+    image: string,
+    fallbackImage: string,
+    primaryLabel: string,
+    primaryUrl: string
+  ) => {
+    setActiveModalItem({
+      id,
+      title,
+      subtitle,
+      image,
+      fallbackImage,
+      ipfsUrl: image,
+      primaryAction: { label: primaryLabel, url: primaryUrl }
+    });
+    setZoomScale(1);
+    setIsInteractiveMode(false);
   };
 
-  const recentArtworks = [
-    {
-      id: 'buckwheat-flowers',
-      name: '이효석 — 메밀꽃 필 무렵 (When Buckwheat Flowers Bloom)',
-      subtitle: 'Highlight.xyz 공식 민팅 & Zora 온체인 코인',
-      badge: 'NEW MINT 오늘 민팅',
-      price: 'Highlight / Zora',
-      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q',
-      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q',
-      objktUrl: 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa',
-      highlightUrl: 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa',
-      zoraUrl: 'https://zora.co/coin/base:0x5ea3b56bad0b76ad6d9855581ff15e66afdce993?referrer=0x58346be51802b17a3c5bb110df14f5487a92dbd6',
-      themeColor: 'emerald',
-      desc: '한국 근대 단편문학의 백미 가산(可山) 이효석 선생의 서정적 문학 세계를 온체인 제너러티브 아트로 승화시킨 신작. 달빛 아래 소금을 뿌린 듯 흐뭇이 하얗게 피어난 메밀꽃밭의 정취를 블록체인에 영구 보존합니다.'
-    },
-    {
-      id: 'muju-firefly',
-      name: 'Muju Firefly — 무주 반딧불이 ver.2',
-      subtitle: 'Highlight.xyz 공식 민팅 (30 EDS)',
-      badge: 'Highlight 공식',
-      price: '0.0298 ETH',
-      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
-      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibqgtl447tihtspgfjpiau2njb26lfjlygyazidbp2otb2tph62yy',
-      objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/34?ref=tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16',
-      highlightUrl: 'https://highlight.xyz/mint/01a08648-f8ec-708b-aa7a-2fc5f28c6fa4',
-      zoraUrl: 'https://zora.co/@yesoklab',
-      themeColor: 'teal',
-      desc: '무주 반딧불이 축제 30주년 헌정작 ver.2. 원고지 자율 타이핑 시(詩)와 초승달, 반딧불이 유기적 비행. (수익금 100% 무주 청소년 시설 전액 기부)'
-    },
-    {
-      id: 'mugunghwa',
-      name: '나라 꽃 무궁화: Bloomed by Patriots',
-      subtitle: '순국선열(殉國先烈)들이 피워낸 꽃',
-      badge: '80 EDS',
-      price: '3 XTZ',
-      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i',
-      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i',
-      objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/32',
-      zoraUrl: 'https://zora.co/@yesoklab',
-      themeColor: 'blue',
-      desc: '독립운동가들의 넋과 한을 태극과 DLA 확산 나뭇가지, 십자수 스티치 제너러티브 기법으로 형상화한 마스터피스.'
-    },
-    {
-      id: 'energy',
-      name: 'energy // Drink the Vitality!',
-      subtitle: '활력을 마시자! (BACCHUS-D)',
-      badge: '1.96K Eds',
-      price: '대표작',
-      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu',
-      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeif45bgxlqtq6l52n3shheikn4zvfzdeub2az3v5qo3q7rofyqxftu',
-      objktUrl: 'https://objkt.com/tokens/KT1LJirhQzqz37baswyqYdes7UnEb2kJw4SU/36',
-      themeColor: 'amber',
-      desc: '자양강장제 박카스(1963) 오마주. 멈춰있던 톱니바퀴가 활력의 에너지를 만나 다시 힘차게 돌아가는 웹 표준 Canvas 대표작.'
-    }
-  ];
+  const closeLightbox = () => {
+    setActiveModalItem(null);
+    setZoomScale(1);
+    setIsInteractiveMode(false);
+  };
 
   return (
-    <div className="animate-in fade-in duration-500 space-y-12 sm:space-y-16 pb-16">
-      {/* 1. Top Notice Bar: Base Migration Announcement & Direct Portal Link */}
-      <div className="bg-gradient-to-r from-blue-900/50 via-indigo-900/50 to-purple-900/50 border-b border-blue-500/20 px-4 py-3">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#00ffcc] animate-ping" />
-            <span className="text-xs font-bold text-slate-200">
-              {lang === 'ko' ? (
-                <>
-                  <b className="text-[#00ffcc]">[Live DEX]</b> $WR <b>Uniswap v4 ($0.04416 / $3.8K+ 유동성)</b> 가동 & <b>GeckoTerminal</b> 실시간 차트 연동
-                </>
-              ) : (
-                <>
-                  <b className="text-[#00ffcc]">[LIVE DEX]</b> $WR <b>Uniswap v4 ($0.04416 / $3.8K+ Liquidity)</b> Live & <b>GeckoTerminal</b> Chart Active
-                </>
-              )}
-            </span>
-          </div>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
-            <a
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95"
-            >
-              <TrendingUp size={13} className="text-amber-400" /> GeckoTerminal 차트 <ExternalLink size={11} />
-            </a>
-            <a
-              href={UNISWAP_SWAP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-black transition-all flex items-center gap-1 shadow-md shadow-emerald-600/30 active:scale-95"
-            >
-              <Coins size={13} /> Uniswap v4 스왑 <ExternalLink size={12} />
-            </a>
-            <button 
-              onClick={() => onNavigate('MIGRATION')}
-              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
-            >
-              <ArrowRightLeft size={13} /> {lang === 'ko' ? '1:1 토큰 교환 포털' : '1:1 Swap Portal'} <ArrowUpRight size={13} />
-            </button>
-          </div>
-        </div>
-      </div>
+    <div className="space-y-12 sm:space-y-16 pb-20 animate-in fade-in duration-500">
+      {/* 1. Hero Section: Refined, Elegant & Impactful */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 text-center">
+        <div className="relative rounded-3xl bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-950/90 border border-slate-800/80 p-6 sm:p-12 shadow-2xl overflow-hidden">
+          {/* Subtle Ambient Background Lighting */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#3b82f61a_0%,_transparent_65%)] pointer-events-none" />
 
-      {/* 2. Hero Section (Base & Tezos Dual Ecosystem) - Refined & High-Impact */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-950/95 border border-slate-800 p-6 sm:p-12 text-center space-y-6 overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#3b82f615_0%,_transparent_70%)] pointer-events-none" />
-
-          {/* Focused Ecosystem Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-2 relative z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-bold">
-              <ShieldCheck size={14} /> Ethereum Layer-2 (Base Mainnet)
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Uniswap v4 & GeckoTerminal Live
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[11px] font-bold">
-              <Camera size={14} /> 1,063 Snapshot Wallets
-            </span>
-          </div>
-
-          {/* Main Impact Title */}
-          <div className="space-y-2 relative z-10 max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white uppercase italic">
-              THE BRIDGE OF TIME & HERITAGE
-            </h1>
-            <p className="text-sm sm:text-lg text-[#00ffcc] font-bold">
-              {lang === 'ko' ? '역사는 블록체인 위에서 영원히 살아 숨 쉽니다.' : 'History breathes eternal life upon the blockchain.'}
-            </p>
-          </div>
-
-          {/* Key Metrics Dashboard */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto bg-slate-950/70 border border-slate-800/80 p-3 sm:p-5 rounded-2xl relative z-10">
-            <div className="text-center">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Token Price</p>
-              <p className="text-xs sm:text-lg font-black text-amber-400 font-mono mt-0.5">$0.04416 USD</p>
-            </div>
-            <div className="text-center border-l border-slate-800 sm:border-x">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Active Liquidity</p>
-              <p className="text-xs sm:text-lg font-black text-emerald-400 font-mono mt-0.5">$3,684.24+</p>
-            </div>
-            <div className="text-center border-t sm:border-t-0 border-slate-800">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">Pool Fee & Pair</p>
-              <p className="text-xs sm:text-lg font-black text-cyan-300 font-mono mt-0.5">ETH / WR (0.25%)</p>
-            </div>
-            <div className="text-center border-t sm:border-t-0 border-l border-slate-800">
-              <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">FDV / Cap</p>
-              <p className="text-xs sm:text-lg font-black text-[#00ffcc] font-mono mt-0.5">~$2,260,000</p>
-            </div>
-          </div>
-
-          {/* Streamlined Action Hub: Primary CTAs + Clean Quick Links */}
-          <div className="space-y-4 pt-1 relative z-10">
-            {/* Primary High-Impact Actions */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                onClick={() => onNavigate('MIGRATION')}
-                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-xl text-sm font-black uppercase transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 active:scale-95"
-              >
-                <ArrowRightLeft size={17} /> {lang === 'ko' ? '1:1 Base 토큰 마이그레이션' : 'Base 1:1 Migration Portal'}
-              </button>
-              <button
-                onClick={() => { onNavigate('COLLECTIONS'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-sm font-black uppercase transition-all shadow-lg shadow-amber-600/30 flex items-center justify-center gap-2 active:scale-95"
-              >
-                <Sparkles size={17} className="text-yellow-200" /> {lang === 'ko' ? '컬렉션 및 최신 민팅 감상' : 'Explore Collections'}
-              </button>
-            </div>
-
-            {/* Quick Links Capsule Bar: DEX & Minting & Charts */}
-            <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-slate-400">
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 mr-1 hidden sm:inline">빠른 이동:</span>
-              <a
-                href={HIGHLIGHT_BUCKWHEAT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-all flex items-center gap-1 active:scale-95"
-              >
-                <Sparkles size={12} className="text-yellow-300" /> 메밀꽃 필 무렵 민팅 <ArrowUpRight size={11} />
-              </a>
-              <a
-                href={UNISWAP_SWAP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center gap-1 active:scale-95"
-              >
-                <Coins size={12} className="text-emerald-400" /> Uniswap v4 스왑 <ExternalLink size={10} />
-              </a>
-              <a
-                href={GECKOTERMINAL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center gap-1 active:scale-95"
-              >
-                <TrendingUp size={12} className="text-amber-400" /> GeckoTerminal 차트 <ExternalLink size={10} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Live Uniswap v4 & GeckoTerminal Feature Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-r from-slate-900 via-emerald-950/30 to-amber-950/20 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl text-left">
-          <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase rounded-full flex items-center gap-1.5">
-                <CheckCircle2 size={13} /> Uniswap v4 (Base) Active & In-Range
-              </span>
-              <a 
-                href={GECKOTERMINAL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-black uppercase rounded-full flex items-center gap-1.5 transition-all"
-              >
-                <TrendingUp size={13} /> GeckoTerminal Tracked ($0.04416) <ExternalLink size={10} />
-              </a>
-              <span className="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-mono font-bold rounded-full">
-                Pool #2953119
-              </span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase">
-              {lang === 'ko' ? 'ETH / WR 유니스왑 v4 공식 풀 & 실시간 GeckoTerminal 차트 가동' : 'Official ETH / WR Uniswap v4 Pool & GeckoTerminal Live Chart'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              {lang === 'ko'
-                ? '이더리움 Layer-2 Base 네트워크 상에 Uniswap v4 집중 유동성(Concentrated Liquidity, $3,684+) 풀이 안착되었으며, GeckoTerminal에서 실시간 캔들스틱 차트, 체결 내역(트랜잭션), 유동성 지표를 투명하게 확인하실 수 있습니다.'
-                : 'Concentrated liquidity ($3,684+) on Uniswap v4 (Base Mainnet) is verified and live. Track real-time candlesticks, volume, and verified transactions transparently on GeckoTerminal.'}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <a
-              href={GECKOTERMINAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-amber-600/30 active:scale-95"
-            >
-              <TrendingUp size={16} /> {lang === 'ko' ? 'GeckoTerminal 차트 보기' : 'GeckoTerminal Chart'} <ExternalLink size={13} />
-            </a>
-            <a
-              href={UNISWAP_SWAP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/30 active:scale-95"
-            >
-              <Coins size={16} /> {lang === 'ko' ? '유니스왑에서 $WR 스왑' : 'Swap $WR on Uniswap'} <ArrowUpRight size={14} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Dedicated Creator & Snapshot Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-r from-purple-950/30 via-slate-900 to-blue-950/30 border border-purple-500/20 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-black uppercase">
-              <Camera size={14} /> OBJKT & Web3 Generative Creators Notice
-            </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase">
-              {lang === 'ko' ? 'OBJKT 창작자 및 테조스 홀더 스냅샷 100% 보장' : 'Guaranteed 1:1 Parity for OBJKT Artists & Tezos Holders'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              {lang === 'ko'
-                ? '기존 테조스 블록체인 및 OBJKT에서 발행·소장된 모든 $WR 및 헤리티지 NFT의 가치는 Base L2 생태계로 1:1 안전하게 이어집니다. 스냅샷 데이터베이스를 통해 즉시 신청하세요.'
-                : 'All $WR and historical NFTs minted on Tezos FA2 & OBJKT are recognized in the Base ecosystem via on-chain snapshots. Submit your Tezos address to claim your Base $WR.'}
-            </p>
-          </div>
-          <button
-            onClick={() => { onNavigate('MIGRATION'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="px-6 py-3.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 shadow-lg shadow-purple-600/30 active:scale-95"
-          >
-            <ArrowRightLeft size={16} /> {lang === 'ko' ? '스냅샷 확인 & 신청하기' : 'Verify & Migrate'}
-          </button>
-        </div>
-      </section>
-
-      {/* 5. YesOkLab Masterpiece Spotlight: 순국선열(殉國先烈)들이 피워낸 나라 꽃 무궁화 */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl bg-gradient-to-br from-rose-950/40 via-slate-900 to-indigo-950/40 border-2 border-rose-500/40 p-6 sm:p-10 shadow-2xl overflow-hidden text-left group">
-          <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex flex-col lg:flex-row items-center gap-8 relative z-10">
-            {/* Masterpiece Artwork Image Box */}
-            <div className="w-full lg:w-5/12 shrink-0">
-              <div className="relative aspect-square rounded-2xl overflow-hidden border border-rose-500/30 bg-black shadow-2xl group/img">
+          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+            {/* WRISTORY Official Logo Badge */}
+            <div className="flex flex-col items-center justify-center gap-3">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl blur-md opacity-40 group-hover:opacity-75 transition duration-500" />
                 <img 
-                  src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i" 
-                  alt="순국선열(殉國先烈)들이 피워낸 나라 꽃 무궁화 - YesOkLab Masterpiece"
+                  src={LOGO_URL} 
+                  alt="WRISTORY Official Brandmark" 
+                  className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-white/20 shadow-xl bg-slate-950"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeihlabi2xoajwvf2sabiiltszjqawxuayvux22iarkaifckk7ruwei';
+                  }}
+                />
+              </div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-cyan-300 text-[11px] font-bold tracking-wider uppercase">
+                <ShieldCheck size={13} className="text-[#00ffcc]" />
+                {t.hero.tagline}
+              </span>
+            </div>
+
+            {/* Typography */}
+            <div className="space-y-3">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white uppercase italic leading-none">
+                {t.hero.title}
+              </h1>
+              <p className="text-base sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00ffcc] to-blue-400">
+                {t.hero.subtitle}
+              </p>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto pt-1">
+                {t.hero.description}
+              </p>
+            </div>
+
+            {/* Curated 4-Pillars Strip */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 bg-slate-950/70 border border-slate-800/80 p-3.5 sm:p-4 rounded-2xl text-center">
+              <div>
+                <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">{t.metrics.chains}</p>
+                <p className="text-xs sm:text-sm font-black text-cyan-300 mt-0.5">{t.metrics.chainsVal}</p>
+              </div>
+              <div className="border-l border-slate-800">
+                <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">{t.metrics.masterpieces}</p>
+                <p className="text-xs sm:text-sm font-black text-amber-400 mt-0.5">{t.metrics.masterpiecesVal}</p>
+              </div>
+              <div className="border-t sm:border-t-0 sm:border-l border-slate-800">
+                <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">{t.metrics.curation}</p>
+                <p className="text-xs sm:text-sm font-black text-emerald-400 mt-0.5">{t.metrics.curationVal}</p>
+              </div>
+              <div className="border-t sm:border-t-0 border-l border-slate-800">
+                <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">{t.metrics.storage}</p>
+                <p className="text-xs sm:text-sm font-black text-purple-300 mt-0.5">{t.metrics.storageVal}</p>
+              </div>
+            </div>
+
+            {/* Direct Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <a
+                href="#masterpieces"
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs sm:text-sm font-black uppercase transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 active:scale-95"
+              >
+                <Sparkles size={15} className="text-yellow-300" />
+                {t.hero.exploreMasterpieces}
+              </a>
+              <a
+                href={BUCKWHEAT_OPENSEA}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-5 py-3 bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl text-xs sm:text-sm font-bold transition-all border border-slate-700 flex items-center justify-center gap-2 active:scale-95"
+              >
+                <span>{t.hero.viewOpenSea}</span>
+                <ExternalLink size={13} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Focused Dual Masterpieces Section (Base 1 + Tezos 1) */}
+      <section id="masterpieces" className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8 scroll-mt-24">
+        {/* Section Header */}
+        <div className="text-center space-y-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[10px] sm:text-[11px] font-black uppercase tracking-wider">
+            <Sparkles size={12} className="text-yellow-300" />
+            {t.dualSection.badge}
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-black text-white italic uppercase tracking-tight">
+            {t.dualSection.title}
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
+            {t.dualSection.subtitle}
+          </p>
+        </div>
+
+        {/* The Two Masterpieces Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Masterpiece 1: Base Chain (Lee Hyo-seok - When Buckwheat Flowers Bloom) */}
+          <div className="relative rounded-3xl bg-slate-900/80 border-2 border-emerald-500/40 p-5 sm:p-7 shadow-2xl flex flex-col justify-between group hover:border-emerald-400 transition-all text-left">
+            <div className="space-y-5">
+              {/* Image Frame with HD Zoom Action */}
+              <div 
+                onClick={() => openLightbox(
+                  'buckwheat',
+                  t.artworks.buckwheat.title,
+                  t.artworks.buckwheat.subtitle,
+                  BUCKWHEAT_IMAGE,
+                  BUCKWHEAT_FALLBACK,
+                  t.artworks.buckwheat.mintBtn,
+                  BUCKWHEAT_HIGHLIGHT
+                )}
+                className="relative aspect-[16/10] rounded-2xl bg-black overflow-hidden cursor-pointer group/img border border-white/10 shadow-lg"
+                title={lang === 'ko' ? '클릭하여 무손실 고화질(HD) 확대' : 'Click to inspect in HD'}
+              >
+                <img 
+                  src={BUCKWHEAT_IMAGE} 
+                  alt={t.artworks.buckwheat.title}
                   className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                   onError={(e) => {
-                    // Fallback to IPFS.io if Pinata mirror has latency
-                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i';
+                    (e.target as HTMLImageElement).src = BUCKWHEAT_FALLBACK;
                   }}
                 />
-                <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                  <span className="px-3 py-1 bg-gradient-to-r from-rose-600 to-red-600 text-white text-[11px] font-black uppercase rounded-full shadow-lg flex items-center gap-1">
-                    <Sparkles size={12} className="text-yellow-200 animate-spin" /> YesOkLab 공식 대표작
+                
+                {/* Chain Badge overlay */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span className="px-3 py-1 bg-gradient-to-r from-emerald-600 to-teal-500 text-white text-[10px] font-black uppercase rounded-full shadow-lg flex items-center gap-1">
+                    <Sparkles size={11} className="text-yellow-300" />
+                    BASE L2
                   </span>
-                  <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md border border-white/20 text-slate-200 text-[10px] font-mono font-bold rounded-full">
-                    80 Eds
+                  <span className="px-2.5 py-1 bg-black/75 backdrop-blur-md text-emerald-300 border border-emerald-500/30 text-[10px] font-bold rounded-full">
+                    Highlight & OpenSea
                   </span>
                 </div>
-                <div className="absolute bottom-3 right-3 px-3 py-1 bg-slate-950/80 backdrop-blur-md border border-rose-500/40 rounded-full text-[11px] font-mono font-bold text-rose-300">
-                  3 XTZ • DLA 십자수
+
+                {/* Inspect Overlay Prompt */}
+                <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-bold backdrop-blur-[2px]">
+                  <Maximize2 size={16} className="text-amber-400" />
+                  <span>{t.modal.hdView}</span>
+                </div>
+              </div>
+
+              {/* Title & Description */}
+              <div className="space-y-3">
+                <div>
+                  <span className="text-[11px] font-black text-emerald-400 uppercase tracking-widest block">
+                    {t.dualSection.baseChain}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-white italic tracking-tight mt-0.5">
+                    {t.artworks.buckwheat.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 font-semibold">{t.artworks.buckwheat.subtitle}</p>
+                </div>
+
+                {/* Literary Quote Box */}
+                <div className="bg-slate-950/70 border border-slate-800 p-3 sm:p-4 rounded-xl text-xs text-amber-200/90 italic leading-relaxed">
+                  {t.artworks.buckwheat.quote}
+                </div>
+
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {t.artworks.buckwheat.desc}
+                </p>
+
+                <div className="text-[11px] text-slate-400 space-y-1 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60 font-mono">
+                  <p className="truncate">✦ {t.artworks.buckwheat.detail1}</p>
+                  <p className="truncate">✦ {t.artworks.buckwheat.detail2}</p>
                 </div>
               </div>
             </div>
 
-            {/* Masterpiece Content & Narrative */}
-            <div className="space-y-4 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-black uppercase rounded-full">
-                  NEW MINT • PATRIOTIC LEGACY #32
-                </span>
-                <span className="px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-bold rounded-full">
-                  DLA Algorithm / Cross-Stitch Generative Art
-                </span>
-              </div>
+            {/* Action Buttons Hub */}
+            <div className="space-y-2 pt-5 border-t border-slate-800/80 mt-5">
+              {/* Primary Minting CTA */}
+              <a
+                href={BUCKWHEAT_HIGHLIGHT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-600/30 active:scale-95"
+              >
+                <Sparkles size={14} className="text-yellow-300" />
+                <span>{t.artworks.buckwheat.mintBtn}</span>
+                <ArrowUpRight size={14} />
+              </a>
 
-              <div>
-                <h2 className="text-2xl sm:text-4xl font-black text-white italic uppercase tracking-tight">
-                  순국선열이 피워낸 나라 꽃 무궁화
-                </h2>
-                <p className="text-rose-400 font-bold text-sm sm:text-base mt-1">
-                  "대한민국 독립운동가들의 넋과 한, 나라 사랑의 마음이 무궁화로 피어납니다."
-                </p>
-              </div>
-
-              <div className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed bg-slate-950/50 p-4 sm:p-5 rounded-2xl border border-white/5">
-                <p>
-                  일제강점기(日帝強占期), 조국의 독립을 위해 헌신하고 목숨 바친 <b>대한민국 독립운동가들의 영혼을 자수 실로 감싸 담은</b> 제너러티브 마스터피스입니다.
-                  중앙의 작은 태극이 먼저 자라난 뒤, 한지빛 바탕 위로 먹빛 가지가 <b>확산제한응집(DLA)</b> 알고리즘으로 뻗어나가며 가지 끝에서 이따금 무궁화가 피어납니다.
-                </p>
-                <p className="text-slate-400 border-t border-slate-800 pt-2 text-xs">
-                  💡 태극부터 테두리까지 모든 요소를 <b>하나의 십자수 스티치</b>로 통일하여 그려 전체가 한 장의 섬세한 전통 자수처럼 펼쳐집니다. 성장은 완전히 자율적으로 시작·확산·개화한 뒤 스스로 멈추어 고유한 형태로 온체인에 영구히 정지·보존됩니다.
-                </p>
-                <p className="text-[#00ffcc] font-bold text-xs">
-                  "Mugunghwa (無窮花) — The flower that never fades. 영원히 지지 않는 무궁화처럼 순국선열의 숭고한 보국의 넋은 블록체인 위에서 영원합니다."
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              {/* Secondary Clean Action Pair */}
+              <div className="grid grid-cols-3 gap-2 text-xs">
                 <a
-                  href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/32"
+                  href={BUCKWHEAT_OPENSEA}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:to-red-500 text-white rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-rose-600/30 active:scale-95"
+                  className="py-2.5 bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-blue-500/30 active:scale-95 text-center truncate"
                 >
-                  <Sparkles size={16} /> OBJKT 대표작 감상 및 소장하기 <ArrowUpRight size={14} />
+                  <span>OpenSea</span>
+                  <ExternalLink size={11} />
                 </a>
                 <a
-                  href="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigxi55r2jipqmhi6pobqqxfjsermyenccuxctgmtq4r3vb6hiqo7i"
+                  href={BUCKWHEAT_ZORA}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-bold text-xs uppercase transition-all flex items-center gap-1.5 border border-slate-700 active:scale-95"
+                  className="py-2.5 bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-purple-500/30 active:scale-95 text-center truncate"
                 >
-                  IPFS 원본 확인 <ExternalLink size={12} />
+                  <span>Zora</span>
+                  <ExternalLink size={11} />
                 </a>
+                <button
+                  onClick={() => openLightbox(
+                    'buckwheat',
+                    t.artworks.buckwheat.title,
+                    t.artworks.buckwheat.subtitle,
+                    BUCKWHEAT_IMAGE,
+                    BUCKWHEAT_FALLBACK,
+                    t.artworks.buckwheat.mintBtn,
+                    BUCKWHEAT_HIGHLIGHT
+                  )}
+                  className="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-slate-700 active:scale-95 text-center truncate"
+                >
+                  <Maximize2 size={11} className="text-amber-400" />
+                  <span>HD View</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Masterpiece 2: Tezos Chain (Bitcoin Pizza Day) */}
+          <div className="relative rounded-3xl bg-slate-900/80 border-2 border-amber-500/40 p-5 sm:p-7 shadow-2xl flex flex-col justify-between group hover:border-amber-400 transition-all text-left">
+            <div className="space-y-5">
+              {/* Image Frame with HD Zoom Action */}
+              <div 
+                onClick={() => openLightbox(
+                  'pizza',
+                  t.artworks.pizza.title,
+                  t.artworks.pizza.subtitle,
+                  PIZZA_IMAGE,
+                  PIZZA_FALLBACK,
+                  t.artworks.pizza.objktBtn,
+                  PIZZA_OBJKT
+                )}
+                className="relative aspect-[16/10] rounded-2xl bg-black overflow-hidden cursor-pointer group/img border border-white/10 shadow-lg"
+                title={lang === 'ko' ? '클릭하여 무손실 고화질(HD) 확대' : 'Click to inspect in HD'}
+              >
+                <img 
+                  src={PIZZA_IMAGE} 
+                  alt={t.artworks.pizza.title}
+                  className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = PIZZA_FALLBACK;
+                  }}
+                />
+                
+                {/* Chain Badge overlay */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span className="px-3 py-1 bg-gradient-to-r from-amber-600 to-orange-500 text-white text-[10px] font-black uppercase rounded-full shadow-lg flex items-center gap-1">
+                    <Sparkles size={11} className="text-yellow-200" />
+                    TEZOS FA2
+                  </span>
+                  <span className="px-2.5 py-1 bg-black/75 backdrop-blur-md text-amber-300 border border-amber-500/30 text-[10px] font-bold rounded-full">
+                    OBJKT.com
+                  </span>
+                </div>
+
+                {/* Inspect Overlay Prompt */}
+                <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-bold backdrop-blur-[2px]">
+                  <Maximize2 size={16} className="text-amber-400" />
+                  <span>{t.modal.hdView}</span>
+                </div>
+              </div>
+
+              {/* Title & Description */}
+              <div className="space-y-3">
+                <div>
+                  <span className="text-[11px] font-black text-amber-400 uppercase tracking-widest block">
+                    {t.dualSection.tezosChain}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-white italic tracking-tight mt-0.5">
+                    {t.artworks.pizza.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 font-semibold">{t.artworks.pizza.subtitle}</p>
+                </div>
+
+                {/* Historical Quote Box */}
+                <div className="bg-slate-950/70 border border-slate-800 p-3 sm:p-4 rounded-xl text-xs text-amber-200/90 italic leading-relaxed">
+                  {t.artworks.pizza.quote}
+                </div>
+
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {t.artworks.pizza.desc}
+                </p>
+
+                <div className="text-[11px] text-slate-400 space-y-1 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60 font-mono">
+                  <p className="truncate">✦ {t.artworks.pizza.detail1}</p>
+                  <p className="truncate">✦ {t.artworks.pizza.detail2}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons Hub */}
+            <div className="space-y-2 pt-5 border-t border-slate-800/80 mt-5">
+              {/* Primary OBJKT CTA */}
+              <a
+                href={PIZZA_OBJKT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-gradient-to-r from-amber-600 via-orange-600 to-yellow-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-amber-600/30 active:scale-95"
+              >
+                <Sparkles size={14} className="text-yellow-200" />
+                <span>{t.artworks.pizza.objktBtn}</span>
+                <ArrowUpRight size={14} />
+              </a>
+
+              {/* Secondary Clean Action Pair */}
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <a
+                  href={PIZZA_IMAGE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-200 rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-slate-700 active:scale-95 text-center truncate"
+                >
+                  <span>{t.artworks.pizza.ipfsBtn}</span>
+                  <ExternalLink size={11} />
+                </a>
+                <button
+                  onClick={() => openLightbox(
+                    'pizza',
+                    t.artworks.pizza.title,
+                    t.artworks.pizza.subtitle,
+                    PIZZA_IMAGE,
+                    PIZZA_FALLBACK,
+                    t.artworks.pizza.objktBtn,
+                    PIZZA_OBJKT
+                  )}
+                  className="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-slate-700 active:scale-95 text-center truncate"
+                >
+                  <Maximize2 size={11} className="text-amber-400" />
+                  <span>HD View</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Featured Heritage Highlights (Clean 4-Card Grid with Pinata Gateways & HD Touch Zoom) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
-          <div>
-            <div className="flex items-center gap-2">
-              <Sparkles size={18} className="text-amber-400" />
-              <h2 className="text-lg sm:text-2xl font-black text-white italic tracking-tight uppercase">
-                {lang === 'ko' ? '최근 민팅 작품 (Recent Mintings)' : 'Recent Mintings & Curated Highlights'}
-              </h2>
+      {/* 3. Essential On-Chain Verification & Liquidity Card (Concise & Focused) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="rounded-3xl bg-slate-900/60 border border-slate-800 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-mono font-bold">
+                Base Mainnet ERC-20 ($WR)
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-bold">
+                Uniswap v4 Verified
+              </span>
             </div>
-            <p className="text-xs text-slate-400 mt-1">
-              {lang === 'ko' 
-                ? '작품 이미지를 터치(클릭)하면 무손실 고화질(HD) 확대 및 라이브 캔버스를 감상하실 수 있습니다.'
-                : 'Touch or click any artwork image to view in ultra-high resolution (HD) or interactive live canvas.'}
-            </p>
+            <h3 className="text-lg sm:text-xl font-black text-white">
+              {lang === 'ko' ? '공식 스마트 컨트랙트 및 DEX 유동성' : 'Verified Smart Contract & DEX Liquidity'}
+            </h3>
+            <div className="flex items-center gap-2 pt-1">
+              <code className="text-xs sm:text-sm font-mono text-[#00ffcc] bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 select-all">
+                {BASE_CONTRACT}
+              </code>
+              <button 
+                onClick={handleCopyContract}
+                className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
+                title={lang === 'ko' ? '주소 복사' : 'Copy Address'}
+              >
+                {copiedContract ? <Check size={15} className="text-emerald-400" /> : <Share2 size={15} />}
+              </button>
+            </div>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={() => { onNavigate('COLLECTIONS'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="px-3.5 py-1.5 bg-blue-600/30 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/40 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
-            >
-              <Eye size={14} /> {lang === 'ko' ? '전체 컬렉션 허브' : 'Collections Hub'} <ChevronRight size={14} />
-            </button>
-            <a 
-              href="https://objkt.com/profile/tz1eXLHqJXBnp4VFGwFDfMGWcLYVgBUYnA16/created"
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a
+              href={GECKOTERMINAL_TOKEN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition-all flex items-center gap-1"
+              className="px-4 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
-              OBJKT <ChevronRight size={13} />
+              <TrendingUp size={14} className="text-amber-400" />
+              <span>GeckoTerminal ($WR)</span>
+              <ExternalLink size={11} />
+            </a>
+            <a
+              href={UNISWAP_V4_POSITION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
+            >
+              <Coins size={14} />
+              <span>Uniswap v4 (#2953119)</span>
+              <ArrowUpRight size={12} />
             </a>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left">
-          {recentArtworks.map((art) => (
-            <div 
-              key={art.id}
-              className={`bg-slate-900/70 border rounded-2xl overflow-hidden transition-all flex flex-col justify-between group shadow-lg ${
-                art.id === 'muju-firefly'
-                  ? 'border-emerald-500/50 shadow-emerald-500/10 hover:border-emerald-400'
-                  : art.id === 'mugunghwa'
-                  ? 'border-blue-500/40 shadow-blue-500/10 hover:border-blue-400'
-                  : art.id === 'han-hon-maek'
-                  ? 'border-red-500/40 shadow-red-500/10 hover:border-red-400'
-                  : 'border-amber-500/40 shadow-amber-500/10 hover:border-amber-400'
-              }`}
-            >
-              {/* Thumbnail Container with Touch to Zoom action */}
-              <div 
-                onClick={() => openHdModal(art)}
-                className="relative aspect-[16/10] bg-black/90 overflow-hidden flex items-center justify-center cursor-pointer group/img"
-                title={lang === 'ko' ? '클릭하여 고화질 확대' : 'Click to inspect in HD'}
-              >
-                <img 
-                  src={art.image} 
-                  alt={art.name} 
-                  className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://ipfs.io/ipfs/${art.ipfsUrl.split('/ipfs/')[1] || ''}`;
-                  }}
-                />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-bold backdrop-blur-[2px]">
-                  <Maximize2 size={16} className="text-amber-400" />
-                  <span>{lang === 'ko' ? '터치하여 HD 확대' : 'HD Inspect'}</span>
-                </div>
-                <span className={`absolute top-2.5 left-2.5 px-2.5 py-0.5 text-white text-[10px] font-black uppercase rounded-md shadow ${
-                  art.id === 'muju-firefly' 
-                    ? 'bg-gradient-to-r from-emerald-600 to-teal-500' 
-                    : art.id === 'mugunghwa'
-                    ? 'bg-blue-600'
-                    : art.id === 'han-hon-maek'
-                    ? 'bg-red-600'
-                    : 'bg-amber-600'
-                }`}>
-                  {art.badge}
-                </span>
-                <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/85 text-[10px] font-mono text-amber-300 rounded border border-white/10">
-                  {art.price}
-                </span>
-              </div>
-
-              {/* Information & Action Links */}
-              <div className="p-4 space-y-2.5 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-sm font-black text-white uppercase italic group-hover:text-amber-400 transition-colors line-clamp-1">
-                    {art.name}
-                  </h3>
-                  <p className="text-[11px] text-slate-400 line-clamp-2 mt-1 leading-relaxed">
-                    {art.desc}
-                  </p>
-                </div>
-                <div className="space-y-2 pt-2">
-                  {/* Primary Direct Action */}
-                  {art.highlightUrl ? (
-                    <a 
-                      href={art.highlightUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-full py-2.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
-                    >
-                      <Sparkles size={13} className="text-yellow-300" />
-                      <span>{art.id === 'buckwheat-flowers' ? 'Highlight 신작 민팅하기' : 'Highlight 민팅하기'}</span>
-                      <ArrowUpRight size={13} />
-                    </a>
-                  ) : (
-                    <a 
-                      href={art.objktUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-full py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-600/30 active:scale-95"
-                    >
-                      <span>OBJKT 토큰 감상</span>
-                      <ArrowUpRight size={13} />
-                    </a>
-                  )}
-
-                  {/* Secondary Clean Action Pair */}
-                  <div className="grid grid-cols-2 gap-2 text-[11px]">
-                    <button
-                      onClick={() => openHdModal(art)}
-                      className="w-full py-1.5 bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-slate-700 active:scale-95"
-                    >
-                      <Maximize2 size={12} className="text-amber-400" /> {lang === 'ko' ? 'HD 확대' : 'HD Zoom'}
-                    </button>
-                    {art.zoraUrl ? (
-                      <a 
-                        href={art.zoraUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="w-full py-1.5 bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-blue-500/30 active:scale-95"
-                      >
-                        Zora 코인 <ArrowUpRight size={11} />
-                      </a>
-                    ) : (
-                      <a 
-                        href={art.objktUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="w-full py-1.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30 active:scale-95"
-                      >
-                        OBJKT <ArrowUpRight size={11} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
-      {/* HD Lightbox Inspection Modal */}
-      {selectedArtwork && (
+      {/* 4. HD Lightbox Modal with Zoom & Live Interactive Canvas */}
+      {activeModalItem && (
         <div 
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 animate-in fade-in duration-200"
-          onClick={closeHdModal}
+          onClick={closeLightbox}
         >
-          {/* Modal Header */}
+          {/* Header */}
           <div 
             className="max-w-6xl mx-auto w-full flex items-center justify-between pb-3 border-b border-white/10 text-white"
             onClick={(e) => e.stopPropagation()}
           >
             <div>
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 bg-amber-500 text-black text-[10px] font-black rounded uppercase">
-                  {selectedArtwork.badge}
-                </span>
-                <h3 className="text-base sm:text-lg font-bold line-clamp-1">{selectedArtwork.name}</h3>
-              </div>
-              <p className="text-xs text-slate-400 mt-0.5">{selectedArtwork.subtitle} • {selectedArtwork.price}</p>
+              <h3 className="text-base sm:text-xl font-bold">{activeModalItem.title}</h3>
+              <p className="text-xs text-slate-400 mt-0.5">{activeModalItem.subtitle}</p>
             </div>
             <div className="flex items-center gap-2">
               <button 
-                onClick={() => setZoomLevel(prev => Math.max(1, prev - 0.5))}
+                onClick={() => setZoomScale(prev => Math.max(1, prev - 0.5))}
                 className="p-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors"
-                title="Zoom Out"
+                title={t.modal.zoomOut}
               >
                 <ZoomOut size={16} />
               </button>
-              <span className="text-xs font-mono text-amber-400 font-bold px-1">{Math.round(zoomLevel * 100)}%</span>
+              <span className="text-xs font-mono text-amber-400 font-bold px-1">{Math.round(zoomScale * 100)}%</span>
               <button 
-                onClick={() => setZoomLevel(prev => Math.min(3, prev + 0.5))}
+                onClick={() => setZoomScale(prev => Math.min(3, prev + 0.5))}
                 className="p-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors"
-                title="Zoom In"
+                title={t.modal.zoomIn}
               >
                 <ZoomIn size={16} />
               </button>
               <button 
-                onClick={closeHdModal}
+                onClick={closeLightbox}
                 className="p-2 bg-red-600/30 hover:bg-red-600 rounded-lg text-white transition-colors ml-2"
-                title="Close"
+                title={t.modal.close}
               >
                 <X size={18} />
               </button>
             </div>
           </div>
 
-          {/* Modal Body / Viewer */}
+          {/* Body Viewer */}
           <div 
             className="flex-1 max-w-6xl mx-auto w-full flex items-center justify-center overflow-auto my-3 p-2 select-none"
             onClick={(e) => e.stopPropagation()}
           >
             <div 
               className="relative transition-transform duration-200 origin-center flex items-center justify-center max-w-full max-h-full"
-              style={{ transform: `scale(${zoomLevel})` }}
+              style={{ transform: `scale(${zoomScale})` }}
             >
-              {viewLiveInteractive ? (
+              {isInteractiveMode ? (
                 <iframe 
-                  src={selectedArtwork.ipfsUrl} 
-                  title={selectedArtwork.name}
+                  src={activeModalItem.ipfsUrl} 
+                  title={activeModalItem.title}
                   className="w-[85vw] max-w-[800px] h-[70vh] max-h-[600px] border border-white/20 rounded-xl bg-black shadow-2xl"
                   sandbox="allow-scripts allow-same-origin"
                 />
               ) : (
                 <img 
-                  src={selectedArtwork.image} 
-                  alt={selectedArtwork.name} 
+                  src={activeModalItem.image} 
+                  alt={activeModalItem.title} 
                   className="max-w-[90vw] max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://ipfs.io/ipfs/${selectedArtwork.ipfsUrl.split('/ipfs/')[1] || ''}`;
+                    (e.target as HTMLImageElement).src = activeModalItem.fallbackImage;
                   }}
                 />
               )}
             </div>
           </div>
 
-          {/* Modal Footer with Actions */}
+          {/* Footer Actions */}
           <div 
             className="max-w-6xl mx-auto w-full pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-white"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2">
               <button 
-                onClick={() => setViewLiveInteractive(!viewLiveInteractive)}
+                onClick={() => setIsInteractiveMode(!isInteractiveMode)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
-                  viewLiveInteractive 
+                  isInteractiveMode 
                     ? 'bg-amber-500 text-black border-amber-400' 
                     : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
                 }`}
               >
-                {viewLiveInteractive ? '정적 고화질 이미지 보기' : '라이브 캔버스 인터랙티브 모드 실행'}
+                {isInteractiveMode ? t.modal.staticView : t.modal.interactive}
               </button>
               <a 
-                href={selectedArtwork.ipfsUrl} 
+                href={activeModalItem.ipfsUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-bold transition-colors flex items-center gap-1"
               >
-                IPFS 원본 게이트웨이 열기 <ExternalLink size={12} />
+                <span>{t.modal.ipfsLink}</span>
+                <ExternalLink size={12} />
               </a>
             </div>
 
-            <div className="flex items-center gap-2">
-              {selectedArtwork.highlightUrl && (
-                <a 
-                  href={selectedArtwork.highlightUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-4 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black rounded-lg text-xs transition-colors flex items-center gap-1 shadow-md shadow-emerald-600/30"
-                >
-                  <Sparkles size={12} className="text-yellow-300" /> Highlight 공식 민팅 <ArrowUpRight size={13} />
-                </a>
-              )}
-              <a 
-                href={selectedArtwork.objktUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-lg text-xs transition-colors flex items-center gap-1"
-              >
-                OBJKT 토큰 확인 <ArrowUpRight size={13} />
-              </a>
-              {selectedArtwork.zoraUrl && (
-                <a 
-                  href={selectedArtwork.zoraUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg text-xs transition-colors flex items-center gap-1"
-                >
-                  Zora 코인 <ArrowUpRight size={12} />
-                </a>
-              )}
-            </div>
+            <a 
+              href={activeModalItem.primaryAction.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black rounded-lg text-xs transition-colors flex items-center gap-1 shadow-md shadow-blue-600/30"
+            >
+              <Sparkles size={13} className="text-yellow-300" />
+              <span>{activeModalItem.primaryAction.label}</span>
+              <ArrowUpRight size={13} />
+            </a>
           </div>
         </div>
       )}
-
-      {/* 7. Institutional & Regulatory Policy Research Section (Research-Clarity-Act) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-950 border border-indigo-500/30 p-6 sm:p-10 shadow-2xl overflow-hidden text-left">
-          {/* Ambient background glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-10 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 space-y-6">
-            {/* Header badges & title */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="px-3 py-1 bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 text-xs font-black uppercase rounded-full flex items-center gap-1.5">
-                    <Scale size={13} className="text-indigo-400" /> INSTITUTIONAL RESEARCH & COMPLIANCE
-                  </span>
-                  <span className="px-2.5 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-mono font-bold rounded-full">
-                    U.S. Clarity Act & Market Structure
-                  </span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white italic uppercase tracking-tight">
-                  {lang === 'ko' 
-                    ? '글로벌 제도화 & 미국 클래리티 법안(Clarity Act) 정책 연구' 
-                    : 'Institutional Policy & U.S. Clarity Act Research'}
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl leading-relaxed">
-                  {lang === 'ko'
-                    ? 'YesOkLab & WRISTORY는 단순한 온체인 아트를 넘어, 미 의회 디지털 자산 시장 구조 법안(FIT21 / Clarity Act)과 선물시장(CFTC)을 중심으로 급변하는 글로벌 규제 환경을 선제 분석하여 프로젝트의 법적 영속성과 제도권 적격성을 입증합니다.'
-                    : 'Analyzing the evolving U.S. congressional legislative cycles (FIT21 / Clarity Act) and CFTC derivative frameworks to build a compliant, sustainable on-chain heritage architecture.'}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-                <button
-                  onClick={() => { onNavigate('RESEARCH'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-black transition-all flex items-center gap-2 shadow-lg shadow-indigo-600/30 active:scale-95"
-                >
-                  <Scale size={14} className="text-yellow-300" /> 
-                  {lang === 'ko' ? 'CTO 리서치 브리핑 & 매트릭스 전체보기' : 'CTO Research Briefing & Matrix'} 
-                  <ChevronRight size={13} />
-                </button>
-                <a
-                  href={GITHUB_CLARITY_RESEARCH_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all border border-slate-700 flex items-center gap-2 shadow active:scale-95"
-                >
-                  <BookOpen size={14} className="text-blue-400" /> GitHub Research 원문 <ExternalLink size={12} />
-                </a>
-                <button
-                  onClick={() => { onNavigate('WHITEPAPER'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="px-4 py-2.5 bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white rounded-xl text-xs font-bold transition-all border border-indigo-500/40 flex items-center gap-2 active:scale-95"
-                >
-                  <FileText size={14} /> {lang === 'ko' ? '백서 규제 챕터' : 'Whitepaper Chapter'} <ChevronRight size={13} />
-                </button>
-              </div>
-            </div>
-
-            {/* 4 Research Pillars Grid: 3 Blog Series + GitHub Open Archive */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {/* Card 1: Blog Series Part 1 */}
-              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-indigo-500/40 transition-colors flex flex-col justify-between group">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                    <span className="text-amber-400 font-bold">[연재 1편] 워싱턴 리포트</span>
-                    <span>2026.09</span>
-                  </div>
-                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-indigo-300 transition-colors leading-snug">
-                    워싱턴 하원 일정이 사라졌다: 클래리티 법안 표류와 입법 절벽의 진실
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    미국 의회 입법 사이클 및 디지털 자산 명확성 법안(CLARITY Act / FIT21 연계안)의 입법 동력 정지와 SEC vs CFTC 규제 공백 심층 분석.
-                  </p>
-                </div>
-                <a
-                  href={BLOG_CLARITY_ACT_1_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pt-2 text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center justify-between border-t border-slate-800/80"
-                >
-                  <span>심층 칼럼 1편 읽기</span>
-                  <ArrowUpRight size={13} />
-                </a>
-              </div>
-
-              {/* Card 2: Blog Series Part 2 */}
-              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-blue-500/40 transition-colors flex flex-col justify-between group">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                    <span className="text-blue-400 font-bold">[연재 2편] 규제 메커니즘</span>
-                    <span>2026.09</span>
-                  </div>
-                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-blue-300 transition-colors leading-snug">
-                    정문 막히자 '선물시장' 옆문 열었다: 슈퍼팩과 4대 거래소
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    CFTC 규정 Part 40.2 '자기인증' 옆문과 초당적 슈퍼팩(Fairshake)의 정치 자본, 비트노미얼·칼시·코인베이스·CME의 선물 제도화 전략 규명.
-                  </p>
-                </div>
-                <a
-                  href={BLOG_CLARITY_ACT_2_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pt-2 text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center justify-between border-t border-slate-800/80"
-                >
-                  <span>심층 칼럼 2편 읽기</span>
-                  <ArrowUpRight size={13} />
-                </a>
-              </div>
-
-              {/* Card 3: Blog Series Part 3 */}
-              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-purple-500/40 transition-colors flex flex-col justify-between group">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                    <span className="text-purple-400 font-bold">[연재 3편] 기관 매트릭스</span>
-                    <span>2026.09</span>
-                  </div>
-                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-purple-300 transition-colors leading-snug">
-                    장부에 오른 코인만 살아남는다: 2026 기관 자산 생존 매트릭스
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    바젤 은행 감독 규정·SEC 15c3-1·적격 수탁기관 기준을 뚫고 월가 대차대조표(장부)에 자산으로 계상되는 토큰의 조건과 규제 생존 방정식.
-                  </p>
-                </div>
-                <a
-                  href={BLOG_CLARITY_ACT_3_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pt-2 text-xs font-bold text-purple-400 hover:text-purple-300 flex items-center justify-between border-t border-slate-800/80"
-                >
-                  <span>심층 칼럼 3편 읽기</span>
-                  <ArrowUpRight size={13} />
-                </a>
-              </div>
-
-              {/* Card 4: GitHub Open Source Repository */}
-              <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 space-y-3 hover:border-emerald-500/40 transition-colors flex flex-col justify-between group">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                    <span className="text-emerald-400 font-bold">[GitHub Open Source]</span>
-                    <span>Public Repo</span>
-                  </div>
-                  <h3 className="text-sm sm:text-base font-black text-white group-hover:text-emerald-300 transition-colors leading-snug">
-                    Research-Clarity-Act 오픈 아카이브
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Howey Test 증권성 배제 요건, Uniswap v4 집중 유동성 자율성, 기관 파트너십을 위한 기술·정책 컴플라이언스 리서치 전문 저장소.
-                  </p>
-                </div>
-                <a
-                  href={GITHUB_CLARITY_RESEARCH_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pt-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-slate-800/80"
-                >
-                  <span>GitHub 연구 저장소 방문</span>
-                  <ArrowUpRight size={13} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Migration Callout Block */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-blue-500/30 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl text-left">
-          <div className="space-y-2">
-            <span className="text-[10px] text-blue-400 font-black uppercase tracking-widest">Base L2 Migration</span>
-            <h3 className="text-2xl font-black text-white uppercase italic">
-              {lang === 'ko' ? '테조스에서 보유 중인 $WR을 Base $WR로 1:1 교환하세요' : 'Migrate your Tezos $WR to Base $WR (1:1 Ratio)'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              {lang === 'ko'
-                ? '기존 1,063명의 홀더 및 OBJKT 창작자분들을 위해 1 Tezos WR = 1 Base WR (1:1 비율)로 수수료 없이 안전한 교환을 지원합니다.'
-                : 'Zero slippage, zero commission fee 1:1 migration for all 1,063 Tezos holders and OBJKT artists.'}
-            </p>
-          </div>
-          <button
-            onClick={() => { onNavigate('MIGRATION'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 shadow-lg shadow-blue-600/30 active:scale-95"
-          >
-            <ArrowRightLeft size={16} /> {lang === 'ko' ? '1:1 마이그레이션 포털 이동' : 'Open Migration Portal'}
-          </button>
-        </div>
-      </section>
     </div>
   );
 };
