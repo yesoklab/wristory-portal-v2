@@ -72,6 +72,12 @@ export interface TranslationDictionary {
     close: string;
     ipfsLink: string;
   };
+  walletAction: {
+    addTokenBtn: string;
+    addingToken: string;
+    tokenAddedSuccess: string;
+    contractCopied: string;
+  };
   footer: {
     mission: string;
     copyright: string;
@@ -152,6 +158,12 @@ export const translations: Record<Lang, TranslationDictionary> = {
       close: '닫기',
       ipfsLink: 'IPFS 탈중앙화 게이트웨이'
     },
+    walletAction: {
+      addTokenBtn: '메타마스크에 $WR 토큰 & 로고 등록하기',
+      addingToken: '메타마스크 승인 대기 중...',
+      tokenAddedSuccess: '✅ 메타마스크에 $WR 토큰과 공식 로고가 성공적으로 등록되었습니다!',
+      contractCopied: '컨트랙트 주소가 복사되었습니다.'
+    },
     footer: {
       mission: '블록체인 기술을 통한 인류 문학·역사적 유산의 영구적 보존',
       copyright: '© 2026 YesOkLab | WRISTORY Project. All Rights Reserved.',
@@ -229,6 +241,12 @@ export const translations: Record<Lang, TranslationDictionary> = {
       zoomOut: 'Zoom Out',
       close: 'Close',
       ipfsLink: 'IPFS Decentralized Gateway'
+    },
+    walletAction: {
+      addTokenBtn: 'Add $WR & Logo to MetaMask',
+      addingToken: 'Confirming in MetaMask...',
+      tokenAddedSuccess: '✅ $WR Token & official logo registered in MetaMask!',
+      contractCopied: 'Contract address copied.'
     },
     footer: {
       mission: 'Preserving human cultural & cryptographic heritage through decentralized blockchain technology.',
