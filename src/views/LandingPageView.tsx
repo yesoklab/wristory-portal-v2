@@ -31,8 +31,8 @@ interface LandingPageViewProps {
 const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) => {
   const t = translations[lang] || translations.ko;
 
-  // External Links
-  const LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihlabi2xoajwvf2sabiiltszjqawxuayvux22iarkaifckk7ruwei';
+  // External Links (Unified Official Token Logo)
+  const LOGO_URL = WR_TOKEN_CONFIG.image;
   const BASE_CONTRACT = WR_TOKEN_CONFIG.address;
   const TOKEN_LOGO_URL = WR_TOKEN_CONFIG.image;
   const TOKEN_LOGO_FALLBACK = WR_TOKEN_CONFIG.fallbackImage;
