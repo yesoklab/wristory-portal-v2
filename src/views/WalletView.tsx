@@ -13,6 +13,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { wallet, getWRBalance, transferWR } from '../lib/tezos';
+import { addWRTokenToMetaMask, WR_TOKEN_CONFIG } from '../lib/metamask';
 
 interface Props {
   lang: 'ko' | 'en';
@@ -27,6 +28,24 @@ const WalletView: React.FC<Props> = ({ lang }) => {
   const [amount, setAmount] = useState('');
   const [txStatus, setTxStatus] = useState<'IDLE' | 'SENDING' | 'SUCCESS' | 'ERROR'>('IDLE');
   const [txHash, setTxHash] = useState<string | null>(null);
+
+  // MetaMask Add Token state
+  const [isAddingToken, setIsAddingToken] = useState(false);
+  const [tokenNotice, setTokenNotice] = useState<string | null>(null);
+
+  const handleAddMetaMask = async () => {
+    setIsAddingToken(true);
+    setTokenNotice(lang === 'ko' ? '메타마스크 승인 대기 중...' : 'Confirming in MetaMask...');
+    try {
+      const res = await addWRTokenToMetaMask();
+      setTokenNotice(res.message);
+    } catch (e: any) {
+      setTokenNotice(e?.message || '지갑 연동 오류');
+    } finally {
+      setIsAddingToken(false);
+      setTimeout(() => setTokenNotice(null), 5000);
+    }
+  };
 
   const connectWallet = async () => {
     setIsConnecting(true);
@@ -146,9 +165,53 @@ const WalletView: React.FC<Props> = ({ lang }) => {
             )}
           </div>
 
-          {/* Recommended Mobile Wallets */}
+          {/* Recommended Mobile Wallets & Dual Chains */}
           <div className="space-y-4">
-            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] px-4">Recommended Wallets</h3>
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] px-4">
+              {lang === 'ko' ? '추천 지갑 (Base L2 & Tezos)' : 'Recommended Wallets'}
+            </h3>
+            
+            {/* MetaMask Card with Direct One-Click Token & Logo Addition */}
+            <div className="bg-gradient-to-br from-orange-500/10 via-slate-900 to-amber-950/20 border border-orange-500/40 p-6 rounded-3xl space-y-4 shadow-xl">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="relative group shrink-0">
+                    <img 
+                      src={WR_TOKEN_CONFIG.image} 
+                      alt="WR Logo" 
+                      className="w-12 h-12 rounded-2xl object-cover border border-white/20 shadow-md bg-slate-950" 
+                      onError={(e) => { (e.target as HTMLImageElement).src = WR_TOKEN_CONFIG.fallbackImage; }}
+                    />
+                    <span className="absolute -bottom-1 -right-1 text-sm">🦊</span>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-black text-white text-lg italic uppercase tracking-tight">MetaMask</span>
+                      <span className="px-2 py-0.5 bg-blue-500/20 text-blue-300 text-[10px] font-mono font-bold rounded">Base L2</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                      {lang === 'ko' ? '이더리움 L2 Base 메인넷 $WR 토큰 및 공식 로고 자동 등록' : 'Base L2 $WR Token & Official Logo WatchAsset'}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleAddMetaMask}
+                  disabled={isAddingToken}
+                  className="px-4 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 rounded-xl font-black text-xs transition-all flex items-center justify-center gap-1.5 shadow-md shadow-orange-500/20 active:scale-95 disabled:opacity-70 shrink-0"
+                >
+                  {isAddingToken ? <Loader2 size={14} className="animate-spin" /> : <span>🦊</span>}
+                  <span>{lang === 'ko' ? '메타마스크에 $WR 토큰 추가' : 'Add $WR to MetaMask'}</span>
+                </button>
+              </div>
+
+              {tokenNotice && (
+                <div className="p-3 bg-slate-950/80 border border-orange-500/30 rounded-xl text-xs font-bold text-amber-300">
+                  {tokenNotice}
+                </div>
+              )}
+            </div>
+
             <div className="grid grid-cols-1 gap-4">
               <a 
                 href="https://templewallet.com/" 
