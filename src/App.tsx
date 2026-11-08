@@ -59,9 +59,9 @@ const App: React.FC = () => {
   const [showMigrationModal, setShowMigrationModal] = useState<boolean>(false);
   const [copiedModalLink, setCopiedModalLink] = useState<boolean>(false);
 
-  // Official Assets & URLs
-  const OFFICIAL_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihlabi2xoajwvf2sabiiltszjqawxuayvux22iarkaifckk7ruwei';
-  const LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeihlabi2xoajwvf2sabiiltszjqawxuayvux22iarkaifckk7ruwei';
+  // Official Assets & URLs (Unified Token Logo across Base & Tezos)
+  const OFFICIAL_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
+  const LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
   
   const BASE_CONTRACT_ADDRESS = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
@@ -558,13 +558,23 @@ const App: React.FC = () => {
             </a>
           </div>
 
-          {/* Clean Contract & Mission Statement */}
-          <div className="space-y-1 text-slate-400 text-[11px] leading-relaxed max-w-lg">
+          {/* Clean Contract Badges & Mission Statement */}
+          <div className="space-y-2 text-slate-400 text-[11px] leading-relaxed max-w-2xl mx-auto">
             <p className="text-slate-300 font-medium">{t.footer.mission}</p>
-            <p>
-              Base: <span className="font-mono text-[#00ffcc]">{BASE_CONTRACT_ADDRESS}</span> • Tezos: <span className="font-mono text-slate-400">{TEZOS_CONTRACT_ADDRESS}</span>
-            </p>
-            <p className="text-slate-400 pt-1">{t.footer.copyright}</p>
+            
+            {/* Perfectly Aligned Dual-Chain Contract Badges */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 pt-1 font-mono text-[11px]">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 shadow-sm w-full sm:w-auto justify-center">
+                <span className="text-cyan-400 font-black">Base:</span>
+                <span className="text-[#00ffcc] font-bold select-all tracking-tight">{BASE_CONTRACT_ADDRESS}</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 shadow-sm w-full sm:w-auto justify-center">
+                <span className="text-amber-400 font-black">Tezos:</span>
+                <span className="text-slate-300 font-bold select-all tracking-tight">{TEZOS_CONTRACT_ADDRESS}</span>
+              </div>
+            </div>
+
+            <p className="text-slate-500 pt-1 text-[10px]">{t.footer.copyright}</p>
           </div>
         </div>
       </footer>
