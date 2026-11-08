@@ -63,6 +63,10 @@ const App: React.FC = () => {
   const OFFICIAL_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
   const LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
   
+  // Footer WRISTORY Brand Logo
+  const FOOTER_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihtocrwlgdefte3jwhdm6pvg5qu34rj6wdxwpa3e64wllugp4vj6u';
+  const FOOTER_LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeihtocrwlgdefte3jwhdm6pvg5qu34rj6wdxwpa3e64wllugp4vj6u';
+  
   const BASE_CONTRACT_ADDRESS = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   
@@ -485,11 +489,11 @@ const App: React.FC = () => {
           {/* Logo & Project Identity */}
           <div className="flex items-center gap-2.5">
             <img 
-              src={OFFICIAL_LOGO_URL} 
+              src={FOOTER_LOGO_URL} 
               alt="WRISTORY" 
-              className="w-7 h-7 rounded-lg object-cover border border-white/20"
+              className="w-7 h-7 rounded-lg object-cover border border-white/20 shadow-sm"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = LOGO_FALLBACK;
+                (e.target as HTMLImageElement).src = FOOTER_LOGO_FALLBACK;
               }}
             />
             <span className="text-base font-black italic tracking-tight text-white uppercase">
