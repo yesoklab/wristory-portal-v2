@@ -13,9 +13,14 @@ import {
   ShieldCheck,
   ChevronRight,
   Share2,
-  Check
+  Check,
+  PlusCircle,
+  Loader2,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import { translations, Lang } from '../lib/translations';
+import { addWRTokenToMetaMask, WR_TOKEN_CONFIG } from '../lib/metamask';
 
 interface LandingPageViewProps {
   lang: Lang;
@@ -28,7 +33,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
   // External Links
   const LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihlabi2xoajwvf2sabiiltszjqawxuayvux22iarkaifckk7ruwei';
-  const BASE_CONTRACT = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
+  const BASE_CONTRACT = WR_TOKEN_CONFIG.address;
+  const TOKEN_LOGO_URL = WR_TOKEN_CONFIG.image;
+  const TOKEN_LOGO_FALLBACK = WR_TOKEN_CONFIG.fallbackImage;
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const GECKOTERMINAL_TOKEN_URL = 'https://www.geckoterminal.com/base/tokens/0x9de688b818d1755f4daf82d25662da1bbedd17b7';
   
@@ -58,6 +65,31 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const [zoomScale, setZoomScale] = useState<number>(1);
   const [isInteractiveMode, setIsInteractiveMode] = useState<boolean>(false);
   const [copiedContract, setCopiedContract] = useState<boolean>(false);
+
+  // MetaMask Token WatchAsset State
+  const [isAddingToken, setIsAddingToken] = useState<boolean>(false);
+  const [tokenNotice, setTokenNotice] = useState<{ type: 'success' | 'error' | 'info'; text: string } | null>(null);
+
+  const handleAddTokenToMetaMask = async () => {
+    setIsAddingToken(true);
+    setTokenNotice({ type: 'info', text: t.walletAction.addingToken });
+    try {
+      const result = await addWRTokenToMetaMask();
+      if (result.success) {
+        setTokenNotice({ type: 'success', text: result.message });
+      } else {
+        setTokenNotice({ type: 'error', text: result.message });
+      }
+    } catch (err: any) {
+      setTokenNotice({ type: 'error', text: err?.message || '지갑 연동 오류' });
+    } finally {
+      setIsAddingToken(false);
+      setTimeout(() => {
+        // Auto-dismiss after 6 seconds
+        setTokenNotice(null);
+      }, 6000);
+    }
+  };
 
   const handleCopyContract = () => {
     navigator.clipboard.writeText(BASE_CONTRACT);
@@ -438,56 +470,138 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
         </div>
       </section>
 
-      {/* 3. Essential On-Chain Verification & Liquidity Card (Concise & Focused) */}
+      {/* 3. Essential On-Chain Verification & Liquidity Card (With MetaMask Token WatchAsset) */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="rounded-3xl bg-slate-900/60 border border-slate-800 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left">
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-mono font-bold">
-                Base Mainnet ERC-20 ($WR)
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-bold">
-                Uniswap v4 Verified
-              </span>
-            </div>
-            <h3 className="text-lg sm:text-xl font-black text-white">
-              {lang === 'ko' ? '공식 스마트 컨트랙트 및 DEX 유동성' : 'Verified Smart Contract & DEX Liquidity'}
-            </h3>
-            <div className="flex items-center gap-2 pt-1">
-              <code className="text-xs sm:text-sm font-mono text-[#00ffcc] bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 select-all">
-                {BASE_CONTRACT}
-              </code>
+        <div className="rounded-3xl bg-slate-900/80 border border-blue-500/30 p-6 sm:p-8 shadow-2xl text-left space-y-6 relative overflow-hidden">
+          {/* Subtle Ambient Background Lighting */}
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Toast / Status Notification for Token Addition */}
+          {tokenNotice && (
+            <div className={`p-3.5 rounded-2xl text-xs font-bold flex items-center justify-between gap-3 animate-in fade-in duration-200 border ${
+              tokenNotice.type === 'success' 
+                ? 'bg-emerald-950/60 border-emerald-500/50 text-emerald-300' 
+                : tokenNotice.type === 'error'
+                ? 'bg-rose-950/60 border-rose-500/50 text-rose-300'
+                : 'bg-blue-950/60 border-blue-500/50 text-cyan-300'
+            }`}>
+              <div className="flex items-center gap-2">
+                {tokenNotice.type === 'success' ? (
+                  <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+                ) : tokenNotice.type === 'error' ? (
+                  <AlertCircle size={16} className="text-rose-400 shrink-0" />
+                ) : (
+                  <Loader2 size={16} className="animate-spin text-cyan-400 shrink-0" />
+                )}
+                <span>{tokenNotice.text}</span>
+              </div>
               <button 
-                onClick={handleCopyContract}
-                className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
-                title={lang === 'ko' ? '주소 복사' : 'Copy Address'}
+                onClick={() => setTokenNotice(null)}
+                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white"
               >
-                {copiedContract ? <Check size={15} className="text-emerald-400" /> : <Share2 size={15} />}
+                <X size={14} />
               </button>
             </div>
-          </div>
+          )}
 
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-            <a
-              href={GECKOTERMINAL_TOKEN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
-            >
-              <TrendingUp size={14} className="text-amber-400" />
-              <span>GeckoTerminal ($WR)</span>
-              <ExternalLink size={11} />
-            </a>
-            <a
-              href={UNISWAP_V4_POSITION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95"
-            >
-              <Coins size={14} />
-              <span>Uniswap v4 (#2953119)</span>
-              <ArrowUpRight size={12} />
-            </a>
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
+            {/* Left: New Token Logo & Information */}
+            <div className="flex items-start sm:items-center gap-4">
+              {/* Official Token Logo Frame */}
+              <div className="relative group shrink-0">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400 rounded-2xl blur-md opacity-50 group-hover:opacity-80 transition duration-300" />
+                <img 
+                  src={TOKEN_LOGO_URL} 
+                  alt="WRISTORY ($WR) Official Token Logo" 
+                  className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-white/20 shadow-xl bg-slate-950"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = TOKEN_LOGO_FALLBACK;
+                  }}
+                />
+                <span className="absolute -bottom-1.5 -right-1.5 px-1.5 py-0.2 bg-blue-600 text-white text-[9px] font-black rounded-md uppercase font-mono shadow">
+                  BASE
+                </span>
+              </div>
+
+              {/* Token Details */}
+              <div className="space-y-1.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-mono font-bold">
+                    Base Mainnet ERC-20 ($WR)
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-bold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Uniswap v4 Verified
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
+                  <span>{lang === 'ko' ? 'WRISTORY ($WR) 공식 토큰' : 'Official WRISTORY ($WR) Token'}</span>
+                  <span className="text-xs font-mono font-bold text-slate-400">(Decimals: 18)</span>
+                </h3>
+                <div className="flex items-center gap-2 pt-0.5">
+                  <code className="text-xs font-mono text-[#00ffcc] bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 select-all">
+                    {BASE_CONTRACT}
+                  </code>
+                  <button 
+                    onClick={handleCopyContract}
+                    className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-colors flex items-center gap-1 text-xs"
+                    title={lang === 'ko' ? '컨트랙트 주소 복사' : 'Copy Contract Address'}
+                  >
+                    {copiedContract ? <Check size={14} className="text-emerald-400" /> : <Share2 size={14} />}
+                    <span className="text-[11px]">{copiedContract ? (lang === 'ko' ? '복사됨' : 'Copied') : (lang === 'ko' ? '복사' : 'Copy')}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: One-Click MetaMask Token Registration + Market Links */}
+            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto shrink-0">
+              {/* PRIMARY ACTION: Add Token to MetaMask via EIP-747 */}
+              <button
+                onClick={handleAddTokenToMetaMask}
+                disabled={isAddingToken}
+                className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-slate-950 rounded-xl font-black text-xs sm:text-sm tracking-tight transition-all flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 active:scale-95 disabled:opacity-70 cursor-pointer"
+                title={lang === 'ko' ? '메타마스크에 $WR 토큰 및 공식 로고 자동 등록' : 'Register $WR Token & Official Logo in MetaMask'}
+              >
+                {isAddingToken ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin text-slate-950" />
+                    <span>{t.walletAction.addingToken}</span>
+                  </>
+                ) : (
+                  <>
+                    {/* Stylized MetaMask Fox / Token Icon */}
+                    <span className="text-base leading-none">🦊</span>
+                    <span>{t.walletAction.addTokenBtn}</span>
+                    <PlusCircle size={15} className="text-slate-950" />
+                  </>
+                )}
+              </button>
+
+              {/* Secondary Market Trackers */}
+              <div className="flex items-center gap-2">
+                <a
+                  href={GECKOTERMINAL_TOKEN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial px-3.5 py-3 bg-slate-800/90 hover:bg-slate-700 text-amber-300 border border-slate-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95"
+                >
+                  <TrendingUp size={14} className="text-amber-400" />
+                  <span>GeckoTerminal</span>
+                  <ExternalLink size={11} />
+                </a>
+                <a
+                  href={UNISWAP_V4_POSITION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial px-3.5 py-3 bg-emerald-600/90 hover:bg-emerald-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 active:scale-95"
+                >
+                  <Coins size={14} />
+                  <span>Uniswap v4</span>
+                  <ArrowUpRight size={12} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
