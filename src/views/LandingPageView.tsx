@@ -20,7 +20,12 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { translations, Lang } from '../lib/translations';
-import { addWRTokenToMetaMask, WR_TOKEN_CONFIG } from '../lib/metamask';
+import { 
+  addWRTokenToMetaMask, 
+  addBRAHMSTokenToMetaMask, 
+  WR_TOKEN_CONFIG, 
+  BRAHMS_TOKEN_CONFIG 
+} from '../lib/metamask';
 
 interface LandingPageViewProps {
   lang: Lang;
@@ -66,15 +71,18 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const [isInteractiveMode, setIsInteractiveMode] = useState<boolean>(false);
   const [copiedContract, setCopiedContract] = useState<boolean>(false);
 
+  // Active Token Tab in On-Chain Verification Card ('WR' | 'BRAHMS')
+  const [selectedTokenTab, setSelectedTokenTab] = useState<'WR' | 'BRAHMS'>('WR');
+
   // MetaMask Token WatchAsset State
   const [isAddingToken, setIsAddingToken] = useState<boolean>(false);
   const [tokenNotice, setTokenNotice] = useState<{ type: 'success' | 'error' | 'info'; text: string } | null>(null);
 
-  const handleAddTokenToMetaMask = async () => {
+  const handleAddTokenToMetaMask = async (tokenType: 'WR' | 'BRAHMS' = selectedTokenTab) => {
     setIsAddingToken(true);
     setTokenNotice({ type: 'info', text: t.walletAction.addingToken });
     try {
-      const result = await addWRTokenToMetaMask();
+      const result = tokenType === 'WR' ? await addWRTokenToMetaMask() : await addBRAHMSTokenToMetaMask();
       if (result.success) {
         setTokenNotice({ type: 'success', text: result.message });
       } else {
@@ -91,8 +99,10 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
     }
   };
 
+  const currentTokenConfig = selectedTokenTab === 'WR' ? WR_TOKEN_CONFIG : BRAHMS_TOKEN_CONFIG;
+
   const handleCopyContract = () => {
-    navigator.clipboard.writeText(BASE_CONTRACT);
+    navigator.clipboard.writeText(currentTokenConfig.address);
     setCopiedContract(true);
     setTimeout(() => setCopiedContract(false), 2000);
   };
@@ -504,18 +514,52 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
           )}
 
+          {/* Token Switcher Tabs for WR and BRAHMS */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setSelectedTokenTab('WR')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 ${
+                  selectedTokenTab === 'WR'
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-blue-500/20'
+                    : 'bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+              >
+                <span>WRISTORY ($WR)</span>
+              </button>
+              <button
+                onClick={() => setSelectedTokenTab('BRAHMS')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 ${
+                  selectedTokenTab === 'BRAHMS'
+                    ? 'bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500 text-slate-950 font-black shadow-md shadow-amber-500/20'
+                    : 'bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+              >
+                <span>불암스BRAHMS ($BRAHMS)</span>
+                <span className="text-[9px] bg-yellow-400 text-slate-950 font-black px-1.5 py-0.2 rounded-full uppercase">NEW</span>
+              </button>
+            </div>
+            <span className="text-[11px] font-mono text-slate-400 hidden sm:inline">
+              Base L2 Official Tokens
+            </span>
+          </div>
+
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
-            {/* Left: New Token Logo & Information */}
+            {/* Left: Token Logo & Information */}
             <div className="flex items-start sm:items-center gap-4">
               {/* Official Token Logo Frame */}
               <div className="relative group shrink-0">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400 rounded-2xl blur-md opacity-50 group-hover:opacity-80 transition duration-300" />
+                <div className={`absolute -inset-1 rounded-2xl blur-md opacity-50 group-hover:opacity-80 transition duration-300 ${
+                  selectedTokenTab === 'WR'
+                    ? 'bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400'
+                    : 'bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-400'
+                }`} />
                 <img 
-                  src={TOKEN_LOGO_URL} 
-                  alt="WRISTORY ($WR) Official Token Logo" 
+                  src={currentTokenConfig.image} 
+                  alt={`${currentTokenConfig.symbol} Official Logo`} 
                   className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-white/20 shadow-xl bg-slate-950"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = TOKEN_LOGO_FALLBACK;
+                    (e.target as HTMLImageElement).src = currentTokenConfig.fallbackImage;
                   }}
                 />
                 <span className="absolute -bottom-1.5 -right-1.5 px-1.5 py-0.2 bg-blue-600 text-white text-[9px] font-black rounded-md uppercase font-mono shadow">
@@ -526,21 +570,36 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               {/* Token Details */}
               <div className="space-y-1.5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-mono font-bold">
-                    Base Mainnet ERC-20 ($WR)
+                  <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold border ${
+                    selectedTokenTab === 'WR'
+                      ? 'bg-blue-500/10 border-blue-500/30 text-blue-300'
+                      : 'bg-amber-500/10 border-amber-500/30 text-amber-300'
+                  }`}>
+                    Base Mainnet ERC-20 (${currentTokenConfig.symbol})
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-bold flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Uniswap v4 Verified
-                  </span>
+                  {selectedTokenTab === 'WR' ? (
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-bold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Uniswap v4 Verified
+                    </span>
+                  ) : (
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-mono font-bold flex items-center gap-1">
+                      <Sparkles size={11} className="text-yellow-300" />
+                      {lang === 'ko' ? '최불암 헤리티지 & 아티스트 기금' : 'Choi Bool-am Heritage & Charity'}
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
-                  <span>{lang === 'ko' ? 'WRISTORY ($WR) 공식 토큰' : 'Official WRISTORY ($WR) Token'}</span>
+                  <span>
+                    {selectedTokenTab === 'WR' 
+                      ? (lang === 'ko' ? 'WRISTORY ($WR) 공식 토큰' : 'Official WRISTORY ($WR) Token')
+                      : (lang === 'ko' ? '불암스BRAHMS ($BRAHMS) 헤리티지 토큰' : 'BRAHMS ($BRAHMS) Heritage Token')}
+                  </span>
                   <span className="text-xs font-mono font-bold text-slate-400">(Decimals: 18)</span>
                 </h3>
                 <div className="flex items-center gap-2 pt-0.5">
                   <code className="text-xs font-mono text-[#00ffcc] bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 select-all">
-                    {BASE_CONTRACT}
+                    {currentTokenConfig.address}
                   </code>
                   <button 
                     onClick={handleCopyContract}
@@ -558,10 +617,10 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto shrink-0">
               {/* PRIMARY ACTION: Add Token to MetaMask via EIP-747 */}
               <button
-                onClick={handleAddTokenToMetaMask}
+                onClick={() => handleAddTokenToMetaMask(selectedTokenTab)}
                 disabled={isAddingToken}
                 className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-slate-950 rounded-xl font-black text-xs sm:text-sm tracking-tight transition-all flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 active:scale-95 disabled:opacity-70 cursor-pointer"
-                title={lang === 'ko' ? '메타마스크에 $WR 토큰 및 공식 로고 자동 등록' : 'Register $WR Token & Official Logo in MetaMask'}
+                title={`메타마스크에 $${currentTokenConfig.symbol} 토큰 및 공식 로고 자동 등록`}
               >
                 {isAddingToken ? (
                   <>
@@ -570,36 +629,54 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   </>
                 ) : (
                   <>
-                    {/* Stylized MetaMask Fox / Token Icon */}
                     <span className="text-base leading-none">🦊</span>
-                    <span>{t.walletAction.addTokenBtn}</span>
+                    <span>
+                      {lang === 'ko' 
+                        ? `메타마스크에 $${currentTokenConfig.symbol} & 로고 추가` 
+                        : `Add $${currentTokenConfig.symbol} & Logo to MetaMask`}
+                    </span>
                     <PlusCircle size={15} className="text-slate-950" />
                   </>
                 )}
               </button>
 
-              {/* Secondary Market Trackers */}
+              {/* Secondary Market / Explorer Trackers */}
               <div className="flex items-center gap-2">
-                <a
-                  href={GECKOTERMINAL_TOKEN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-initial px-3.5 py-3 bg-slate-800/90 hover:bg-slate-700 text-amber-300 border border-slate-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95"
-                >
-                  <TrendingUp size={14} className="text-amber-400" />
-                  <span>GeckoTerminal</span>
-                  <ExternalLink size={11} />
-                </a>
-                <a
-                  href={UNISWAP_V4_POSITION_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-initial px-3.5 py-3 bg-emerald-600/90 hover:bg-emerald-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 active:scale-95"
-                >
-                  <Coins size={14} />
-                  <span>Uniswap v4</span>
-                  <ArrowUpRight size={12} />
-                </a>
+                {selectedTokenTab === 'WR' ? (
+                  <>
+                    <a
+                      href={GECKOTERMINAL_TOKEN_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 sm:flex-initial px-3.5 py-3 bg-slate-800/90 hover:bg-slate-700 text-amber-300 border border-slate-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95"
+                    >
+                      <TrendingUp size={14} className="text-amber-400" />
+                      <span>GeckoTerminal</span>
+                      <ExternalLink size={11} />
+                    </a>
+                    <a
+                      href={UNISWAP_V4_POSITION_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 sm:flex-initial px-3.5 py-3 bg-emerald-600/90 hover:bg-emerald-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 active:scale-95"
+                    >
+                      <Coins size={14} />
+                      <span>Uniswap v4</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                  </>
+                ) : (
+                  <a
+                    href={`https://basescan.org/token/${BRAHMS_TOKEN_CONFIG.address}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial px-4 py-3 bg-blue-950/60 hover:bg-blue-900/80 text-cyan-300 border border-blue-500/30 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95"
+                  >
+                    <ExternalLink size={14} className="text-cyan-400" />
+                    <span>BaseScan Explorer</span>
+                    <ArrowUpRight size={12} />
+                  </a>
+                )}
               </div>
             </div>
           </div>
