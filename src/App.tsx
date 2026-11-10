@@ -560,6 +560,14 @@ const App: React.FC = () => {
               <span>GitHub</span>
               <ExternalLink size={11} />
             </a>
+            <a 
+              href="mailto:yesoklab@gmail.com" 
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+              title="Official Project Contact"
+            >
+              <Mail size={12} className="text-cyan-400" />
+              <span className="font-mono">yesoklab@gmail.com</span>
+            </a>
           </div>
 
           {/* Clean Contract Badges & Mission Statement */}
