@@ -64,8 +64,8 @@ const App: React.FC = () => {
   const LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
   
   // Footer WRISTORY Brand Logo
-  const FOOTER_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihtocrwlgdefte3jwhdm6pvg5qu34rj6wdxwpa3e64wllugp4vj6u';
-  const FOOTER_LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeihtocrwlgdefte3jwhdm6pvg5qu34rj6wdxwpa3e64wllugp4vj6u';
+  const FOOTER_LOGO_URL = '/assets/tokens/wristory_footer_logo.png';
+  const FOOTER_LOGO_FALLBACK = '/assets/tokens/wr_logo_256.png';
   
   const BASE_CONTRACT_ADDRESS = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
