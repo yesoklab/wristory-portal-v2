@@ -63,9 +63,9 @@ const App: React.FC = () => {
   const OFFICIAL_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
   const LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
   
-  // Footer WRISTORY Brand Logo
-  const FOOTER_LOGO_URL = '/assets/tokens/wristory_footer_logo.png';
-  const FOOTER_LOGO_FALLBACK = '/assets/tokens/wr_logo_256.png';
+  // Footer WRISTORY Brand Logo (Pinata IPFS & Fallback)
+  const FOOTER_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
+  const FOOTER_LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
   
   const BASE_CONTRACT_ADDRESS = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
