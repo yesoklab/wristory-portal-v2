@@ -36,6 +36,7 @@ import {
   WR_TOKEN_CONFIG, 
   BRAHMS_TOKEN_CONFIG 
 } from '../lib/metamask';
+import { forceDownloadFile } from '../lib/download';
 
 interface LandingPageViewProps {
   lang: Lang;
@@ -706,25 +707,29 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
             <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-end shrink-0">
               {/* Direct Token Logo Download Buttons for BaseScan submission */}
-              <a
-                href={selectedTokenTab === 'WR' ? '/assets/tokens/wr_logo_256.png' : '/assets/tokens/brahms_logo_256.png'}
-                download={`${selectedTokenTab.toLowerCase()}_logo_256.png`}
+              <button
+                onClick={() => forceDownloadFile(
+                  selectedTokenTab === 'WR' ? '/assets/tokens/wr_logo_256.png' : '/assets/tokens/brahms_logo_256.png',
+                  `${selectedTokenTab.toLowerCase()}_logo_256.png`
+                )}
                 className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm"
                 title={lang === 'ko' ? '공식 로고 PNG 다운로드 (256x256)' : 'Download Official Logo PNG (256x256)'}
               >
                 <Download size={11} className="text-amber-400" />
                 <span>{selectedTokenTab} 로고 (256 PNG)</span>
-              </a>
+              </button>
 
-              <a
-                href={selectedTokenTab === 'WR' ? '/assets/tokens/wr_icon_32.svg' : '/assets/tokens/brahms_icon_32.svg'}
-                download={`${selectedTokenTab.toLowerCase()}_icon_32.svg`}
+              <button
+                onClick={() => forceDownloadFile(
+                  selectedTokenTab === 'WR' ? '/assets/tokens/wr_icon_32.svg' : '/assets/tokens/brahms_icon_32.svg',
+                  `${selectedTokenTab.toLowerCase()}_icon_32.svg`
+                )}
                 className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm"
                 title={lang === 'ko' ? '공식 아이콘 SVG 다운로드 (32x32 BaseScan 규격)' : 'Download Official SVG (32x32 BaseScan standard)'}
               >
                 <Download size={11} className="text-cyan-400" />
                 <span>{selectedTokenTab} 아이콘 (32 SVG)</span>
-              </a>
+              </button>
 
               <a
                 href={getMetaMaskDeepLink()}
@@ -853,24 +858,30 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
             <div className="flex items-center gap-2 flex-wrap justify-end shrink-0">
               {/* Direct Asset Download Buttons for BaseScan */}
-              <a
-                href="/assets/tokens/brahms_logo_256.png"
-                download="brahms_logo_256.png"
-                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm"
+              <button
+                onClick={() => forceDownloadFile('/assets/tokens/brahms_logo_256.png', 'brahms_logo_256.png')}
+                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm cursor-pointer"
                 title="Download BRAHMS 256x256 PNG Logo"
               >
                 <Download size={12} className="text-amber-400" />
                 <span>256 PNG</span>
-              </a>
-              <a
-                href="/assets/tokens/brahms_icon_32.svg"
-                download="brahms_icon_32.svg"
-                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm"
+              </button>
+              <button
+                onClick={() => forceDownloadFile('/assets/tokens/brahms_icon_32.svg', 'brahms_icon_32.svg')}
+                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm cursor-pointer"
                 title="Download BRAHMS 32x32 SVG Icon"
               >
                 <Download size={12} className="text-cyan-400" />
                 <span>32 SVG</span>
-              </a>
+              </button>
+              <button
+                onClick={() => forceDownloadFile('/BRAHMS_Whitepaper_v1.0.md', 'BRAHMS_Whitepaper_v1.0.md')}
+                className="px-2.5 py-1.5 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/40 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm cursor-pointer"
+                title="Download BRAHMS Official Whitepaper (.md)"
+              >
+                <FileText size={12} className="text-emerald-400" />
+                <span>{lang === 'ko' ? 'BRAHMS 백서' : 'BRAHMS Whitepaper'}</span>
+              </button>
               <a
                 href={`https://basescan.org/token/${BRAHMS_TOKEN_CONFIG.address}`}
                 target="_blank"
@@ -914,8 +925,13 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             {/* Founder Card */}
             <div className="lg:col-span-2 bg-slate-950/80 border border-slate-800 rounded-2xl p-6 relative overflow-hidden">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-6 border-b border-slate-800">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-amber-500/20 shrink-0">
-                  KK
+                <div className="relative group shrink-0">
+                  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 blur opacity-40 group-hover:opacity-75 transition duration-300" />
+                  <img 
+                    src="/assets/profile/kim_kyungkoo.png" 
+                    alt="Kim Kyung-koo (김경구)" 
+                    className="relative w-16 h-16 rounded-2xl object-cover border-2 border-amber-500/50 shadow-xl bg-slate-900"
+                  />
                 </div>
                 <div>
                   <div className="flex items-center gap-2.5 flex-wrap">
@@ -1074,17 +1090,29 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
                   <div>
                     <span className="text-slate-400 block text-[11px] mb-1.5">
-                      {lang === 'ko' ? '공식 백서 다운로드 (Official Whitepaper)' : 'Official Whitepaper Document'}
+                      {lang === 'ko' ? '공식 프로젝트 백서 다운로드 (Official Whitepapers)' : 'Official Project Whitepapers'}
                     </span>
-                    <a
-                      href="/WHITEPAPER.md"
-                      download="WRISTORY_Whitepaper_v2.0_Base.md"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition-all active:scale-95"
-                    >
-                      <FileText size={13} className="text-emerald-400" />
-                      <span>{lang === 'ko' ? '백서 파일 다운로드 (MD)' : 'Download Whitepaper (.md)'}</span>
-                      <Download size={11} />
-                    </a>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <button
+                        onClick={() => forceDownloadFile('/BRAHMS_Whitepaper_v1.0.md', 'BRAHMS_Whitepaper_v1.0.md')}
+                        className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition-all active:scale-95 cursor-pointer shadow-sm"
+                        title="Download BRAHMS Whitepaper (.md)"
+                      >
+                        <FileText size={13} className="text-emerald-400" />
+                        <span>{lang === 'ko' ? 'BRAHMS 백서 다운로드' : 'Download BRAHMS Whitepaper'}</span>
+                        <Download size={11} />
+                      </button>
+
+                      <button
+                        onClick={() => forceDownloadFile('/WHITEPAPER.md', 'WRISTORY_Whitepaper_v2.0_Base.md')}
+                        className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-bold transition-all active:scale-95 cursor-pointer shadow-sm"
+                        title="Download WRISTORY Whitepaper (.md)"
+                      >
+                        <FileText size={13} className="text-blue-400" />
+                        <span>{lang === 'ko' ? 'WR 백서 다운로드' : 'Download WR Whitepaper'}</span>
+                        <Download size={11} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
