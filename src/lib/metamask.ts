@@ -20,8 +20,8 @@ export const BRAHMS_TOKEN_CONFIG: TokenWatchConfig = {
   address: '0xE790C3D5e3381926c66416638Fd3e955e748Bb89',
   symbol: 'BRAHMS',
   decimals: 18,
-  image: 'https://raw.githubusercontent.com/yesoklab/assets/master/blockchains/base/assets/0xE790C3D5e3381926c66416638Fd3e955e748Bb89/logo.png',
-  fallbackImage: 'https://wristory-portal-v2.vercel.app/assets/tokens/brahms_logo_256.png'
+  image: '/assets/tokens/brahms_logo_256.png',
+  fallbackImage: '/assets/tokens/brahms_raw.png'
 };
 
 export const BASE_CHAIN_CONFIG = {
@@ -122,6 +122,10 @@ export async function addCustomTokenToMetaMask(config: TokenWatchConfig): Promis
 
     // 3. Request MetaMask to watch and register the asset with official logo
     // Try with exact address first, then fallback to lowercase if 'Invalid address' occurs
+    const fullImageUrl = config.image.startsWith('http')
+      ? config.image
+      : `${typeof window !== 'undefined' ? window.location.origin : ''}${config.image}`;
+
     let wasAdded = false;
     try {
       wasAdded = await provider.request({
@@ -132,7 +136,7 @@ export async function addCustomTokenToMetaMask(config: TokenWatchConfig): Promis
             address: config.address,
             symbol: config.symbol,
             decimals: config.decimals,
-            image: config.image
+            image: fullImageUrl
           }
         }
       });
@@ -146,7 +150,7 @@ export async function addCustomTokenToMetaMask(config: TokenWatchConfig): Promis
             address: config.address.toLowerCase(),
             symbol: config.symbol,
             decimals: config.decimals,
-            image: config.image
+            image: fullImageUrl
           }
         }
       });
