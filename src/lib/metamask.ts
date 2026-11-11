@@ -12,8 +12,8 @@ export const WR_TOKEN_CONFIG: TokenWatchConfig = {
   address: '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7',
   symbol: 'WR',
   decimals: 18,
-  image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe',
-  fallbackImage: 'https://ipfs.io/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe'
+  image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4',
+  fallbackImage: 'https://ipfs.io/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4'
 };
 
 export const BRAHMS_TOKEN_CONFIG: TokenWatchConfig = {
