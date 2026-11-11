@@ -603,7 +603,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                       ? (lang === 'ko' ? 'WRISTORY ($WR) 공식 토큰' : 'Official WRISTORY ($WR) Token')
                       : (lang === 'ko' ? '불암스BRAHMS ($BRAHMS) 헤리티지 토큰' : 'BRAHMS ($BRAHMS) Heritage Token')}
                   </span>
-                  <span className="text-xs font-mono font-bold text-slate-400">(Decimals: 18)</span>
+                  <span className="text-xs font-mono font-bold text-slate-400">
+                    (Decimals: 18 · {selectedTokenTab === 'WR' ? 'Max Supply: 51,048,881' : 'Max Supply: 193,906,150'})
+                  </span>
                 </h3>
                 <div className="flex items-center gap-2 pt-0.5">
                   <code className="text-xs font-mono text-[#00ffcc] bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 select-all">
@@ -780,20 +782,20 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               </h3>
               <div className="space-y-1.5 text-xs text-slate-300">
                 <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
-                  <span className="text-slate-400">총 발행량 (Total Supply)</span>
-                  <span className="font-mono font-bold text-cyan-300">1,000,000,000</span>
+                  <span className="text-slate-400">총 공급량 (Max Total Supply)</span>
+                  <span className="font-mono font-bold text-cyan-300">193,906,150 BRAHMS</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
                   <span className="text-slate-400">문화 아카이브 (Heritage Archive)</span>
-                  <span className="font-mono font-bold text-slate-200">40%</span>
+                  <span className="font-mono font-bold text-slate-200">51.58% (100,010,000)</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
-                  <span className="text-slate-400">아동 복지 & 예술가 기여</span>
-                  <span className="font-mono font-bold text-emerald-400">30%</span>
+                  <span className="text-slate-400">아동 복지 & 청년 예술가 지원</span>
+                  <span className="font-mono font-bold text-emerald-400">25.00% (48,476,537)</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-slate-400">Base 유동성 & 운영</span>
-                  <span className="font-mono font-bold text-amber-400">30%</span>
+                  <span className="text-slate-400">Base 유동성 & 생태계 운영</span>
+                  <span className="font-mono font-bold text-amber-400">23.42% (45,419,613)</span>
                 </div>
               </div>
             </div>
@@ -808,10 +810,13 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 className="w-10 h-10 rounded-full border border-cyan-400/50 object-cover shrink-0" 
               />
               <div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-white font-bold text-sm">불암스BRAHMS ($BRAHMS)</span>
                   <span className="text-[10px] font-mono px-2 py-0.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-md">
                     Base Mainnet ERC-20
+                  </span>
+                  <span className="text-[10px] font-mono px-2 py-0.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 rounded-md font-bold">
+                    Max Supply: 193,906,150
                   </span>
                 </div>
                 <div className="text-xs font-mono text-cyan-300 select-all break-all mt-0.5">
