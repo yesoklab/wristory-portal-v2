@@ -14,7 +14,8 @@ import {
   ArrowRightLeft,
   TrendingUp,
   ArrowUpRight,
-  Scale
+  Scale,
+  Printer
 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
@@ -103,12 +104,22 @@ const WhitepaperView: React.FC = () => {
             </button>
           </div>
 
-          <button 
-            onClick={handleDownload}
-            className="px-6 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 active:scale-95 shadow-lg shadow-emerald-500/20"
-          >
-            <ArrowDownToLine size={16} /> DOWNLOAD MD
-          </button>
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={handleDownload}
+              className="px-4 sm:px-6 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 active:scale-95 shadow-lg shadow-emerald-500/20"
+              title="Download Whitepaper in Markdown (.md) format"
+            >
+              <ArrowDownToLine size={16} /> DOWNLOAD MD
+            </button>
+            <button 
+              onClick={() => window.print()}
+              className="px-4 sm:px-5 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 active:scale-95 border border-slate-700 shadow-lg"
+              title="Print or Save as PDF"
+            >
+              <Printer size={16} className="text-cyan-400" /> PRINT / PDF
+            </button>
+          </div>
         </div>
       </div>
 
