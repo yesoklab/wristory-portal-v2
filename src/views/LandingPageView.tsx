@@ -24,7 +24,9 @@ import {
   Mail,
   BookOpen,
   User,
-  Smartphone
+  Smartphone,
+  Download,
+  FileText
 } from 'lucide-react';
 import { translations, Lang } from '../lib/translations';
 import { 
@@ -604,7 +606,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                       : (lang === 'ko' ? '불암스BRAHMS ($BRAHMS) 헤리티지 토큰' : 'BRAHMS ($BRAHMS) Heritage Token')}
                   </span>
                   <span className="text-xs font-mono font-bold text-slate-400">
-                    (Decimals: 18 · {selectedTokenTab === 'WR' ? 'Max Supply: 51,048,881' : 'Max Supply: 193,906,150'})
+                    (Decimals: 18 · {selectedTokenTab === 'WR' ? 'Max Supply: 51,169,148' : 'Max Supply: 193,906,150'})
                   </span>
                 </h3>
                 <div className="flex items-center gap-2 pt-0.5">
@@ -624,7 +626,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
             </div>
 
             {/* Right: One-Click MetaMask Token Registration + Market Links */}
-            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto shrink-0">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto shrink-0">
               {/* PRIMARY ACTION: Add Token to MetaMask via EIP-747 */}
               <button
                 onClick={() => handleAddTokenToMetaMask(selectedTokenTab)}
@@ -689,24 +691,48 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 )}
               </div>
             </div>
+          </div>
 
-            {/* Mobile Web3 Quick Helper Bar */}
-            <div className="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[11px]">
-              <div className="flex items-center gap-2 text-slate-400 text-center sm:text-left">
-                <Smartphone size={14} className="text-cyan-400 shrink-0" />
-                <span>
-                  {lang === 'ko'
-                    ? '스마트폰에서는 메타마스크 모바일 앱 내 브라우저를 통해 접속 시 1클릭으로 등록됩니다.'
-                    : 'On mobile, open in MetaMask Mobile in-app browser for 1-tap token import.'}
-                </span>
-              </div>
+          {/* Bottom Row: Full-width Mobile Web3 Quick Helper & Direct Asset Download Bar */}
+          <div className="mt-5 pt-3.5 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] relative z-10 w-full">
+            <div className="flex items-center gap-2 text-slate-400 text-center md:text-left">
+              <Smartphone size={14} className="text-cyan-400 shrink-0" />
+              <span>
+                {lang === 'ko'
+                  ? '스마트폰에서는 메타마스크 모바일 앱 내 브라우저를 통해 접속 시 1클릭으로 등록됩니다.'
+                  : 'On mobile, open in MetaMask Mobile in-app browser for 1-tap token import.'}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-end shrink-0">
+              {/* Direct Token Logo Download Buttons for BaseScan submission */}
+              <a
+                href={selectedTokenTab === 'WR' ? '/assets/tokens/wr_logo_256.png' : '/assets/tokens/brahms_logo_256.png'}
+                download={`${selectedTokenTab.toLowerCase()}_logo_256.png`}
+                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm"
+                title={lang === 'ko' ? '공식 로고 PNG 다운로드 (256x256)' : 'Download Official Logo PNG (256x256)'}
+              >
+                <Download size={11} className="text-amber-400" />
+                <span>{selectedTokenTab} 로고 (256 PNG)</span>
+              </a>
+
+              <a
+                href={selectedTokenTab === 'WR' ? '/assets/tokens/wr_icon_32.svg' : '/assets/tokens/brahms_icon_32.svg'}
+                download={`${selectedTokenTab.toLowerCase()}_icon_32.svg`}
+                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm"
+                title={lang === 'ko' ? '공식 아이콘 SVG 다운로드 (32x32 BaseScan 규격)' : 'Download Official SVG (32x32 BaseScan standard)'}
+              >
+                <Download size={11} className="text-cyan-400" />
+                <span>{selectedTokenTab} 아이콘 (32 SVG)</span>
+              </a>
+
               <a
                 href={getMetaMaskDeepLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 rounded-lg font-bold transition-all flex items-center gap-1.5 shrink-0 active:scale-95 shadow-sm"
+                className="px-3 py-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 rounded-lg font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-sm"
               >
-                <span>🦊 {lang === 'ko' ? '메타마스크 모바일 앱으로 바로 열기' : 'Open in MetaMask App'}</span>
+                <span>🦊 {lang === 'ko' ? '메타마스크 앱 열기' : 'Open in MetaMask'}</span>
                 <ExternalLink size={11} />
               </a>
             </div>
@@ -782,27 +808,27 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               </h3>
               <div className="space-y-1.5 text-xs text-slate-300">
                 <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
-                  <span className="text-slate-400">총 공급량 (Max Total Supply)</span>
+                  <span className="text-slate-400">{lang === 'ko' ? '총 공급량 (Max Total Supply)' : 'Max Total Supply'}</span>
                   <span className="font-mono font-bold text-cyan-300">193,906,150 BRAHMS</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
-                  <span className="text-slate-400">문화 아카이브 (Heritage Archive)</span>
+                  <span className="text-slate-400">{lang === 'ko' ? '문화 아카이브 (Heritage Archive)' : 'Cultural Heritage Archive'}</span>
                   <span className="font-mono font-bold text-slate-200">51.58% (100,010,000)</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
-                  <span className="text-slate-400">아동 복지 & 청년 예술가 지원</span>
+                  <span className="text-slate-400">{lang === 'ko' ? '아동 복지 & 청년 예술가 지원' : 'Youth & Child Welfare Support'}</span>
                   <span className="font-mono font-bold text-emerald-400">25.00% (48,476,537)</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-slate-400">Base 유동성 & 생태계 운영</span>
+                  <span className="text-slate-400">{lang === 'ko' ? 'Base 유동성 & 생태계 운영' : 'Base Liquidity & Operations'}</span>
                   <span className="font-mono font-bold text-amber-400">23.42% (45,419,613)</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Quick On-Chain Token Reference Box */}
-          <div className="bg-slate-950/90 border border-cyan-500/20 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Quick On-Chain Token Reference Box with Direct Download */}
+          <div className="bg-slate-950/90 border border-cyan-500/20 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <img 
                 src={BRAHMS_TOKEN_CONFIG.fallbackImage} 
@@ -825,21 +851,40 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               </div>
             </div>
 
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-2 flex-wrap justify-end shrink-0">
+              {/* Direct Asset Download Buttons for BaseScan */}
+              <a
+                href="/assets/tokens/brahms_logo_256.png"
+                download="brahms_logo_256.png"
+                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm"
+                title="Download BRAHMS 256x256 PNG Logo"
+              >
+                <Download size={12} className="text-amber-400" />
+                <span>256 PNG</span>
+              </a>
+              <a
+                href="/assets/tokens/brahms_icon_32.svg"
+                download="brahms_icon_32.svg"
+                className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm"
+                title="Download BRAHMS 32x32 SVG Icon"
+              >
+                <Download size={12} className="text-cyan-400" />
+                <span>32 SVG</span>
+              </a>
               <a
                 href={`https://basescan.org/token/${BRAHMS_TOKEN_CONFIG.address}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
+                className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
               >
                 <span>BaseScan Explorer</span>
                 <ArrowUpRight size={13} />
               </a>
               <button
                 onClick={() => handleAddTokenToMetaMask('BRAHMS')}
-                className="px-3.5 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 active:scale-95"
+                className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold rounded-lg text-xs transition-all flex items-center gap-1.5 active:scale-95"
               >
-                <span>🦊 지갑에 추가</span>
+                <span>🦊 {lang === 'ko' ? '지갑에 추가' : 'Add to Wallet'}</span>
               </button>
             </div>
           </div>
@@ -853,10 +898,10 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           <div className="mb-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider mb-3">
               <User size={13} className="text-blue-400" />
-              <span>BaseScan Compliance & Verified Team Disclosure</span>
+              <span>{lang === 'ko' ? 'BaseScan 적격성 및 검증 팀 정보 공개' : 'BaseScan Compliance & Verified Team Disclosure'}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center gap-3">
-              <span>YesOkLab 프로젝트 리더십 & 핵심 팀</span>
+              <span>{lang === 'ko' ? 'YesOkLab 프로젝트 리더십 & 핵심 팀' : 'YesOkLab Project Leadership & Core Team'}</span>
             </h2>
             <p className="text-slate-300 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed">
               {lang === 'ko'
@@ -874,30 +919,40 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 </div>
                 <div>
                   <div className="flex items-center gap-2.5 flex-wrap">
-                    <h3 className="text-xl font-bold text-white">김경구 (Kim Kyung-koo)</h3>
+                    <h3 className="text-xl font-bold text-white">
+                      {lang === 'ko' ? '김경구 (Kim Kyung-koo)' : 'Kim Kyung-koo (김경구)'}
+                    </h3>
                     <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold font-mono">
                       Founder & Chief Technology Architect
                     </span>
                   </div>
                   <p className="text-xs text-slate-400 mt-1">
-                    YesOkLab Founder & Lead Web3 Engineer · Seoul, Republic of Korea
+                    {lang === 'ko'
+                      ? 'YesOkLab 창립자 & 수석 Web3 엔지니어 · 대한민국 서울'
+                      : 'YesOkLab Founder & Lead Web3 Engineer · Seoul, Republic of Korea'}
                   </p>
                 </div>
               </div>
 
               <div className="py-4 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-2">
                 <p>
-                  • <strong>경력 및 전문성:</strong> 블록체인 기반 문화유산 온체인 아카이빙 솔루션 아키텍트. Base L2 메인넷 스마트 컨트랙트(ERC-20, Uniswap v4 Hook 연동) 및 Tezos 온체인 제너러티브 아트 아카이빙 총괄 설계.
+                  • <strong>{lang === 'ko' ? '경력 및 전문성:' : 'Career & Expertise:'}</strong>{' '}
+                  {lang === 'ko'
+                    ? '블록체인 기반 문화유산 온체인 아카이빙 솔루션 아키텍트. Base L2 메인넷 스마트 컨트랙트(ERC-20, Uniswap v4 Hook 연동) 및 Tezos 온체인 제너러티브 아트 아카이빙 총괄 설계.'
+                    : 'Blockchain cultural heritage architect. Lead designer of Base L2 ERC-20 smart contracts, Uniswap v4 hooks, and permanent on-chain generative art archiving on Tezos & Base.'}
                 </p>
                 <p>
-                  • <strong>주요 추진 프로젝트:</strong> WRISTORY ($WR) 문학·역사 디지털 보존 프로젝트, 불암스BRAHMS ($BRAHMS) 문화 헌정 토큰, Tezos-Base 1:1 온체인 마이그레이션 포털.
+                  • <strong>{lang === 'ko' ? '주요 추진 프로젝트:' : 'Key Initiatives:'}</strong>{' '}
+                  {lang === 'ko'
+                    ? 'WRISTORY ($WR) 문학·역사 디지털 보존 프로젝트, 불암스BRAHMS ($BRAHMS) 문화 헌정 토큰, Tezos-Base 1:1 온체인 마이그레이션 포털.'
+                    : 'WRISTORY ($WR) literary & historical digital preservation, 불암스BRAHMS ($BRAHMS) digital cultural tribute token, and Tezos-to-Base 1:1 on-chain migration portal.'}
                 </p>
               </div>
 
               {/* Public Profiles Required by BaseScan */}
               <div className="pt-4 border-t border-slate-800">
                 <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
-                  공개 검증 프로필 (Public Professional Profiles)
+                  {lang === 'ko' ? '공개 검증 프로필 (Public Professional Profiles)' : 'Public Verified Professional Profiles'}
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                   <a
@@ -918,7 +973,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     className="p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700/60 rounded-xl font-bold text-emerald-400 transition-all flex items-center gap-1.5 active:scale-95"
                   >
                     <Globe size={13} className="text-emerald-400 shrink-0" />
-                    <span>네이버 블로그</span>
+                    <span>{lang === 'ko' ? '네이버 블로그' : 'Naver Blog'}</span>
                     <ExternalLink size={10} className="ml-auto text-slate-500" />
                   </a>
 
@@ -955,14 +1010,20 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     <Globe size={16} />
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-white">YesOkLab (예스오케이랩)</h4>
-                    <p className="text-[11px] text-slate-400 font-mono">Blockchain Heritage Lab</p>
+                    <h4 className="text-base font-bold text-white">
+                      {lang === 'ko' ? 'YesOkLab (예스오케이랩)' : 'YesOkLab'}
+                    </h4>
+                    <p className="text-[11px] text-slate-400 font-mono">
+                      {lang === 'ko' ? '블록체인 헤리티지 랩' : 'Blockchain Heritage Lab'}
+                    </p>
                   </div>
                 </div>
 
                 <div className="space-y-3 text-xs text-slate-300 mt-4">
                   <div className="pb-2 border-b border-slate-800">
-                    <span className="text-slate-400 block text-[11px]">공식 대표 웹사이트 (Official Domain)</span>
+                    <span className="text-slate-400 block text-[11px]">
+                      {lang === 'ko' ? '공식 대표 웹사이트 (Official Domain)' : 'Official Primary Domain'}
+                    </span>
                     <a 
                       href="https://www.wristory.co.kr" 
                       target="_blank" 
@@ -975,7 +1036,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   </div>
 
                   <div className="pb-2 border-b border-slate-800">
-                    <span className="text-slate-400 block text-[11px]">오픈소스 코드 저장소 (GitHub Repo)</span>
+                    <span className="text-slate-400 block text-[11px]">
+                      {lang === 'ko' ? '오픈소스 코드 저장소 (GitHub Repo)' : 'Open-Source Code Repository'}
+                    </span>
                     <a 
                       href="https://github.com/yesoklab/wristory-portal-v2" 
                       target="_blank" 
@@ -988,7 +1051,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   </div>
 
                   <div className="pb-2 border-b border-slate-800">
-                    <span className="text-slate-400 block text-[11px]">공식 검증 및 문의 이메일 (Official Email)</span>
+                    <span className="text-slate-400 block text-[11px]">
+                      {lang === 'ko' ? '공식 검증 및 문의 이메일 (Official Email)' : 'Official Verification & Inquiries Email'}
+                    </span>
                     <a 
                       href="mailto:yesoklab@gmail.com" 
                       className="text-amber-400 font-mono font-bold hover:underline flex items-center gap-1 mt-0.5"
@@ -998,16 +1063,39 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     </a>
                   </div>
 
+                  <div className="pb-2 border-b border-slate-800">
+                    <span className="text-slate-400 block text-[11px]">
+                      {lang === 'ko' ? '본부 소재지 (Location)' : 'Headquarters Location'}
+                    </span>
+                    <span className="text-slate-300 font-medium">
+                      {lang === 'ko' ? '대한민국 서울특별시' : 'Seoul, Republic of Korea'}
+                    </span>
+                  </div>
+
                   <div>
-                    <span className="text-slate-400 block text-[11px]">본부 소재지 (Location)</span>
-                    <span className="text-slate-300 font-medium">Seoul, Republic of Korea</span>
+                    <span className="text-slate-400 block text-[11px] mb-1.5">
+                      {lang === 'ko' ? '공식 백서 다운로드 (Official Whitepaper)' : 'Official Whitepaper Document'}
+                    </span>
+                    <a
+                      href="/WHITEPAPER.md"
+                      download="WRISTORY_Whitepaper_v2.0_Base.md"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition-all active:scale-95"
+                    >
+                      <FileText size={13} className="text-emerald-400" />
+                      <span>{lang === 'ko' ? '백서 파일 다운로드 (MD)' : 'Download Whitepaper (.md)'}</span>
+                      <Download size={11} />
+                    </a>
                   </div>
                 </div>
               </div>
 
               <div className="mt-5 p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
                 <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
-                <span>BaseScan 심사관 공식 정보 열람 및 토큰 업데이트 검증 완료</span>
+                <span>
+                  {lang === 'ko'
+                    ? 'BaseScan 심사관 공식 정보 열람 및 토큰 업데이트 검증 완료'
+                    : 'BaseScan reviewer information disclosure and verification ready'}
+                </span>
               </div>
             </div>
           </div>
