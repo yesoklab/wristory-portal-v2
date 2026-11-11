@@ -542,6 +542,16 @@ const App: React.FC = () => {
               <ExternalLink size={11} />
             </a>
             <a 
+              href="https://medium.com/@wakk5252" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <BookOpen size={12} className="text-amber-400" />
+              <span>Medium</span>
+              <ExternalLink size={11} />
+            </a>
+            <a 
               href={NAVER_BLOG_URL} 
               target="_blank" 
               rel="noopener noreferrer" 
