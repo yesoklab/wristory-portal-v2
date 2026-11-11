@@ -164,7 +164,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   alt="WRISTORY Official Brandmark" 
                   className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-white/20 shadow-xl bg-slate-950"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafybeihlabi2xoajwvf2sabiiltszjqawxuayvux22iarkaifckk7ruwei';
+                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
                   }}
                 />
               </div>
