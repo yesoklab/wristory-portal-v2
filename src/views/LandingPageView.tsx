@@ -17,12 +17,20 @@ import {
   PlusCircle,
   Loader2,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Heart,
+  Info,
+  Globe,
+  Mail,
+  BookOpen,
+  User,
+  Smartphone
 } from 'lucide-react';
 import { translations, Lang } from '../lib/translations';
 import { 
   addWRTokenToMetaMask, 
   addBRAHMSTokenToMetaMask, 
+  getMetaMaskDeepLink,
   WR_TOKEN_CONFIG, 
   BRAHMS_TOKEN_CONFIG 
 } from '../lib/metamask';
@@ -679,11 +687,329 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 )}
               </div>
             </div>
+
+            {/* Mobile Web3 Quick Helper Bar */}
+            <div className="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[11px]">
+              <div className="flex items-center gap-2 text-slate-400 text-center sm:text-left">
+                <Smartphone size={14} className="text-cyan-400 shrink-0" />
+                <span>
+                  {lang === 'ko'
+                    ? '스마트폰에서는 메타마스크 모바일 앱 내 브라우저를 통해 접속 시 1클릭으로 등록됩니다.'
+                    : 'On mobile, open in MetaMask Mobile in-app browser for 1-tap token import.'}
+                </span>
+              </div>
+              <a
+                href={getMetaMaskDeepLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 rounded-lg font-bold transition-all flex items-center gap-1.5 shrink-0 active:scale-95 shadow-sm"
+              >
+                <span>🦊 {lang === 'ko' ? '메타마스크 모바일 앱으로 바로 열기' : 'Open in MetaMask App'}</span>
+                <ExternalLink size={11} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 4. HD Lightbox Modal with Zoom & Live Interactive Canvas */}
+      {/* 4. 불암스BRAHMS ($BRAHMS) Digital Cultural Heritage & Memorial Initiative */}
+      <section className="mb-20">
+        <div className="bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-950/90 border border-cyan-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          {/* Subtle Glow Accent */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 blur-[100px] pointer-events-none rounded-full" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 blur-[100px] pointer-events-none rounded-full" />
+
+          {/* Section Header */}
+          <div className="relative z-10 mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider mb-3">
+              <Heart size={13} className="text-cyan-400" />
+              <span>Base Mainnet Digital Cultural Tribute</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight flex flex-wrap items-center gap-3">
+              <span>불암스BRAHMS ($BRAHMS)</span>
+              <span className="text-base sm:text-lg font-semibold text-cyan-300 font-mono">
+                Digital Heritage & Memorial Initiative
+              </span>
+            </h2>
+            <p className="text-slate-300 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed">
+              {lang === 'ko'
+                ? '한국 현대 대중문화의 영원한 상징인 배우 최불암 선생의 예술혼과 따뜻한 인류애를 기리며, 차세대 예술가 양성 및 소외 아동 지원을 온체인 상에 영구 기록하는 문화 헌정 프로젝트입니다.'
+                : 'A permanent on-chain cultural memorial tribute honoring the artistic legacy and humanism of Korean icon Choi Bool-am, supporting youth creators and children in need on Base L2.'}
+            </p>
+          </div>
+
+          {/* Core Pillars: Tribute, Non-Infringement & Tokenomics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10 mb-8">
+            {/* Pillar 1: Cultural Purpose */}
+            <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-5 hover:border-cyan-500/40 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300 mb-4">
+                <Heart size={20} />
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">
+                {lang === 'ko' ? '1. 헌정 취지 및 인류애 계승' : '1. Cultural Legacy & Humanism'}
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {lang === 'ko'
+                  ? '반세기 동안 국민적 사랑을 받으며 서민의 애환을 어루만져 온 배우 최불암 선생의 헌신과, 40여 년간 실천해온 아동 복지(초록우산 어린이재단 전국후원회장 등)의 철학을 블록체인 상에 영구 보존합니다.'
+                  : 'Commemorates over 50 years of cultural contribution and four decades of child welfare patronage by actor Choi Bool-am, permanently archived on Base blockchain.'}
+              </p>
+            </div>
+
+            {/* Pillar 2: Non-Infringement & Public Tribute */}
+            <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/40 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 mb-4">
+                <ShieldCheck size={20} />
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">
+                {lang === 'ko' ? '2. 상표권 및 비영리 고지' : '2. Non-Infringement Statement'}
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {lang === 'ko'
+                  ? '본 프로젝트는 영리 목적의 무단 상업적 브랜딩이나 사칭이 아니며, 인류 문화유산의 공익적 영구 보존을 지향하는 순수 문화 헌정(Tribute) 및 커뮤니티 이니셔티브입니다.'
+                  : 'This initiative is a non-profit cultural tribute and community endeavor to archive artistic heritage, with no commercial misrepresentation or copyright infringement.'}
+              </p>
+            </div>
+
+            {/* Pillar 3: On-Chain Utility & Social Impact */}
+            <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-5 hover:border-emerald-500/40 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300 mb-4">
+                <Coins size={20} />
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">
+                {lang === 'ko' ? '3. 토크노믹스 및 배분 구조' : '3. Tokenomics & Distribution'}
+              </h3>
+              <div className="space-y-1.5 text-xs text-slate-300">
+                <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
+                  <span className="text-slate-400">총 발행량 (Total Supply)</span>
+                  <span className="font-mono font-bold text-cyan-300">1,000,000,000</span>
+                </div>
+                <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
+                  <span className="text-slate-400">문화 아카이브 (Heritage Archive)</span>
+                  <span className="font-mono font-bold text-slate-200">40%</span>
+                </div>
+                <div className="flex justify-between items-center py-0.5 border-b border-slate-800">
+                  <span className="text-slate-400">아동 복지 & 예술가 기여</span>
+                  <span className="font-mono font-bold text-emerald-400">30%</span>
+                </div>
+                <div className="flex justify-between items-center py-0.5">
+                  <span className="text-slate-400">Base 유동성 & 운영</span>
+                  <span className="font-mono font-bold text-amber-400">30%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick On-Chain Token Reference Box */}
+          <div className="bg-slate-950/90 border border-cyan-500/20 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <img 
+                src={BRAHMS_TOKEN_CONFIG.fallbackImage} 
+                alt="BRAHMS Logo" 
+                className="w-10 h-10 rounded-full border border-cyan-400/50 object-cover shrink-0" 
+              />
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-white font-bold text-sm">불암스BRAHMS ($BRAHMS)</span>
+                  <span className="text-[10px] font-mono px-2 py-0.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-md">
+                    Base Mainnet ERC-20
+                  </span>
+                </div>
+                <div className="text-xs font-mono text-cyan-300 select-all break-all mt-0.5">
+                  {BRAHMS_TOKEN_CONFIG.address}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <a
+                href={`https://basescan.org/token/${BRAHMS_TOKEN_CONFIG.address}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
+              >
+                <span>BaseScan Explorer</span>
+                <ArrowUpRight size={13} />
+              </a>
+              <button
+                onClick={() => handleAddTokenToMetaMask('BRAHMS')}
+                className="px-3.5 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 active:scale-95"
+              >
+                <span>🦊 지갑에 추가</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. YesOkLab Project Leadership & Core Team Section */}
+      <section className="mb-20">
+        <div className="bg-gradient-to-b from-slate-900/90 via-slate-900/70 to-slate-950/90 border border-slate-700/60 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          {/* Section Header */}
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider mb-3">
+              <User size={13} className="text-blue-400" />
+              <span>BaseScan Compliance & Verified Team Disclosure</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center gap-3">
+              <span>YesOkLab 프로젝트 리더십 & 핵심 팀</span>
+            </h2>
+            <p className="text-slate-300 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed">
+              {lang === 'ko'
+                ? 'BaseScan 및 블록체인 생태계의 엄격한 투명성 기준을 준수하며, 프로젝트의 개발·운영 주체인 YesOkLab과 창립자의 공개 프로필 및 공식 소통 채널을 투명하게 공개합니다.'
+                : 'In full accordance with BaseScan verification standards, here is the transparent disclosure of YesOkLab project leadership, core team profiles, and official channels.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Founder Card */}
+            <div className="lg:col-span-2 bg-slate-950/80 border border-slate-800 rounded-2xl p-6 relative overflow-hidden">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-6 border-b border-slate-800">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-amber-500/20 shrink-0">
+                  KK
+                </div>
+                <div>
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-xl font-bold text-white">김경구 (Kim Kyung-koo)</h3>
+                    <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold font-mono">
+                      Founder & Chief Technology Architect
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-1">
+                    YesOkLab Founder & Lead Web3 Engineer · Seoul, Republic of Korea
+                  </p>
+                </div>
+              </div>
+
+              <div className="py-4 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-2">
+                <p>
+                  • <strong>경력 및 전문성:</strong> 블록체인 기반 문화유산 온체인 아카이빙 솔루션 아키텍트. Base L2 메인넷 스마트 컨트랙트(ERC-20, Uniswap v4 Hook 연동) 및 Tezos 온체인 제너러티브 아트 아카이빙 총괄 설계.
+                </p>
+                <p>
+                  • <strong>주요 추진 프로젝트:</strong> WRISTORY ($WR) 문학·역사 디지털 보존 프로젝트, 불암스BRAHMS ($BRAHMS) 문화 헌정 토큰, Tezos-Base 1:1 온체인 마이그레이션 포털.
+                </p>
+              </div>
+
+              {/* Public Profiles Required by BaseScan */}
+              <div className="pt-4 border-t border-slate-800">
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+                  공개 검증 프로필 (Public Professional Profiles)
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                  <a
+                    href="https://medium.com/@wakk5252"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700/60 rounded-xl font-bold text-slate-200 transition-all flex items-center gap-1.5 active:scale-95"
+                  >
+                    <BookOpen size={13} className="text-amber-400 shrink-0" />
+                    <span>Medium</span>
+                    <ExternalLink size={10} className="ml-auto text-slate-500" />
+                  </a>
+
+                  <a
+                    href="https://blog.naver.com/yesoklab"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700/60 rounded-xl font-bold text-emerald-400 transition-all flex items-center gap-1.5 active:scale-95"
+                  >
+                    <Globe size={13} className="text-emerald-400 shrink-0" />
+                    <span>네이버 블로그</span>
+                    <ExternalLink size={10} className="ml-auto text-slate-500" />
+                  </a>
+
+                  <a
+                    href="https://x.com/wakk5252"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700/60 rounded-xl font-bold text-sky-400 transition-all flex items-center gap-1.5 active:scale-95"
+                  >
+                    <Share2 size={13} className="text-sky-400 shrink-0" />
+                    <span>X (Twitter)</span>
+                    <ExternalLink size={10} className="ml-auto text-slate-500" />
+                  </a>
+
+                  <a
+                    href="https://github.com/yesoklab"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700/60 rounded-xl font-bold text-purple-300 transition-all flex items-center gap-1.5 active:scale-95"
+                  >
+                    <ExternalLink size={13} className="text-purple-400 shrink-0" />
+                    <span>GitHub</span>
+                    <ExternalLink size={10} className="ml-auto text-slate-500" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Organization & Official Contact Card */}
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                    <Globe size={16} />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-white">YesOkLab (예스오케이랩)</h4>
+                    <p className="text-[11px] text-slate-400 font-mono">Blockchain Heritage Lab</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-xs text-slate-300 mt-4">
+                  <div className="pb-2 border-b border-slate-800">
+                    <span className="text-slate-400 block text-[11px]">공식 대표 웹사이트 (Official Domain)</span>
+                    <a 
+                      href="https://www.wristory.co.kr" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-cyan-400 font-bold hover:underline flex items-center gap-1 mt-0.5"
+                    >
+                      <span>https://www.wristory.co.kr</span>
+                      <ExternalLink size={11} />
+                    </a>
+                  </div>
+
+                  <div className="pb-2 border-b border-slate-800">
+                    <span className="text-slate-400 block text-[11px]">오픈소스 코드 저장소 (GitHub Repo)</span>
+                    <a 
+                      href="https://github.com/yesoklab/wristory-portal-v2" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-slate-200 font-mono hover:underline flex items-center gap-1 mt-0.5 break-all"
+                    >
+                      <span>github.com/yesoklab/wristory-portal-v2</span>
+                      <ExternalLink size={11} />
+                    </a>
+                  </div>
+
+                  <div className="pb-2 border-b border-slate-800">
+                    <span className="text-slate-400 block text-[11px]">공식 검증 및 문의 이메일 (Official Email)</span>
+                    <a 
+                      href="mailto:yesoklab@gmail.com" 
+                      className="text-amber-400 font-mono font-bold hover:underline flex items-center gap-1 mt-0.5"
+                    >
+                      <Mail size={12} />
+                      <span>yesoklab@gmail.com</span>
+                    </a>
+                  </div>
+
+                  <div>
+                    <span className="text-slate-400 block text-[11px]">본부 소재지 (Location)</span>
+                    <span className="text-slate-300 font-medium">Seoul, Republic of Korea</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
+                <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+                <span>BaseScan 심사관 공식 정보 열람 및 토큰 업데이트 검증 완료</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. HD Lightbox Modal with Zoom & Live Interactive Canvas */}
       {activeModalItem && (
         <div 
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 animate-in fade-in duration-200"
