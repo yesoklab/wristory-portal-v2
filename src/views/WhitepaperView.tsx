@@ -60,6 +60,14 @@ const WhitepaperView: React.FC = () => {
     { name: lang === 'ko' ? '전략적 고문 및 파트너' : 'Advisors & Partners', value: 2558457, color: '#64748b', percent: '5%' },
   ];
 
+  const handleDownloadPdfBrahms = () => {
+    forceDownloadFile('/BRAHMS_Whitepaper_v1.0.pdf', 'BRAHMS_Whitepaper_v1.0.pdf');
+  };
+
+  const handleDownloadPdfWristory = () => {
+    forceDownloadFile('/WRISTORY_Whitepaper_v2.0_Base.pdf', 'WRISTORY_Whitepaper_v2.0_Base.pdf');
+  };
+
   const handleDownload = () => {
     forceDownloadFile('/WHITEPAPER.md', 'WRISTORY_Whitepaper_v2.0_Base.md');
   };
@@ -87,7 +95,7 @@ const WhitepaperView: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+        <div className="flex flex-col items-center sm:items-end gap-3 shrink-0">
           {/* Language Switcher */}
           <div className="bg-slate-900 p-1 rounded-2xl border border-slate-800 flex">
             <button 
@@ -104,29 +112,48 @@ const WhitepaperView: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap justify-center">
+          <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-end">
+            {/* BRAHMS PDF */}
+            <button 
+              onClick={handleDownloadPdfBrahms}
+              className="px-3.5 py-2.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 shadow-lg shadow-red-600/30 cursor-pointer border border-red-500/50"
+              title="Download BRAHMS Whitepaper (PDF)"
+            >
+              <FileText size={14} /> BRAHMS (PDF)
+            </button>
+
+            {/* WRISTORY PDF */}
+            <button 
+              onClick={handleDownloadPdfWristory}
+              className="px-3.5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 shadow-lg shadow-blue-600/30 cursor-pointer border border-blue-500/50"
+              title="Download WRISTORY Whitepaper (PDF)"
+            >
+              <FileText size={14} /> WR (PDF)
+            </button>
+
+            {/* Markdown Buttons */}
             <button 
               onClick={handleDownloadBrahms}
-              className="px-3.5 py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 shadow-lg shadow-amber-500/20 cursor-pointer"
+              className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded-xl font-bold text-xs transition-all flex items-center gap-1 active:scale-95 border border-slate-700 cursor-pointer"
               title="Download BRAHMS Whitepaper (.md)"
             >
-              <FileText size={15} /> BRAHMS 백서
+              <span>BRAHMS (.md)</span>
             </button>
 
             <button 
               onClick={handleDownload}
-              className="px-3.5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 shadow-lg shadow-emerald-500/20 cursor-pointer"
+              className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-emerald-300 rounded-xl font-bold text-xs transition-all flex items-center gap-1 active:scale-95 border border-slate-700 cursor-pointer"
               title="Download WRISTORY Whitepaper (.md)"
             >
-              <ArrowDownToLine size={15} /> WR 백서
+              <span>WR (.md)</span>
             </button>
 
             <button 
               onClick={() => window.print()}
-              className="px-3.5 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 border border-slate-700 shadow-lg cursor-pointer"
-              title="Print or Save as PDF"
+              className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-bold text-xs transition-all flex items-center gap-1 active:scale-95 border border-slate-700 cursor-pointer"
+              title="Print or Save via Browser"
             >
-              <Printer size={15} className="text-cyan-400" /> PRINT / PDF
+              <Printer size={13} className="text-cyan-400" /> PRINT
             </button>
           </div>
         </div>
