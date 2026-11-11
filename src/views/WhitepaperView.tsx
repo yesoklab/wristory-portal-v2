@@ -18,6 +18,7 @@ import {
   Printer
 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { forceDownloadFile } from '../lib/download';
 
 interface Section {
   id: string;
@@ -60,12 +61,11 @@ const WhitepaperView: React.FC = () => {
   ];
 
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/WHITEPAPER.md';
-    link.download = 'WRISTORY_Whitepaper_v2.0_Base.md';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    forceDownloadFile('/WHITEPAPER.md', 'WRISTORY_Whitepaper_v2.0_Base.md');
+  };
+
+  const handleDownloadBrahms = () => {
+    forceDownloadFile('/BRAHMS_Whitepaper_v1.0.md', 'BRAHMS_Whitepaper_v1.0.md');
   };
 
   return (
@@ -74,50 +74,59 @@ const WhitepaperView: React.FC = () => {
       <div className="bg-gradient-to-r from-blue-900/40 via-indigo-950 to-slate-950 border border-blue-500/20 p-8 md:p-12 rounded-[3.5rem] flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl">
         <div className="space-y-3 text-center md:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[11px] font-black uppercase tracking-widest">
-            <FileText size={14} className="animate-pulse" /> Official Whitepaper v2.0 (Base Edition)
+            <FileText size={14} className="animate-pulse" /> Official Whitepapers (Base Edition)
           </div>
           <h1 className="text-4xl md:text-5xl font-black italic text-white uppercase tracking-tighter">
-            WRISTORY Whitepaper <span className="text-blue-500">v2.0</span>
+            WRISTORY & BRAHMS <span className="text-blue-500">v2.0</span>
           </h1>
           <p className="text-slate-400 text-sm md:text-base font-medium max-w-2xl leading-relaxed">
             {lang === 'ko' 
-              ? '이더리움 Layer-2 Base 네트워크 및 테조스 듀얼 생태계 $WR 토큰의 아키텍처, Uniswap v4 유동성 구축 및 1:1 마이그레이션 백서입니다.'
-              : 'Official technical specifications, Uniswap v4 liquidity mechanism, and 1:1 token migration architecture of WR token across Base L2 and Tezos.'
+              ? '이더리움 Layer-2 Base 네트워크의 $WR 토큰(유니스왑 v4 및 1:1 마이그레이션)과 $BRAHMS(문화유산 헌정 및 아동 복지) 공식 백서입니다.'
+              : 'Official technical specifications, tokenomics, and compliance charters for WR and BRAHMS tokens on Base Layer-2.'
             }
           </p>
         </div>
 
-        <div className="flex items-center gap-4 shrink-0">
+        <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
           {/* Language Switcher */}
           <div className="bg-slate-900 p-1 rounded-2xl border border-slate-800 flex">
             <button 
               onClick={() => setLang('ko')} 
-              className={`px-4 py-2.5 rounded-xl text-xs font-black transition-all ${lang === 'ko' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+              className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${lang === 'ko' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
             >
               한국어
             </button>
             <button 
               onClick={() => setLang('en')} 
-              className={`px-4 py-2.5 rounded-xl text-xs font-black transition-all ${lang === 'en' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+              className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${lang === 'en' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
             >
               English
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            <button 
+              onClick={handleDownloadBrahms}
+              className="px-3.5 py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 shadow-lg shadow-amber-500/20 cursor-pointer"
+              title="Download BRAHMS Whitepaper (.md)"
+            >
+              <FileText size={15} /> BRAHMS 백서
+            </button>
+
             <button 
               onClick={handleDownload}
-              className="px-4 sm:px-6 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 active:scale-95 shadow-lg shadow-emerald-500/20"
-              title="Download Whitepaper in Markdown (.md) format"
+              className="px-3.5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 shadow-lg shadow-emerald-500/20 cursor-pointer"
+              title="Download WRISTORY Whitepaper (.md)"
             >
-              <ArrowDownToLine size={16} /> DOWNLOAD MD
+              <ArrowDownToLine size={15} /> WR 백서
             </button>
+
             <button 
               onClick={() => window.print()}
-              className="px-4 sm:px-5 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-2 active:scale-95 border border-slate-700 shadow-lg"
+              className="px-3.5 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 active:scale-95 border border-slate-700 shadow-lg cursor-pointer"
               title="Print or Save as PDF"
             >
-              <Printer size={16} className="text-cyan-400" /> PRINT / PDF
+              <Printer size={15} className="text-cyan-400" /> PRINT / PDF
             </button>
           </div>
         </div>
