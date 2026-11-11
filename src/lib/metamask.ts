@@ -53,13 +53,37 @@ function getEthereumProvider(): any {
 }
 
 /**
+ * Generates official MetaMask Mobile App deep link for the current or specified URL
+ */
+export function getMetaMaskDeepLink(): string {
+  if (typeof window === 'undefined') return 'https://metamask.app.link';
+  const cleanHost = window.location.host;
+  const cleanPath = window.location.pathname + window.location.search;
+  return `https://metamask.app.link/dapp/${cleanHost}${cleanPath}`;
+}
+
+/**
  * Adds an ERC-20 token with its official logo to MetaMask via EIP-747 wallet_watchAsset.
- * Automatically handles account connection and network switching to Base Mainnet.
+ * Automatically handles account connection, mobile deep linking, and network switching to Base Mainnet.
  */
 export async function addCustomTokenToMetaMask(config: TokenWatchConfig): Promise<{ success: boolean; message: string }> {
   const provider = getEthereumProvider();
+  const isMobile = typeof navigator !== 'undefined' && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   if (!provider) {
+    if (isMobile) {
+      const deepLink = getMetaMaskDeepLink();
+      try {
+        window.location.href = deepLink;
+      } catch (e) {
+        console.warn('Deep link navigation failed:', e);
+      }
+      return {
+        success: false,
+        message: '📱 메타마스크 모바일 앱을 실행합니다. 앱 내 브라우저에서 사이트가 열리면 [토큰 추가]를 눌러주세요!'
+      };
+    }
+
     return {
       success: false,
       message: '메타마스크 지갑 확장이 감지되지 않았습니다. 메타마스크 앱 내 브라우저에서 열거나 브라우저 확장 프로그램을 설치해 주세요.'
