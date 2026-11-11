@@ -836,9 +836,12 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           <div className="bg-slate-950/90 border border-cyan-500/20 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <img 
-                src={BRAHMS_TOKEN_CONFIG.fallbackImage} 
+                src={BRAHMS_TOKEN_CONFIG.image} 
                 alt="BRAHMS Logo" 
-                className="w-10 h-10 rounded-full border border-cyan-400/50 object-cover shrink-0" 
+                className="w-10 h-10 rounded-full border border-cyan-400/50 object-cover shrink-0 bg-slate-900" 
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = BRAHMS_TOKEN_CONFIG.fallbackImage;
+                }}
               />
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -874,19 +877,29 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 <Download size={12} className="text-cyan-400" />
                 <span>32 SVG</span>
               </button>
+              {/* PRIMARY ACTION: Download Official Whitepaper in PDF format */}
+              <button
+                onClick={() => forceDownloadFile('/BRAHMS_Whitepaper_v1.0.pdf', 'BRAHMS_Whitepaper_v1.0.pdf')}
+                className="px-3 py-1.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white border border-red-500/50 rounded-lg text-xs font-black transition-all flex items-center gap-1.5 active:scale-95 shadow-md shadow-red-600/30 cursor-pointer"
+                title="Download BRAHMS Official Whitepaper (PDF)"
+              >
+                <FileText size={13} className="text-white" />
+                <span>{lang === 'ko' ? 'BRAHMS 백서 (PDF)' : 'BRAHMS Whitepaper (PDF)'}</span>
+                <Download size={11} />
+              </button>
               <button
                 onClick={() => forceDownloadFile('/BRAHMS_Whitepaper_v1.0.md', 'BRAHMS_Whitepaper_v1.0.md')}
-                className="px-2.5 py-1.5 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/40 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm cursor-pointer"
-                title="Download BRAHMS Official Whitepaper (.md)"
+                className="px-2.5 py-1.5 bg-slate-800/90 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-xs font-bold transition-all flex items-center gap-1 active:scale-95 shadow-sm cursor-pointer"
+                title="Download BRAHMS Markdown Whitepaper (.md)"
               >
-                <FileText size={12} className="text-emerald-400" />
-                <span>{lang === 'ko' ? 'BRAHMS 백서' : 'BRAHMS Whitepaper'}</span>
+                <FileText size={12} className="text-slate-400" />
+                <span>{lang === 'ko' ? '백서 (.md)' : 'Whitepaper (.md)'}</span>
               </button>
               <a
                 href={`https://basescan.org/token/${BRAHMS_TOKEN_CONFIG.address}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
+                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95"
               >
                 <span>BaseScan Explorer</span>
                 <ArrowUpRight size={13} />
@@ -928,15 +941,18 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 <div className="relative group shrink-0">
                   <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 blur opacity-40 group-hover:opacity-75 transition duration-300" />
                   <img 
-                    src="/assets/profile/kim_kyungkoo.png" 
+                    src="https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreif6wcjc22dl3e7cd6ofteudzfzqxbjpfw5aoxa3svqwlrm6zwhjdu" 
                     alt="Kim Kyung-koo (김경구)" 
                     className="relative w-16 h-16 rounded-2xl object-cover border-2 border-amber-500/50 shadow-xl bg-slate-900"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafkreif6wcjc22dl3e7cd6ofteudzfzqxbjpfw5aoxa3svqwlrm6zwhjdu';
+                    }}
                   />
                 </div>
                 <div>
                   <div className="flex items-center gap-2.5 flex-wrap">
                     <h3 className="text-xl font-bold text-white">
-                      {lang === 'ko' ? '김경구 (Kim Kyung-koo)' : 'Kim Kyung-koo (김경구)'}
+                      {lang === 'ko' ? '김경구 (Kim Kyung-koo)' : 'Kim Kyung-koo'}
                     </h3>
                     <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold font-mono">
                       Founder & Chief Technology Architect
@@ -1089,28 +1105,60 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   </div>
 
                   <div>
-                    <span className="text-slate-400 block text-[11px] mb-1.5">
-                      {lang === 'ko' ? '공식 프로젝트 백서 다운로드 (Official Whitepapers)' : 'Official Project Whitepapers'}
+                    <span className="text-slate-400 block text-[11px] mb-2 font-bold">
+                      {lang === 'ko' ? '공식 프로젝트 백서 다운로드 (Official Whitepapers)' : 'Official Project Whitepapers (PDF & MD)'}
                     </span>
-                    <div className="flex flex-col sm:flex-row gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {/* BRAHMS PDF */}
                       <button
-                        onClick={() => forceDownloadFile('/BRAHMS_Whitepaper_v1.0.md', 'BRAHMS_Whitepaper_v1.0.md')}
-                        className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition-all active:scale-95 cursor-pointer shadow-sm"
-                        title="Download BRAHMS Whitepaper (.md)"
+                        onClick={() => forceDownloadFile('/BRAHMS_Whitepaper_v1.0.pdf', 'BRAHMS_Whitepaper_v1.0.pdf')}
+                        className="inline-flex items-center justify-between px-3 py-2 rounded-xl bg-gradient-to-r from-red-600/90 to-rose-600/90 hover:from-red-500 hover:to-rose-500 text-white border border-red-500/50 text-xs font-black transition-all active:scale-95 cursor-pointer shadow-md shadow-red-600/20"
+                        title="Download BRAHMS Official Whitepaper (PDF)"
                       >
-                        <FileText size={13} className="text-emerald-400" />
-                        <span>{lang === 'ko' ? 'BRAHMS 백서 다운로드' : 'Download BRAHMS Whitepaper'}</span>
-                        <Download size={11} />
+                        <span className="flex items-center gap-1.5">
+                          <FileText size={13} className="text-white" />
+                          <span>BRAHMS 백서 (PDF)</span>
+                        </span>
+                        <Download size={12} />
                       </button>
 
+                      {/* WRISTORY PDF */}
+                      <button
+                        onClick={() => forceDownloadFile('/WRISTORY_Whitepaper_v2.0_Base.pdf', 'WRISTORY_Whitepaper_v2.0_Base.pdf')}
+                        className="inline-flex items-center justify-between px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600/90 to-cyan-600/90 hover:from-blue-500 hover:to-cyan-500 text-white border border-blue-500/50 text-xs font-black transition-all active:scale-95 cursor-pointer shadow-md shadow-blue-600/20"
+                        title="Download WRISTORY Official Whitepaper (PDF)"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <FileText size={13} className="text-white" />
+                          <span>WR 백서 (PDF)</span>
+                        </span>
+                        <Download size={12} />
+                      </button>
+
+                      {/* BRAHMS MD */}
+                      <button
+                        onClick={() => forceDownloadFile('/BRAHMS_Whitepaper_v1.0.md', 'BRAHMS_Whitepaper_v1.0.md')}
+                        className="inline-flex items-center justify-between px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[11px] font-bold transition-all active:scale-95 cursor-pointer"
+                        title="Download BRAHMS Whitepaper (.md)"
+                      >
+                        <span className="flex items-center gap-1">
+                          <FileText size={11} className="text-emerald-400" />
+                          <span>BRAHMS (.md)</span>
+                        </span>
+                        <Download size={10} />
+                      </button>
+
+                      {/* WRISTORY MD */}
                       <button
                         onClick={() => forceDownloadFile('/WHITEPAPER.md', 'WRISTORY_Whitepaper_v2.0_Base.md')}
-                        className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-bold transition-all active:scale-95 cursor-pointer shadow-sm"
+                        className="inline-flex items-center justify-between px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[11px] font-bold transition-all active:scale-95 cursor-pointer"
                         title="Download WRISTORY Whitepaper (.md)"
                       >
-                        <FileText size={13} className="text-blue-400" />
-                        <span>{lang === 'ko' ? 'WR 백서 다운로드' : 'Download WR Whitepaper'}</span>
-                        <Download size={11} />
+                        <span className="flex items-center gap-1">
+                          <FileText size={11} className="text-blue-400" />
+                          <span>WRISTORY (.md)</span>
+                        </span>
+                        <Download size={10} />
                       </button>
                     </div>
                   </div>
