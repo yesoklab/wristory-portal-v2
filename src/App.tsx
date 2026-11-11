@@ -60,8 +60,8 @@ const App: React.FC = () => {
   const [copiedModalLink, setCopiedModalLink] = useState<boolean>(false);
 
   // Official Assets & URLs (Unified Token Logo across Base & Tezos)
-  const OFFICIAL_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
-  const LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafybeibiohfmkqcslplibgrn4giwrhuw4r4jqkhhdm7ozj4ufk7ch46fxe';
+  const OFFICIAL_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
+  const LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
   
   // Footer WRISTORY Brand Logo (Pinata IPFS & Fallback)
   const FOOTER_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
