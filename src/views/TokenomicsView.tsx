@@ -3,16 +3,16 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis
 import { Info, Zap, ShieldCheck, History } from 'lucide-react';
 
 const data = [
-  { name: 'Community', value: 15314664, color: '#3b82f6', desc: '30% - Ecosystem Rewards' },
-  { name: 'Liquidity Pool', value: 10209776, color: '#10b981', desc: '20% - DEX Liquidity' },
-  { name: 'Treasury', value: 10209776, color: '#f59e0b', desc: '20% - Project Reserve' },
-  { name: 'Development', value: 7657332, color: '#8b5cf6', desc: '15% - Core Dev & Ops' },
-  { name: 'Airdrop', value: 5104888, color: '#ec4899', desc: '10% - Early Adopters' },
-  { name: 'Investors', value: 2552445, color: '#64748b', desc: '5% - Strategic Partners' },
+  { name: 'Community', value: 15350744, color: '#3b82f6', desc: '30% - Ecosystem Rewards' },
+  { name: 'Liquidity Pool', value: 10233829, color: '#10b981', desc: '20% - DEX Liquidity' },
+  { name: 'Treasury', value: 10233829, color: '#f59e0b', desc: '20% - Project Reserve' },
+  { name: 'Development', value: 7675372, color: '#8b5cf6', desc: '15% - Core Dev & Ops' },
+  { name: 'Holders & Airdrop', value: 5116914, color: '#ec4899', desc: '10% - Tezos Migration & Airdrop' },
+  { name: 'Strategic Partners', value: 2558460, color: '#64748b', desc: '5% - Strategic Partners' },
 ];
 
 const TokenomicsView: React.FC = () => {
-  const totalSupply = "51,048,881 WR";
+  const totalSupply = "51,169,148 WR";
 
   return (
     <div className="space-y-10 animate-in fade-in duration-500 pb-20">
