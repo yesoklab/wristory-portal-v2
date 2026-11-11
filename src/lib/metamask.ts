@@ -20,8 +20,8 @@ export const BRAHMS_TOKEN_CONFIG: TokenWatchConfig = {
   address: '0xE790C3D5e3381926c66416638Fd3e955e748Bb89',
   symbol: 'BRAHMS',
   decimals: 18,
-  image: '/assets/tokens/brahms_logo_256.png',
-  fallbackImage: '/assets/tokens/brahms_raw.png'
+  image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreiejr426cgatoqimlyposwzrvwm2kqoc6t3a6buq2jm24fgkslvujm',
+  fallbackImage: 'https://ipfs.io/ipfs/bafkreiejr426cgatoqimlyposwzrvwm2kqoc6t3a6buq2jm24fgkslvujm'
 };
 
 export const BASE_CHAIN_CONFIG = {
