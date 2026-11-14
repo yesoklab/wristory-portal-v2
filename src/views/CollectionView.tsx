@@ -8,17 +8,21 @@ import { translations, Lang } from '../lib/translations';
 export interface CollectionItem {
   id: string;
   name: string;
-  chain: 'BASE' | 'TEZOS';
+  chain: 'BASE' | 'TEZOS' | 'DUAL';
   price: string;
   count: string;
   editionBadge: string;
   image: string;
   fallbackImage: string;
   ipfsUrl: string;
+  mediaType?: 'image' | 'video';
+  poster?: string;
   url: string;
   highlightUrl?: string;
   openseaUrl?: string;
   zoraUrl?: string;
+  objktUrl?: string;
+  charityUrl?: string;
   isMasterpiece: boolean;
   desc: string;
 }
@@ -31,6 +35,27 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
   const t = translations[lang] || translations.ko;
 
   const curatedMasterpieces: CollectionItem[] = [
+    {
+      id: 'do-not-cry-homeland',
+      name: lang === 'ko' ? '조국아 울지 마라 (Do Not Cry, Homeland)' : 'Do Not Cry, Homeland (조국아 울지 마라)',
+      chain: 'DUAL',
+      price: '0.0019 ETH · 100% Charity',
+      count: 'Base & Tezos Dual',
+      editionBadge: lang === 'ko' ? '100% 굿네이버스 기증 · OpenSea & Objkt' : '100% Good Neighbors · Dual-Chain Drop',
+      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifctqeqhu4ktzgnmzfki4q4fp23hmgcjoik56vlcektscmwkc25me',
+      fallbackImage: '/assets/aistudio/100_b03b9436.png',
+      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifctqeqhu4ktzgnmzfki4q4fp23hmgcjoik56vlcektscmwkc25me',
+      mediaType: 'video',
+      poster: '/assets/aistudio/100_b03b9436.png',
+      url: 'https://opensea.io/collection/do-not-cry-homeland-2026/overview',
+      openseaUrl: 'https://opensea.io/collection/do-not-cry-homeland-2026/overview',
+      objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/43',
+      charityUrl: 'https://www.goodneighbors.kr/campaign/diaspora24a',
+      isMasterpiece: true,
+      desc: lang === 'ko'
+        ? '연해주 최재형·한창걸 부대·이종국 선생의 독립정신과 1937년 강제이주 6,500 km를 견딘 고려인, 후손 시인 이 스타니슬라브의 「조국아 울지 마라」를 담은 3D 기념우표 공익 아트. 판매 수익 및 로열티 100%를 굿네이버스 고려인 지원 캠페인에 기증합니다.'
+        : '3D commemorative charity-seal generative artwork honoring Primorye independence heroes and 170,000+ Koryo-saram deported in 1937. 100% of primary sales and 10% royalties donated to Good Neighbors.'
+    },
     {
       id: 'buckwheat-flowers',
       name: lang === 'ko' ? '이효석 — 메밀꽃 필 무렵' : 'Lee Hyo-seok — When Buckwheat Flowers Bloom',
@@ -94,43 +119,57 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
           {lang === 'ko' ? 'WRISTORY 공식 듀얼 큐레이션' : 'WRISTORY Curated Dual Showcase'}
         </div>
         <h1 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tight">
-          {lang === 'ko' ? '엄선된 2대 메인넷 대표작' : 'Curated Dual Mainnet Masterpieces'}
+          {lang === 'ko' ? '엄선된 3대 듀얼 메인넷 대표작' : 'Curated Dual-Chain Masterpieces'}
         </h1>
         <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
           {lang === 'ko'
-            ? '이더리움 Layer-2(Base)와 테조스(Tezos)의 역사적 가치를 대변하는 2개의 헤리티지 제너러티브 마스터피스'
-            : 'Two generative fine art icons representing historical literature and blockchain origins.'}
+            ? 'Base & Tezos 공익 기념작 「조국아 울지 마라」, 문학 헤리티지 「메밀꽃 필 무렵」, 그리고 「비트코인 피자」'
+            : 'Featuring our dual-chain charity tribute "Do Not Cry, Homeland", Korean literature on Base, and Bitcoin Pizza heritage on Tezos.'}
         </p>
       </div>
 
-      {/* Two Masterpieces Showcase */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
+      {/* Masterpieces Showcase */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
         {curatedMasterpieces.map((item) => (
           <div 
             key={item.id}
             className={`rounded-3xl bg-slate-900/90 border-2 p-6 flex flex-col justify-between shadow-2xl transition-all ${
-              item.chain === 'BASE' 
+              item.chain === 'DUAL'
+                ? 'border-rose-500/40 hover:border-rose-400'
+                : item.chain === 'BASE' 
                 ? 'border-emerald-500/40 hover:border-emerald-400' 
                 : 'border-amber-500/40 hover:border-amber-400'
             }`}
           >
             <div className="space-y-4">
-              {/* Image Frame */}
+              {/* Media Frame */}
               <div 
                 onClick={() => openHdModal(item)}
                 className="relative aspect-[16/10] rounded-2xl bg-black overflow-hidden cursor-pointer group/img border border-white/10"
                 title={lang === 'ko' ? '클릭하여 무손실 고화질(HD) 확대' : 'Click to inspect in HD'}
               >
-                <img 
-                  src={item.image} 
-                  alt={item.name}
-                  className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = item.fallbackImage;
-                  }}
-                />
+                {item.mediaType === 'video' ? (
+                  <video
+                    src={item.image}
+                    poster={item.poster || item.fallbackImage}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-contain bg-black group-hover/img:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = item.fallbackImage;
+                    }}
+                  />
+                )}
                 <span className={`absolute top-3 left-3 px-3 py-1 text-white text-[10px] font-black uppercase rounded-full shadow ${
-                  item.chain === 'BASE' ? 'bg-emerald-600' : 'bg-amber-600'
+                  item.chain === 'DUAL' ? 'bg-rose-600' : item.chain === 'BASE' ? 'bg-emerald-600' : 'bg-amber-600'
                 }`}>
                   {item.editionBadge}
                 </span>
@@ -143,7 +182,7 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
               {/* Text */}
               <div className="space-y-2">
                 <span className="text-[11px] font-black uppercase tracking-wider text-slate-400">
-                  {item.chain === 'BASE' ? 'BASE MAINNET' : 'TEZOS MAINNET'}
+                  {item.chain === 'DUAL' ? 'BASE × TEZOS DUAL CHAIN' : item.chain === 'BASE' ? 'BASE MAINNET' : 'TEZOS MAINNET'}
                 </span>
                 <h2 className="text-xl font-black text-white italic tracking-tight">{item.name}</h2>
                 <p className="text-xs text-slate-300 leading-relaxed">{item.desc}</p>
@@ -157,18 +196,36 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-full py-3 text-white rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-1.5 shadow-lg active:scale-95 ${
-                  item.chain === 'BASE' 
+                  item.chain === 'DUAL'
+                    ? 'bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500'
+                    : item.chain === 'BASE' 
                     ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500' 
                     : 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500'
                 }`}
               >
                 <Sparkles size={14} className="text-yellow-300" />
-                <span>{item.chain === 'BASE' ? (lang === 'ko' ? 'Highlight 신작 민팅하기' : 'Mint on Highlight') : (lang === 'ko' ? 'OBJKT 대표 컬렉션 감상' : 'View on OBJKT')}</span>
+                <span>
+                  {item.chain === 'DUAL'
+                    ? (lang === 'ko' ? 'OpenSea 민팅 (0.0019 ETH)' : 'Mint on OpenSea (0.0019 ETH)')
+                    : item.chain === 'BASE'
+                    ? (lang === 'ko' ? 'Highlight 신작 민팅하기' : 'Mint on Highlight')
+                    : (lang === 'ko' ? 'OBJKT 대표 컬렉션 감상' : 'View on OBJKT')}
+                </span>
                 <ArrowUpRight size={14} />
               </a>
 
               <div className="grid grid-cols-2 gap-2 text-xs">
-                {item.openseaUrl ? (
+                {item.charityUrl ? (
+                  <a 
+                    href={item.charityUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-emerald-500/30"
+                  >
+                    <span>{lang === 'ko' ? '굿네이버스 캠페인' : 'Good Neighbors'}</span>
+                    <ExternalLink size={11} />
+                  </a>
+                ) : item.openseaUrl ? (
                   <a 
                     href={item.openseaUrl}
                     target="_blank"
@@ -250,7 +307,27 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
               className="relative transition-transform duration-200 origin-center flex items-center justify-center max-w-full max-h-full"
               style={{ transform: `scale(${zoomLevel})` }}
             >
-              {viewLiveInteractive ? (
+              {selectedArtwork.mediaType === 'video' ? (
+                viewLiveInteractive ? (
+                  <img 
+                    src={selectedArtwork.poster || selectedArtwork.fallbackImage} 
+                    alt={selectedArtwork.name} 
+                    className="max-w-[90vw] max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10"
+                  />
+                ) : (
+                  <video
+                    src={selectedArtwork.image}
+                    poster={selectedArtwork.poster || selectedArtwork.fallbackImage}
+                    controls
+                    autoPlay
+                    loop
+                    playsInline
+                    className="max-w-[90vw] max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10 bg-black"
+                  >
+                    <source src={selectedArtwork.image} type="video/webm" />
+                  </video>
+                )
+              ) : viewLiveInteractive ? (
                 <iframe 
                   src={selectedArtwork.ipfsUrl} 
                   title={selectedArtwork.name}
@@ -283,7 +360,9 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
                     : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
                 }`}
               >
-                {viewLiveInteractive ? (lang === 'ko' ? '정적 이미지 보기' : 'View Static Image') : (lang === 'ko' ? '라이브 캔버스 인터랙티브 모드' : 'Interactive Live Canvas')}
+                {selectedArtwork.mediaType === 'video'
+                  ? (viewLiveInteractive ? (lang === 'ko' ? 'WEBC 영상으로 보기' : 'View WEBC Video') : (lang === 'ko' ? '고화질 스틸 보기' : 'View Static Image'))
+                  : (viewLiveInteractive ? (lang === 'ko' ? '정적 이미지 보기' : 'View Static Image') : (lang === 'ko' ? '라이브 캔버스 인터랙티브 모드' : 'Interactive Live Canvas'))}
               </button>
               <a 
                 href={selectedArtwork.ipfsUrl} 
