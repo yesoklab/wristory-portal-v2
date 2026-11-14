@@ -38,6 +38,21 @@ export interface TranslationDictionary {
     tezosChain: string;
   };
   artworks: {
+    homeland: {
+      title: string;
+      subtitle: string;
+      chainBadge: string;
+      quote: string;
+      desc: string;
+      impactNote: string;
+      controlsNote: string;
+      detail1: string;
+      detail2: string;
+      openseaBtn: string;
+      goodNeighborsBtn: string;
+      objktBtn: string;
+      ipfsBtn: string;
+    };
     buckwheat: {
       title: string;
       subtitle: string;
@@ -89,7 +104,7 @@ export const translations: Record<Lang, TranslationDictionary> = {
   ko: {
     nav: {
       home: '홈',
-      gallery: '대표 명작 (Dual Masterpieces)',
+      gallery: '대표 명작 (Masterpieces)',
       migration: 'Base 마이그레이션',
       whitepaper: '백서',
       research: '규제 리서치',
@@ -101,29 +116,44 @@ export const translations: Record<Lang, TranslationDictionary> = {
       tagline: '역사적 가치의 온체인 영구 보존 프로젝트',
       title: 'THE BRIDGE OF TIME & HERITAGE',
       subtitle: '역사는 블록체인 위에서 영원히 살아 숨 쉽니다.',
-      description: 'WRISTORY는 시대를 관통하는 인류의 문학·역사적 유산을 이더리움 Layer-2(Base)와 테조스(Tezos) 온체인 제너러티브 파인아트로 아카이빙합니다.',
+      description: 'WRISTORY는 시대를 관통하는 인류의 문학·역사·독립정신 유산을 이더리움 Layer-2(Base)와 테조스(Tezos) 온체인 제너러티브 파인아트로 아카이빙합니다.',
       exploreMasterpieces: '대표 명작 감상하기',
-      viewOpenSea: 'OpenSea 공식 컬렉션',
+      viewOpenSea: '조국아 울지 마라 (OpenSea)',
       swapUniswap: 'Uniswap v4 풀 확인'
     },
     metrics: {
       chains: '듀얼 메인넷',
       chainsVal: 'Base L2 × Tezos',
       masterpieces: '엄선된 대표작',
-      masterpiecesVal: '2대 헤리티지',
+      masterpiecesVal: '3대 헤리티지',
       curation: '큐레이션 방식',
       curationVal: '자율 제너러티브 아트',
       storage: '분산 스토리지',
       storageVal: 'IPFS 영구 아카이브'
     },
     dualSection: {
-      badge: 'WRISTORY CURATED DUAL MASTERPIECES',
-      title: '2대 메인넷 대표 마스터피스',
-      subtitle: 'Base 체인의 문학적 정취와 Tezos 체인의 블록체인 역사를 대표하는 두 작품을 감상하세요.',
+      badge: 'WRISTORY CURATED DUAL-CHAIN MASTERPIECES',
+      title: '3대 듀얼 메인넷 대표 마스터피스',
+      subtitle: 'Base와 Tezos 듀얼 체인 공익 기념작 「조국아 울지 마라」부터 문학·블록체인 역사 대표작까지 온체인으로 감상하세요.',
       baseChain: 'BASE MAINNET',
       tezosChain: 'TEZOS MAINNET'
     },
     artworks: {
+      homeland: {
+        title: '조국아 울지 마라 (Do Not Cry, Homeland)',
+        subtitle: 'Public-Good Dual-Chain Generative Art — Koryo-saram 1937 Memorial',
+        chainBadge: 'Base (OpenSea · Highlight) × Tezos (Objkt)',
+        quote: '"조국아 울지 마라 / 우리들이 울어도 너는 울지 마라 / 눈물 감추면서 우리 옛날 수도 서울 보고있다." — 시인 이 스타니슬라브 (Lee Stanislav)',
+        desc: '연해주 의병과 독립전쟁에 헌신한 최재형·한창걸 부대·이종국 선생의 숭고한 정신, 그리고 1937년 가을 블라디보스토크에서 카자흐스탄 우슈토베(Үштөбе)까지 6,500 km 시베리아 철길(조선에서 약 8,000 km)을 따라 강제이주 당해 토굴에서 혹한을 견뎌낸 17만여 고려인의 아픔과 후손 시인 이 스타니슬라브의 시를 3D 기념우표 코드 아트로 영구 기록합니다.',
+        impactNote: '판매 수익금 및 크리에이터 로열티(10%) 전액(100%)을 굿네이버스 고려인 지원 캠페인에 투명하게 기증합니다.',
+        controlsNote: '[1][2][3] 또는 스와이프: 악장 전환 · [S] 3D 우표 모드 · [Space]/클릭: 추모 등불 · [M] 사운드',
+        detail1: 'Base OpenSea 민팅: 0.0019 ETH · 100 에디션 · 10% 로열티 전액 기부',
+        detail2: 'Tezos Objkt 연동: KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/43',
+        openseaBtn: 'OpenSea 민팅 (0.0019 ETH)',
+        goodNeighborsBtn: '굿네이버스 캠페인',
+        objktBtn: 'Tezos Objkt (#43)',
+        ipfsBtn: 'WEBC IPFS 원본'
+      },
       buckwheat: {
         title: '이효석 — 메밀꽃 필 무렵',
         subtitle: 'When Buckwheat Flowers Bloom',
@@ -173,7 +203,7 @@ export const translations: Record<Lang, TranslationDictionary> = {
   en: {
     nav: {
       home: 'Home',
-      gallery: 'Dual Masterpieces',
+      gallery: 'Masterpieces',
       migration: 'Base Migration',
       whitepaper: 'Whitepaper',
       research: 'Research',
@@ -185,29 +215,44 @@ export const translations: Record<Lang, TranslationDictionary> = {
       tagline: 'Permanent On-Chain Historical Preservation',
       title: 'THE BRIDGE OF TIME & HERITAGE',
       subtitle: 'History breathes eternal life upon the blockchain.',
-      description: 'WRISTORY archives timeless human literature and cryptographic milestones into on-chain generative fine art across Ethereum Layer-2 (Base) and Tezos.',
+      description: 'WRISTORY archives timeless human literature, independence heritage, and cryptographic milestones into on-chain generative fine art across Base and Tezos.',
       exploreMasterpieces: 'Explore Masterpieces',
-      viewOpenSea: 'OpenSea Collection',
+      viewOpenSea: 'Do Not Cry, Homeland (OpenSea)',
       swapUniswap: 'Uniswap v4 Pool'
     },
     metrics: {
       chains: 'Dual Mainnets',
       chainsVal: 'Base L2 × Tezos',
       masterpieces: 'Curated Works',
-      masterpiecesVal: '2 Heritage Icons',
+      masterpiecesVal: '3 Heritage Icons',
       curation: 'Artform',
       curationVal: 'Generative Fine Art',
       storage: 'Decentralized Storage',
       storageVal: 'Permanent IPFS'
     },
     dualSection: {
-      badge: 'WRISTORY CURATED DUAL MASTERPIECES',
-      title: 'Curated Dual Mainnet Masterpieces',
-      subtitle: 'Experience the poetic Korean literature on Base and the cryptographic heritage on Tezos.',
+      badge: 'WRISTORY CURATED DUAL-CHAIN MASTERPIECES',
+      title: 'Curated Dual-Chain Masterpieces',
+      subtitle: 'Experience our dual-chain public-good tribute "Do Not Cry, Homeland" alongside Korean literature on Base and Bitcoin history on Tezos.',
       baseChain: 'BASE MAINNET',
       tezosChain: 'TEZOS MAINNET'
     },
     artworks: {
+      homeland: {
+        title: 'Do Not Cry, Homeland (조국아 울지 마라)',
+        subtitle: 'Public-Good Dual-Chain Generative Art — Koryo-saram 1937 Memorial',
+        chainBadge: 'Base (OpenSea · Highlight) × Tezos (Objkt)',
+        quote: '"Do not cry, homeland / Even if we weep, do not weep / Hiding tears, we gaze toward our old capital Seoul." — Poet Lee Stanislav',
+        desc: 'This 3D commemorative charity-seal generative artwork honors Korean independence heroes in Primorye—Choi Jae-hyung, Commander Han Chang-geol\'s armed unit, and freedom fighter Lee Jong-guk—and preserves the haunting poem "Do Not Cry, Homeland" by descendant poet Lee Stanislav, remembering over 170,000 Koryo-saram deported in autumn 1937 across 6,500 km of Siberian rail from Vladivostok to Ushtobe (Үштөбе), Kazakhstan (~8,000 km from Joseon).',
+        impactNote: '100% of primary sales and creator royalties (10%) are donated directly to the Good Neighbors Koryo-saram Support Campaign.',
+        controlsNote: 'Controls: [1][2][3] or swipe for Movements · [S] 3D Stamp Mode · [Space]/Click for memorial light · [M] Sound',
+        detail1: 'Base OpenSea Drop: 0.0019 ETH · 100 Editions · 10% Royalty Donated',
+        detail2: 'Tezos Objkt Token: KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/43',
+        openseaBtn: 'Mint on OpenSea (0.0019 ETH)',
+        goodNeighborsBtn: 'Good Neighbors Campaign',
+        objktBtn: 'Tezos Objkt (#43)',
+        ipfsBtn: 'WEBC IPFS Master'
+      },
       buckwheat: {
         title: 'Lee Hyo-seok — When Buckwheat Flowers Bloom',
         subtitle: 'The Moonlit Heritage (메밀꽃 필 무렵)',
