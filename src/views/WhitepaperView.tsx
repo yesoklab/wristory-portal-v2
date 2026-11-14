@@ -35,7 +35,7 @@ const WhitepaperView: React.FC = () => {
   const TEZOS_CONTRACT = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
-  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
+  const BASESCAN_TOKEN_URL = `https://basescan.org/token/${BASE_CONTRACT}`;
   const GITHUB_CLARITY_RESEARCH_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
   const BLOG_CLARITY_ACT_1_URL = 'https://blog.naver.com/yesoklab/224405334699';
   const BLOG_CLARITY_ACT_2_URL = 'https://blog.naver.com/yesoklab/224405538510';
@@ -381,12 +381,12 @@ const WhitepaperView: React.FC = () => {
 
                   <div className="flex flex-wrap items-center gap-3 pt-2">
                     <a
-                      href={GECKOTERMINAL_URL}
+                      href={BASESCAN_TOKEN_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-1.5 transition-all active:scale-95"
+                      className="px-4 py-2.5 bg-blue-600/20 hover:bg-blue-600/30 text-cyan-300 border border-blue-500/40 rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-1.5 transition-all active:scale-95"
                     >
-                      <TrendingUp size={14} className="text-amber-400" /> GeckoTerminal 실시간 차트 <ExternalLink size={12} />
+                      <ExternalLink size={14} className="text-cyan-400" /> BaseScan Explorer
                     </a>
                     <a
                       href={UNISWAP_SWAP_URL}
