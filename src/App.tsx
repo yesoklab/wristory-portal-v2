@@ -199,8 +199,8 @@ const App: React.FC = () => {
           </span>
           <span className="truncate">
             {lang === 'ko' 
-              ? 'Base L2 (이효석 — 메밀꽃 필 무렵) × Tezos (비트코인 피자 10,000 BTC)'
-              : 'Base L2 (When Buckwheat Flowers Bloom) × Tezos (Bitcoin Pizza Day)'}
+              ? '조국아 울지 마라 (100% 굿네이버스 기증 OpenSea 민팅) × Base L2 (메밀꽃 필 무렵) × Tezos (비트코인 피자)'
+              : 'Do Not Cry, Homeland (100% Good Neighbors OpenSea Drop) × Base L2 (Buckwheat Flowers) × Tezos (Bitcoin Pizza)'}
           </span>
           <button 
             onClick={() => { setActiveTab('COLLECTIONS'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -511,6 +511,24 @@ const App: React.FC = () => {
             >
               <Sparkles size={12} className="text-yellow-300" />
               <span>Highlight (Base)</span>
+              <ExternalLink size={11} />
+            </a>
+            <a 
+              href="https://opensea.io/collection/do-not-cry-homeland-2026/overview" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-3 py-1.5 bg-rose-950/50 hover:bg-rose-900/70 text-rose-300 border border-rose-500/35 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <span>Do Not Cry, Homeland (OpenSea)</span>
+              <ExternalLink size={11} />
+            </a>
+            <a 
+              href="https://www.goodneighbors.kr/campaign/diaspora24a" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-3 py-1.5 bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <span>Good Neighbors</span>
               <ExternalLink size={11} />
             </a>
             <a 
