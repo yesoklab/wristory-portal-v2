@@ -8,31 +8,23 @@ import {
   ZoomIn, 
   ZoomOut, 
   Layers, 
-  TrendingUp, 
-  Coins, 
+  Coins,  
   ShieldCheck,
   ChevronRight,
   Share2,
   Check,
-  PlusCircle,
-  Loader2,
   CheckCircle2,
-  AlertCircle,
   Heart,
   Info,
   Globe,
   Mail,
   BookOpen,
   User,
-  Smartphone,
   Download,
   FileText
 } from 'lucide-react';
 import { translations, Lang } from '../lib/translations';
 import { 
-  addWRTokenToMetaMask, 
-  addBRAHMSTokenToMetaMask, 
-  getMetaMaskDeepLink,
   WR_TOKEN_CONFIG, 
   BRAHMS_TOKEN_CONFIG 
 } from '../lib/metamask';
@@ -47,13 +39,12 @@ interface LandingPageViewProps {
 const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) => {
   const t = translations[lang] || translations.ko;
 
-  // External Links (Unified Official Token Logo)
-  const LOGO_URL = WR_TOKEN_CONFIG.image;
+  // WRISTORY Official Company / Project Logo (Hero, Navbar, Footer)
+  const COMPANY_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
+  const COMPANY_LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
+
   const BASE_CONTRACT = WR_TOKEN_CONFIG.address;
-  const TOKEN_LOGO_URL = WR_TOKEN_CONFIG.image;
-  const TOKEN_LOGO_FALLBACK = WR_TOKEN_CONFIG.fallbackImage;
-  const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
-  const GECKOTERMINAL_TOKEN_URL = 'https://www.geckoterminal.com/base/tokens/0x9de688b818d1755f4daf82d25662da1bbedd17b7';
+  const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
   
   // Base Masterpiece Links (When Buckwheat Flowers Bloom)
   const BUCKWHEAT_IMAGE = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q';
@@ -84,31 +75,6 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
 
   // Active Token Tab in On-Chain Verification Card ('WR' | 'BRAHMS')
   const [selectedTokenTab, setSelectedTokenTab] = useState<'WR' | 'BRAHMS'>('WR');
-
-  // MetaMask Token WatchAsset State
-  const [isAddingToken, setIsAddingToken] = useState<boolean>(false);
-  const [tokenNotice, setTokenNotice] = useState<{ type: 'success' | 'error' | 'info'; text: string } | null>(null);
-
-  const handleAddTokenToMetaMask = async (tokenType: 'WR' | 'BRAHMS' = selectedTokenTab) => {
-    setIsAddingToken(true);
-    setTokenNotice({ type: 'info', text: t.walletAction.addingToken });
-    try {
-      const result = tokenType === 'WR' ? await addWRTokenToMetaMask() : await addBRAHMSTokenToMetaMask();
-      if (result.success) {
-        setTokenNotice({ type: 'success', text: result.message });
-      } else {
-        setTokenNotice({ type: 'error', text: result.message });
-      }
-    } catch (err: any) {
-      setTokenNotice({ type: 'error', text: err?.message || '지갑 연동 오류' });
-    } finally {
-      setIsAddingToken(false);
-      setTimeout(() => {
-        // Auto-dismiss after 6 seconds
-        setTokenNotice(null);
-      }, 6000);
-    }
-  };
 
   const currentTokenConfig = selectedTokenTab === 'WR' ? WR_TOKEN_CONFIG : BRAHMS_TOKEN_CONFIG;
 
@@ -160,11 +126,11 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl blur-md opacity-40 group-hover:opacity-75 transition duration-500" />
                 <img 
-                  src={LOGO_URL} 
+                  src={COMPANY_LOGO_URL} 
                   alt="WRISTORY Official Brandmark" 
                   className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-white/20 shadow-xl bg-slate-950"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://ipfs.io/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
+                    (e.target as HTMLImageElement).src = COMPANY_LOGO_FALLBACK;
                   }}
                 />
               </div>
@@ -497,34 +463,6 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           {/* Subtle Ambient Background Lighting */}
           <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Toast / Status Notification for Token Addition */}
-          {tokenNotice && (
-            <div className={`p-3.5 rounded-2xl text-xs font-bold flex items-center justify-between gap-3 animate-in fade-in duration-200 border ${
-              tokenNotice.type === 'success' 
-                ? 'bg-emerald-950/60 border-emerald-500/50 text-emerald-300' 
-                : tokenNotice.type === 'error'
-                ? 'bg-rose-950/60 border-rose-500/50 text-rose-300'
-                : 'bg-blue-950/60 border-blue-500/50 text-cyan-300'
-            }`}>
-              <div className="flex items-center gap-2">
-                {tokenNotice.type === 'success' ? (
-                  <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
-                ) : tokenNotice.type === 'error' ? (
-                  <AlertCircle size={16} className="text-rose-400 shrink-0" />
-                ) : (
-                  <Loader2 size={16} className="animate-spin text-cyan-400 shrink-0" />
-                )}
-                <span>{tokenNotice.text}</span>
-              </div>
-              <button 
-                onClick={() => setTokenNotice(null)}
-                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white"
-              >
-                <X size={14} />
-              </button>
-            </div>
-          )}
-
           {/* Token Switcher Tabs for WR and BRAHMS */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
             <div className="flex items-center gap-2">
@@ -566,8 +504,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     : 'bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-400'
                 }`} />
                 <img 
+                  key={selectedTokenTab}
                   src={currentTokenConfig.image} 
-                  alt={`${currentTokenConfig.symbol} Official Logo`} 
+                  alt={`${currentTokenConfig.symbol} Official Token Logo`} 
                   className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-white/20 shadow-xl bg-slate-950"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = currentTokenConfig.fallbackImage;
@@ -626,82 +565,42 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               </div>
             </div>
 
-            {/* Right: One-Click MetaMask Token Registration + Market Links */}
+            {/* Right: Verified On-Chain Explorer & DEX Links */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto shrink-0">
-              {/* PRIMARY ACTION: Add Token to MetaMask via EIP-747 */}
-              <button
-                onClick={() => handleAddTokenToMetaMask(selectedTokenTab)}
-                disabled={isAddingToken}
-                className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-slate-950 rounded-xl font-black text-xs sm:text-sm tracking-tight transition-all flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 active:scale-95 disabled:opacity-70 cursor-pointer"
-                title={`메타마스크에 $${currentTokenConfig.symbol} 토큰 및 공식 로고 자동 등록`}
+              <a
+                href={`https://basescan.org/token/${currentTokenConfig.address}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white rounded-xl font-black text-xs sm:text-sm tracking-tight transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 active:scale-95"
               >
-                {isAddingToken ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin text-slate-950" />
-                    <span>{t.walletAction.addingToken}</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-base leading-none">🦊</span>
-                    <span>
-                      {lang === 'ko' 
-                        ? `메타마스크에 $${currentTokenConfig.symbol} & 로고 추가` 
-                        : `Add $${currentTokenConfig.symbol} & Logo to MetaMask`}
-                    </span>
-                    <PlusCircle size={15} className="text-slate-950" />
-                  </>
-                )}
-              </button>
+                <ExternalLink size={15} className="text-cyan-200" />
+                <span>BaseScan Explorer</span>
+                <ArrowUpRight size={14} />
+              </a>
 
-              {/* Secondary Market / Explorer Trackers */}
-              <div className="flex items-center gap-2">
-                {selectedTokenTab === 'WR' ? (
-                  <>
-                    <a
-                      href={GECKOTERMINAL_TOKEN_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 sm:flex-initial px-3.5 py-3 bg-slate-800/90 hover:bg-slate-700 text-amber-300 border border-slate-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95"
-                    >
-                      <TrendingUp size={14} className="text-amber-400" />
-                      <span>GeckoTerminal</span>
-                      <ExternalLink size={11} />
-                    </a>
-                    <a
-                      href={UNISWAP_V4_POSITION_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 sm:flex-initial px-3.5 py-3 bg-emerald-600/90 hover:bg-emerald-500 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 active:scale-95"
-                    >
-                      <Coins size={14} />
-                      <span>Uniswap v4</span>
-                      <ArrowUpRight size={12} />
-                    </a>
-                  </>
-                ) : (
-                  <a
-                    href={`https://basescan.org/token/${BRAHMS_TOKEN_CONFIG.address}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 sm:flex-initial px-4 py-3 bg-blue-950/60 hover:bg-blue-900/80 text-cyan-300 border border-blue-500/30 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95"
-                  >
-                    <ExternalLink size={14} className="text-cyan-400" />
-                    <span>BaseScan Explorer</span>
-                    <ArrowUpRight size={12} />
-                  </a>
-                )}
-              </div>
+              {selectedTokenTab === 'WR' && (
+                <a
+                  href={UNISWAP_SWAP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-4 py-3 bg-emerald-600/90 hover:bg-emerald-500 text-white rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 active:scale-95"
+                >
+                  <Coins size={15} />
+                  <span>Uniswap v4</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              )}
             </div>
           </div>
 
-          {/* Bottom Row: Full-width Mobile Web3 Quick Helper & Direct Asset Download Bar */}
+          {/* Bottom Row: BaseScan Verification Status & Direct Official Logo Assets */}
           <div className="mt-5 pt-3.5 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] relative z-10 w-full">
             <div className="flex items-center gap-2 text-slate-400 text-center md:text-left">
-              <Smartphone size={14} className="text-cyan-400 shrink-0" />
+              <CheckCircle2 size={14} className="text-emerald-400 shrink-0" />
               <span>
                 {lang === 'ko'
-                  ? '스마트폰에서는 메타마스크 모바일 앱 내 브라우저를 통해 접속 시 1클릭으로 등록됩니다.'
-                  : 'On mobile, open in MetaMask Mobile in-app browser for 1-tap token import.'}
+                  ? 'BaseScan 공식 토큰 정보 업데이트 심사 진행 중 · 원클릭 지갑(MetaMask) 등록 서비스는 BaseScan 심사 완료 후 오픈됩니다.'
+                  : 'BaseScan official token verification in progress · 1-Click MetaMask wallet import will launch after BaseScan approval.'}
               </span>
             </div>
 
@@ -713,7 +612,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   `${selectedTokenTab.toLowerCase()}_logo_256.png`
                 )}
                 className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm"
-                title={lang === 'ko' ? '공식 로고 PNG 다운로드 (256x256)' : 'Download Official Logo PNG (256x256)'}
+                title={lang === 'ko' ? '공식 토큰 로고 PNG 다운로드 (256x256)' : 'Download Official Token Logo PNG (256x256)'}
               >
                 <Download size={11} className="text-amber-400" />
                 <span>{selectedTokenTab} 로고 (256 PNG)</span>
@@ -725,21 +624,11 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   `${selectedTokenTab.toLowerCase()}_icon_32.svg`
                 )}
                 className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm"
-                title={lang === 'ko' ? '공식 아이콘 SVG 다운로드 (32x32 BaseScan 규격)' : 'Download Official SVG (32x32 BaseScan standard)'}
+                title={lang === 'ko' ? '공식 토큰 아이콘 SVG 다운로드 (32x32 BaseScan 규격)' : 'Download Official SVG (32x32 BaseScan standard)'}
               >
                 <Download size={11} className="text-cyan-400" />
                 <span>{selectedTokenTab} 아이콘 (32 SVG)</span>
               </button>
-
-              <a
-                href={getMetaMaskDeepLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 rounded-lg font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-sm"
-              >
-                <span>🦊 {lang === 'ko' ? '메타마스크 앱 열기' : 'Open in MetaMask'}</span>
-                <ExternalLink size={11} />
-              </a>
             </div>
           </div>
         </div>
@@ -904,12 +793,6 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 <span>BaseScan Explorer</span>
                 <ArrowUpRight size={13} />
               </a>
-              <button
-                onClick={() => handleAddTokenToMetaMask('BRAHMS')}
-                className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold rounded-lg text-xs transition-all flex items-center gap-1.5 active:scale-95"
-              >
-                <span>🦊 {lang === 'ko' ? '지갑에 추가' : 'Add to Wallet'}</span>
-              </button>
             </div>
           </div>
         </div>
