@@ -48,7 +48,7 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
   const TEZOS_FA2_CONTRACT = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   const UNISWAP_V4_POSITION_URL = 'https://app.uniswap.org/positions/v4/base/2953119';
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
-  const GECKOTERMINAL_URL = 'https://www.geckoterminal.com/ko/base/pools/0x637667a6d1aba931cb2c827645a5c5ee0af58a86df1c8bd28a467020a74b933a';
+  const BASESCAN_TOKEN_URL = `https://basescan.org/token/${BASE_WR_CONTRACT}`;
 
   // Sample verified records in local memory for demonstration & transparency
   const [records, setRecords] = useState<MigrationRecord[]>([
@@ -167,12 +167,12 @@ const MigrationPortalView: React.FC<{ lang?: 'ko' | 'en' }> = ({ lang: initialLa
 
         <div className="flex flex-wrap items-center gap-2">
           <a
-            href={GECKOTERMINAL_URL}
+            href={BASESCAN_TOKEN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3.5 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            className="px-3.5 py-2.5 bg-blue-600/20 hover:bg-blue-600/30 text-cyan-300 border border-blue-500/40 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
           >
-            <TrendingUp size={14} className="text-amber-400" /> GeckoTerminal 차트 <ExternalLink size={11} />
+            <ExternalLink size={14} className="text-cyan-400" /> BaseScan Explorer
           </a>
           <a
             href={UNISWAP_SWAP_URL}
