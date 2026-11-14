@@ -21,7 +21,9 @@ import {
   BookOpen,
   User,
   Download,
-  FileText
+  FileText,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 import { translations, Lang } from '../lib/translations';
 import { 
@@ -39,12 +41,20 @@ interface LandingPageViewProps {
 const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) => {
   const t = translations[lang] || translations.ko;
 
-  // WRISTORY Official Company / Project Logo (Hero, Navbar, Footer)
-  const COMPANY_LOGO_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
-  const COMPANY_LOGO_FALLBACK = 'https://ipfs.io/ipfs/bafkreid77edatmd2n2bizvm5e3cvguzbi34ioi7zh5vsc4uikmwqvch3y4';
+  // WRISTORY Official OpenSea-Style Project Banner Logo (Hero Showcase)
+  const PROJECT_BANNER_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihuqcc3qkbpyg6y6thlxhc2qaoec655yrowz6n5wzdswoipxwgs2m';
+  const PROJECT_BANNER_FALLBACK = 'https://ipfs.io/ipfs/bafybeihuqcc3qkbpyg6y6thlxhc2qaoec655yrowz6n5wzdswoipxwgs2m';
 
   const BASE_CONTRACT = WR_TOKEN_CONFIG.address;
   const UNISWAP_SWAP_URL = 'https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base';
+
+  // Flagship Public-Good Dual-Chain Work (Do Not Cry, Homeland / 조국아 울지 마라)
+  const HOMELAND_WEBC = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeifctqeqhu4ktzgnmzfki4q4fp23hmgcjoik56vlcektscmwkc25me';
+  const HOMELAND_WEBC_FALLBACK = 'https://ipfs.io/ipfs/bafybeifctqeqhu4ktzgnmzfki4q4fp23hmgcjoik56vlcektscmwkc25me';
+  const HOMELAND_POSTER = '/assets/aistudio/100_b03b9436.png';
+  const HOMELAND_OPENSEA = 'https://opensea.io/collection/do-not-cry-homeland-2026/overview';
+  const HOMELAND_OBJKT = 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/43';
+  const HOMELAND_GOOD_NEIGHBORS = 'https://www.goodneighbors.kr/campaign/diaspora24a';
   
   // Base Masterpiece Links (When Buckwheat Flowers Bloom)
   const BUCKWHEAT_IMAGE = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeidesvpxsy24eciyqyinzq6nvokokgnm7chqy7w64xv3s3jw3w7r7q';
@@ -66,12 +76,16 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
     image: string;
     fallbackImage: string;
     ipfsUrl: string;
+    mediaType?: 'image' | 'video';
+    poster?: string;
     primaryAction: { label: string; url: string };
   } | null>(null);
 
   const [zoomScale, setZoomScale] = useState<number>(1);
   const [isInteractiveMode, setIsInteractiveMode] = useState<boolean>(false);
   const [copiedContract, setCopiedContract] = useState<boolean>(false);
+  const [isHomelandMuted, setIsHomelandMuted] = useState<boolean>(true);
+  const [homelandVideoError, setHomelandVideoError] = useState<boolean>(false);
 
   // Active Token Tab in On-Chain Verification Card ('WR' | 'BRAHMS')
   const [selectedTokenTab, setSelectedTokenTab] = useState<'WR' | 'BRAHMS'>('WR');
@@ -91,7 +105,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
     image: string,
     fallbackImage: string,
     primaryLabel: string,
-    primaryUrl: string
+    primaryUrl: string,
+    mediaType: 'image' | 'video' = 'image',
+    poster?: string
   ) => {
     setActiveModalItem({
       id,
@@ -100,6 +116,8 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
       image,
       fallbackImage,
       ipfsUrl: image,
+      mediaType,
+      poster,
       primaryAction: { label: primaryLabel, url: primaryUrl }
     });
     setZoomScale(1);
@@ -120,24 +138,28 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           {/* Subtle Ambient Background Lighting */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#3b82f61a_0%,_transparent_65%)] pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            {/* WRISTORY Official Logo Badge */}
-            <div className="flex flex-col items-center justify-center gap-3">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl blur-md opacity-40 group-hover:opacity-75 transition duration-500" />
-                <img 
-                  src={COMPANY_LOGO_URL} 
-                  alt="WRISTORY Official Brandmark" 
-                  className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-white/20 shadow-xl bg-slate-950"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = COMPANY_LOGO_FALLBACK;
-                  }}
-                />
+          <div className="relative z-10 max-w-4xl mx-auto space-y-6">
+            {/* WRISTORY OpenSea-Style Project Banner Box (Enlarged) */}
+            <div className="flex flex-col items-center justify-center gap-3.5">
+              <div className="relative w-full max-w-3xl group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 via-cyan-400/20 to-amber-400/30 rounded-2xl blur-md opacity-50 group-hover:opacity-80 transition duration-500" />
+                <div className="relative w-full aspect-[16/5] min-h-[124px] sm:min-h-[168px] md:min-h-[196px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-slate-950">
+                  <img 
+                    src={PROJECT_BANNER_URL} 
+                    alt="WRISTORY Official Project Banner" 
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = PROJECT_BANNER_FALLBACK;
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+                </div>
               </div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-cyan-300 text-[11px] font-bold tracking-wider uppercase">
-                <ShieldCheck size={13} className="text-[#00ffcc]" />
-                {t.hero.tagline}
-              </span>
+              <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold tracking-wider uppercase">
+                <ShieldCheck size={14} className="text-[#00ffcc]" />
+                <span>{t.hero.tagline}</span>
+              </div>
             </div>
 
             {/* Typography */}
@@ -183,7 +205,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 {t.hero.exploreMasterpieces}
               </a>
               <a
-                href={BUCKWHEAT_OPENSEA}
+                href={HOMELAND_OPENSEA}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-5 py-3 bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl text-xs sm:text-sm font-bold transition-all border border-slate-700 flex items-center justify-center gap-2 active:scale-95"
@@ -212,7 +234,170 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           </p>
         </div>
 
-        {/* The Two Masterpieces Grid */}
+        {/* Flagship Public-Good Charity Drop: Do Not Cry, Homeland (조국아 울지 마라) */}
+        <article className="relative rounded-3xl bg-slate-900/90 border border-rose-500/40 p-5 sm:p-8 shadow-2xl overflow-hidden text-left">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-9 items-stretch">
+            {/* Left: Interactive Generative Art Video Frame (WEBC IPFS + Still Stamp Poster) */}
+            <div className="lg:col-span-5 flex flex-col justify-between gap-3">
+              <div className="relative aspect-square w-full rounded-2xl bg-black overflow-hidden border border-white/15 shadow-2xl group/media">
+                {!homelandVideoError ? (
+                  <video
+                    src={HOMELAND_WEBC}
+                    poster={HOMELAND_POSTER}
+                    autoPlay
+                    loop
+                    muted={isHomelandMuted}
+                    playsInline
+                    onError={() => setHomelandVideoError(true)}
+                    className="w-full h-full object-contain bg-black"
+                  >
+                    <source src={HOMELAND_WEBC} type="video/webm" />
+                    <source src={HOMELAND_WEBC_FALLBACK} type="video/webm" />
+                  </video>
+                ) : (
+                  <img
+                    src={HOMELAND_POSTER}
+                    alt={t.artworks.homeland.title}
+                    className="w-full h-full object-contain bg-black"
+                  />
+                )}
+
+                {/* Bottom Media Controls Overlay */}
+                <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-mono text-rose-200 tracking-wide">
+                    CHARITY SEAL #001 · MINTING NOW
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setIsHomelandMuted((prev) => !prev)}
+                      className="px-2.5 py-1.5 rounded-lg bg-black/75 hover:bg-slate-800 text-white border border-white/20 text-[11px] font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                      title={isHomelandMuted ? (lang === 'ko' ? '사운드 켜기 [M]' : 'Unmute Sound [M]') : (lang === 'ko' ? '음소거' : 'Mute')}
+                    >
+                      {isHomelandMuted ? <VolumeX size={13} className="text-slate-300" /> : <Volume2 size={13} className="text-emerald-400" />}
+                      <span>{isHomelandMuted ? (lang === 'ko' ? '음소거' : 'Muted') : (lang === 'ko' ? '사운드 ON' : 'Sound ON')}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openLightbox(
+                        'homeland',
+                        t.artworks.homeland.title,
+                        t.artworks.homeland.subtitle,
+                        HOMELAND_WEBC,
+                        HOMELAND_POSTER,
+                        t.artworks.homeland.openseaBtn,
+                        HOMELAND_OPENSEA,
+                        'video',
+                        HOMELAND_POSTER
+                      )}
+                      className="px-2.5 py-1.5 rounded-lg bg-black/75 hover:bg-slate-800 text-white border border-white/20 text-[11px] font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                      title={t.modal.hdView}
+                    >
+                      <Maximize2 size={13} className="text-amber-400" />
+                      <span>HD</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-slate-400 font-mono leading-relaxed text-center">
+                {t.artworks.homeland.controlsNote}
+              </p>
+            </div>
+
+            {/* Right: Curatorial Narrative, 100% Charity Pledge & Dual-Chain Links */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
+              <div className="space-y-3.5">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-rose-300 tracking-wide">
+                  <span className="font-black text-rose-400">BASE OPENSEA DROP</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="text-amber-300 font-bold">TEZOS OBJKT #43</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="text-emerald-300 font-bold">100% GOOD NEIGHBORS</span>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
+                    {t.artworks.homeland.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-400 font-semibold mt-1">
+                    {t.artworks.homeland.subtitle}
+                  </p>
+                </div>
+
+                {/* Poetic Excerpt */}
+                <div className="bg-slate-950/75 border border-slate-800 p-3.5 sm:p-4 rounded-xl text-xs sm:text-sm text-amber-200/95 italic leading-relaxed">
+                  {t.artworks.homeland.quote}
+                </div>
+
+                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  {t.artworks.homeland.desc}
+                </p>
+
+                {/* 100% Good Neighbors Impact Highlight (Clean hairline enclosure, no thick left bar) */}
+                <div className="bg-rose-950/25 border border-rose-500/35 rounded-xl p-3.5 flex items-start gap-2.5">
+                  <Heart size={16} className="text-rose-400 shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm font-bold text-rose-100 leading-relaxed">
+                    {t.artworks.homeland.impactNote}
+                  </p>
+                </div>
+
+                {/* On-Chain Specs */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-mono text-slate-300 bg-slate-950/50 p-3.5 rounded-xl border border-slate-800/80 tabular-nums">
+                  <div className="truncate">✦ {t.artworks.homeland.detail1}</div>
+                  <div className="truncate">✦ {t.artworks.homeland.detail2}</div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-2.5 pt-4 border-t border-slate-800/80">
+                <a
+                  href={HOMELAND_OPENSEA}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 px-5 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-rose-600/30 active:scale-95"
+                >
+                  <Sparkles size={15} className="text-yellow-200" />
+                  <span>{t.artworks.homeland.openseaBtn}</span>
+                  <ArrowUpRight size={15} />
+                </a>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                  <a
+                    href={HOMELAND_GOOD_NEIGHBORS}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-3 bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 border border-emerald-500/35 active:scale-95 text-center truncate"
+                  >
+                    <Heart size={12} />
+                    <span>{t.artworks.homeland.goodNeighborsBtn}</span>
+                    <ExternalLink size={11} />
+                  </a>
+                  <a
+                    href={HOMELAND_OBJKT}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-3 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 border border-amber-500/35 active:scale-95 text-center truncate"
+                  >
+                    <span>{t.artworks.homeland.objktBtn}</span>
+                    <ExternalLink size={11} />
+                  </a>
+                  <a
+                    href={HOMELAND_WEBC}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 border border-slate-700 active:scale-95 text-center truncate"
+                  >
+                    <span>{t.artworks.homeland.ipfsBtn}</span>
+                    <ExternalLink size={11} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        {/* The Two Literature & Bitcoin Heritage Masterpieces Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Masterpiece 1: Base Chain (Lee Hyo-seok - When Buckwheat Flowers Bloom) */}
           <div className="relative rounded-3xl bg-slate-900/80 border-2 border-emerald-500/40 p-5 sm:p-7 shadow-2xl flex flex-col justify-between group hover:border-emerald-400 transition-all text-left">
@@ -1111,7 +1296,27 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
               className="relative transition-transform duration-200 origin-center flex items-center justify-center max-w-full max-h-full"
               style={{ transform: `scale(${zoomScale})` }}
             >
-              {isInteractiveMode ? (
+              {activeModalItem.mediaType === 'video' ? (
+                isInteractiveMode ? (
+                  <img 
+                    src={activeModalItem.poster || activeModalItem.fallbackImage} 
+                    alt={activeModalItem.title} 
+                    className="max-w-[90vw] max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10"
+                  />
+                ) : (
+                  <video
+                    src={activeModalItem.image}
+                    poster={activeModalItem.poster || activeModalItem.fallbackImage}
+                    controls
+                    autoPlay
+                    loop
+                    playsInline
+                    className="max-w-[90vw] max-h-[72vh] object-contain rounded-xl shadow-2xl border border-white/10 bg-black"
+                  >
+                    <source src={activeModalItem.image} type="video/webm" />
+                  </video>
+                )
+              ) : isInteractiveMode ? (
                 <iframe 
                   src={activeModalItem.ipfsUrl} 
                   title={activeModalItem.title}
@@ -1145,7 +1350,9 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                     : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
                 }`}
               >
-                {isInteractiveMode ? t.modal.staticView : t.modal.interactive}
+                {activeModalItem.mediaType === 'video'
+                  ? (isInteractiveMode ? (lang === 'ko' ? 'WEBC 영상으로 보기' : 'View WEBC Video') : t.modal.staticView)
+                  : (isInteractiveMode ? t.modal.staticView : t.modal.interactive)}
               </button>
               <a 
                 href={activeModalItem.ipfsUrl} 
