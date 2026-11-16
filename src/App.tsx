@@ -20,7 +20,8 @@ import {
   ShieldAlert,
   Github,
   Scale,
-  BookOpen
+  BookOpen,
+  Linkedin
 } from 'lucide-react';
 import LandingPageView from './views/LandingPageView';
 import GuideView from './views/GuideView';
@@ -576,6 +577,16 @@ const App: React.FC = () => {
               className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
               <span>네이버 블로그</span>
+              <ExternalLink size={11} />
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/yesoklab" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-3 py-1.5 bg-blue-950/50 hover:bg-blue-900/70 text-blue-300 border border-blue-500/35 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <Linkedin size={12} className="text-blue-400" />
+              <span>LinkedIn</span>
               <ExternalLink size={11} />
             </a>
             <a 
