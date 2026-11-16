@@ -23,7 +23,8 @@ import {
   Download,
   FileText,
   Volume2,
-  VolumeX
+  VolumeX,
+  Linkedin
 } from 'lucide-react';
 import { translations, Lang } from '../lib/translations';
 import { 
@@ -1020,7 +1021,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 <div>
                   <div className="flex items-center gap-2.5 flex-wrap">
                     <h3 className="text-xl font-bold text-white">
-                      {lang === 'ko' ? '김경구 (Kim Kyung-koo)' : 'Kim Kyung-koo'}
+                      {lang === 'ko' ? '김경구 (Kim Kyung-koo · Gyeonggu Kim)' : 'Kim Kyung-koo (Gyeonggu Kim)'}
                     </h3>
                     <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold font-mono">
                       Founder & Chief Technology Architect
@@ -1028,8 +1029,8 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                   </div>
                   <p className="text-xs text-slate-400 mt-1">
                     {lang === 'ko'
-                      ? 'YesOkLab 창립자 & 수석 Web3 엔지니어 · 대한민국 서울'
-                      : 'YesOkLab Founder & Lead Web3 Engineer · Seoul, Republic of Korea'}
+                      ? 'YesOkLab 창립자 & 수석 Web3 엔지니어 · 한국방송통신대학교 · 대한민국 서울'
+                      : 'YesOkLab Founder & Lead Web3 Engineer · Korea National Open Univ. · Seoul, Republic of Korea'}
                   </p>
                 </div>
               </div>
@@ -1038,14 +1039,14 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 <p>
                   • <strong>{lang === 'ko' ? '경력 및 전문성:' : 'Career & Expertise:'}</strong>{' '}
                   {lang === 'ko'
-                    ? '블록체인 기반 문화유산 온체인 아카이빙 솔루션 아키텍트. Base L2 메인넷 스마트 컨트랙트(ERC-20, Uniswap v4 Hook 연동) 및 Tezos 온체인 제너러티브 아트 아카이빙 총괄 설계.'
-                    : 'Blockchain cultural heritage architect. Lead designer of Base L2 ERC-20 smart contracts, Uniswap v4 hooks, and permanent on-chain generative art archiving on Tezos & Base.'}
+                    ? '블록체인 기반 문화유산 온체인 아카이빙 솔루션 아키텍트. Base L2 메인넷 스마트 컨트랙트(ERC-20, Uniswap v4 Hook 연동) 및 Tezos 온체인 제너러티브 아트(p5.js·Three.js) 설계. 구글 지원 생활코딩 과정 수료·강의지원 및 마스터링 비트코인(UTXO·Script) 연구.'
+                    : 'Blockchain cultural heritage architect. Lead designer of Base L2 ERC-20 smart contracts, Uniswap v4 hooks, and on-chain generative art (p5.js · Three.js) on Tezos & Base. Completed Google-supported OpenTutorials curriculum & Mastering Bitcoin (UTXO/Script) study.'}
                 </p>
                 <p>
                   • <strong>{lang === 'ko' ? '주요 추진 프로젝트:' : 'Key Initiatives:'}</strong>{' '}
                   {lang === 'ko'
-                    ? 'WRISTORY ($WR) 문학·역사 디지털 보존 프로젝트, 불암스BRAHMS ($BRAHMS) 문화 헌정 토큰, Tezos-Base 1:1 온체인 마이그레이션 포털.'
-                    : 'WRISTORY ($WR) literary & historical digital preservation, 불암스BRAHMS ($BRAHMS) digital cultural tribute token, and Tezos-to-Base 1:1 on-chain migration portal.'}
+                    ? 'WRISTORY ($WR) 문학·역사 디지털 보존 프로젝트, 불암스BRAHMS ($BRAHMS) 문화 헌정 토큰, 조국아 울지 마라 공익 아카이브, Tezos-Base 1:1 온체인 마이그레이션 포털.'
+                    : 'WRISTORY ($WR) literary & historical digital preservation, 불암스BRAHMS ($BRAHMS) digital cultural tribute token, Do Not Cry Homeland charity archive, and Tezos-to-Base 1:1 migration portal.'}
                 </p>
               </div>
 
@@ -1054,7 +1055,18 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
                 <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
                   {lang === 'ko' ? '공개 검증 프로필 (Public Professional Profiles)' : 'Public Verified Professional Profiles'}
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-xs">
+                  <a
+                    href="https://www.linkedin.com/in/yesoklab"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 bg-blue-950/50 hover:bg-blue-900/60 border border-blue-500/40 rounded-xl font-bold text-blue-300 transition-all flex items-center gap-1.5 active:scale-95"
+                  >
+                    <Linkedin size={13} className="text-blue-400 shrink-0" />
+                    <span>LinkedIn</span>
+                    <ExternalLink size={10} className="ml-auto text-blue-400/70" />
+                  </a>
+
                   <a
                     href="https://medium.com/@wakk5252"
                     target="_blank"
