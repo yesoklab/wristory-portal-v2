@@ -1,120 +1,94 @@
-# WRISTORY (wristory-portal)
+# WRISTORY Portal v2 (`wristory-portal-v2`)
 
-[![Tezos Mainnet](https://img.shields.io/badge/Blockchain-Tezos_Mainnet-blue.svg)](https://tezos.com/)
+[![Base Mainnet](https://img.shields.io/badge/Network-Base_Mainnet_(ERC--20)-0052FF.svg)](https://basescan.org/token/0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7)
+[![Tezos Mainnet](https://img.shields.io/badge/Origin-Tezos_Mainnet_(FA2)-2C7DF7.svg)](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu)
+[![Portal](https://img.shields.io/badge/Official_Portal-wristory.co.kr-00C896.svg)](https://www.wristory.co.kr)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Symbol: WR](https://img.shields.io/badge/Token_Symbol-WR-emerald.svg)](#token-details)
 
-> **"역사는 블록체인 위에서 영원히 살아 숨 쉽니다." / "History lives forever on the Tezos blockchain."**
+> **"History lives forever on-chain — bridging Tezos cultural heritage to Base Mainnet."**  
+> **"역사는 온체인 위에서 영원히 살아 숨 쉽니다 — 테조스에서 베이스 메인넷으로 이어지는 디지털 헤리티지."**
 
-**WRISTORY** is a pioneering digital heritage portal built on the Tezos mainnet. It bridges historical archives—specifically the Korean independence struggle, national heroes, and cultural legacies—with modern web3 technologies, generative wave art, and practical Wear OS smartwatch ecosystem benefits.
-
----
-
-## 🇰🇷 한국어 소개 (Korean)
-
-**WRISTORY**는 테조스(Tezos) 블록체인을 기반으로 역사의 분기점과 순국선열의 숭고한 정신을 영구히 기록하고 보존하는 **디지털 헤리티지 아카이브 포털**입니다. 
-
-단순한 디지털 컬렉션을 넘어 블록체인상의 분산 원장 기술을 활용하여 잊히기 쉬운 역사를 보존하고, 실 생활과 밀접한 Wear OS(갤럭시 워치 등) 스마트워치 페이스 유틸리티 및 오프라인-온라인 유기적 토크노믹스 모델을 구축합니다.
-
-### 주요 기능 및 특징
-1. **역사적 제너레이티브 아트 아카이빙**: 이순신 장군의 결의, 종로의 독립 불꽃, 백범 김구 등 역사적 발자취를 현대적이고 미적인 파형 예술(Generative Wave Art)로 주조하여 보존합니다.
-2. **FA2 기반 토크노믹스(WR)**: 공식 유틸리티 토큰인 `$WR`을 기반으로 홀더 커뮤니티, 거래소 상장 및 유동성 연동을 지원합니다.
-3. **홀더 전용 스마트워치 유틸리티**: 테조스 온체인 소유권 검증 모델을 기반으로, 갤럭시 워치 및 안드로이드 Wear OS 전용 프리미엄 테마 스마트워치 페이스 무료 다운로드 혜택을 제공합니다.
-4. **DeFi 라이브 생태계**: QuipuSwap CPMM 유동성 풀 연동을 기반으로 실시간 가격 데이터와 온체인 분산을 보장합니다.
+**WRISTORY (`$WR`)** is a dual-chain digital cultural heritage portal and Web3 art archive operated by **YesOkLab**, connecting over a year of verified on-chain legacy on **Tezos Mainnet** (1,060+ holders) with scalable **Base Mainnet (Ethereum L2)** ERC-20 liquidity, 1:1 holder migration, and public-good generative art collections.
 
 ---
 
-## 🇺🇸 Project Overview (English)
+## 🌐 Official Project Verification & Contacts
 
-**WRISTORY** is a decentralized digital heritage archive and token ecosystem operating on the Tezos blockchain. 
-
-By utilizing FA2 smart contracts, WRISTORY eternalizes historical moments of patriotism, Eastern Peace philosophy, and historical paradigm-shifting events into distinct generative art and non-fungible assets, while providing everyday utility such as premium Smart Watchface designs for token-holders.
-
-### Key Highlights
-- **Generative History Preservation**: Transforming raw historical sentiment into high-fidelity web3 wave patterns and celestial generative collections.
-- **FA2 Cryptomind Tokenomics ($WR)**: Active development of native asset systems with direct verification paths for and with global Tezos communities.
-- **Holder-Exclusive Wear OS Utility**: Decentralized access control via real-time Tezos mainnet wallet verification, offering premium Galaxy Watch & Android watchfaces.
-- **DeFi Integration**: Liquid pools deployed on QuipuSwap, encouraging deep-stake liquidity and trustless price discovery.
-
----
-
-## 🪙 Token & Contract Details
-
-| Detail | Value |
+| Item | Verified Reference |
 | :--- | :--- |
-| **Token Name** | Wristory |
-| **Token Symbol** | **WR** |
-| **Blockchain Platform** | Tezos Mainnet |
-| **Token Standard** | FA2 (Fungible Asset 2.0) |
-| **Contract Address (FA2)** | [`KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu`](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu) |
-| **Total Supply** | `51,169,148 WR` |
-| **Decimals** | 6 |
-| **QuipuSwap LP Pool (wXTZ / WR)** | [Pool Link](https://quipuswap.com/liquidity/cpmm/add/KT1VYsVfmobT7rsMVivvZ4J8i3bPiqz12NaH-KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu_0) |
-
-- **Official Block Explorer (TzKT)**: https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu
-- **Contract Code & Verification (Better Call Dev)**: https://better-call.dev/mainnet/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu
+| **Official Portal & Whitepaper** | [https://www.wristory.co.kr](https://www.wristory.co.kr) |
+| **GitHub Repository** | [https://github.com/yesoklab/wristory-portal-v2](https://github.com/yesoklab/wristory-portal-v2) |
+| **Founder & Director** | Kim Kyung-koo (Gyeonggu Kim / YesOkLab) |
+| **LinkedIn (Verified)** | [https://www.linkedin.com/in/yesoklab](https://www.linkedin.com/in/yesoklab) |
+| **Official Contact Email** | `yesoklab@gmail.com` |
+| **X (Twitter) & Medium** | [@wakk5252 (X)](https://x.com/wakk5252) · [@wakk5252 (Medium)](https://medium.com/@wakk5252) |
+| **Naver Blog** | [https://blog.naver.com/yesoklab](https://blog.naver.com/yesoklab) |
 
 ---
 
-## 🎨 Featured Collections (On-Chain)
+## 🪙 Token & Smart Contract Specifications
 
-1. **WRISTORY: PATRIOTIC LEGACY** (objkt.com)
-   - Presurrecting the heroic vows, patriotic devotion, and sacred history on Tezos.
-   - [Explore Collection](https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR)
+### 1. WRISTORY (`$WR`) — Primary Utility & Heritage Token
+| Detail | Base Mainnet (Active Expansion) | Tezos Mainnet (Origin Archive) |
+| :--- | :--- | :--- |
+| **Token Standard** | ERC-20 | FA2 (Fungible Asset 2.0) |
+| **Contract Address** | [`0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7`](https://basescan.org/token/0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7) | [`KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu`](https://tzkt.io/KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu) |
+| **Max Supply / Decimals** | `51,169,148 WR` · `18 Decimals` | `51,169,148 WR` · `6 Decimals` |
+| **DEX Liquidity** | [Uniswap v4 (ETH / WR 0.25%)](https://app.uniswap.org/swap?outputCurrency=0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7&chain=base) · [GeckoTerminal Live Pool](https://www.geckoterminal.com/base/pools/0x270804f362077647f16127c716670939909c3b6447378440560917534a9a806b) | [QuipuSwap CPMM Pool](https://quipuswap.com/liquidity/cpmm/add/KT1VYsVfmobT7rsMVivvZ4J8i3bPiqz12NaH-KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu_0) |
+| **Track Record** | Active 1:1 migration portal & EIP-747 asset support | 1,060+ holders · Temple & Kukai Wallet verified |
 
-2. **The Flame of Jongno (종로의 불꽃)** (fxhash)
-   - Generative collection visualizing the inextinguishable flame of historic independence struggle in Jongno.
-   - [Explore Collection](https://www.fxhash.xyz/project/the-flame-of-jongno)
-
-3. **WRISTORY: The Admiral's Resolve (장군의 결의)**
-   - Highlighting Admiral Yi Sun-sin's celestial path and resolve under the rule of "victory or death" (필사즉생 필생즉사).
-   - [Explore Collection](https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/23)
+### 2. 불암스BRAHMS (`$BRAHMS`) — Cultural Memorial Tribute (Base Mainnet)
+- **Purpose:** Non-commercial digital cultural heritage & memorial initiative honoring Korean cultural icon Choi Bool-am, supporting youth artists and children's welfare.
+- **Standard:** ERC-20 (`18 Decimals`) · **Max Supply:** `193,906,150 BRAHMS`
+- **Base Contract:** [`0xE790C3D5e3381926c66416638Fd3e955e748Bb89`](https://basescan.org/token/0xE790C3D5e3381926c66416638Fd3e955e748Bb89)
 
 ---
 
-## 💻 Tech Stack & Client Setup
+## 🎨 Curated Dual-Chain Cultural Works
 
-This portal is a fully modular React application, styled using Tailwind CSS, and integrated with official Tezos web3 SDK libraries like Taquito and Beacon.
+1. **Do Not Cry, Homeland (조국아 울지 마라) — Base & Tezos Dual Charity Drop**
+   - 3D commemorative stamp generative artwork honoring Primorye independence heroes and Koryo-saram diaspora history.
+   - 100% of primary sales and royalties pledged to the [Good Neighbors Koryo-saram Campaign](https://www.goodneighbors.kr/campaign/diaspora24a).
+   - [OpenSea (Base)](https://opensea.io/collection/do-not-cry-homeland-2026/overview) · [Objkt (Tezos)](https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/43)
 
-### Prerequisites
+2. **When Buckwheat Flowers Bloom (이효석 — 메밀꽃 필 무렵) — Base L2**
+   - On-chain generative interpretation of Lee Hyo-seok's 1936 Korean literary classic.
+   - [Highlight Mint](https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa) · [OpenSea Collection](https://opensea.io/collection/wristory-moonlit-heritage) · [Zora](https://zora.co/@yesoklab)
 
-- Node.js (v18 or higher recommended)
-- npm or yarn
+3. **Bitcoin Pizza Day & Patriotic Legacy — Tezos Archive**
+   - Early historical generative collections preserved on Tezos mainnet.
+   - [Bitcoin Pizza Day (Objkt)](https://objkt.com/collections/KT1JxExPQijKy3jQdE1pHJXxoeyjHtXB3uxq) · [WRISTORY: Patriotic Legacy (Objkt)](https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR)
 
-### Installation & Local Run
+---
 
-1. Clone or download the repository contents.
-2. Install all standard package dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the fast local development server:
-   ```bash
-   npm run dev
-   ```
-4. Access the portal in your browser:
-   ```
-   http://localhost:3000
-   ```
+## 🇰🇷 한국어 요약 (Korean Summary)
 
-### Production Build & Compilation
+**WRISTORY (`$WR`)** 는 테조스(Tezos) 메인넷에서 1년 이상 1,060명 이상의 홀더와 함께 구축해 온 디지털 문화유산 아카이브를 **Base 메인넷(Ethereum L2)** 생태계로 확장하는 **듀얼 체인 Web3 포털**입니다.
 
-To compile and optimize the client application assets for production environments (Vite bundle):
+- **1:1 마이그레이션 브릿지:** 기존 Tezos `$WR` 홀더를 위한 1:1 Base ERC-20 전환 포털 및 온체인 검증 환경 제공
+- **공익·문화 헤리티지 아카이빙:** 고려인 동포 지원 공익 NFT *「조국아 울지 마라」*(수익·로열티 100% 굿네이버스 기증), 이효석 *「메밀꽃 필 무렵」*, *「비트코인 피자 데이」* 등 온체인 영구 보존
+- **유동성 및 검증 자산:** Uniswap v4 (ETH/WR) 유동성 풀 운영, GeckoTerminal 실시간 차트 연동, BaseScan 규격 공식 로고 자산(`/public/assets/tokens/`) 포함
 
+---
+
+## 💻 Tech Stack & Local Development
+
+- **Frontend:** React 19, TypeScript, Vite 6, Tailwind CSS v4, Lucide Icons
+- **Web3 & Wallets:** Taquito & Beacon SDK (Tezos), MetaMask EIP-747 `wallet_watchAsset` (Base L2)
+- **AI & Docs:** Gemini API (`@google/genai`), `jsPDF` whitepaper export
+
+### Run Locally
+```bash
+npm install
+npm run dev
+```
+Open `http://localhost:3000` in your browser.
+
+### Production Build
 ```bash
 npm run build
 ```
 
-The optimized resources are compiled inside the `/dist` directory, ready for seamless deployment to decentralized static hosting (IPFS, Vercel, Netlify, or standard Cloud CDN).
-
 ---
 
-## 📞 Official Contacts & Communications
-
-- **Development Lab**: YesOkLab (https://github.com/yesoklab)
-- **Ecosystem Registry**: Tezos Korea / Global FA2 Registry
-- **Ecosystem Partner**: Temple Wallet & Kukai Wallet Logo integrated
-
----
-
-*This repository contains the interface codes for the official WRISTORY Digital Heritage Portal. Licensed under the MIT License.*
+*Maintained by YesOkLab (`yesoklab@gmail.com`). Released under the MIT License.*
