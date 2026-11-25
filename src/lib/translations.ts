@@ -66,6 +66,17 @@ export interface TranslationDictionary {
       zoraBtn: string;
       ipfsBtn: string;
     };
+    hunmin: {
+      title: string;
+      subtitle: string;
+      chainBadge: string;
+      quote: string;
+      desc: string;
+      detail1: string;
+      detail2: string;
+      objktBtn: string;
+      ipfsBtn: string;
+    };
     pizza: {
       title: string;
       subtitle: string;
@@ -125,7 +136,7 @@ export const translations: Record<Lang, TranslationDictionary> = {
       chains: '듀얼 메인넷',
       chainsVal: 'Base L2 × Tezos',
       masterpieces: '엄선된 대표작',
-      masterpiecesVal: '3대 헤리티지',
+      masterpiecesVal: '4대 헤리티지',
       curation: '큐레이션 방식',
       curationVal: '자율 제너러티브 아트',
       storage: '분산 스토리지',
@@ -133,8 +144,8 @@ export const translations: Record<Lang, TranslationDictionary> = {
     },
     dualSection: {
       badge: 'WRISTORY CURATED DUAL-CHAIN MASTERPIECES',
-      title: '3대 듀얼 메인넷 대표 마스터피스',
-      subtitle: 'Base와 Tezos 듀얼 체인 공익 기념작 「조국아 울지 마라」부터 문학·블록체인 역사 대표작까지 온체인으로 감상하세요.',
+      title: '4대 듀얼 메인넷 대표 마스터피스',
+      subtitle: 'Base와 Tezos 듀얼 체인 공익 기념작 「조국아 울지 마라」, 훈민정음 기하학 신작 「SOUND ALIGNMENT v2」, 문학·블록체인 대표작까지 온체인으로 감상하세요.',
       baseChain: 'BASE MAINNET',
       tezosChain: 'TEZOS MAINNET'
     },
@@ -166,6 +177,17 @@ export const translations: Record<Lang, TranslationDictionary> = {
         openseaBtn: 'OpenSea 컬렉션',
         zoraBtn: 'Zora 코인',
         ipfsBtn: 'IPFS 원본 보기'
+      },
+      hunmin: {
+        title: 'SOUND ALIGNMENT v2 — 훈민정음: 소리의 기하학',
+        subtitle: 'Geometry of Hunminjeongeum Haerye (1446) · Interactive Archive',
+        chainBadge: 'Tezos FA2 • OBJKT #45 (14 Editions)',
+        quote: '"Stage 01 — Cosmic Triad (천·지·인 / ·, ㅡ, ㅣ) → 오음(ㄱ·ㄴ·ㅁ·ㅅ·ㅇ) → 음절과 시간의 엔트로피를 건너는 언어의 기하학."',
+        desc: '1446년 「훈민정음 해례본」에서 영감을 받아 탄생한 인터랙티브 제너러티브 아카이브입니다. 정적 문자를 단순히 출력하지 않고, 감상자의 시선 앞에서 천·지·인 삼재(·, ㅡ, ㅣ)의 입자 수렴부터 오음 상형, 음절 진화까지 한글의 철학적·음운학적 구조를 3단계 알고리즘으로 재구성합니다.',
+        detail1: '구성: 3-Stage Morphological Evolution · 14 Editions (Nov 25, 2026)',
+        detail2: '아카이브: Tezos Objkt #45 (KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45)',
+        objktBtn: 'Tezos Objkt (#45) 감상하기',
+        ipfsBtn: 'IPFS 마스터 (GIF)'
       },
       pizza: {
         title: '비트코인 피자 — Bitcoin Pizza Day',
@@ -224,7 +246,7 @@ export const translations: Record<Lang, TranslationDictionary> = {
       chains: 'Dual Mainnets',
       chainsVal: 'Base L2 × Tezos',
       masterpieces: 'Curated Works',
-      masterpiecesVal: '3 Heritage Icons',
+      masterpiecesVal: '4 Heritage Icons',
       curation: 'Artform',
       curationVal: 'Generative Fine Art',
       storage: 'Decentralized Storage',
@@ -233,7 +255,7 @@ export const translations: Record<Lang, TranslationDictionary> = {
     dualSection: {
       badge: 'WRISTORY CURATED DUAL-CHAIN MASTERPIECES',
       title: 'Curated Dual-Chain Masterpieces',
-      subtitle: 'Experience our dual-chain public-good tribute "Do Not Cry, Homeland" alongside Korean literature on Base and Bitcoin history on Tezos.',
+      subtitle: 'Experience our dual-chain public-good tribute "Do Not Cry, Homeland", Hunminjeongeum generative archive "SOUND ALIGNMENT v2", Korean literature on Base, and Bitcoin history on Tezos.',
       baseChain: 'BASE MAINNET',
       tezosChain: 'TEZOS MAINNET'
     },
@@ -265,6 +287,17 @@ export const translations: Record<Lang, TranslationDictionary> = {
         openseaBtn: 'OpenSea Collection',
         zoraBtn: 'Zora Coin',
         ipfsBtn: 'View IPFS Master'
+      },
+      hunmin: {
+        title: 'SOUND ALIGNMENT v2 — Geometry of Hunminjeongeum',
+        subtitle: '1446 Hunminjeongeum Haerye · Interactive Generative Archive',
+        chainBadge: 'Tezos FA2 • OBJKT #45 (14 Editions)',
+        quote: '"Stage 01 — Cosmic Triad (천·지·인 / ·, ㅡ, ㅣ): Scattered particles converge into the three foundational geometric primitives of Hangul."',
+        desc: 'An interactive generative archive inspired by the 1446 Hunminjeongeum Haerye (훈민정음 해례본), exploring how linguistic geometry and cultural memory resist entropy across time. Rather than displaying static characters, the algorithm reconstructs the philosophical and phonetic evolution of Hangul in three progressive stages.',
+        detail1: 'Evolution: Three-Stage Morphological Reconstruction · 14 Editions',
+        detail2: 'Archive: Tezos Objkt #45 (KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45)',
+        objktBtn: 'View on OBJKT (#45)',
+        ipfsBtn: 'IPFS Master (GIF)'
       },
       pizza: {
         title: 'Bitcoin Pizza — 10,000 BTC Heritage',
