@@ -64,6 +64,11 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
   const BUCKWHEAT_OPENSEA = 'https://opensea.io/collection/wristory-moonlit-heritage';
   const BUCKWHEAT_ZORA = 'https://zora.co/coin/base:0x5ea3b56bad0b76ad6d9855581ff15e66afdce993?referrer=0x58346be51802b17a3c5bb110df14f5487a92dbd6';
 
+  // Tezos Masterpiece Links (SOUND ALIGNMENT v2 — Geometry of Hunminjeongeum)
+  const HUNMIN_IMAGE = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiax5f365c2roqeyyvpuxxlt2zjp27e445oldekyte2gy7aec6keau';
+  const HUNMIN_FALLBACK = 'https://ipfs.io/ipfs/bafybeiax5f365c2roqeyyvpuxxlt2zjp27e445oldekyte2gy7aec6keau';
+  const HUNMIN_OBJKT = 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45';
+
   // Tezos Masterpiece Links (Bitcoin Pizza Day)
   const PIZZA_IMAGE = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4';
   const PIZZA_FALLBACK = 'https://ipfs.io/ipfs/bafybeigaagzodoc3kivyp6n5evy24cr5s45ymxhs3eh7jll4f4maafsbk4';
@@ -398,10 +403,126 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           </div>
         </article>
 
-        {/* The Two Literature & Bitcoin Heritage Masterpieces Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* The Three Curated Generative Heritage Masterpieces Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Masterpiece New: Tezos Chain (SOUND ALIGNMENT v2 — Geometry of Hunminjeongeum) */}
+          <div className="relative rounded-3xl bg-slate-900/80 border-2 border-cyan-500/40 p-5 sm:p-6 shadow-2xl flex flex-col justify-between group hover:border-cyan-400 transition-all text-left">
+            <div className="space-y-4">
+              {/* Image Frame with HD Zoom Action */}
+              <div 
+                onClick={() => openLightbox(
+                  'hunmin',
+                  t.artworks.hunmin.title,
+                  t.artworks.hunmin.subtitle,
+                  HUNMIN_IMAGE,
+                  HUNMIN_FALLBACK,
+                  t.artworks.hunmin.objktBtn,
+                  HUNMIN_OBJKT
+                )}
+                className="relative aspect-[16/10] rounded-2xl bg-black overflow-hidden cursor-pointer group/img border border-white/10 shadow-lg"
+                title={lang === 'ko' ? '클릭하여 무손실 고화질(HD) 확대' : 'Click to inspect in HD'}
+              >
+                <img 
+                  src={HUNMIN_IMAGE} 
+                  alt={t.artworks.hunmin.title}
+                  className="w-full h-full object-contain bg-black group-hover/img:scale-105 transition-transform duration-700"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = HUNMIN_FALLBACK;
+                  }}
+                />
+                
+                {/* Chain Badge overlay */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span className="px-3 py-1 bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-[10px] font-black uppercase rounded-full shadow-lg flex items-center gap-1">
+                    <Sparkles size={11} className="text-yellow-300" />
+                    TEZOS FA2
+                  </span>
+                  <span className="px-2.5 py-1 bg-black/75 backdrop-blur-md text-cyan-300 border border-cyan-500/30 text-[10px] font-bold rounded-full">
+                    OBJKT #45 · 14 Eds
+                  </span>
+                </div>
+
+                {/* Inspect Overlay Prompt */}
+                <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-bold backdrop-blur-[2px]">
+                  <Maximize2 size={16} className="text-amber-400" />
+                  <span>{t.modal.hdView}</span>
+                </div>
+              </div>
+
+              {/* Title & Description */}
+              <div className="space-y-3">
+                <div>
+                  <span className="text-[11px] font-black text-cyan-400 uppercase tracking-widest block">
+                    {t.dualSection.tezosChain}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-black text-white italic tracking-tight mt-0.5">
+                    {t.artworks.hunmin.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 font-semibold">{t.artworks.hunmin.subtitle}</p>
+                </div>
+
+                {/* Conceptual Quote Box */}
+                <div className="bg-slate-950/70 border border-slate-800 p-3 rounded-xl text-xs text-cyan-200/90 italic leading-relaxed">
+                  {t.artworks.hunmin.quote}
+                </div>
+
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {t.artworks.hunmin.desc}
+                </p>
+
+                <div className="text-[11px] text-slate-400 space-y-1 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60 font-mono">
+                  <p className="truncate">✦ {t.artworks.hunmin.detail1}</p>
+                  <p className="truncate">✦ {t.artworks.hunmin.detail2}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons Hub */}
+            <div className="space-y-2 pt-5 border-t border-slate-800/80 mt-5">
+              {/* Primary OBJKT CTA */}
+              <a
+                href={HUNMIN_OBJKT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-600/30 active:scale-95"
+              >
+                <Sparkles size={14} className="text-yellow-300" />
+                <span>{t.artworks.hunmin.objktBtn}</span>
+                <ArrowUpRight size={14} />
+              </a>
+
+              {/* Secondary Clean Action Pair */}
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <a
+                  href={HUNMIN_IMAGE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-200 rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-slate-700 active:scale-95 text-center truncate"
+                >
+                  <span>{t.artworks.hunmin.ipfsBtn}</span>
+                  <ExternalLink size={11} />
+                </a>
+                <button
+                  onClick={() => openLightbox(
+                    'hunmin',
+                    t.artworks.hunmin.title,
+                    t.artworks.hunmin.subtitle,
+                    HUNMIN_IMAGE,
+                    HUNMIN_FALLBACK,
+                    t.artworks.hunmin.objktBtn,
+                    HUNMIN_OBJKT
+                  )}
+                  className="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-slate-700 active:scale-95 text-center truncate"
+                >
+                  <Maximize2 size={11} className="text-amber-400" />
+                  <span>HD View</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* Masterpiece 1: Base Chain (Lee Hyo-seok - When Buckwheat Flowers Bloom) */}
-          <div className="relative rounded-3xl bg-slate-900/80 border-2 border-emerald-500/40 p-5 sm:p-7 shadow-2xl flex flex-col justify-between group hover:border-emerald-400 transition-all text-left">
+          <div className="relative rounded-3xl bg-slate-900/80 border-2 border-emerald-500/40 p-5 sm:p-6 shadow-2xl flex flex-col justify-between group hover:border-emerald-400 transition-all text-left">
             <div className="space-y-5">
               {/* Image Frame with HD Zoom Action */}
               <div 
@@ -526,7 +647,7 @@ const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) =
           </div>
 
           {/* Masterpiece 2: Tezos Chain (Bitcoin Pizza Day) */}
-          <div className="relative rounded-3xl bg-slate-900/80 border-2 border-amber-500/40 p-5 sm:p-7 shadow-2xl flex flex-col justify-between group hover:border-amber-400 transition-all text-left">
+          <div className="relative rounded-3xl bg-slate-900/80 border-2 border-amber-500/40 p-5 sm:p-6 shadow-2xl flex flex-col justify-between group hover:border-amber-400 transition-all text-left">
             <div className="space-y-5">
               {/* Image Frame with HD Zoom Action */}
               <div 
