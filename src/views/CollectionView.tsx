@@ -16,8 +16,10 @@ export interface CollectionItem {
   fallbackImage: string;
   ipfsUrl: string;
   mediaType?: 'image' | 'video';
+  fitContain?: boolean;
   poster?: string;
   url: string;
+  ctaLabel?: string;
   highlightUrl?: string;
   openseaUrl?: string;
   zoraUrl?: string;
@@ -55,6 +57,25 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
       desc: lang === 'ko'
         ? '연해주 최재형·한창걸 부대·이종국 선생의 독립정신과 1937년 강제이주 6,500 km를 견딘 고려인, 후손 시인 이 스타니슬라브의 「조국아 울지 마라」를 담은 3D 기념우표 공익 아트. 판매 수익 및 로열티 100%를 굿네이버스 고려인 지원 캠페인에 기증합니다.'
         : '3D commemorative charity-seal generative artwork honoring Primorye independence heroes and 170,000+ Koryo-saram deported in 1937. 100% of primary sales and 10% royalties donated to Good Neighbors.'
+    },
+    {
+      id: 'sound-alignment-v2',
+      name: lang === 'ko' ? 'SOUND ALIGNMENT v2 — 훈민정음: 소리의 기하학' : 'SOUND ALIGNMENT v2 — Geometry of Hunminjeongeum',
+      chain: 'TEZOS',
+      price: '14 Editions · OBJKT #45',
+      count: 'Tezos FA2',
+      editionBadge: lang === 'ko' ? 'Tezos 신작 • OBJKT #45 (14 Eds)' : 'Tezos New Mint • OBJKT #45 (14 Eds)',
+      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiax5f365c2roqeyyvpuxxlt2zjp27e445oldekyte2gy7aec6keau',
+      fallbackImage: 'https://ipfs.io/ipfs/bafybeiax5f365c2roqeyyvpuxxlt2zjp27e445oldekyte2gy7aec6keau',
+      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiax5f365c2roqeyyvpuxxlt2zjp27e445oldekyte2gy7aec6keau',
+      fitContain: true,
+      url: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45',
+      ctaLabel: lang === 'ko' ? 'Tezos Objkt (#45) 감상하기' : 'View on OBJKT (#45)',
+      objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45',
+      isMasterpiece: true,
+      desc: lang === 'ko'
+        ? '1446년 「훈민정음 해례본」에서 영감을 받은 인터랙티브 제너러티브 아카이브. 천·지·인 삼재(·, ㅡ, ㅣ)의 입자 수렴부터 오음(ㄱ·ㄴ·ㅁ·ㅅ·ㅇ) 상형, 음절의 진화까지 한글의 철학과 소리의 기하학을 3단계 알고리즘으로 재구성합니다.'
+        : 'Interactive generative archive inspired by the 1446 Hunminjeongeum Haerye, reconstructing Hangul’s cosmic triad (·, ㅡ, ㅣ), five basic consonants, and phonetic geometry across three progressive stages.'
     },
     {
       id: 'buckwheat-flowers',
@@ -119,17 +140,17 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
           {lang === 'ko' ? 'WRISTORY 공식 듀얼 큐레이션' : 'WRISTORY Curated Dual Showcase'}
         </div>
         <h1 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tight">
-          {lang === 'ko' ? '엄선된 3대 듀얼 메인넷 대표작' : 'Curated Dual-Chain Masterpieces'}
+          {lang === 'ko' ? '엄선된 4대 듀얼 메인넷 대표작' : '4 Curated Dual-Chain Masterpieces'}
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
+        <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
           {lang === 'ko'
-            ? 'Base & Tezos 공익 기념작 「조국아 울지 마라」, 문학 헤리티지 「메밀꽃 필 무렵」, 그리고 「비트코인 피자」'
-            : 'Featuring our dual-chain charity tribute "Do Not Cry, Homeland", Korean literature on Base, and Bitcoin Pizza heritage on Tezos.'}
+            ? 'Base & Tezos 공익 기념작 「조국아 울지 마라」, 훈민정음 기하학 「SOUND ALIGNMENT v2」, 문학 헤리티지 「메밀꽃 필 무렵」, 그리고 「비트코인 피자」'
+            : 'Featuring "Do Not Cry, Homeland", Hunminjeongeum archive "SOUND ALIGNMENT v2", Korean literature on Base, and Bitcoin Pizza heritage on Tezos.'}
         </p>
       </div>
 
       {/* Masterpieces Showcase */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
         {curatedMasterpieces.map((item) => (
           <div 
             key={item.id}
@@ -162,7 +183,7 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
                   <img 
                     src={item.image} 
                     alt={item.name}
-                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
+                    className={`w-full h-full ${item.fitContain ? 'object-contain bg-black' : 'object-cover'} group-hover/img:scale-105 transition-transform duration-500`}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = item.fallbackImage;
                     }}
@@ -205,7 +226,9 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
               >
                 <Sparkles size={14} className="text-yellow-300" />
                 <span>
-                  {item.chain === 'DUAL'
+                  {item.ctaLabel
+                    ? item.ctaLabel
+                    : item.chain === 'DUAL'
                     ? (lang === 'ko' ? 'OpenSea 민팅 (0.0019 ETH)' : 'Mint on OpenSea (0.0019 ETH)')
                     : item.chain === 'BASE'
                     ? (lang === 'ko' ? 'Highlight 신작 민팅하기' : 'Mint on Highlight')
