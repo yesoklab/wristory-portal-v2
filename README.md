@@ -51,11 +51,15 @@
    - 100% of primary sales and royalties pledged to the [Good Neighbors Koryo-saram Campaign](https://www.goodneighbors.kr/campaign/diaspora24a).
    - [OpenSea (Base)](https://opensea.io/collection/do-not-cry-homeland-2026/overview) · [Objkt (Tezos)](https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/43)
 
-2. **When Buckwheat Flowers Bloom (이효석 — 메밀꽃 필 무렵) — Base L2**
+2. **SOUND ALIGNMENT v2 — Geometry of Hunminjeongeum (훈민정음: 소리의 기하학) — Tezos FA2**
+   - Interactive generative archive inspired by the 1446 *Hunminjeongeum Haerye* (14 Editions), reconstructing Hangul's cosmic triad (`·, ㅡ, ㅣ`) and phonetic geometry across three progressive stages.
+   - [Objkt (#45)](https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45) · [IPFS Master](https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeiax5f365c2roqeyyvpuxxlt2zjp27e445oldekyte2gy7aec6keau)
+
+3. **When Buckwheat Flowers Bloom (이효석 — 메밀꽃 필 무렵) — Base L2**
    - On-chain generative interpretation of Lee Hyo-seok's 1936 Korean literary classic.
    - [Highlight Mint](https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa) · [OpenSea Collection](https://opensea.io/collection/wristory-moonlit-heritage) · [Zora](https://zora.co/@yesoklab)
 
-3. **Bitcoin Pizza Day & Patriotic Legacy — Tezos Archive**
+4. **Bitcoin Pizza Day & Patriotic Legacy — Tezos Archive**
    - Early historical generative collections preserved on Tezos mainnet.
    - [Bitcoin Pizza Day (Objkt)](https://objkt.com/collections/KT1JxExPQijKy3jQdE1pHJXxoeyjHtXB3uxq) · [WRISTORY: Patriotic Legacy (Objkt)](https://objkt.com/collections/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR)
 
