@@ -21,8 +21,8 @@
 | **Founder & Director** | Kim Kyung-koo (Gyeonggu Kim / YesOkLab) |
 | **LinkedIn (Verified)** | [https://www.linkedin.com/in/yesoklab](https://www.linkedin.com/in/yesoklab) |
 | **Official Contact Email** | `yesoklab@gmail.com` |
-| **X (Twitter) & Medium** | [@wakk5252 (X)](https://x.com/wakk5252) · [@wakk5252 (Medium)](https://medium.com/@wakk5252) |
-| **Naver Blog** | [https://blog.naver.com/yesoklab](https://blog.naver.com/yesoklab) |
+| **Paragraph (Primary Archive)** | [@wristory-portal-v2](https://paragraph.com/@wristory-portal-v2) |
+| **X (Twitter) & Naver Blog** | [@wakk5252 (X)](https://x.com/wakk5252) · [Naver Blog](https://blog.naver.com/yesoklab) |
 
 ---
 
@@ -46,7 +46,11 @@
 
 ## 🎨 Curated Dual-Chain Cultural Works
 
-1. **Do Not Cry, Homeland (조국아 울지 마라) — Base & Tezos Dual Charity Drop**
+1. **Echoes of Harbin: Ahn Jung-geun (1909.10.26) — 1-Bit Pixel Art (Base ERC-721 & Tezos FA2)**
+   - 100% pure on-chain 1-bit dithered generative artwork honoring General Ahn Jung-geun (240×320 Base64 bitmap, 64-frame seamless loop, zero external dependencies).
+   - [OpenSea (Base #1)](https://opensea.io/item/base/0x7fd83bf061878f7c8c1b07dbae14ce639f3dce43/1) · [Objkt (#46)](https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/46) · [GIF IPFS](https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreictf5iv6wmhkd556sbfpqvqa4fipq63zslnok3iylv2ryvuokuvwe)
+
+2. **Do Not Cry, Homeland (조국아 울지 마라) — Base & Tezos Dual Charity Drop**
    - 3D commemorative stamp generative artwork honoring Primorye independence heroes and Koryo-saram diaspora history.
    - 100% of primary sales and royalties pledged to the [Good Neighbors Koryo-saram Campaign](https://www.goodneighbors.kr/campaign/diaspora24a).
    - [OpenSea (Base)](https://opensea.io/collection/do-not-cry-homeland-2026/overview) · [Objkt (Tezos)](https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/43)
