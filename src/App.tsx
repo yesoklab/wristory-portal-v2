@@ -50,7 +50,7 @@ declare global {
 const App: React.FC = () => {
   const [mode, setMode] = useState<ViewMode>('PUBLIC');
   const [activeTab, setActiveTab] = useState<PublicTab>('HOME');
-  const [lang, setLang] = useState<Lang>('ko');
+  const [lang, setLang] = useState<Lang>('en');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [hasApiKey, setHasApiKey] = useState<boolean>(true);
   const [showKeyWarning, setShowKeyWarning] = useState(false);
@@ -78,7 +78,7 @@ const App: React.FC = () => {
   const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal-v2';
   const NAVER_BLOG_URL = 'https://blog.naver.com/yesoklab';
 
-  const t = translations[lang] || translations.ko;
+  const t = translations[lang] || translations.en;
 
   const [subTab, setSubTab] = useState<'OVERVIEW' | 'MATRIX' | 'DIAGRAM'>('OVERVIEW');
 
@@ -410,7 +410,7 @@ const App: React.FC = () => {
                 className="w-full py-2.5 px-3 rounded-xl bg-slate-900 border border-cyan-500/35 text-cyan-300 text-xs font-bold flex items-center justify-between"
               >
                 <span className="flex items-center gap-1.5">
-                  <BookOpen size={13} className="text-cyan-300" /> Paragraph 아카이브 연재
+                  <BookOpen size={13} className="text-cyan-300" /> {lang === 'ko' ? 'Paragraph 아카이브 연재' : 'Paragraph Archive'}
                 </span>
                 <ExternalLink size={12} />
               </a>
@@ -509,7 +509,7 @@ const App: React.FC = () => {
               rel="noopener noreferrer" 
               className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-amber-300 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
-              <span>안중근 의사 (OpenSea)</span>
+              <span>{lang === 'ko' ? '안중근 의사 (OpenSea)' : 'Ahn Jung-geun (OpenSea)'}</span>
               <ExternalLink size={11} />
             </a>
             <a 
@@ -574,7 +574,7 @@ const App: React.FC = () => {
               rel="noopener noreferrer" 
               className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
-              <span>네이버 블로그</span>
+              <span>{lang === 'ko' ? '네이버 블로그' : 'Naver Blog'}</span>
               <ExternalLink size={11} />
             </a>
             <a 
