@@ -37,7 +37,7 @@ interface LandingPageViewProps {
 }
 
 const LandingPageView: React.FC<LandingPageViewProps> = ({ lang, onNavigate }) => {
-  const t = translations[lang] || translations.ko;
+  const t = translations[lang] || translations.en;
 
   // WRISTORY Project Banner
   const PROJECT_BANNER_URL = 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafybeihuqcc3qkbpyg6y6thlxhc2qaoec655yrowz6n5wzdswoipxwgs2m';
