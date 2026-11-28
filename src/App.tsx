@@ -71,13 +71,12 @@ const App: React.FC = () => {
   const BASE_CONTRACT_ADDRESS = '0x9DE688b818d1755F4Daf82d25662Da1bBEdd17b7';
   const TEZOS_CONTRACT_ADDRESS = 'KT193FiCoUkthuDXcZ6Chr1J19TRoJqjWSYu';
   
+  const PARAGRAPH_URL = 'https://paragraph.com/@wristory-portal-v2';
   const HIGHLIGHT_BUCKWHEAT_URL = 'https://highlight.xyz/mint/01a09a4c-618c-77a8-9065-0604b9428efa';
   const OPENSEA_BUCKWHEAT_URL = 'https://opensea.io/collection/wristory-moonlit-heritage';
   const OBJKT_PIZZA_URL = 'https://objkt.com/collections/KT1JxExPQijKy3jQdE1pHJXxoeyjHtXB3uxq';
-  const ZORA_URL = 'https://zora.co/@yesoklab';
   const GITHUB_URL = 'https://github.com/yesoklab/wristory-portal-v2';
   const NAVER_BLOG_URL = 'https://blog.naver.com/yesoklab';
-  const RESEARCH_CLARITY_URL = 'https://github.com/yesoklab/Research-Clarity-Act';
 
   const t = translations[lang] || translations.ko;
 
@@ -193,21 +192,21 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-[#0B0D14] text-slate-100 font-sans selection:bg-blue-500/30 overflow-x-hidden flex flex-col justify-between">
       <div>
         {/* Subtle Top Notification Bar */}
-        <div className="bg-gradient-to-r from-blue-950/80 via-slate-900 to-indigo-950/80 border-b border-blue-500/20 text-slate-300 px-4 py-2 text-center text-[11px] font-bold flex flex-wrap items-center justify-center gap-2 sm:gap-3 z-50 relative">
-          <span className="flex items-center gap-1.5 bg-blue-500/20 border border-blue-500/30 text-cyan-300 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">
-            <Sparkles size={11} className="text-yellow-300" />
-            {lang === 'ko' ? '공식 듀얼 메인넷' : 'Dual Mainnets'}
+        <div className="bg-slate-900 border-b border-slate-800 text-slate-300 px-4 py-2 text-center text-[11px] font-semibold flex flex-wrap items-center justify-center gap-2 sm:gap-3 z-50 relative">
+          <span className="font-mono text-cyan-300 uppercase tracking-wider text-[10px]">
+            {lang === 'ko' ? '신규 민팅' : 'Latest Mint'}
           </span>
+          <span aria-hidden="true" className="text-slate-600">·</span>
           <span className="truncate">
             {lang === 'ko' 
-              ? '조국아 울지 마라 (100% 굿네이버스 기증 OpenSea 민팅) × Base L2 (메밀꽃 필 무렵) × Tezos (비트코인 피자)'
-              : 'Do Not Cry, Homeland (100% Good Neighbors OpenSea Drop) × Base L2 (Buckwheat Flowers) × Tezos (Bitcoin Pizza)'}
+              ? '하얼빈의 메아리: 안중근 의사 1-Bit 픽셀아트 (OpenSea Base #1 · Objkt #46) × Paragraph 아카이브 연재'
+              : 'Echoes of Harbin: Ahn Jung-geun 1-Bit Pixel Art (OpenSea · Objkt #46) × Paragraph Archive'}
           </span>
           <button 
             onClick={() => { setActiveTab('COLLECTIONS'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="text-[#00ffcc] hover:underline font-black text-[11px] flex items-center gap-0.5 ml-1"
+            className="text-[#00ffcc] hover:underline font-bold text-[11px] flex items-center gap-0.5 ml-1 whitespace-nowrap"
           >
-            {lang === 'ko' ? '대표작 감상' : 'View Works'} <ArrowUpRight size={12} />
+            {lang === 'ko' ? '전체 컬렉션' : 'All Works'} <ArrowUpRight size={12} />
           </button>
         </div>
 
@@ -298,13 +297,13 @@ const App: React.FC = () => {
                 {t.nav.whitepaper}
               </button>
               <a 
-                href={HIGHLIGHT_BUCKWHEAT_URL} 
+                href={PARAGRAPH_URL} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-xs font-black text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-1 whitespace-nowrap bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/30 hover:bg-emerald-500/20 shadow-sm"
+                className="text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors flex items-center gap-1.5 whitespace-nowrap bg-cyan-500/10 px-3 py-1.5 rounded-xl border border-cyan-500/30 hover:bg-cyan-500/20"
               >
-                <Sparkles size={12} className="text-yellow-300" />
-                <span>Highlight {lang === 'ko' ? '민팅' : 'Mint'}</span>
+                <BookOpen size={12} className="text-cyan-300" />
+                <span>Paragraph</span>
                 <ExternalLink size={11} />
               </a>
             </div>
@@ -404,14 +403,14 @@ const App: React.FC = () => {
 
               {/* Mobile Quick Action Link */}
               <a 
-                href={HIGHLIGHT_BUCKWHEAT_URL}
+                href={PARAGRAPH_URL}
                 target="_blank" 
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
-                className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-950/40 to-teal-950/30 border border-emerald-500/40 text-emerald-300 text-xs font-black flex items-center justify-between"
+                className="w-full py-2.5 px-3 rounded-xl bg-slate-900 border border-cyan-500/35 text-cyan-300 text-xs font-bold flex items-center justify-between"
               >
                 <span className="flex items-center gap-1.5">
-                  <Sparkles size={13} className="text-yellow-300" /> Highlight 메밀꽃 필 무렵 민팅
+                  <BookOpen size={13} className="text-cyan-300" /> Paragraph 아카이브 연재
                 </span>
                 <ExternalLink size={12} />
               </a>
@@ -505,38 +504,37 @@ const App: React.FC = () => {
           {/* Curated Core Official Channels */}
           <div className="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 text-xs">
             <a 
+              href="https://opensea.io/item/base/0x7fd83bf061878f7c8c1b07dbae14ce639f3dce43/1" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-amber-300 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <span>안중근 의사 (OpenSea)</span>
+              <ExternalLink size={11} />
+            </a>
+            <a 
+              href="https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/46" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-amber-300 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <span>Objkt (#46)</span>
+              <ExternalLink size={11} />
+            </a>
+            <a 
               href={HIGHLIGHT_BUCKWHEAT_URL} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="px-3 py-1.5 bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-emerald-300 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
-              <Sparkles size={12} className="text-yellow-300" />
-              <span>Highlight (Base)</span>
-              <ExternalLink size={11} />
-            </a>
-            <a 
-              href="https://opensea.io/collection/do-not-cry-homeland-2026/overview" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="px-3 py-1.5 bg-rose-950/50 hover:bg-rose-900/70 text-rose-300 border border-rose-500/35 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
-            >
-              <span>Do Not Cry, Homeland (OpenSea)</span>
-              <ExternalLink size={11} />
-            </a>
-            <a 
-              href="https://www.goodneighbors.kr/campaign/diaspora24a" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="px-3 py-1.5 bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
-            >
-              <span>Good Neighbors</span>
+              <span>Highlight</span>
               <ExternalLink size={11} />
             </a>
             <a 
               href={OPENSEA_BUCKWHEAT_URL} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="px-3 py-1.5 bg-blue-950/40 hover:bg-blue-900/60 text-blue-300 border border-blue-500/30 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-blue-300 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
               <span>OpenSea</span>
               <ExternalLink size={11} />
@@ -545,9 +543,19 @@ const App: React.FC = () => {
               href={OBJKT_PIZZA_URL} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="px-3 py-1.5 bg-amber-950/40 hover:bg-amber-900/60 text-amber-300 border border-amber-500/30 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-amber-300 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
               <span>OBJKT (Tezos)</span>
+              <ExternalLink size={11} />
+            </a>
+            <a 
+              href={PARAGRAPH_URL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-500/35 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <BookOpen size={12} className="text-cyan-400" />
+              <span>Paragraph</span>
               <ExternalLink size={11} />
             </a>
             <a 
@@ -557,17 +565,7 @@ const App: React.FC = () => {
               className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
             >
               <Twitter size={12} className="text-sky-400" />
-              <span>X (Twitter)</span>
-              <ExternalLink size={11} />
-            </a>
-            <a 
-              href="https://medium.com/@wakk5252" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/60 rounded-xl font-bold transition-all flex items-center gap-1.5 active:scale-95"
-            >
-              <BookOpen size={12} className="text-amber-400" />
-              <span>Medium</span>
+              <span>X Articles</span>
               <ExternalLink size={11} />
             </a>
             <a 
