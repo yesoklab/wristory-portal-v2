@@ -38,6 +38,26 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
 
   const curatedMasterpieces: CollectionItem[] = [
     {
+      id: 'echoes-of-harbin-ahn',
+      name: lang === 'ko' ? '하얼빈의 메아리: 안중근 의사 (1909.10.26) — 1-Bit 픽셀아트' : 'Echoes of Harbin: Ahn Jung-geun (1909.10.26) — 1-Bit Pixel Art',
+      chain: 'DUAL',
+      price: 'OpenSea (Base #1) · Objkt (#46)',
+      count: 'Base ERC-721 × Tezos FA2',
+      editionBadge: lang === 'ko' ? '최신 민팅 · Pure On-Chain 1-Bit' : 'Latest Mint · Pure On-Chain 1-Bit',
+      image: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreictf5iv6wmhkd556sbfpqvqa4fipq63zslnok3iylv2ryvuokuvwe',
+      fallbackImage: 'https://ipfs.io/ipfs/bafkreictf5iv6wmhkd556sbfpqvqa4fipq63zslnok3iylv2ryvuokuvwe',
+      ipfsUrl: 'https://amaranth-legal-sole-30.mypinata.cloud/ipfs/bafkreictf5iv6wmhkd556sbfpqvqa4fipq63zslnok3iylv2ryvuokuvwe',
+      fitContain: true,
+      url: 'https://opensea.io/item/base/0x7fd83bf061878f7c8c1b07dbae14ce639f3dce43/1',
+      ctaLabel: lang === 'ko' ? 'OpenSea (Base #1) 감상하기' : 'View on OpenSea (Base #1)',
+      openseaUrl: 'https://opensea.io/item/base/0x7fd83bf061878f7c8c1b07dbae14ce639f3dce43/1',
+      objktUrl: 'https://objkt.com/tokens/KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/46',
+      isMasterpiece: true,
+      desc: lang === 'ko'
+        ? '1909년 10월 26일 하얼빈 의거와 도마 안중근 의사의 단지 수인, 「大韓獨立」 유묵을 기리는 100% 순수 온체인 1-비트 디더링 픽셀아트. 240×320 비트맵과 64프레임 루프를 외부 의존성 없이 순수 코드에 Base64 내장했습니다.'
+        : '100% pure on-chain 1-bit dithered pixel art honoring General Ahn Jung-geun (1909.10.26). Encodes the entire 240×320 bitmap and 64-frame seamless loop inside vanilla code with zero external dependencies.'
+    },
+    {
       id: 'do-not-cry-homeland',
       name: lang === 'ko' ? '조국아 울지 마라 (Do Not Cry, Homeland)' : 'Do Not Cry, Homeland (조국아 울지 마라)',
       chain: 'DUAL',
@@ -139,27 +159,27 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
           <Sparkles size={13} className="text-yellow-300" />
           {lang === 'ko' ? 'WRISTORY 공식 듀얼 큐레이션' : 'WRISTORY Curated Dual Showcase'}
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tight">
-          {lang === 'ko' ? '엄선된 4대 듀얼 메인넷 대표작' : '4 Curated Dual-Chain Masterpieces'}
+        <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          {lang === 'ko' ? 'WRISTORY 온체인 컬렉션 아카이브 (5대 대표작)' : 'WRISTORY On-Chain Archive (5 Curated Works)'}
         </h1>
         <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
           {lang === 'ko'
-            ? 'Base & Tezos 공익 기념작 「조국아 울지 마라」, 훈민정음 기하학 「SOUND ALIGNMENT v2」, 문학 헤리티지 「메밀꽃 필 무렵」, 그리고 「비트코인 피자」'
-            : 'Featuring "Do Not Cry, Homeland", Hunminjeongeum archive "SOUND ALIGNMENT v2", Korean literature on Base, and Bitcoin Pizza heritage on Tezos.'}
+            ? '최신작 「안중근 의사 1-Bit 픽셀아트」부터 「조국아 울지 마라」, 「훈민정음 SOUND ALIGNMENT v2」, 「메밀꽃 필 무렵」, 「비트코인 피자」까지 공식 마켓플레이스로 연결됩니다.'
+            : 'Direct on-chain marketplace archive: Echoes of Harbin (Ahn Jung-geun), Do Not Cry Homeland, SOUND ALIGNMENT v2, Buckwheat Flowers, and Bitcoin Pizza.'}
         </p>
       </div>
 
-      {/* Masterpieces Showcase */}
+      {/* Masterpieces Showcase: Latest Featured + 2x2 Archive Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
-        {curatedMasterpieces.map((item) => (
+        {curatedMasterpieces.map((item, idx) => (
           <div 
             key={item.id}
-            className={`rounded-3xl bg-slate-900/90 border-2 p-6 flex flex-col justify-between shadow-2xl transition-all ${
+            className={`${idx === 0 ? 'md:col-span-2' : ''} rounded-2xl bg-slate-900/90 border p-6 flex flex-col justify-between transition-colors ${
               item.chain === 'DUAL'
-                ? 'border-rose-500/40 hover:border-rose-400'
+                ? 'border-amber-500/35 hover:border-amber-400/70'
                 : item.chain === 'BASE' 
-                ? 'border-emerald-500/40 hover:border-emerald-400' 
-                : 'border-amber-500/40 hover:border-amber-400'
+                ? 'border-emerald-500/35 hover:border-emerald-400/70' 
+                : 'border-cyan-500/35 hover:border-cyan-400/70'
             }`}
           >
             <div className="space-y-4">
@@ -238,7 +258,17 @@ const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
               </a>
 
               <div className="grid grid-cols-2 gap-2 text-xs">
-                {item.charityUrl ? (
+                {item.id === 'echoes-of-harbin-ahn' && item.objktUrl ? (
+                  <a 
+                    href={item.objktUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-lg font-bold transition-all flex items-center justify-center gap-1 border border-amber-500/30"
+                  >
+                    <span>Tezos Objkt (#46)</span>
+                    <ExternalLink size={11} />
+                  </a>
+                ) : item.charityUrl ? (
                   <a 
                     href={item.charityUrl}
                     target="_blank"
