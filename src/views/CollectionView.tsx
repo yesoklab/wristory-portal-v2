@@ -33,8 +33,8 @@ interface CollectionViewProps {
   lang?: Lang;
 }
 
-const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'ko' }) => {
-  const t = translations[lang] || translations.ko;
+const CollectionView: React.FC<CollectionViewProps> = ({ lang = 'en' }) => {
+  const t = translations[lang] || translations.en;
 
   const curatedMasterpieces: CollectionItem[] = [
     {
