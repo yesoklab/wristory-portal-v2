@@ -77,6 +77,18 @@ export interface TranslationDictionary {
       objktBtn: string;
       ipfsBtn: string;
     };
+    ahn: {
+      title: string;
+      subtitle: string;
+      chainBadge: string;
+      quote: string;
+      desc: string;
+      detail1: string;
+      detail2: string;
+      openseaBtn: string;
+      objktBtn: string;
+      ipfsBtn: string;
+    };
     pizza: {
       title: string;
       subtitle: string;
@@ -124,28 +136,28 @@ export const translations: Record<Lang, TranslationDictionary> = {
       admin: '관리자'
     },
     hero: {
-      tagline: '역사적 가치의 온체인 영구 보존 프로젝트',
+      tagline: '온체인 디지털 헤리티지 & 제너러티브 아카이브',
       title: 'THE BRIDGE OF TIME & HERITAGE',
-      subtitle: '역사는 블록체인 위에서 영원히 살아 숨 쉽니다.',
-      description: 'WRISTORY는 시대를 관통하는 인류의 문학·역사·독립정신 유산을 이더리움 Layer-2(Base)와 테조스(Tezos) 온체인 제너러티브 파인아트로 아카이빙합니다.',
-      exploreMasterpieces: '대표 명작 감상하기',
-      viewOpenSea: '조국아 울지 마라 (OpenSea)',
+      subtitle: '역사는 순수 온체인 코드 위에서 영원히 살아 숨 쉽니다.',
+      description: 'WRISTORY는 한국의 독립정신·문자·문학·암호화폐 역사를 Base(ERC-721/20)와 Tezos(FA2) 온체인 아트로 기록하고, 아카이브 연재를 통해 그 뿌리를 탐구합니다.',
+      exploreMasterpieces: '신규 민팅작 감상하기',
+      viewOpenSea: 'Paragraph 아카이브 연재',
       swapUniswap: 'Uniswap v4 풀 확인'
     },
     metrics: {
       chains: '듀얼 메인넷',
       chainsVal: 'Base L2 × Tezos',
-      masterpieces: '엄선된 대표작',
-      masterpiecesVal: '4대 헤리티지',
-      curation: '큐레이션 방식',
-      curationVal: '자율 제너러티브 아트',
-      storage: '분산 스토리지',
-      storageVal: 'IPFS 영구 아카이브'
+      masterpieces: '아카이브 작품',
+      masterpiecesVal: '5대 헤리티지',
+      curation: '아키텍처',
+      curationVal: 'Pure On-Chain Code',
+      storage: '연재 채널',
+      storageVal: 'Paragraph · Blog · X'
     },
     dualSection: {
-      badge: 'WRISTORY CURATED DUAL-CHAIN MASTERPIECES',
-      title: '4대 듀얼 메인넷 대표 마스터피스',
-      subtitle: 'Base와 Tezos 듀얼 체인 공익 기념작 「조국아 울지 마라」, 훈민정음 기하학 신작 「SOUND ALIGNMENT v2」, 문학·블록체인 대표작까지 온체인으로 감상하세요.',
+      badge: 'LATEST ON-CHAIN MINT',
+      title: '신규 민팅 스포트라이트',
+      subtitle: '가장 최근 온체인에 기록된 작품에 집중하고, 이전 컬렉션은 아래 아카이브 디렉터리에서 바로 연결해 감상하세요.',
       baseChain: 'BASE MAINNET',
       tezosChain: 'TEZOS MAINNET'
     },
@@ -188,6 +200,18 @@ export const translations: Record<Lang, TranslationDictionary> = {
         detail2: '아카이브: Tezos Objkt #45 (KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45)',
         objktBtn: 'Tezos Objkt (#45) 감상하기',
         ipfsBtn: 'IPFS 마스터 (GIF)'
+      },
+      ahn: {
+        title: '하얼빈의 메아리: 안중근 의사 (1909.10.26) — 1-Bit 픽셀아트',
+        subtitle: 'Echoes of Harbin: Ahn Jung-geun · 100% Pure On-Chain 1-Bit Pixel Art',
+        chainBadge: 'Base ERC-721 (#1) × Tezos Objkt (#46)',
+        quote: '"대한독립의 소리가 천국에 들려오면 나는 마땅히 춤추며 만세를 부를 것이다." — 안중근 의사',
+        desc: '1909년 10월 26일 하얼빈 의거와 도마 안중근 의사의 단지(斷指) 수인, 「大韓獨立」 유묵을 기리는 100% 순수 온체인 1-비트 디더링 픽셀아트입니다. 외부 이미지 의존성 없이 순수 바닐라 코드 내부에 240×320 1-비트 비트맵과 64프레임 심리스 루프(별빛·새·흩날리는 꽃잎)를 Base64로 내장했습니다.',
+        detail1: '스펙: 240×320 1-Bit Bitmap · 64-Frame Loop · Zero External Dependencies',
+        detail2: '체인: Base OpenSea (Token #1) × Tezos Objkt (#46 · 1.9K Eds)',
+        openseaBtn: 'OpenSea (Base #1)',
+        objktBtn: 'Tezos Objkt (#46)',
+        ipfsBtn: 'GIF IPFS 원본'
       },
       pizza: {
         title: '비트코인 피자 — Bitcoin Pizza Day',
@@ -234,28 +258,28 @@ export const translations: Record<Lang, TranslationDictionary> = {
       admin: 'Admin'
     },
     hero: {
-      tagline: 'Permanent On-Chain Historical Preservation',
+      tagline: 'On-Chain Digital Heritage & Generative Archive',
       title: 'THE BRIDGE OF TIME & HERITAGE',
-      subtitle: 'History breathes eternal life upon the blockchain.',
-      description: 'WRISTORY archives timeless human literature, independence heritage, and cryptographic milestones into on-chain generative fine art across Base and Tezos.',
-      exploreMasterpieces: 'Explore Masterpieces',
-      viewOpenSea: 'Do Not Cry, Homeland (OpenSea)',
+      subtitle: 'History breathes eternal life in pure on-chain code.',
+      description: 'WRISTORY preserves Korean independence heritage, Hangul geometry, literature, and cryptographic history on Base & Tezos alongside serialized essays on Paragraph.',
+      exploreMasterpieces: 'Explore Latest Mint',
+      viewOpenSea: 'Paragraph Archive',
       swapUniswap: 'Uniswap v4 Pool'
     },
     metrics: {
       chains: 'Dual Mainnets',
       chainsVal: 'Base L2 × Tezos',
-      masterpieces: 'Curated Works',
-      masterpiecesVal: '4 Heritage Icons',
-      curation: 'Artform',
-      curationVal: 'Generative Fine Art',
-      storage: 'Decentralized Storage',
-      storageVal: 'Permanent IPFS'
+      masterpieces: 'Archived Works',
+      masterpiecesVal: '5 Heritage Works',
+      curation: 'Architecture',
+      curationVal: 'Pure On-Chain Code',
+      storage: 'Publication',
+      storageVal: 'Paragraph · Blog · X'
     },
     dualSection: {
-      badge: 'WRISTORY CURATED DUAL-CHAIN MASTERPIECES',
-      title: 'Curated Dual-Chain Masterpieces',
-      subtitle: 'Experience our dual-chain public-good tribute "Do Not Cry, Homeland", Hunminjeongeum generative archive "SOUND ALIGNMENT v2", Korean literature on Base, and Bitcoin history on Tezos.',
+      badge: 'LATEST ON-CHAIN MINT',
+      title: 'Featured New Mint',
+      subtitle: 'Focused spotlight on our newest on-chain release, with direct archive links to all prior collections below.',
       baseChain: 'BASE MAINNET',
       tezosChain: 'TEZOS MAINNET'
     },
@@ -298,6 +322,18 @@ export const translations: Record<Lang, TranslationDictionary> = {
         detail2: 'Archive: Tezos Objkt #45 (KT1BaZFPGsSfqe1wiz6MUKHKzWdZ3A7emLXR/45)',
         objktBtn: 'View on OBJKT (#45)',
         ipfsBtn: 'IPFS Master (GIF)'
+      },
+      ahn: {
+        title: 'Echoes of Harbin: Ahn Jung-geun (1909.10.26) — 1-Bit Pixel Art',
+        subtitle: '100% Pure On-Chain 1-Bit Dithered Generative Archive',
+        chainBadge: 'Base ERC-721 (#1) × Tezos Objkt (#46)',
+        quote: '"When the sound of Korea\'s independence reaches Heaven, I shall dance and shout Mansei." — General Ahn Jung-geun',
+        desc: 'A 100% pure on-chain, 1-bit dithered pixel art generative work commemorating General Ahn Jung-geun (Doma) and the historic October 26, 1909 Harbin righteousness. Built with zero external image dependencies: the entire 240×320 1-bit bitmap and 64-frame loop (twinkling stars, night bird, spirit glint, drifting petals) are Base64-encoded in pure vanilla code.',
+        detail1: 'Spec: 240×320 1-Bit Bitmap · 64-Frame Loop · Zero External Assets',
+        detail2: 'Chains: Base OpenSea (Token #1) × Tezos Objkt (#46 · 1.9K Eds)',
+        openseaBtn: 'OpenSea (Base #1)',
+        objktBtn: 'Tezos Objkt (#46)',
+        ipfsBtn: 'GIF IPFS Master'
       },
       pizza: {
         title: 'Bitcoin Pizza — 10,000 BTC Heritage',
